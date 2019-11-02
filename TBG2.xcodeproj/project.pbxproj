@@ -15,6 +15,12 @@
 		027A08CE2318248900B0DF59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 027A08CD2318248900B0DF59 /* Assets.xcassets */; };
 		027A08D12318248900B0DF59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 027A08CF2318248900B0DF59 /* LaunchScreen.storyboard */; };
 		0288B22023683A600014DA4E /* Fixtures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0288B21F23683A600014DA4E /* Fixtures.storyboard */; };
+		0288B224236AD9540014DA4E /* Team.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0288B223236AD9540014DA4E /* Team.storyboard */; };
+		0288B226236AD9B40014DA4E /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0288B225236AD9B40014DA4E /* Settings.storyboard */; };
+		0288B228236AD9F80014DA4E /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288B227236AD9F80014DA4E /* AuthViewController.swift */; };
+		0288B22A236ADAB30014DA4E /* FixturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288B229236ADAB20014DA4E /* FixturesViewController.swift */; };
+		0288B22C236ADAC90014DA4E /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288B22B236ADAC90014DA4E /* TeamViewController.swift */; };
+		0288B22E236ADADA0014DA4E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288B22D236ADADA0014DA4E /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +34,12 @@
 		027A08D02318248900B0DF59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		027A08D22318248900B0DF59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0288B21F23683A600014DA4E /* Fixtures.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Fixtures.storyboard; sourceTree = "<group>"; };
+		0288B223236AD9540014DA4E /* Team.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Team.storyboard; sourceTree = "<group>"; };
+		0288B225236AD9B40014DA4E /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		0288B227236AD9F80014DA4E /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		0288B229236ADAB20014DA4E /* FixturesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesViewController.swift; sourceTree = "<group>"; };
+		0288B22B236ADAC90014DA4E /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
+		0288B22D236ADADA0014DA4E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +91,8 @@
 			children = (
 				027A08C72318248300B0DF59 /* Auth.storyboard */,
 				0288B21F23683A600014DA4E /* Fixtures.storyboard */,
+				0288B223236AD9540014DA4E /* Team.storyboard */,
+				0288B225236AD9B40014DA4E /* Settings.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -86,6 +100,10 @@
 		0288B22123683AC80014DA4E /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0288B227236AD9F80014DA4E /* AuthViewController.swift */,
+				0288B229236ADAB20014DA4E /* FixturesViewController.swift */,
+				0288B22B236ADAC90014DA4E /* TeamViewController.swift */,
+				0288B22D236ADADA0014DA4E /* SettingsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -158,7 +176,9 @@
 				0288B22023683A600014DA4E /* Fixtures.storyboard in Resources */,
 				027A08D12318248900B0DF59 /* LaunchScreen.storyboard in Resources */,
 				027A08CE2318248900B0DF59 /* Assets.xcassets in Resources */,
+				0288B226236AD9B40014DA4E /* Settings.storyboard in Resources */,
 				027A08C92318248300B0DF59 /* Auth.storyboard in Resources */,
+				0288B224236AD9540014DA4E /* Team.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,8 +191,12 @@
 			files = (
 				027A08CC2318248300B0DF59 /* TBG2.xcdatamodeld in Sources */,
 				027A08C62318248300B0DF59 /* ViewController.swift in Sources */,
+				0288B22A236ADAB30014DA4E /* FixturesViewController.swift in Sources */,
+				0288B228236AD9F80014DA4E /* AuthViewController.swift in Sources */,
 				027A08C22318248300B0DF59 /* AppDelegate.swift in Sources */,
 				027A08C42318248300B0DF59 /* SceneDelegate.swift in Sources */,
+				0288B22C236ADAC90014DA4E /* TeamViewController.swift in Sources */,
+				0288B22E236ADADA0014DA4E /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

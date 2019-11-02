@@ -8,20 +8,20 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Fixtures View Controller-->
-        <scene sceneID="vKw-rf-RcE">
+        <!--Settings View Controller-->
+        <scene sceneID="5yS-KO-6LU">
             <objects>
-                <viewController id="gnX-OJ-Y7G" customClass="FixturesViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="D4z-H1-FOQ">
+                <viewController id="CSi-Te-Mo8" customClass="SettingsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="q4P-7Z-xNa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="9Ws-ip-LhY"/>
+                        <viewLayoutGuide key="safeArea" id="fur-ZS-3Qg"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XN1-Jn-7PN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AlT-Fh-0v5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-109" y="20"/>
+            <point key="canvasLocation" x="151" y="-215"/>
         </scene>
     </scenes>
 </document>

@@ -13,9 +13,32 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-
+    
+    let tabBarDelegate = TabBarDelegate()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        //Tab Bar Code Base
+        let tabController = UITabBarController()
+        
+        let fixturesStoryboard = UIStoryboard(name: "Fixtures", bundle: nil)
+        let teamStoryboard = UIStoryboard(name: "Team", bundle: nil)
+        let settingsStoryboard = UIStoryboard(name: "Settings", bundle: nil)
+        
+        
+        let fixturesVC = fixturesStoryboard.instantiateViewController(withIdentifier: "Fixtures") as! FixturesViewController
+        let teamVC = teamStoryboard.instantiateViewController(withIdentifier: "Team") as! TeamViewController
+        let settingsVC = settingsStoryboard.instantiateViewController(withIdentifier: "Settings") as! SettingsViewController
+        
+        
+        let vcData: [(UIViewController, UIImage)] = [
+            (fixturesVC, UIImage(named: "fictures_tab_icon")!),
+            (teamVC, UIImage(named: "team_tab_icon")!),
+            (settingsVC, UIImage(named: "settings_tab_icon")!)
+        ]
+
+        window?.rootViewController = tabController
+        
         return true
     }
 
