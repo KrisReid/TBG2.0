@@ -11,7 +11,7 @@
         <!--Fixtures View Controller-->
         <scene sceneID="vKw-rf-RcE">
             <objects>
-                <viewController id="gnX-OJ-Y7G" customClass="FixturesViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Fixtures" id="gnX-OJ-Y7G" customClass="FixturesViewController" customModule="TBG2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="D4z-H1-FOQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

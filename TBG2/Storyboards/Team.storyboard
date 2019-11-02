@@ -11,7 +11,7 @@
         <!--Team View Controller-->
         <scene sceneID="GDZ-RG-ulr">
             <objects>
-                <viewController id="tjl-1e-5Nr" customClass="TeamViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Team" id="tjl-1e-5Nr" customClass="TeamViewController" customModule="TBG2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bRd-Ik-7EV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

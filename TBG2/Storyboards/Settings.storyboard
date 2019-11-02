@@ -11,7 +11,7 @@
         <!--Settings View Controller-->
         <scene sceneID="5yS-KO-6LU">
             <objects>
-                <viewController id="CSi-Te-Mo8" customClass="SettingsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Settings" id="CSi-Te-Mo8" customClass="SettingsViewController" customModule="TBG2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q4P-7Z-xNa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
