@@ -10,4 +10,10 @@ import UIKit
 
 class FixturesViewController: UIViewController  {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        
+    }
+    
 }

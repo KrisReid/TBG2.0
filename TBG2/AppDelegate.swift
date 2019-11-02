@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
              (fixturesVC, UIImage(named: "fixtures_tab_icon")!, UIImage(named: "fixtures_selected_tab_icon")!),
              (teamVC, UIImage(named: "team_tab_icon")!, UIImage(named: "team_selected_tab_icon")!),
              (settingsVC, UIImage(named: "settings_tab_icon")!, UIImage(named: "settings_selected_tab_icon")!)
-         ]
+        ]
          
          let vcs = vcData.map { (vc, defaultImage, selectedImage) -> UINavigationController in
              let nav = UINavigationController(rootViewController: vc)
