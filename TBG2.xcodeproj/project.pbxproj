@@ -66,10 +66,10 @@
 		027A08C02318248300B0DF59 /* TBG2 */ = {
 			isa = PBXGroup;
 			children = (
+				027A08C12318248300B0DF59 /* AppDelegate.swift */,
 				0288B22223683AD70014DA4E /* Views */,
 				0288B22123683AC80014DA4E /* ViewControllers */,
 				0288B21E236839EE0014DA4E /* Storyboards */,
-				027A08C12318248300B0DF59 /* AppDelegate.swift */,
 				027A08C32318248300B0DF59 /* SceneDelegate.swift */,
 				027A08CD2318248900B0DF59 /* Assets.xcassets */,
 				027A08CF2318248900B0DF59 /* LaunchScreen.storyboard */,
