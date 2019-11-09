@@ -18,6 +18,8 @@
 		0288B25B236F44B60014DA4E /* FixturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288B25A236F44B60014DA4E /* FixturesViewController.swift */; };
 		0288B25D236F44D20014DA4E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288B25C236F44D20014DA4E /* SettingsViewController.swift */; };
 		0288B25F236F44F60014DA4E /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288B25E236F44F60014DA4E /* TeamViewController.swift */; };
+		0288B28E2376BB330014DA4E /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0288B28D2376BB330014DA4E /* Home.storyboard */; };
+		0288B2902376BB680014DA4E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288B28F2376BB680014DA4E /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		0288B25A236F44B60014DA4E /* FixturesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesViewController.swift; sourceTree = "<group>"; };
 		0288B25C236F44D20014DA4E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0288B25E236F44F60014DA4E /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
+		0288B28D2376BB330014DA4E /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		0288B28F2376BB680014DA4E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				0288B21F23683A600014DA4E /* Fixtures.storyboard */,
+				0288B28D2376BB330014DA4E /* Home.storyboard */,
 				0288B223236AD9540014DA4E /* Team.storyboard */,
 				0288B225236AD9B40014DA4E /* Settings.storyboard */,
 			);
@@ -93,8 +98,9 @@
 			isa = PBXGroup;
 			children = (
 				0288B25A236F44B60014DA4E /* FixturesViewController.swift */,
-				0288B25C236F44D20014DA4E /* SettingsViewController.swift */,
+				0288B28F2376BB680014DA4E /* HomeViewController.swift */,
 				0288B25E236F44F60014DA4E /* TeamViewController.swift */,
+				0288B25C236F44D20014DA4E /* SettingsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -165,10 +171,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0288B22023683A600014DA4E /* Fixtures.storyboard in Resources */,
+				0288B28E2376BB330014DA4E /* Home.storyboard in Resources */,
 				027A08D12318248900B0DF59 /* LaunchScreen.storyboard in Resources */,
-				027A08CE2318248900B0DF59 /* Assets.xcassets in Resources */,
 				0288B226236AD9B40014DA4E /* Settings.storyboard in Resources */,
 				0288B224236AD9540014DA4E /* Team.storyboard in Resources */,
+				027A08CE2318248900B0DF59 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,10 +188,11 @@
 			files = (
 				027A08CC2318248300B0DF59 /* TBG2.xcdatamodeld in Sources */,
 				0288B25F236F44F60014DA4E /* TeamViewController.swift in Sources */,
-				027A08C22318248300B0DF59 /* AppDelegate.swift in Sources */,
 				0288B25B236F44B60014DA4E /* FixturesViewController.swift in Sources */,
 				027A08C42318248300B0DF59 /* SceneDelegate.swift in Sources */,
+				0288B2902376BB680014DA4E /* HomeViewController.swift in Sources */,
 				0288B25D236F44D20014DA4E /* SettingsViewController.swift in Sources */,
+				027A08C22318248300B0DF59 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,7 +260,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -306,7 +314,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

@@ -10,62 +10,9 @@ import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
-    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-         //Tab Bar Code Base
-         let tabController = UITabBarController()
-
-         let fixturesStoryboard = UIStoryboard(name: "Fixtures", bundle: nil)
-         let teamStoryboard = UIStoryboard(name: "Team", bundle: nil)
-         let settingsStoryboard = UIStoryboard(name: "Settings", bundle: nil)
-
-
-         let fixturesVC = fixturesStoryboard.instantiateViewController(withIdentifier: "Fixtures") as! FixturesViewController
-         let teamVC = teamStoryboard.instantiateViewController(withIdentifier: "Team") as! TeamViewController
-         let settingsVC = settingsStoryboard.instantiateViewController(withIdentifier: "Settings") as! SettingsViewController
-
-
-         let vcData: [(UIViewController, UIImage, UIImage)] = [
-
-            (fixturesVC, UIImage(named: "home_tab_icon")!, UIImage(named: "home_selected_tab_icon")!),
-
-            (teamVC, UIImage(named: "search_tab_icon")!, UIImage(named: "search_selected_tab_icon")!),
-
-            (settingsVC, UIImage(named: "post_tab_icon")!, UIImage(named: "post_tab_icon")!),
-         ]
-
-         let vcs = vcData.map { (vc, defaultImage, selectedImage) -> UINavigationController in
-             let nav = UINavigationController(rootViewController: vc)
-             nav.tabBarItem.image = defaultImage
-             nav.tabBarItem.selectedImage = selectedImage
-             return nav
-         }
-
-        tabController.viewControllers = vcs
-        tabController.tabBar.isTranslucent = false
-//        tabController.delegate = tabBarDelegate
-
-         if let items = tabController.tabBar.items {
-            for item in items {
-                if let image = item.image {
-                    item.image = image.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-                }
-                if let selectedImage = item.selectedImage {
-                    item.selectedImage = selectedImage.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-                }
-                item.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
-            }
-
-        }
-
-        UINavigationBar.appearance().backgroundColor = UIColor.white
-
-        window?.rootViewController = tabController
-
-
+  
         return true
     }
     
@@ -167,3 +114,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
+
+
+
+
