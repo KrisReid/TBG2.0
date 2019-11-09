@@ -31,50 +31,33 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let vcData: [(UIViewController, UIImage, UIImage)] = [
         
-            (fixturesVC, UIImage(named: "home_tab_icon")!, UIImage(named: "home_selected_tab_icon")!),
-            
-            (teamVC, UIImage(named: "search_tab_icon")!, UIImage(named: "search_selected_tab_icon")!),
-            
-            (settingsVC, UIImage(named: "home_tab_icon")!, UIImage(named: "home_selected_tab_icon")!)
+            (fixturesVC, UIImage(named: "fixtures_tab_icon")!, UIImage(named: "fixtures_selected_tab_icon")!),
+            (teamVC, UIImage(named: "team_tab_icon")!, UIImage(named: "team_selected_tab_icon")!),
+            (settingsVC, UIImage(named: "settings_tab_icon")!, UIImage(named: "settings_selected_tab_icon")!)
         
         ]
         
         let vcs = vcData.map { (vc, defaultImage, selectedImage) -> UINavigationController in
             
             let nav = UINavigationController(rootViewController: vc)
-            
             nav.tabBarItem.image = defaultImage
-            
             nav.tabBarItem.selectedImage = selectedImage
-            
             return nav
-            
         }
         
         tabController.viewControllers = vcs
-        
         tabController.tabBar.isTranslucent = false
         
         if let items = tabController.tabBar.items {
-            
             for item in items {
-                
                 if let image = item.image {
-                    
                     item.image = image.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-                    
                 }
-                
                 if let selectedImage = item.selectedImage {
-                    
                     item.selectedImage = selectedImage.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-                    
                 }
-                
                 item.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
-                
             }
-            
         }
         
         UINavigationBar.appearance().backgroundColor = UIColor.white
