@@ -8,23 +8,47 @@
 
 import UIKit
 
-class TeamViewController: UIViewController {
+class TeamViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var tableview: UITableView!
+    
+    lazy var players: [Player] = {
+        let model = PlayersModel()
+        return model.playerList
+    } ()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        tableview.estimatedRowHeight = CGFloat(88.0)
+        tableview.rowHeight = UITableView.automaticDimension
+        tableview.register(UINib(nibName: "PlayersTableViewCell", bundle: nil), forCellReuseIdentifier: "PlayersTableViewCell")
+        
+        tableview.dataSource = self
+        tableview.delegate = self
+        
+        //remove the lines in a table view
+//        tableview.tableFooterView = UIView()
+        
+        var rightBarItemImage = UIImage(named: "plus_icon")
+        rightBarItemImage = rightBarItemImage?.withRenderingMode(.alwaysOriginal)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: rightBarItemImage, style: .plain, target: nil, action: nil)
+        
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage.add, style: .plain, target: nil, action: nil)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return 1
+        
     }
-    */
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = UITableViewCell()
+        
+        return cell
+        
+    }
 
 }

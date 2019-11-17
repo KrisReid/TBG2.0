@@ -11,28 +11,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     @available(iOS 13.0, *)
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         let tabController = UITabBarController()
         
-        let fixturesStoryboard = UIStoryboard(name: "Fixtures", bundle: nil)
         let teamStoryboard = UIStoryboard(name: "Team", bundle: nil)
+        let fixturesStoryboard = UIStoryboard(name: "Fixtures", bundle: nil)
         let settingsStoryboard = UIStoryboard(name: "Settings", bundle: nil)
         
-        
-        let fixturesVC = fixturesStoryboard.instantiateViewController(withIdentifier: "Fixtures") as! FixturesViewController
-        
         let teamVC = teamStoryboard.instantiateViewController(withIdentifier: "Team") as! TeamViewController
+        let fixturesVC = fixturesStoryboard.instantiateViewController(withIdentifier: "Fixtures") as! FixturesViewController
         
         let settingsVC = settingsStoryboard.instantiateViewController(withIdentifier: "Settings") as! SettingsViewController
         
         
         let vcData: [(UIViewController, UIImage, UIImage)] = [
         
-            (fixturesVC, UIImage(named: "fixtures_tab_icon")!, UIImage(named: "fixtures_selected_tab_icon")!),
             (teamVC, UIImage(named: "team_tab_icon")!, UIImage(named: "team_selected_tab_icon")!),
+            (fixturesVC, UIImage(named: "fixtures_tab_icon")!, UIImage(named: "fixtures_selected_tab_icon")!),
             (settingsVC, UIImage(named: "settings_tab_icon")!, UIImage(named: "settings_selected_tab_icon")!)
         
         ]
@@ -100,6 +97,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Save changes in the application's managed object context when the application transitions to the background.
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
-
 
 }
