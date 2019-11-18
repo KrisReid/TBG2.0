@@ -34,7 +34,6 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         rightBarItemImage = rightBarItemImage?.withRenderingMode(.alwaysOriginal)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: rightBarItemImage, style: .plain, target: nil, action: nil)
         
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage.add, style: .plain, target: nil, action: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
