@@ -10,20 +10,20 @@ import UIKit
 
 class TeamTableViewCell: UITableViewCell {
     
-    lazy var players: [Player] = {
-        let model = PlayersModel()
-        return model.playerList
-    }()
+    @IBOutlet weak var ivPlayerImage: UIImageView!
+    @IBOutlet weak var lblPlayerName: UILabel!
+    
 
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+        ivPlayerImage.layer.cornerRadius = ivPlayerImage.frame.width / 2
+        ivPlayerImage.layer.masksToBounds = true
+        ivPlayerImage.layer.borderWidth = 1.0
+        ivPlayerImage.layer.borderColor = UIColor( red: 98/255, green: 190/255, blue:204/255, alpha: 1.0 ).cgColor
+        
+//        selectionStyle = UITableViewCell.SelectionStyle.none
     }
     
 }

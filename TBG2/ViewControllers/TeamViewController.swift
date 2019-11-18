@@ -20,9 +20,9 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableview.estimatedRowHeight = CGFloat(88.0)
+        tableview.estimatedRowHeight = CGFloat(74.0)
         tableview.rowHeight = UITableView.automaticDimension
-        tableview.register(UINib(nibName: "PlayersTableViewCell", bundle: nil), forCellReuseIdentifier: "PlayersTableViewCell")
+        tableview.register(UINib(nibName: "TeamTableViewCell", bundle: nil), forCellReuseIdentifier: "TeamTableViewCell")
         
         tableview.dataSource = self
         tableview.delegate = self
@@ -38,13 +38,18 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 1
+        return players.count
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TeamTableViewCell") as! TeamTableViewCell
+        
+        let playerData = players[indexPath.row]
+        
+        cell.ivPlayerImage.image = playerData.playerImage
+        cell.lblPlayerName.text = playerData.playerName
         
         return cell
         

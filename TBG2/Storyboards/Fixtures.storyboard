@@ -26,9 +26,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="9Ws-ip-LhY"/>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem title="Item" image="plus" catalog="system" id="rRm-Rz-KGX"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XN1-Jn-7PN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -36,7 +34,4 @@
             <point key="canvasLocation" x="-109" y="20"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="plus" catalog="system" width="64" height="56"/>
-    </resources>
 </document>
