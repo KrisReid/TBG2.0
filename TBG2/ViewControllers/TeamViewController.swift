@@ -51,13 +51,13 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
-//        view.backgroundColor = UIColor( red: 98/255, green: 190/255, blue:204/255, alpha: 1.0 )
-        view.backgroundColor = UIColor.lightGray
+                view.backgroundColor = UIColor( red: 67/255, green: 131/255, blue:140/255, alpha: 1.0 )
 
         
         let label = UILabel()
         label.text = sectionTitles[section]
-        label.frame = CGRect(x: 10, y: 5, width: 100, height: 35)
+        label.frame = CGRect(x: 10, y: 0, width: 100, height: 40)
+        label.textColor = UIColor.white
         view.addSubview(label)
         
         return view

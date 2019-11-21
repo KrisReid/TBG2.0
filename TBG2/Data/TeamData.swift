@@ -12,7 +12,6 @@ import UIKit
 struct Team {
     var teamName: String
     var teamImage: UIImage
-    var player: Player
 }
 
 
@@ -22,6 +21,11 @@ class TeamModel {
     
     init() {
         
+        let team1 = Team(teamName: "Avonmouth FC", teamImage: UIImage(named: "AFC_icon")!)
+        teamList.append(team1)
+        
+        let team2 = Team(teamName: "Challengers FC", teamImage: UIImage(named: "AFC_icon")!)
+        teamList.append(team2)
         
     }
     
