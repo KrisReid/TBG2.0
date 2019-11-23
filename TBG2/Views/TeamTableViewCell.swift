@@ -12,7 +12,6 @@ class TeamTableViewCell: UITableViewCell {
     
     @IBOutlet weak var ivPlayerImage: UIImageView!
     @IBOutlet weak var lblPlayerName: UILabel!
-    
 
     
     override func awakeFromNib() {
