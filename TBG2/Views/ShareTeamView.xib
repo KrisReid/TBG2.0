@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ShareTeamView" customModule="TBG2" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="547"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m4T-5u-law">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="toggle_icon" translatesAutoresizingMaskIntoConstraints="NO" id="tfb-6P-Dbw">
+                            <rect key="frame" x="149.5" y="21" width="115" height="8"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="115" id="GzW-C3-FWy"/>
+                                <constraint firstAttribute="height" constant="8" id="MJZ-gN-MG5"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="tfb-6P-Dbw" firstAttribute="centerX" secondItem="m4T-5u-law" secondAttribute="centerX" id="cCO-0U-syL"/>
+                        <constraint firstItem="tfb-6P-Dbw" firstAttribute="centerY" secondItem="m4T-5u-law" secondAttribute="centerY" id="cqq-6U-sa0"/>
+                        <constraint firstAttribute="height" constant="50" id="mif-4R-8gN"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lSC-2J-b3w">
+                    <rect key="frame" x="0.0" y="50" width="414" height="130"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sAo-hv-u3y">
+                            <rect key="frame" x="20" y="20" width="90" height="90"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="90" id="8b0-K4-7XD"/>
+                                <constraint firstAttribute="height" constant="90" id="j3V-0W-poe"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="abP-hi-kKw">
+                            <rect key="frame" x="140" y="20" width="254" height="26"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="254" id="kwV-tY-GGc"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                            <color key="textColor" red="0.38431372549019605" green="0.74509803921568629" blue="0.80000000000000004" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Postcode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Msd-2w-9YS">
+                            <rect key="frame" x="140" y="71" width="254" height="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" red="0.2627450980392157" green="0.51372549019607838" blue="0.5490196078431373" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Msd-2w-9YS" firstAttribute="leading" secondItem="sAo-hv-u3y" secondAttribute="trailing" constant="30" id="12g-fk-2Bk"/>
+                        <constraint firstItem="sAo-hv-u3y" firstAttribute="centerY" secondItem="lSC-2J-b3w" secondAttribute="centerY" id="NRS-AI-NjM"/>
+                        <constraint firstItem="Msd-2w-9YS" firstAttribute="top" secondItem="abP-hi-kKw" secondAttribute="bottom" constant="25" id="Owy-Sc-7Ex"/>
+                        <constraint firstAttribute="trailing" secondItem="Msd-2w-9YS" secondAttribute="trailing" constant="20" id="TI8-gP-mZo"/>
+                        <constraint firstItem="abP-hi-kKw" firstAttribute="top" secondItem="lSC-2J-b3w" secondAttribute="top" constant="20" id="WJB-65-4iZ"/>
+                        <constraint firstItem="sAo-hv-u3y" firstAttribute="leading" secondItem="lSC-2J-b3w" secondAttribute="leading" constant="20" id="Xrt-1t-Org"/>
+                        <constraint firstItem="abP-hi-kKw" firstAttribute="leading" secondItem="sAo-hv-u3y" secondAttribute="trailing" constant="30" id="oxs-wg-Gga"/>
+                        <constraint firstAttribute="height" constant="130" id="q8p-7F-eiM"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="lSC-2J-b3w" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Iw2-v4-asi"/>
+                <constraint firstItem="m4T-5u-law" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="PUr-De-OnL"/>
+                <constraint firstItem="lSC-2J-b3w" firstAttribute="top" secondItem="m4T-5u-law" secondAttribute="bottom" id="REw-ca-toj"/>
+                <constraint firstItem="m4T-5u-law" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="azc-nX-2Pu"/>
+                <constraint firstItem="lSC-2J-b3w" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="dbd-lO-eMv"/>
+                <constraint firstItem="m4T-5u-law" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="vxl-mo-5yc"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="ivClubBadge" destination="sAo-hv-u3y" id="g87-sH-IuT"/>
+                <outlet property="lblClubName" destination="abP-hi-kKw" id="sCI-8G-x1r"/>
+                <outlet property="lblClubPostcode" destination="Msd-2w-9YS" id="YXF-3V-ObY"/>
+            </connections>
+            <point key="canvasLocation" x="133.33333333333334" y="309.04017857142856"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="toggle_icon" width="115" height="8"/>
+    </resources>
+</document>

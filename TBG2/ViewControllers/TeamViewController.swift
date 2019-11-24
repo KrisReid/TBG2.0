@@ -17,6 +17,13 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         return model.playerList
     } ()
     
+    lazy var team: [Team] = {
+        let teamModel = TeamModel()
+        return teamModel.teamList
+    } ()
+    
+    let teamData: [Team] = TeamModel.init().teamList
+    
     let sectionTitles: [String] = ["Goalkeepers","Defenders","Midfielders","Strikers"]
     
     let s1Data: [Player] = PlayersModel.init().goalkeeperList
@@ -26,10 +33,12 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     var sectionData: [Int: [Player]] = [:]
     
+    //instantiate the Xib
+    var xibview = UINib(nibName: "ShareTeamView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! ShareTeamView
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        setupCard()
         
         sectionData = [0 : s1Data, 1 : s2Data, 2 : s3Data, 3 : s4Data]
 
@@ -40,10 +49,30 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableview.dataSource = self
         tableview.delegate = self
         
-        
+        //Bar Button Items
         var rightBarItemImage = UIImage(named: "plus_icon")
         rightBarItemImage = rightBarItemImage?.withRenderingMode(.alwaysOriginal)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: rightBarItemImage, style: .plain, target: self, action: #selector(shareTeamInformationTapped))
+        
+        
+        //Xib Code
+        xibview.layer.cornerRadius = CGFloat(10)
+        xibview.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: xibview.bounds.height)
+        
+        xibview.layer.shadowColor = UIColor.black.cgColor
+        xibview.layer.shadowOpacity = 1
+        xibview.layer.shadowRadius = 10
+        
+        view.addSubview(xibview)
+        
+        xibview.ivClubBadge.image = teamData[0].teamImage
+        xibview.lblClubName.text = teamData[0].teamName
+        xibview.lblClubPostcode.text = teamData[0].teamPostcode
+        
+        //Downswipe (Add Fixture)
+        let downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
+        downSwipe.direction = .down
+        xibview.addGestureRecognizer(downSwipe)
         
         
     }
@@ -86,191 +115,22 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
-    
-    
     @objc func shareTeamInformationTapped() {
-        print("Clicked")
         
+        UIView.animate(withDuration: 0.6) {
+            self.xibview.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height - self.xibview.bounds.height, width: UIScreen.main.bounds.width, height: self.xibview.bounds.height)
+        }
         
     }
     
-//
-//
-//    enum CardState {
-//           case collapsed
-//           case expanded
-//       }
-//
-//       // Variable determines the next state of the card expressing that the card starts and collapased
-//       var nextState:CardState {
-//           return cardVisible ? .collapsed : .expanded
-//       }
-//
-//       // Variable for card view controller
-//       var cardViewController:ShareTeamFormViewController!
-//
-//       // Variable for effects visual effect view
-//       var visualEffectView:UIVisualEffectView!
-//
-//       // Starting and end card heights will be determined later
-//       var endCardHeight:CGFloat = 0
-//       var startCardHeight:CGFloat = 0
-//
-//       // Current visible state of the card
-//       var cardVisible = false
-//
-//       // Empty property animator array
-//       var runningAnimations = [UIViewPropertyAnimator]()
-//       var animationProgressWhenInterrupted:CGFloat = 0
-//
-//
-//       func setupCard() {
-//           // Setup starting and ending card height
-//           endCardHeight = self.view.frame.height * 0.5
-//           startCardHeight = self.view.frame.height * 0.2
-//
-//           // Add Visual Effects View
-//           visualEffectView = UIVisualEffectView()
-//           visualEffectView.frame = self.view.frame
-//           self.view.addSubview(visualEffectView)
-//
-//            //Add CardViewController xib to the bottom of the screen, clipping bounds so that the corners can be rounded
-//           cardViewController = ShareTeamFormViewController(nibName:"ShareTeamFormViewController", bundle:nil)
-//           self.view.addSubview(cardViewController.view)
-//           cardViewController.view.frame = CGRect(x: 0, y: self.view.frame.height - startCardHeight, width: self.view.bounds.width, height: endCardHeight)
-//           cardViewController.view.clipsToBounds = true
-//
-//           // Add tap and pan recognizers
-////           let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TeamViewController.handleCardTap(recognzier:)))
-//           let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(TeamViewController.handleCardPan(recognizer:)))
-//
-////           cardViewController.handleArea.addGestureRecognizer(tapGestureRecognizer)
-//           cardViewController.handleArea.addGestureRecognizer(panGestureRecognizer)
-//       }
-//
-//       // Handle tap gesture recognizer
-//       @objc
-//       func handleCardTap(recognzier:UITapGestureRecognizer) {
-//           switch recognzier.state {
-//               // Animate card when tap finishes
-//           case .ended:
-//               animateTransitionIfNeeded(state: nextState, duration: 0.9)
-//           default:
-//               break
-//           }
-//       }
-//
-//       // Handle pan gesture recognizer
-//       @objc
-//       func handleCardPan (recognizer:UIPanGestureRecognizer) {
-//           switch recognizer.state {
-//           case .began:
-//               // Start animation if pan begins
-//               startInteractiveTransition(state: nextState, duration: 0.9)
-//
-//           case .changed:
-//               // Update the translation according to the percentage completed
-//               let translation = recognizer.translation(in: self.cardViewController.handleArea)
-//               var fractionComplete = translation.y / endCardHeight
-//               fractionComplete = cardVisible ? fractionComplete : -fractionComplete
-//               updateInteractiveTransition(fractionCompleted: fractionComplete)
-//           case .ended:
-//               // End animation when pan ends
-//               continueInteractiveTransition()
-//           default:
-//               break
-//           }
-//       }
-//
-//
-//       // Animate transistion function
-//        func animateTransitionIfNeeded (state:CardState, duration:TimeInterval) {
-//            // Check if frame animator is empty
-//            if runningAnimations.isEmpty {
-//                // Create a UIViewPropertyAnimator depending on the state of the popover view
-//                let frameAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
-//                    switch state {
-//                    case .expanded:
-//                        // If expanding set popover y to the ending height and blur background
-//                        self.cardViewController.view.frame.origin.y = self.view.frame.height - self.endCardHeight
-//                        self.visualEffectView.effect = UIBlurEffect(style: .dark)
-//
-//                    case .collapsed:
-//                        // If collapsed set popover y to the starting height and remove background blur
-//                        self.cardViewController.view.frame.origin.y = self.view.frame.height - self.startCardHeight
-//
-//                        self.visualEffectView.effect = nil
-//                    }
-//                }
-//
-//                // Complete animation frame
-//                frameAnimator.addCompletion { _ in
-//                    self.cardVisible = !self.cardVisible
-//                    self.runningAnimations.removeAll()
-//                }
-//
-//                // Start animation
-//                frameAnimator.startAnimation()
-//
-//                // Append animation to running animations
-//                runningAnimations.append(frameAnimator)
-//
-//                // Create UIViewPropertyAnimator to round the popover view corners depending on the state of the popover
-//                let cornerRadiusAnimator = UIViewPropertyAnimator(duration: duration, curve: .linear) {
-//                    switch state {
-//                    case .expanded:
-//                        // If the view is expanded set the corner radius to 30
-//                        self.cardViewController.view.layer.cornerRadius = 30
-//
-//                    case .collapsed:
-//                        // If the view is collapsed set the corner radius to 0
-//                        self.cardViewController.view.layer.cornerRadius = 0
-//                    }
-//                }
-//
-//                // Start the corner radius animation
-//                cornerRadiusAnimator.startAnimation()
-//
-//                // Append animation to running animations
-//                runningAnimations.append(cornerRadiusAnimator)
-//
-//            }
-//        }
-//
-//        // Function to start interactive animations when view is dragged
-//        func startInteractiveTransition(state:CardState, duration:TimeInterval) {
-//
-//            // If animation is empty start new animation
-//            if runningAnimations.isEmpty {
-//                animateTransitionIfNeeded(state: state, duration: duration)
-//            }
-//
-//            // For each animation in runningAnimations
-//            for animator in runningAnimations {
-//                // Pause animation and update the progress to the fraction complete percentage
-//                animator.pauseAnimation()
-//                animationProgressWhenInterrupted = animator.fractionComplete
-//            }
-//        }
-//
-//        // Funtion to update transition when view is dragged
-//        func updateInteractiveTransition(fractionCompleted:CGFloat) {
-//            // For each animation in runningAnimations
-//            for animator in runningAnimations {
-//                // Update the fraction complete value to the current progress
-//                animator.fractionComplete = fractionCompleted + animationProgressWhenInterrupted
-//            }
-//        }
-//
-//        // Function to continue an interactive transisiton
-//        func continueInteractiveTransition (){
-//            // For each animation in runningAnimations
-//            for animator in runningAnimations {
-//                // Continue the animation forwards or backwards
-//                animator.continueAnimation(withTimingParameters: nil, durationFactor: 0)
-//            }
-//        }
-//
-//
+    @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
+        
+        if (sender.direction == .down) {
+            print("Swipe Down")
+            UIView.animate(withDuration: 0.6) {
+                self.xibview.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: self.xibview.bounds.height)
+            }
+        }
+    }
     
 }
