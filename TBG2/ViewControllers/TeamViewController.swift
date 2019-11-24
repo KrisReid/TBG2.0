@@ -42,7 +42,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         sectionData = [0 : s1Data, 1 : s2Data, 2 : s3Data, 3 : s4Data]
 
-        tableview.estimatedRowHeight = CGFloat(74.0)
+        tableview.estimatedRowHeight = CGFloat(60.0)
         tableview.rowHeight = UITableView.automaticDimension
         tableview.register(UINib(nibName: "TeamTableViewCell", bundle: nil), forCellReuseIdentifier: "TeamTableViewCell")
         
@@ -77,7 +77,9 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
+    //Look into this
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
         return (sectionData[section]?.count)!
     }
     
@@ -88,15 +90,16 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let label = UILabel()
         label.text = sectionTitles[section]
-        label.frame = CGRect(x: 10, y: 0, width: 100, height: 40)
+        label.frame = CGRect(x: 10, y: 0, width: 100, height: 34)
         label.textColor = UIColor.white
+        label.font = UIFont.systemFont(ofSize: 16)
         view.addSubview(label)
         
         return view
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        return 34
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
