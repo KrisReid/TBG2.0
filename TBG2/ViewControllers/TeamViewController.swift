@@ -54,10 +54,9 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         rightBarItemImage = rightBarItemImage?.withRenderingMode(.alwaysOriginal)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: rightBarItemImage, style: .plain, target: self, action: #selector(shareTeamInformationTapped))
         
-        
         //Xib Code
         xibview.layer.cornerRadius = CGFloat(10)
-        xibview.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: xibview.bounds.height)
+        xibview.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height - (self.tabBarController?.tabBar.frame.height)!, width: UIScreen.main.bounds.width, height: xibview.bounds.height + (self.tabBarController?.tabBar.frame.height)!)
         
         xibview.layer.shadowColor = UIColor.black.cgColor
         xibview.layer.shadowOpacity = 1
@@ -69,25 +68,24 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         xibview.lblClubName.text = teamData[0].teamName
         xibview.lblClubPostcode.text = teamData[0].teamPostcode
         
+        
         //Downswipe (Add Fixture)
         let downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
         downSwipe.direction = .down
         xibview.addGestureRecognizer(downSwipe)
         
-        
     }
     
-    //Look into this
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
         return (sectionData[section]?.count)!
     }
+    
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
                 view.backgroundColor = UIColor( red: 67/255, green: 131/255, blue:140/255, alpha: 1.0 )
 
-        
         let label = UILabel()
         label.text = sectionTitles[section]
         label.frame = CGRect(x: 10, y: 0, width: 100, height: 34)
@@ -114,26 +112,24 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.ivPlayerImage.image = sectionData[indexPath.section]![indexPath.row].playerImage
         
         return cell
-        
     }
-    
     
     @objc func shareTeamInformationTapped() {
-        
         UIView.animate(withDuration: 0.6) {
-            self.xibview.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height - self.xibview.bounds.height, width: UIScreen.main.bounds.width, height: self.xibview.bounds.height)
+            self.xibview.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height - (self.tabBarController?.tabBar.frame.height)! -  self.xibview.bounds.height, width: UIScreen.main.bounds.width, height: self.xibview.bounds.height + (self.tabBarController?.tabBar.frame.height)!)
         }
-        
     }
     
+//    xibview.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height - (self.tabBarController?.tabBar.frame.height)!, width: UIScreen.main.bounds.width, height: xibview.bounds.height)
+    
+    
     @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
-        
         if (sender.direction == .down) {
             print("Swipe Down")
             UIView.animate(withDuration: 0.6) {
-                self.xibview.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: self.xibview.bounds.height)
+                self.xibview.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height - (self.tabBarController?.tabBar.frame.height)!, width: UIScreen.main.bounds.width, height: self.xibview.bounds.height + (self.tabBarController?.tabBar.frame.height)!)
             }
         }
     }
-    
+
 }

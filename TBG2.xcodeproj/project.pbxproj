@@ -13,6 +13,8 @@
 		026F1E78238295EE00682063 /* TeamTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 026F1E76238295EE00682063 /* TeamTableViewCell.xib */; };
 		026F1E84238A883100682063 /* ShareTeamView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 026F1E83238A883100682063 /* ShareTeamView.xib */; };
 		026F1E86238A885900682063 /* ShareTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F1E85238A885900682063 /* ShareTeamView.swift */; };
+		026F1E9B2390731100682063 /* ShareTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F1E992390731100682063 /* ShareTeamTableViewCell.swift */; };
+		026F1E9C2390731100682063 /* ShareTeamTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 026F1E9A2390731100682063 /* ShareTeamTableViewCell.xib */; };
 		027A08C22318248300B0DF59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027A08C12318248300B0DF59 /* AppDelegate.swift */; };
 		027A08C42318248300B0DF59 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027A08C32318248300B0DF59 /* SceneDelegate.swift */; };
 		027A08CC2318248300B0DF59 /* TBG2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 027A08CA2318248300B0DF59 /* TBG2.xcdatamodeld */; };
@@ -33,6 +35,8 @@
 		026F1E76238295EE00682063 /* TeamTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamTableViewCell.xib; sourceTree = "<group>"; };
 		026F1E83238A883100682063 /* ShareTeamView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShareTeamView.xib; sourceTree = "<group>"; };
 		026F1E85238A885900682063 /* ShareTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTeamView.swift; sourceTree = "<group>"; };
+		026F1E992390731100682063 /* ShareTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTeamTableViewCell.swift; sourceTree = "<group>"; };
+		026F1E9A2390731100682063 /* ShareTeamTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShareTeamTableViewCell.xib; sourceTree = "<group>"; };
 		027A08BE2318248300B0DF59 /* TBG2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TBG2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		027A08C12318248300B0DF59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		027A08C32318248300B0DF59 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +132,8 @@
 				026F1E76238295EE00682063 /* TeamTableViewCell.xib */,
 				026F1E83238A883100682063 /* ShareTeamView.xib */,
 				026F1E85238A885900682063 /* ShareTeamView.swift */,
+				026F1E9A2390731100682063 /* ShareTeamTableViewCell.xib */,
+				026F1E992390731100682063 /* ShareTeamTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -190,6 +196,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				026F1E9C2390731100682063 /* ShareTeamTableViewCell.xib in Resources */,
 				0288B22023683A600014DA4E /* Fixtures.storyboard in Resources */,
 				027A08D12318248900B0DF59 /* LaunchScreen.storyboard in Resources */,
 				0288B226236AD9B40014DA4E /* Settings.storyboard in Resources */,
@@ -207,6 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				026F1E9B2390731100682063 /* ShareTeamTableViewCell.swift in Sources */,
 				027A08CC2318248300B0DF59 /* TBG2.xcdatamodeld in Sources */,
 				026F1E702381CA9400682063 /* TeamData.swift in Sources */,
 				026F1E722381CC5600682063 /* PlayerData.swift in Sources */,
