@@ -6,8 +6,11 @@
 //  Copyright © 2019 Kris Reid. All rights reserved.
 //
 
-import Foundation
 import UIKit
+
+
+var titleArray: [String]! = ["Team ID","Team PIN","Share"]
+var answerArray: [String]! = ["-299fFFCJE8DJEEddf","123456"]
 
 class ShareTeamView: UIView {
 
@@ -29,10 +32,9 @@ class ShareTeamView: UIView {
         tableView.isScrollEnabled = false
         tableView.register(ShareTeamTableViewCell.self, forCellReuseIdentifier: "ShareTeamTableViewCell")
     }
-
+    
 }
 
-var titleArray: [String]! = ["Kris","Thomas","Reid"]
 
 extension UIView: UITableViewDataSource, UITableViewDelegate {
     
@@ -46,12 +48,15 @@ extension UIView: UITableViewDataSource, UITableViewDelegate {
         
         cell.lblOption.text = titleArray[indexPath.row]
         
+        //UPDATE HERE
+        if (indexPath.row == 2) {cell.ivAnswer.image = UIImage(named: "share_icon")}
+        else {cell.lblAnswer.text = answerArray[indexPath.row]}
+        
         return cell
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
-    
     
 }
