@@ -56,7 +56,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         //Xib Code
         xibview.layer.cornerRadius = CGFloat(10)
-        xibview.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height - (self.tabBarController?.tabBar.frame.height)!, width: UIScreen.main.bounds.width, height: xibview.bounds.height + (self.tabBarController?.tabBar.frame.height)!)
+        xibview.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: xibview.bounds.height + (self.tabBarController?.tabBar.frame.height)!)
         
         xibview.layer.shadowColor = UIColor.black.cgColor
         xibview.layer.shadowOpacity = 1
@@ -116,18 +116,14 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @objc func shareTeamInformationTapped() {
         UIView.animate(withDuration: 0.6) {
-            self.xibview.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height - (self.tabBarController?.tabBar.frame.height)! -  self.xibview.bounds.height, width: UIScreen.main.bounds.width, height: self.xibview.bounds.height + (self.tabBarController?.tabBar.frame.height)!)
+            self.xibview.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height - (self.tabBarController?.tabBar.frame.height)! -  self.xibview.bounds.height, width: UIScreen.main.bounds.width, height: self.xibview.bounds.height)
         }
     }
     
-//    xibview.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height - (self.tabBarController?.tabBar.frame.height)!, width: UIScreen.main.bounds.width, height: xibview.bounds.height)
-    
-    
     @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
         if (sender.direction == .down) {
-            print("Swipe Down")
             UIView.animate(withDuration: 0.6) {
-                self.xibview.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height - (self.tabBarController?.tabBar.frame.height)!, width: UIScreen.main.bounds.width, height: self.xibview.bounds.height + (self.tabBarController?.tabBar.frame.height)!)
+                self.xibview.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: self.xibview.bounds.height)
             }
         }
     }
