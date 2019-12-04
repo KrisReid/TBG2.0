@@ -114,6 +114,21 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let snapshot = sectionData[indexPath.section]![indexPath.row]
+        performSegue(withIdentifier: "playerDetailSegue", sender: snapshot)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? PlayerDetailViewController {
+            if let snapshot = sender as? Player {
+                if let name = snapshot.playerName as? String {
+                    vc.playerName = name
+                }
+            }
+        }
+    }
+    
     @objc func shareTeamInformationTapped() {
         UIView.animate(withDuration: 0.6) {
             self.xibview.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height - (self.tabBarController?.tabBar.frame.height)! -  self.xibview.bounds.height, width: UIScreen.main.bounds.width, height: self.xibview.bounds.height)
