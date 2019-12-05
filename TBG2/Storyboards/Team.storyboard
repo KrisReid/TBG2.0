@@ -111,17 +111,24 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NY6-Pb-4qT">
                                         <rect key="frame" x="0.0" y="538.5" width="414" height="269.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stats Coming Soon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4su-II-gzg">
-                                                <rect key="frame" x="99" y="119" width="216" height="32"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R7R-yl-hoS">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="270"/>
+                                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <viewLayoutGuide key="contentLayoutGuide" id="Oke-Uy-tuv"/>
+                                                <viewLayoutGuide key="frameLayoutGuide" id="dgU-6b-DDY"/>
+                                            </scrollView>
+                                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="iPt-zp-1oL">
+                                                <rect key="frame" x="187.5" y="212.5" width="39" height="37"/>
+                                            </pageControl>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="4su-II-gzg" firstAttribute="centerX" secondItem="NY6-Pb-4qT" secondAttribute="centerX" id="Ape-l5-Bvi"/>
-                                            <constraint firstItem="4su-II-gzg" firstAttribute="centerY" secondItem="NY6-Pb-4qT" secondAttribute="centerY" id="dqw-Oa-Lpo"/>
+                                            <constraint firstItem="iPt-zp-1oL" firstAttribute="centerX" secondItem="NY6-Pb-4qT" secondAttribute="centerX" id="7dE-vd-0oa"/>
+                                            <constraint firstAttribute="bottom" secondItem="R7R-yl-hoS" secondAttribute="bottom" id="F62-dQ-aa2"/>
+                                            <constraint firstAttribute="bottom" secondItem="iPt-zp-1oL" secondAttribute="bottom" constant="20" id="Hum-Hn-f5L"/>
+                                            <constraint firstAttribute="trailing" secondItem="R7R-yl-hoS" secondAttribute="trailing" id="NpA-DT-9ZI"/>
+                                            <constraint firstItem="R7R-yl-hoS" firstAttribute="leading" secondItem="NY6-Pb-4qT" secondAttribute="leading" id="n47-Md-TEv"/>
+                                            <constraint firstItem="R7R-yl-hoS" firstAttribute="top" secondItem="NY6-Pb-4qT" secondAttribute="top" id="uh5-K1-mkI"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -153,6 +160,9 @@
                         <outlet property="lblPlayerAge" destination="lFS-CA-qmm" id="Qn6-El-Mb1"/>
                         <outlet property="lblPlayerName" destination="5E0-OQ-Vgz" id="cPI-Fw-HO7"/>
                         <outlet property="lblPlayerPosition" destination="Klx-Gr-6KS" id="rPe-Ur-kXG"/>
+                        <outlet property="pageControl" destination="iPt-zp-1oL" id="3DV-ft-5mv"/>
+                        <outlet property="scrollView" destination="R7R-yl-hoS" id="VKl-RW-Tfc"/>
+                        <outlet property="vScrollView" destination="NY6-Pb-4qT" id="Hg4-L9-csC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H8M-C2-pyY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
