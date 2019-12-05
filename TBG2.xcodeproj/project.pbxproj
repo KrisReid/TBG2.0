@@ -138,8 +138,8 @@
 			children = (
 				026F1E75238295EE00682063 /* TeamTableViewCell.swift */,
 				026F1E76238295EE00682063 /* TeamTableViewCell.xib */,
-				026F1E83238A883100682063 /* ShareTeamView.xib */,
 				026F1E85238A885900682063 /* ShareTeamView.swift */,
+				026F1E83238A883100682063 /* ShareTeamView.xib */,
 				026F1E992390731100682063 /* ShareTeamTableViewCell.swift */,
 				02821A102398F5E50090E400 /* Slide.swift */,
 				02821A122398F68A0090E400 /* Slide.xib */,

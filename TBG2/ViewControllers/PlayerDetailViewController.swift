@@ -36,7 +36,7 @@ class PlayerDetailViewController: UIViewController, UIScrollViewDelegate {
         ivPlayerIProfilePic.image = playerProfilePic
         lblPlayerName.text = playerName
         lblPlayerAge.text = "\(playerAge) years old"
-        lblPlayerPosition.text = playerPosition
+//        lblPlayerPosition.text = playerPosition
         
         slides = createSlides()
         setupSlideScrollView(slides: slides)
@@ -59,13 +59,16 @@ class PlayerDetailViewController: UIViewController, UIScrollViewDelegate {
     
     func createSlides() -> [Slide] {
         let slide1:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
-        slide1.lblTest.text = "A real-life bear"
+        slide1.lblTitle.text = "All Seasons"
+        slide1.lblGamesPlayedResult.text = "77"
         
         let slide2:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
-        slide2.lblTest.text = "A real-life monkey"
+        slide2.lblTitle.text = "2018 / 2019"
+        slide2.lblGamesPlayedResult.text = "25"
         
         let slide3:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
-        slide3.lblTest.text = "A real-life goat"
+        slide3.lblTitle.text = "2017 / 2018"
+        slide3.lblGamesPlayedResult.text = "52"
         
         return [slide1, slide2, slide3]
     }

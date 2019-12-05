@@ -86,8 +86,8 @@
                                                 <color key="textColor" red="0.2627450980392157" green="0.51372549019607838" blue="0.5490196078431373" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Defender" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Klx-Gr-6KS" userLabel="lblPlaterPosition">
-                                                <rect key="frame" x="10" y="446.5" width="394" height="20"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Klx-Gr-6KS" userLabel="lblPlaterPosition">
+                                                <rect key="frame" x="10" y="446.5" width="394" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" red="0.26274509800000001" green="0.51372549020000002" blue="0.54901960780000003" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -113,19 +113,19 @@
                                         <subviews>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R7R-yl-hoS">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="270"/>
-                                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <viewLayoutGuide key="contentLayoutGuide" id="Oke-Uy-tuv"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="dgU-6b-DDY"/>
                                             </scrollView>
                                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="iPt-zp-1oL">
-                                                <rect key="frame" x="187.5" y="212.5" width="39" height="37"/>
+                                                <rect key="frame" x="187.5" y="232.5" width="39" height="37"/>
                                             </pageControl>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="iPt-zp-1oL" firstAttribute="centerX" secondItem="NY6-Pb-4qT" secondAttribute="centerX" id="7dE-vd-0oa"/>
                                             <constraint firstAttribute="bottom" secondItem="R7R-yl-hoS" secondAttribute="bottom" id="F62-dQ-aa2"/>
-                                            <constraint firstAttribute="bottom" secondItem="iPt-zp-1oL" secondAttribute="bottom" constant="20" id="Hum-Hn-f5L"/>
+                                            <constraint firstAttribute="bottom" secondItem="iPt-zp-1oL" secondAttribute="bottom" id="Hum-Hn-f5L"/>
                                             <constraint firstAttribute="trailing" secondItem="R7R-yl-hoS" secondAttribute="trailing" id="NpA-DT-9ZI"/>
                                             <constraint firstItem="R7R-yl-hoS" firstAttribute="leading" secondItem="NY6-Pb-4qT" secondAttribute="leading" id="n47-Md-TEv"/>
                                             <constraint firstItem="R7R-yl-hoS" firstAttribute="top" secondItem="NY6-Pb-4qT" secondAttribute="top" id="uh5-K1-mkI"/>
