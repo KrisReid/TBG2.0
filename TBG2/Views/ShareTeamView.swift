@@ -58,44 +58,11 @@ class ShareTeamView: UIView, UITableViewDataSource, UITableViewDelegate {
         print("Index Path Selected: \(indexPath.row)")
         
         //If one of them is slected then go to a view controller
-        let vc = UIStoryboard(name: "Team", bundle: nil).instantiateViewController(withIdentifier: "TeamPinViewController") as! UIViewController
-
-        UIApplication.shared.keyWindow?.rootViewController = vc
-    }
-    
-}
-
-
-//extension UIView: UITableViewDataSource, UITableViewDelegate {
-    
-//    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return titleArray.count
-//    }
-//
-//    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ShareTeamTableViewCell") as? ShareTeamTableViewCell else {fatalError("Unable to deque cell")}
-//
-//        cell.lblOption.text = titleArray[indexPath.row]
-//
-//        if (indexPath.row == 2) {cell.ivAnswer.image = UIImage(named: "share_icon")}
-//        else {cell.lblAnswer.text = answerArray[indexPath.row]}
-//
-//        return cell
-//    }
-//
-//    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 60
-//    }
-//
-//    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//        print("Index Path Selected: \(indexPath.row)")
-//
-//        //If one of them is slected then go to a view controller
+        
 //        let vc = UIStoryboard(name: "Team", bundle: nil).instantiateViewController(withIdentifier: "TeamPinViewController") as! UIViewController
 //
 //        UIApplication.shared.keyWindow?.rootViewController = vc
-//    }
+        
+    }
     
-//}
+}

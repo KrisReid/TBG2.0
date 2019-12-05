@@ -122,9 +122,10 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? PlayerDetailViewController {
             if let snapshot = sender as? Player {
-                if let name = snapshot.playerName as? String {
-                    vc.playerName = name
-                }
+                vc.playerName = snapshot.playerName
+                vc.playerProfilePic = snapshot.playerImage
+                vc.playerAge = snapshot.playerAge
+                vc.playerPosition = snapshot.playerPostion
             }
         }
     }

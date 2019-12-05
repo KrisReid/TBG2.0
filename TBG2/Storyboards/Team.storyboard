@@ -67,7 +67,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5B-fv-FOF">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="538.5"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="player1" translatesAutoresizingMaskIntoConstraints="NO" id="Stt-oG-JfT" userLabel="ivProfileImage">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="player1" translatesAutoresizingMaskIntoConstraints="NO" id="Stt-oG-JfT" userLabel="ivPlayerIProfilePic">
                                                 <rect key="frame" x="107" y="169.5" width="200" height="200"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="200" id="Ulv-by-Wgs"/>
@@ -148,6 +148,12 @@
                         <viewLayoutGuide key="safeArea" id="I2w-4f-jef"/>
                     </view>
                     <navigationItem key="navigationItem" id="tvm-y2-Scd"/>
+                    <connections>
+                        <outlet property="ivPlayerIProfilePic" destination="Stt-oG-JfT" id="L5d-P4-V4D"/>
+                        <outlet property="lblPlayerAge" destination="lFS-CA-qmm" id="Qn6-El-Mb1"/>
+                        <outlet property="lblPlayerName" destination="5E0-OQ-Vgz" id="cPI-Fw-HO7"/>
+                        <outlet property="lblPlayerPosition" destination="Klx-Gr-6KS" id="rPe-Ur-kXG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H8M-C2-pyY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -175,7 +181,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Omh-FD-otE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1152" y="769"/>
+            <point key="canvasLocation" x="1013" y="840"/>
         </scene>
     </scenes>
     <resources>
