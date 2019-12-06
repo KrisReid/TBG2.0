@@ -16,24 +16,15 @@ class Slide: UIView {
     @IBOutlet weak var lblGoalsScoredResult: UILabel!
     
     var colours = Colours()
+    var circles = Circles()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        lblGamesPlayedResult.layer.cornerRadius = lblGamesPlayedResult.frame.width / 2
-        lblGamesPlayedResult.layer.masksToBounds = true
-        lblGamesPlayedResult.layer.borderWidth = 1.0
-        lblGamesPlayedResult.layer.borderColor = colours.secondaryBlue.cgColor
-        
-        lblMOTMResult.layer.cornerRadius = lblMOTMResult.frame.width / 2
-        lblMOTMResult.layer.masksToBounds = true
-        lblMOTMResult.layer.borderWidth = 1.0
-        lblMOTMResult.layer.borderColor = colours.secondaryBlue.cgColor
-        
-        lblGoalsScoredResult.layer.cornerRadius = lblGoalsScoredResult.frame.width / 2
-        lblGoalsScoredResult.layer.masksToBounds = true
-        lblGoalsScoredResult.layer.borderWidth = 1.0
-        lblGoalsScoredResult.layer.borderColor = colours.secondaryBlue.cgColor
+        circles.circleLabels(name: lblGamesPlayedResult, colour: colours.secondaryBlue.cgColor)
+        circles.circleLabels(name: lblMOTMResult, colour: colours.secondaryBlue.cgColor)
+        circles.circleLabels(name: lblGoalsScoredResult, colour: colours.secondaryBlue.cgColor)
+
     }
     
     

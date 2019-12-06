@@ -14,14 +14,12 @@ class TeamTableViewCell: UITableViewCell {
     @IBOutlet weak var lblPlayerName: UILabel!
 
     var colours = Colours()
+    var circles = Circles()
     
     override func awakeFromNib() {
         super.awakeFromNib()
-    
-        ivPlayerImage.layer.cornerRadius = ivPlayerImage.frame.width / 2
-        ivPlayerImage.layer.masksToBounds = true
-        ivPlayerImage.layer.borderWidth = 1.0
-        ivPlayerImage.layer.borderColor = colours.primaryBlue.cgColor
+        
+        circles.circles(name: ivPlayerImage, colour: colours.primaryBlue.cgColor)
         
     }
     

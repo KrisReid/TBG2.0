@@ -21,10 +21,19 @@ class Colours {
 
 class Circles {
     
+    func circles (name: UIImageView, colour: CGColor) {
+        name.layer.cornerRadius = name.frame.width / 2
+        name.layer.masksToBounds = true
+        name.layer.borderWidth = 1.0
+        name.layer.borderColor = colour
+    }
+    
+    func circleLabels (name: UILabel, colour: CGColor) {
+        name.layer.cornerRadius = name.frame.width / 2
+        name.layer.masksToBounds = true
+        name.layer.borderWidth = 1.0
+        name.layer.borderColor = colour
+    }
+    
 }
 
-
-//lblMOTMResult.layer.cornerRadius = lblMOTMResult.frame.width / 2
-//lblMOTMResult.layer.masksToBounds = true
-//lblMOTMResult.layer.borderWidth = 1.0
-//lblMOTMResult.layer.borderColor = UIColor( red: 67/255, green: 131/255, blue:140/255, alpha: 1.0 ).cgColor

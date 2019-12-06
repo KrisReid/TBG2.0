@@ -26,14 +26,12 @@ class PlayerDetailViewController: UIViewController, UIScrollViewDelegate {
     var slides:[Slide] = [];
     
     var colours = Colours()
+    var circles = Circles()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ivPlayerIProfilePic.layer.cornerRadius = ivPlayerIProfilePic.frame.width / 2
-        ivPlayerIProfilePic.layer.masksToBounds = true
-        ivPlayerIProfilePic.layer.borderWidth = 1.0
-        ivPlayerIProfilePic.layer.borderColor = colours.primaryBlue.cgColor
+        circles.circles(name: ivPlayerIProfilePic, colour: colours.primaryBlue.cgColor)
         
         ivPlayerIProfilePic.image = playerProfilePic
         lblPlayerName.text = playerName
