@@ -120,6 +120,12 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         let snapshot = sectionData[indexPath.section]![indexPath.row]
         performSegue(withIdentifier: "playerDetailSegue", sender: snapshot)
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            print(indexPath.row)
+        }
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? PlayerDetailViewController {

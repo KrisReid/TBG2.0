@@ -22,12 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.saveContext()
     }
     
-    
-    
-    
-    
-    
-    
 
     // MARK: UISceneSession Lifecycle
     @available(iOS 13.0, *)
