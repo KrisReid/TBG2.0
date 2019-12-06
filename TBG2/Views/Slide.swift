@@ -21,12 +21,9 @@ class Slide: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        circles.circleLabels(name: lblGamesPlayedResult, colour: colours.secondaryBlue.cgColor)
-        circles.circleLabels(name: lblMOTMResult, colour: colours.secondaryBlue.cgColor)
-        circles.circleLabels(name: lblGoalsScoredResult, colour: colours.secondaryBlue.cgColor)
-
+        circles.circles(name: lblGamesPlayedResult, colour: colours.secondaryBlue.cgColor)
+        circles.circles(name: lblMOTMResult, colour: colours.secondaryBlue.cgColor)
+        circles.circles(name: lblGoalsScoredResult, colour: colours.secondaryBlue.cgColor)
     }
-    
-    
     
 }
