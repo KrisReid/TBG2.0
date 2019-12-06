@@ -12,6 +12,8 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBOutlet weak var tableview: UITableView!
     
+    var colours = Colours()
+    
     lazy var players: [Player] = {
         let model = PlayersModel()
         return model.playerList
@@ -84,7 +86,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
-                view.backgroundColor = UIColor( red: 67/255, green: 131/255, blue:140/255, alpha: 1.0 )
+        view.backgroundColor = colours.secondaryBlue
 
         let label = UILabel()
         label.text = sectionTitles[section]

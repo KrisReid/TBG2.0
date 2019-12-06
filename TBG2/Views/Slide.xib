@@ -10,7 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="Slide" customModule="TBG2" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="276"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="232"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iww-jy-pTy">
@@ -28,8 +28,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlP-pr-TJv">
                                     <rect key="frame" x="21" y="0.0" width="96" height="96"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="96" id="mJQ-rq-LVA"/>
-                                        <constraint firstAttribute="height" constant="96" id="uXw-je-5n5"/>
+                                        <constraint firstAttribute="width" secondItem="qlP-pr-TJv" secondAttribute="height" multiplier="1:1" id="5yY-Ir-P4D"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                     <color key="textColor" red="0.26274509800000001" green="0.51372549020000002" blue="0.54901960780000003" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
@@ -55,11 +54,61 @@
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D0V-AW-fkh">
                             <rect key="frame" x="138" y="0.0" width="138" height="128"/>
-                            <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6hA-KU-2XI">
+                                    <rect key="frame" x="21" y="0.0" width="96" height="96"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="6hA-KU-2XI" secondAttribute="height" multiplier="1:1" id="cUZ-Xi-Tvy"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                    <color key="textColor" red="0.26274509800000001" green="0.51372549020000002" blue="0.54901960780000003" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MOTM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQd-T6-bbj">
+                                    <rect key="frame" x="0.0" y="107.5" width="138" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.26274509800000001" green="0.51372549020000002" blue="0.54901960780000003" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="sQd-T6-bbj" secondAttribute="bottom" id="GL5-Gu-1Kg"/>
+                                <constraint firstItem="6hA-KU-2XI" firstAttribute="leading" secondItem="D0V-AW-fkh" secondAttribute="leading" constant="21" id="MaU-11-f1p"/>
+                                <constraint firstAttribute="trailing" secondItem="sQd-T6-bbj" secondAttribute="trailing" id="eLv-cN-bjq"/>
+                                <constraint firstAttribute="trailing" secondItem="6hA-KU-2XI" secondAttribute="trailing" constant="21" id="hsU-04-88l"/>
+                                <constraint firstItem="6hA-KU-2XI" firstAttribute="top" secondItem="D0V-AW-fkh" secondAttribute="top" id="iCu-Hy-alL"/>
+                                <constraint firstItem="sQd-T6-bbj" firstAttribute="leading" secondItem="D0V-AW-fkh" secondAttribute="leading" id="tUR-At-qGc"/>
+                            </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D2b-s7-5qU">
                             <rect key="frame" x="276" y="0.0" width="138" height="128"/>
-                            <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gNL-f8-fUu">
+                                    <rect key="frame" x="21" y="0.0" width="96" height="96"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="gNL-f8-fUu" secondAttribute="height" multiplier="1:1" id="2kn-7m-CgH"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                    <color key="textColor" red="0.26274509800000001" green="0.51372549020000002" blue="0.54901960780000003" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goals Scored" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhy-Ye-d6l">
+                                    <rect key="frame" x="0.0" y="107.5" width="138" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.26274509800000001" green="0.51372549020000002" blue="0.54901960780000003" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="fhy-Ye-d6l" secondAttribute="trailing" id="GCe-VC-t39"/>
+                                <constraint firstAttribute="bottom" secondItem="fhy-Ye-d6l" secondAttribute="bottom" id="MHJ-og-bVQ"/>
+                                <constraint firstAttribute="trailing" secondItem="gNL-f8-fUu" secondAttribute="trailing" constant="21" id="UYB-Nw-YJd"/>
+                                <constraint firstItem="gNL-f8-fUu" firstAttribute="leading" secondItem="D2b-s7-5qU" secondAttribute="leading" constant="21" id="aN2-ZE-SKD"/>
+                                <constraint firstItem="gNL-f8-fUu" firstAttribute="top" secondItem="D2b-s7-5qU" secondAttribute="top" id="fqy-Zc-pPh"/>
+                                <constraint firstItem="fhy-Ye-d6l" firstAttribute="leading" secondItem="D2b-s7-5qU" secondAttribute="leading" id="t8V-vO-3vs"/>
+                            </constraints>
                         </view>
                     </subviews>
                 </stackView>
@@ -77,9 +126,11 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="lblGamesPlayedResult" destination="qlP-pr-TJv" id="S9f-Hq-wRR"/>
+                <outlet property="lblGoalsScoredResult" destination="gNL-f8-fUu" id="SYT-ww-hI0"/>
+                <outlet property="lblMOTMResult" destination="6hA-KU-2XI" id="RAC-gR-6IP"/>
                 <outlet property="lblTitle" destination="iww-jy-pTy" id="V0j-MH-xnp"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="-141.96428571428569"/>
+            <point key="canvasLocation" x="137.68115942028987" y="-156.69642857142856"/>
         </view>
     </objects>
 </document>

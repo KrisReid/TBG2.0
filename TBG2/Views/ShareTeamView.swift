@@ -17,8 +17,9 @@ class ShareTeamView: UIView, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var ivClubBadge: UIImageView!
     @IBOutlet weak var lblClubName: UILabel!
     @IBOutlet weak var lblClubPostcode: UILabel!
-    
     @IBOutlet weak var tableView: UITableView!
+    
+    var colours = Colours()
     
     override func awakeFromNib() {
     super.awakeFromNib()
@@ -26,8 +27,7 @@ class ShareTeamView: UIView, UITableViewDataSource, UITableViewDelegate {
         ivClubBadge.layer.cornerRadius = ivClubBadge.frame.width / 2
         ivClubBadge.layer.masksToBounds = true
         ivClubBadge.layer.borderWidth = 1.0
-        ivClubBadge.layer.borderColor = UIColor( red: 98/255, green: 190/255, blue:204/255, alpha: 1.0 ).cgColor
-        
+        ivClubBadge.layer.borderColor = colours.primaryBlue.cgColor
         
         tableView.isScrollEnabled = false
         tableView.register(ShareTeamTableViewCell.self, forCellReuseIdentifier: "ShareTeamTableViewCell")

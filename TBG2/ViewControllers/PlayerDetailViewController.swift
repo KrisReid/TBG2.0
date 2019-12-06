@@ -25,13 +25,15 @@ class PlayerDetailViewController: UIViewController, UIScrollViewDelegate {
     
     var slides:[Slide] = [];
     
+    var colours = Colours()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         ivPlayerIProfilePic.layer.cornerRadius = ivPlayerIProfilePic.frame.width / 2
         ivPlayerIProfilePic.layer.masksToBounds = true
         ivPlayerIProfilePic.layer.borderWidth = 1.0
-        ivPlayerIProfilePic.layer.borderColor = UIColor( red: 98/255, green: 190/255, blue:204/255, alpha: 1.0 ).cgColor
+        ivPlayerIProfilePic.layer.borderColor = colours.primaryBlue.cgColor
         
         ivPlayerIProfilePic.image = playerProfilePic
         lblPlayerName.text = playerName
@@ -53,7 +55,7 @@ class PlayerDetailViewController: UIViewController, UIScrollViewDelegate {
         
         
         pageControl.pageIndicatorTintColor = UIColor.lightGray
-        pageControl.currentPageIndicatorTintColor = UIColor( red: 67/255, green: 131/255, blue:140/255, alpha: 1.0 )
+        pageControl.currentPageIndicatorTintColor = colours.secondaryBlue
         
     }
     
@@ -61,14 +63,20 @@ class PlayerDetailViewController: UIViewController, UIScrollViewDelegate {
         let slide1:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
         slide1.lblTitle.text = "All Seasons"
         slide1.lblGamesPlayedResult.text = "77"
+        slide1.lblMOTMResult.text = "7"
+        slide1.lblGoalsScoredResult.text = "14"
         
         let slide2:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
         slide2.lblTitle.text = "2018 / 2019"
         slide2.lblGamesPlayedResult.text = "25"
+        slide2.lblMOTMResult.text = "2"
+        slide2.lblGoalsScoredResult.text = "3"
         
         let slide3:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
         slide3.lblTitle.text = "2017 / 2018"
         slide3.lblGamesPlayedResult.text = "52"
+        slide3.lblMOTMResult.text = "5"
+        slide3.lblGoalsScoredResult.text = "11"
         
         return [slide1, slide2, slide3]
     }

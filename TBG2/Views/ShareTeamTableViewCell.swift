@@ -10,6 +10,8 @@ import UIKit
 
 class ShareTeamTableViewCell: UITableViewCell {
     
+    var colours = Colours()
+    
     lazy var lblOption: UILabel = {
         let lblOption = UILabel(frame: CGRect(x: 25, y: 0, width: 100, height: 60))
         return lblOption
@@ -18,7 +20,7 @@ class ShareTeamTableViewCell: UITableViewCell {
     lazy var lblAnswer: UILabel = {
         let lblAnswer = UILabel(frame: CGRect(x: UIScreen.main.bounds.width - 225, y: 0, width: 200, height: 60))
         lblAnswer.textAlignment = .right
-        lblAnswer.textColor = UIColor( red: 120/255, green: 120/255, blue:120/255, alpha: 1.0 )
+        lblAnswer.textColor = colours.priaryGrey
         return lblAnswer
     }()
     
