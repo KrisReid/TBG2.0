@@ -376,7 +376,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Distribution: Kris Reid (S9H4B38ZQN)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = S9H4B38ZQN;
 				INFOPLIST_FILE = TBG2/Info.plist;
@@ -387,7 +387,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.krisreid.TBG2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "TBG2-Prod-Prov-Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "TBG2-iOS-Prod-Prov-Profile";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -397,7 +397,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Distribution: Kris Reid (S9H4B38ZQN)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = S9H4B38ZQN;
 				INFOPLIST_FILE = TBG2/Info.plist;
@@ -408,7 +408,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.krisreid.TBG2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "TBG2-Prod-Prov-Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "TBG2-iOS-Prod-Prov-Profile";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
