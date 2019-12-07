@@ -20,7 +20,6 @@ class TeamTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         circles.circles(name: ivPlayerImage, colour: colours.primaryBlue.cgColor)
-        
     }
     
 }
