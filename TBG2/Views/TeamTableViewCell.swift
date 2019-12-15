@@ -21,5 +21,4 @@ class TeamTableViewCell: UITableViewCell {
         
         circles.circles(name: ivPlayerImage, colour: colours.primaryBlue.cgColor)
     }
-    
 }

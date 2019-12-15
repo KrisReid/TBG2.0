@@ -25,5 +25,4 @@ class Slide: UIView {
         circles.circles(name: lblMOTMResult, colour: colours.secondaryBlue.cgColor)
         circles.circles(name: lblGoalsScoredResult, colour: colours.secondaryBlue.cgColor)
     }
-    
 }
