@@ -30,6 +30,7 @@
 		0288B25B236F44B60014DA4E /* FixturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288B25A236F44B60014DA4E /* FixturesViewController.swift */; };
 		0288B25D236F44D20014DA4E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288B25C236F44D20014DA4E /* SettingsViewController.swift */; };
 		0288B25F236F44F60014DA4E /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288B25E236F44F60014DA4E /* TeamViewController.swift */; };
+		02F7BF5F23B12CBD00DE70BB /* ShareTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F7BF5D23B12CBD00DE70BB /* ShareTeamViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		0288B25A236F44B60014DA4E /* FixturesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesViewController.swift; sourceTree = "<group>"; };
 		0288B25C236F44D20014DA4E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0288B25E236F44F60014DA4E /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
+		02F7BF5D23B12CBD00DE70BB /* ShareTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTeamViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				0288B25E236F44F60014DA4E /* TeamViewController.swift */,
+				02F7BF5D23B12CBD00DE70BB /* ShareTeamViewController.swift */,
 				02821A0E2395C1260090E400 /* PlayerDetailViewController.swift */,
 				02821A0C2395AAD30090E400 /* TeamPinViewController.swift */,
 				0288B25A236F44B60014DA4E /* FixturesViewController.swift */,
@@ -142,8 +145,8 @@
 				026F1E75238295EE00682063 /* TeamTableViewCell.swift */,
 				026F1E76238295EE00682063 /* TeamTableViewCell.xib */,
 				026F1E85238A885900682063 /* ShareTeamView.swift */,
-				026F1E83238A883100682063 /* ShareTeamView.xib */,
 				026F1E992390731100682063 /* ShareTeamTableViewCell.swift */,
+				026F1E83238A883100682063 /* ShareTeamView.xib */,
 				02821A102398F5E50090E400 /* Slide.swift */,
 				02821A122398F68A0090E400 /* Slide.xib */,
 			);
@@ -227,6 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				026F1E9B2390731100682063 /* ShareTeamTableViewCell.swift in Sources */,
+				02F7BF5F23B12CBD00DE70BB /* ShareTeamViewController.swift in Sources */,
 				027A08CC2318248300B0DF59 /* TBG2.xcdatamodeld in Sources */,
 				026F1E702381CA9400682063 /* TeamData.swift in Sources */,
 				026F1E722381CC5600682063 /* PlayerData.swift in Sources */,

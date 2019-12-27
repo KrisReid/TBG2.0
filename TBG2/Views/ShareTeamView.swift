@@ -53,14 +53,39 @@ class ShareTeamView: UIView, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        print("Index Path Selected: \(indexPath.row)")
-        
-        //If one of them is slected then go to a view controller
-        
-//        let vc = UIStoryboard(name: "Team", bundle: nil).instantiateViewController(withIdentifier: "TeamPinViewController") as! UIViewController
+        if indexPath.row == 1 {
+            //ALLOW CHNGE HERE
+//            print("Index Path Selected: \(indexPath.row)")
 //
-//        UIApplication.shared.keyWindow?.rootViewController = vc
+//            let storyBoard : UIStoryboard = UIStoryboard(name: "TeamPinViewController", bundle:nil)
+//            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "TeamPinViewController") as! TeamPinViewController
+
+        }
         
+        if indexPath.row == 2 {
+            print("Index Path Selected: \(indexPath.row)")
+//            let firstActivityItem = "Banananananaa"
+//
+//            let activityViewController = UIActivityViewController(
+//                activityItems: [firstActivityItem], applicationActivities: nil)
+//
+//            self.present(activityViewController, animated: true, completion: nil)
+//
+//
+//            // Anything you want to exclude
+//            activityViewController.excludedActivityTypes = [
+//                UIActivity.ActivityType.postToWeibo,
+//                UIActivity.ActivityType.print,
+//                UIActivity.ActivityType.assignToContact,
+//                UIActivity.ActivityType.saveToCameraRoll,
+//                UIActivity.ActivityType.addToReadingList,
+//                UIActivity.ActivityType.postToFlickr,
+//                UIActivity.ActivityType.postToVimeo,
+//                UIActivity.ActivityType.postToTencentWeibo
+//            ]
+
+        }
+                
     }
     
 }
