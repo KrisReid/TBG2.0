@@ -96,7 +96,6 @@ class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableVie
         if let vc = segue.destination as? TeamPinViewController {
             if let snapshot = sender as? String {
                 vc.teamPIN = snapshot
-//                vc.playerName = snapshot.playerName
             }
         }
     }
