@@ -31,6 +31,8 @@
 		0288B25D236F44D20014DA4E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288B25C236F44D20014DA4E /* SettingsViewController.swift */; };
 		0288B25F236F44F60014DA4E /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288B25E236F44F60014DA4E /* TeamViewController.swift */; };
 		02F7BF5F23B12CBD00DE70BB /* ShareTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F7BF5D23B12CBD00DE70BB /* ShareTeamViewController.swift */; };
+		02F7BF6323B6400200DE70BB /* ShareTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F7BF6123B6400200DE70BB /* ShareTableViewCell.swift */; };
+		02F7BF6423B6400200DE70BB /* ShareTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02F7BF6223B6400200DE70BB /* ShareTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,8 @@
 		0288B25C236F44D20014DA4E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0288B25E236F44F60014DA4E /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
 		02F7BF5D23B12CBD00DE70BB /* ShareTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTeamViewController.swift; sourceTree = "<group>"; };
+		02F7BF6123B6400200DE70BB /* ShareTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTableViewCell.swift; sourceTree = "<group>"; };
+		02F7BF6223B6400200DE70BB /* ShareTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShareTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,13 +148,23 @@
 			children = (
 				026F1E75238295EE00682063 /* TeamTableViewCell.swift */,
 				026F1E76238295EE00682063 /* TeamTableViewCell.xib */,
+				02F7BF6123B6400200DE70BB /* ShareTableViewCell.swift */,
+				02F7BF6223B6400200DE70BB /* ShareTableViewCell.xib */,
+				02821A102398F5E50090E400 /* Slide.swift */,
+				02821A122398F68A0090E400 /* Slide.xib */,
+				02F7BF6523B64A4D00DE70BB /* DEPRECATE */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		02F7BF6523B64A4D00DE70BB /* DEPRECATE */ = {
+			isa = PBXGroup;
+			children = (
 				026F1E85238A885900682063 /* ShareTeamView.swift */,
 				026F1E992390731100682063 /* ShareTeamTableViewCell.swift */,
 				026F1E83238A883100682063 /* ShareTeamView.xib */,
-				02821A102398F5E50090E400 /* Slide.swift */,
-				02821A122398F68A0090E400 /* Slide.xib */,
 			);
-			path = Views;
+			path = DEPRECATE;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,6 +228,7 @@
 				0288B22023683A600014DA4E /* Fixtures.storyboard in Resources */,
 				027A08D12318248900B0DF59 /* LaunchScreen.storyboard in Resources */,
 				0288B226236AD9B40014DA4E /* Settings.storyboard in Resources */,
+				02F7BF6423B6400200DE70BB /* ShareTableViewCell.xib in Resources */,
 				02821A132398F68A0090E400 /* Slide.xib in Resources */,
 				0288B224236AD9540014DA4E /* Team.storyboard in Resources */,
 				026F1E78238295EE00682063 /* TeamTableViewCell.xib in Resources */,
@@ -236,6 +251,7 @@
 				026F1E722381CC5600682063 /* PlayerData.swift in Sources */,
 				0288B25F236F44F60014DA4E /* TeamViewController.swift in Sources */,
 				0288B25B236F44B60014DA4E /* FixturesViewController.swift in Sources */,
+				02F7BF6323B6400200DE70BB /* ShareTableViewCell.swift in Sources */,
 				027A08C42318248300B0DF59 /* SceneDelegate.swift in Sources */,
 				026F1E86238A885900682063 /* ShareTeamView.swift in Sources */,
 				02821A15239A811A0090E400 /* Standards.swift in Sources */,

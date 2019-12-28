@@ -20,7 +20,7 @@ class ShareTeamTableViewCell: UITableViewCell {
     lazy var lblAnswer: UILabel = {
         let lblAnswer = UILabel(frame: CGRect(x: UIScreen.main.bounds.width - 225, y: 0, width: 200, height: 60))
         lblAnswer.textAlignment = .right
-        lblAnswer.textColor = colours.priaryGrey
+        lblAnswer.textColor = colours.primaryGrey
         return lblAnswer
     }()
     

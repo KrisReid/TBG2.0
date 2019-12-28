@@ -192,7 +192,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="peh-FM-lhs">
                                 <rect key="frame" x="0.0" y="78" width="414" height="110"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AFC_icon" translatesAutoresizingMaskIntoConstraints="NO" id="DrT-ef-s8G">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DrT-ef-s8G">
                                         <rect key="frame" x="20" y="10" width="90" height="90"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -221,6 +221,10 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="UGO-ip-p0v"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="IqO-pL-373" id="ukN-kD-eSq"/>
+                                    <outlet property="delegate" destination="IqO-pL-373" id="4XV-sG-6xq"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -238,6 +242,12 @@
                         <viewLayoutGuide key="safeArea" id="FRv-k6-DuI"/>
                     </view>
                     <size key="freeformSize" width="414" height="896"/>
+                    <connections>
+                        <outlet property="ivTeamBadge" destination="DrT-ef-s8G" id="QRc-2v-rjb"/>
+                        <outlet property="lblTeamName" destination="ShA-lB-Hh6" id="rGC-c8-zoI"/>
+                        <outlet property="lblTeamPostcode" destination="lrf-WM-z5W" id="yNi-ug-zj1"/>
+                        <outlet property="tableview" destination="HQW-VK-kMf" id="61d-g9-OQe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jWd-HJ-QCg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -269,7 +279,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AFC_icon" width="44" height="44"/>
         <image name="player1" width="60" height="60"/>
         <image name="toggle_icon" width="115" height="8"/>
     </resources>
