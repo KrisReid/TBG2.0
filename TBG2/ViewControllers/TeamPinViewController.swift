@@ -9,11 +9,23 @@
 import UIKit
 
 class TeamPinViewController: UIViewController {
-
+    
+    @IBOutlet weak var tfTeamPIN: UITextField!
+    @IBOutlet weak var btnDone: UIButton!
+    
+    var teamPIN: String = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        tfTeamPIN.text = teamPIN
+        btnDone.layer.cornerRadius = 5
     }
+
+    @IBAction func btnDoneClicked(_ sender: Any) {
+        print("Clicked Done Button")
+        dismiss(animated: true, completion: nil)
+    }
+    
 
 }

@@ -68,12 +68,9 @@ class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 1 {
             let snapshot = answerArray[indexPath.row]
-            print("snapshot for segue: \(snapshot)")
-//            performSegue(withIdentifier: "playerDetailSegue", sender: snapshot)
+            performSegue(withIdentifier: "teamPINSegue", sender: snapshot)
         }
         if indexPath.row == 2 {
-            print("IndexPath 2 !!!!!!")
-            
             let firstActivityItem = "ID: \(answerArray[0]), PIN: \(answerArray[1])"
 
             let activityViewController = UIActivityViewController(
@@ -92,19 +89,16 @@ class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableVie
                 UIActivity.ActivityType.postToVimeo,
                 UIActivity.ActivityType.postToTencentWeibo,
             ]
-            
         }
     }
 
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let vc = segue.destination as? PlayerDetailViewController {
-//            if let snapshot = sender as? Player {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? TeamPinViewController {
+            if let snapshot = sender as? String {
+                vc.teamPIN = snapshot
 //                vc.playerName = snapshot.playerName
-//                vc.playerProfilePic = snapshot.playerImage
-//                vc.playerAge = snapshot.playerAge
-//                vc.playerPosition = snapshot.playerPostion
-//            }
-//        }
-//    }
+            }
+        }
+    }
     
 }
