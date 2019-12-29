@@ -32,6 +32,7 @@
 		02F7BF6423B6400200DE70BB /* ShareTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02F7BF6223B6400200DE70BB /* ShareTableViewCell.xib */; };
 		02F7BF6823B7F56000DE70BB /* FixturesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F7BF6623B7F56000DE70BB /* FixturesTableViewCell.swift */; };
 		02F7BF6923B7F56000DE70BB /* FixturesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02F7BF6723B7F56000DE70BB /* FixturesTableViewCell.xib */; };
+		02F7BF6B23B8984B00DE70BB /* AddFixtureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F7BF6A23B8984B00DE70BB /* AddFixtureViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		02F7BF6223B6400200DE70BB /* ShareTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShareTableViewCell.xib; sourceTree = "<group>"; };
 		02F7BF6623B7F56000DE70BB /* FixturesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesTableViewCell.swift; sourceTree = "<group>"; };
 		02F7BF6723B7F56000DE70BB /* FixturesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FixturesTableViewCell.xib; sourceTree = "<group>"; };
+		02F7BF6A23B8984B00DE70BB /* AddFixtureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFixtureViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 				02F7BF5D23B12CBD00DE70BB /* ShareTeamViewController.swift */,
 				02821A0C2395AAD30090E400 /* TeamPinViewController.swift */,
 				0288B25A236F44B60014DA4E /* FixturesViewController.swift */,
+				02F7BF6A23B8984B00DE70BB /* AddFixtureViewController.swift */,
 				0288B25C236F44D20014DA4E /* SettingsViewController.swift */,
 			);
 			path = ViewControllers;
@@ -237,6 +240,7 @@
 				027A08CC2318248300B0DF59 /* TBG2.xcdatamodeld in Sources */,
 				026F1E702381CA9400682063 /* TeamData.swift in Sources */,
 				02F7BF6823B7F56000DE70BB /* FixturesTableViewCell.swift in Sources */,
+				02F7BF6B23B8984B00DE70BB /* AddFixtureViewController.swift in Sources */,
 				026F1E722381CC5600682063 /* PlayerData.swift in Sources */,
 				0288B25F236F44F60014DA4E /* TeamViewController.swift in Sources */,
 				0288B25B236F44B60014DA4E /* FixturesViewController.swift in Sources */,
