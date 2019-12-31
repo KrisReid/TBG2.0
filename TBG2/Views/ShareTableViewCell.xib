@@ -17,21 +17,21 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n7v-vh-js2">
-                        <rect key="frame" x="10" y="19.5" width="80" height="21"/>
+                        <rect key="frame" x="20" y="19.5" width="80" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="CLy-TJ-fJt"/>
                             <constraint firstAttribute="width" constant="80" id="FaK-gH-qrW"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYo-l8-C6X">
-                        <rect key="frame" x="117" y="19.5" width="193" height="21"/>
+                        <rect key="frame" x="127" y="19.5" width="183" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="Vfw-Wo-Lmx"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -44,7 +44,7 @@
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="n7v-vh-js2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="D5z-7f-6IZ"/>
+                    <constraint firstItem="n7v-vh-js2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="D5z-7f-6IZ"/>
                     <constraint firstAttribute="trailing" secondItem="hYo-l8-C6X" secondAttribute="trailing" constant="10" id="JWK-0O-Jle"/>
                     <constraint firstItem="Y6B-EK-C4t" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="RVo-PK-y77"/>
                     <constraint firstItem="hYo-l8-C6X" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ZdC-F4-Wpf"/>

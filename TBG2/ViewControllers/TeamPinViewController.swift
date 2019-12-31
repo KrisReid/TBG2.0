@@ -20,6 +20,9 @@ class TeamPinViewController: UIViewController {
 
         tfTeamPIN.text = teamPIN
         btnDone.layer.cornerRadius = 5
+        
+        tfTeamPIN.underlined()
+
     }
 
     @IBAction func btnDoneClicked(_ sender: Any) {

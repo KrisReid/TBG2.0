@@ -9,11 +9,25 @@
 import UIKit
 
 class AddFixtureViewController: UIViewController {
+    
+    @IBOutlet weak var scHomeAway: UISegmentedControl!
+    @IBOutlet weak var tfOpposition: UITextField!
+    @IBOutlet weak var tfDate: UITextField!
+    @IBOutlet weak var tfTime: UITextField!
+    @IBOutlet weak var tfPostcode: UITextField!
+    
+    var colour = Colours()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tfOpposition.underlined()
+        tfDate.underlined()
+        tfTime.underlined()
+        tfPostcode.underlined()
 
-        // Do any additional setup after loading the view.
+        scHomeAway.layer.backgroundColor = colour.secondaryBlue.cgColor
+        scHomeAway.setTitleTextAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)], for: .normal)
     }
     
 

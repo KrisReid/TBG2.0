@@ -26,17 +26,15 @@ class PlayerDetailViewController: UIViewController, UIScrollViewDelegate {
     var slides:[Slide] = [];
     
     var colours = Colours()
-    var circles = Circles()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        circles.circles(name: ivPlayerIProfilePic, colour: colours.primaryBlue.cgColor)
+        ivPlayerIProfilePic.circle(colour: colours.primaryBlue.cgColor)
         
         ivPlayerIProfilePic.image = playerProfilePic
         lblPlayerName.text = playerName
         lblPlayerAge.text = "\(playerAge) years old"
-//        lblPlayerPosition.text = playerPosition
         
         slides = createSlides()
         setupSlideScrollView(slides: slides)

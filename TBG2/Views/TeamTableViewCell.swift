@@ -14,11 +14,10 @@ class TeamTableViewCell: UITableViewCell {
     @IBOutlet weak var lblPlayerName: UILabel!
 
     var colours = Colours()
-    var circles = Circles()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        circles.circles(name: ivPlayerImage, colour: colours.primaryBlue.cgColor)
+        ivPlayerImage.circle(colour: colours.primaryBlue.cgColor)
     }
 }

@@ -26,8 +26,6 @@ class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var tableview: UITableView!
     
     var colours = Colours()
-    var circles = Circles()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,8 +37,7 @@ class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableVie
         lblTeamName.text = teamData[0].teamName
         lblTeamPostcode.text = teamData[0].teamPostcode
         
-        circles.circles(name: ivTeamBadge, colour: colours.primaryBlue.cgColor)
-
+        ivTeamBadge.circle(colour: colours.primaryBlue.cgColor)
     }
     
 
