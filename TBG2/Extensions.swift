@@ -31,6 +31,12 @@ extension UIImageView {
     }
 }
 
+extension UIButton {
+    func circle (colour: CGColor) {
+        Circles.init().circles(name: self, colour: colour)
+    }
+}
+
 extension UILabel {
     func circle (colour: CGColor) {
         Circles.init().circles(name: self, colour: colour)

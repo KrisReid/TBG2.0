@@ -15,20 +15,32 @@ class AddFixtureViewController: UIViewController {
     @IBOutlet weak var tfDate: UITextField!
     @IBOutlet weak var tfTime: UITextField!
     @IBOutlet weak var tfPostcode: UITextField!
+    @IBOutlet weak var ivManagerAvailability: UIImageView!
+    @IBOutlet weak var ivAssistantAvailability: UIImageView!
+    @IBOutlet weak var btnManager: UIButton!
+    @IBOutlet weak var btnAssistant: UIButton!
     
     private var datePicker: UIDatePicker?
     private var timePicker: UIDatePicker?
     
     var colour = Colours()
+    
+    var ManagerAvailability = false
+    var AssistantAvailability = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Styling
         tfOpposition.underlined()
         tfDate.underlined()
         tfTime.underlined()
         tfPostcode.underlined()
-
+        btnManager.circle(colour: colour.secondaryBlue.cgColor)
+        ivManagerAvailability.circle(colour: colour.secondaryBlue.cgColor)
+        btnAssistant.circle(colour: colour.secondaryBlue.cgColor)
+        ivAssistantAvailability.circle(colour: colour.secondaryBlue.cgColor)
+        
         //Segmented Control
         scHomeAway.layer.backgroundColor = colour.secondaryBlue.cgColor
         scHomeAway.setTitleTextAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)], for: .normal)
@@ -60,11 +72,29 @@ class AddFixtureViewController: UIViewController {
         tfTime.text = timeFormatter.string(from: timePicker.date)
     }
     
+    @IBAction func btnManagerTapped(_ sender: Any) {
+        if ManagerAvailability {
+            ivManagerAvailability.backgroundColor = UIColor.systemGreen
+            ManagerAvailability = false
+        } else {
+            ivManagerAvailability.backgroundColor = UIColor.systemRed
+            ManagerAvailability = true
+        }
+    }
+    
+    @IBAction func btnAssistantTapped(_ sender: Any) {
+        if AssistantAvailability {
+            ivAssistantAvailability.backgroundColor = UIColor.systemGreen
+            AssistantAvailability = false
+        } else {
+            ivAssistantAvailability.backgroundColor = UIColor.systemRed
+            AssistantAvailability = true
+        }
+    }
     
     //closes the keyboard when you touch white space
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
     
 }
