@@ -112,7 +112,7 @@
                                         <rect key="frame" x="0.0" y="558" width="414" height="250"/>
                                         <subviews>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R7R-yl-hoS">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="270"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <viewLayoutGuide key="contentLayoutGuide" id="Oke-Uy-tuv"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="dgU-6b-DDY"/>

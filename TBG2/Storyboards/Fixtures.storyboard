@@ -51,10 +51,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qeI-Pe-V2i">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qeI-Pe-V2i">
                                 <rect key="frame" x="44" y="88" width="326" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="te1-x7-coo"/>
+                                </constraints>
                                 <segments>
                                     <segment title="Home"/>
                                     <segment title="Away"/>
@@ -78,40 +80,59 @@
                                     <constraint firstItem="xv2-Uc-dxM" firstAttribute="centerX" secondItem="eZ5-kE-sYn" secondAttribute="centerX" id="XcK-Ko-o1W"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Opposition" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="q7E-nn-VaK">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Opposition" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="q7E-nn-VaK">
                                 <rect key="frame" x="44" y="139" width="326" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="weB-nm-kKh"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hMv-mI-lTV">
-                                <rect key="frame" x="44" y="193" width="206" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hMv-mI-lTV">
+                                <rect key="frame" x="44" y="193" width="190" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="190" id="TeG-Gi-Ep9"/>
+                                    <constraint firstAttribute="height" constant="34" id="hZm-5w-NnO"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Time" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RIO-TR-luC">
-                                <rect key="frame" x="273" y="193" width="97" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Time" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RIO-TR-luC">
+                                <rect key="frame" x="270" y="193" width="100" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="M9P-w0-3nB"/>
+                                    <constraint firstAttribute="width" constant="100" id="wId-Ve-VPt"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Venue's Postcode" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="nPA-aS-UwO">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Venue's Postcode" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="nPA-aS-UwO">
                                 <rect key="frame" x="44" y="247" width="326" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="TU1-jD-CdL"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="L5G-pj-Mwv">
-                                <rect key="frame" x="0.0" y="680" width="414" height="216"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="q7E-nn-VaK" firstAttribute="leading" secondItem="7Dj-zm-pCQ" secondAttribute="leading" constant="44" id="0Ym-8K-k0Q"/>
+                            <constraint firstItem="nPA-aS-UwO" firstAttribute="top" secondItem="hMv-mI-lTV" secondAttribute="bottom" constant="20" id="5qd-5z-5Af"/>
+                            <constraint firstItem="hMv-mI-lTV" firstAttribute="leading" secondItem="7Dj-zm-pCQ" secondAttribute="leading" constant="44" id="5qx-1c-VhI"/>
+                            <constraint firstItem="qeI-Pe-V2i" firstAttribute="top" secondItem="eZ5-kE-sYn" secondAttribute="bottom" constant="18" id="65w-43-O0K"/>
+                            <constraint firstItem="hMv-mI-lTV" firstAttribute="top" secondItem="q7E-nn-VaK" secondAttribute="bottom" constant="20" id="8cj-Kh-Ab3"/>
+                            <constraint firstItem="7Dj-zm-pCQ" firstAttribute="trailing" secondItem="nPA-aS-UwO" secondAttribute="trailing" constant="44" id="9B7-Hp-ljW"/>
+                            <constraint firstItem="nPA-aS-UwO" firstAttribute="leading" secondItem="7Dj-zm-pCQ" secondAttribute="leading" constant="44" id="CcG-cU-X93"/>
+                            <constraint firstItem="q7E-nn-VaK" firstAttribute="top" secondItem="qeI-Pe-V2i" secondAttribute="bottom" constant="20" id="Dji-VD-5RD"/>
                             <constraint firstItem="eZ5-kE-sYn" firstAttribute="leading" secondItem="7Dj-zm-pCQ" secondAttribute="leading" id="DvK-zt-uHL"/>
+                            <constraint firstItem="7Dj-zm-pCQ" firstAttribute="trailing" secondItem="q7E-nn-VaK" secondAttribute="trailing" constant="44" id="EO9-TT-Hry"/>
+                            <constraint firstItem="7Dj-zm-pCQ" firstAttribute="trailing" secondItem="qeI-Pe-V2i" secondAttribute="trailing" constant="44" id="LTj-gE-hYD"/>
                             <constraint firstItem="eZ5-kE-sYn" firstAttribute="top" secondItem="3sv-1R-zcK" secondAttribute="top" constant="20" symbolic="YES" id="Z0k-cB-QQr"/>
                             <constraint firstItem="eZ5-kE-sYn" firstAttribute="trailing" secondItem="7Dj-zm-pCQ" secondAttribute="trailing" id="Z1A-pj-wcP"/>
+                            <constraint firstItem="7Dj-zm-pCQ" firstAttribute="trailing" secondItem="RIO-TR-luC" secondAttribute="trailing" constant="44" id="g3p-1T-L6G"/>
+                            <constraint firstItem="qeI-Pe-V2i" firstAttribute="leading" secondItem="7Dj-zm-pCQ" secondAttribute="leading" constant="44" id="j0x-Ql-H1H"/>
+                            <constraint firstItem="RIO-TR-luC" firstAttribute="top" secondItem="q7E-nn-VaK" secondAttribute="bottom" constant="20" id="tMn-m3-efS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7Dj-zm-pCQ"/>
                     </view>
