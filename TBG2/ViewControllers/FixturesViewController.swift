@@ -34,8 +34,6 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
         rightBarItemImage = rightBarItemImage?.withRenderingMode(.alwaysOriginal)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: rightBarItemImage, style: .plain, target: self, action: #selector(addFixtureTapped))
         
-        
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,6 +59,12 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
         cell.lblDateTime.text = timeDate
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            print(indexPath.row)
+        }
     }
     
     @objc func addFixtureTapped() {

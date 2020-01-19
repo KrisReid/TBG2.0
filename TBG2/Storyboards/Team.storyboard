@@ -65,29 +65,29 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5B-fv-FOF">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="538.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="485"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="player1" translatesAutoresizingMaskIntoConstraints="NO" id="Stt-oG-JfT" userLabel="ivPlayerIProfilePic">
-                                                <rect key="frame" x="107" y="169.5" width="200" height="200"/>
+                                                <rect key="frame" x="107" y="142.5" width="200" height="200"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="200" id="Ulv-by-Wgs"/>
                                                     <constraint firstAttribute="width" constant="200" id="eZA-NL-V1J"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mark Randell" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5E0-OQ-Vgz" userLabel="lblPlayerName">
-                                                <rect key="frame" x="10" y="384.5" width="394" height="26"/>
+                                                <rect key="frame" x="10" y="357.5" width="394" height="26"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                                 <color key="textColor" red="0.38431372549019605" green="0.74509803921568629" blue="0.80000000000000004" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24 years old" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lFS-CA-qmm" userLabel="lblPlayerAge">
-                                                <rect key="frame" x="10" y="418.5" width="394" height="20"/>
+                                                <rect key="frame" x="10" y="391.5" width="394" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" red="0.2627450980392157" green="0.51372549019607838" blue="0.5490196078431373" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Klx-Gr-6KS" userLabel="lblPlaterPosition">
-                                                <rect key="frame" x="10" y="446.5" width="394" height="0.0"/>
+                                                <rect key="frame" x="10" y="419.5" width="394" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" red="0.26274509800000001" green="0.51372549020000002" blue="0.54901960780000003" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -109,16 +109,16 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NY6-Pb-4qT">
-                                        <rect key="frame" x="0.0" y="538.5" width="414" height="269.5"/>
+                                        <rect key="frame" x="0.0" y="558" width="414" height="250"/>
                                         <subviews>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R7R-yl-hoS">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="270"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <viewLayoutGuide key="contentLayoutGuide" id="Oke-Uy-tuv"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="dgU-6b-DDY"/>
                                             </scrollView>
                                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="iPt-zp-1oL">
-                                                <rect key="frame" x="187.5" y="232.5" width="39" height="37"/>
+                                                <rect key="frame" x="187.5" y="213" width="39" height="37"/>
                                             </pageControl>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -127,19 +127,18 @@
                                             <constraint firstAttribute="bottom" secondItem="R7R-yl-hoS" secondAttribute="bottom" id="F62-dQ-aa2"/>
                                             <constraint firstAttribute="bottom" secondItem="iPt-zp-1oL" secondAttribute="bottom" id="Hum-Hn-f5L"/>
                                             <constraint firstAttribute="trailing" secondItem="R7R-yl-hoS" secondAttribute="trailing" id="NpA-DT-9ZI"/>
-                                            <constraint firstAttribute="height" constant="269.5" id="hXb-kY-3bx"/>
+                                            <constraint firstAttribute="height" constant="250" id="hXb-kY-3bx"/>
                                             <constraint firstItem="R7R-yl-hoS" firstAttribute="leading" secondItem="NY6-Pb-4qT" secondAttribute="leading" id="n47-Md-TEv"/>
                                             <constraint firstItem="R7R-yl-hoS" firstAttribute="top" secondItem="NY6-Pb-4qT" secondAttribute="top" id="uh5-K1-mkI"/>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="a5B-fv-FOF" firstAttribute="top" secondItem="86r-r0-3Aj" secondAttribute="top" id="4WO-84-N3A"/>
                                     <constraint firstAttribute="bottom" secondItem="NY6-Pb-4qT" secondAttribute="bottom" id="Hpa-xD-dYB"/>
                                     <constraint firstItem="NY6-Pb-4qT" firstAttribute="leading" secondItem="86r-r0-3Aj" secondAttribute="leading" id="OGk-hV-Th7"/>
                                     <constraint firstAttribute="trailing" secondItem="NY6-Pb-4qT" secondAttribute="trailing" id="Q3X-g7-rb1"/>
-                                    <constraint firstItem="a5B-fv-FOF" firstAttribute="height" secondItem="86r-r0-3Aj" secondAttribute="height" multiplier="2:3" id="dPp-X6-Yl2"/>
+                                    <constraint firstItem="a5B-fv-FOF" firstAttribute="height" secondItem="86r-r0-3Aj" secondAttribute="height" multiplier="6:10" id="dPp-X6-Yl2"/>
                                     <constraint firstItem="a5B-fv-FOF" firstAttribute="leading" secondItem="86r-r0-3Aj" secondAttribute="leading" id="noZ-GT-xDB"/>
                                     <constraint firstAttribute="trailing" secondItem="a5B-fv-FOF" secondAttribute="trailing" id="qMe-SS-3GH"/>
                                 </constraints>
@@ -267,12 +266,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Team PIN" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="VSq-gG-bgl">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Team PIN" textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="VSq-gG-bgl">
                                 <rect key="frame" x="20" y="99" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="Nuc-oM-qCr"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u6V-7p-RcU">
@@ -294,10 +293,11 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qeL-82-2Ev">
                                 <rect key="frame" x="20" y="162" width="374" height="34"/>
-                                <color key="backgroundColor" red="0.26274509800000001" green="0.51372549020000002" blue="0.54901960780000003" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.2627450980392157" green="0.51372549019607838" blue="0.5490196078431373" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="F5a-MA-E5C"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Done">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>

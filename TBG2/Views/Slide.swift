@@ -16,13 +16,12 @@ class Slide: UIView {
     @IBOutlet weak var lblGoalsScoredResult: UILabel!
     
     var colours = Colours()
-    var circles = Circles()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        circles.circles(name: lblGamesPlayedResult, colour: colours.secondaryBlue.cgColor)
-        circles.circles(name: lblMOTMResult, colour: colours.secondaryBlue.cgColor)
-        circles.circles(name: lblGoalsScoredResult, colour: colours.secondaryBlue.cgColor)
+        lblGamesPlayedResult.circle(colour: colours.secondaryBlue.cgColor)
+        lblMOTMResult.circle(colour: colours.secondaryBlue.cgColor)
+        lblGoalsScoredResult.circle(colour: colours.secondaryBlue.cgColor)
     }
 }
