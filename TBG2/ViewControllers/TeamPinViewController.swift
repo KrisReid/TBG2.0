@@ -17,12 +17,12 @@ class TeamPinViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        tfTeamPIN.text = teamPIN
-        btnDone.layer.cornerRadius = 5
         
+        //Styling
+        btnDone.baseStyle()
         tfTeamPIN.underlined()
 
+        tfTeamPIN.text = teamPIN
     }
 
     @IBAction func btnDoneClicked(_ sender: Any) {

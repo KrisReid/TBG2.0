@@ -35,6 +35,11 @@ extension UIButton {
     func circle (colour: CGColor) {
         Circles.init().circles(name: self, colour: colour)
     }
+    
+    func baseStyle () {
+        self.layer.cornerRadius = 5
+        self.backgroundColor = Colours.init().secondaryBlue
+    }
 }
 
 extension UILabel {

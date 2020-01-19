@@ -21,7 +21,6 @@ class AddFixtureViewController: UIViewController {
     @IBOutlet weak var btnAssistant: UIButton!
     @IBOutlet weak var btnCreateGame: UIButton!
     
-    
     private var datePicker: UIDatePicker?
     private var timePicker: UIDatePicker?
     
@@ -42,7 +41,7 @@ class AddFixtureViewController: UIViewController {
         ivManagerAvailability.circle(colour: colour.secondaryBlue.cgColor)
         btnAssistant.circle(colour: colour.secondaryBlue.cgColor)
         ivAssistantAvailability.circle(colour: colour.secondaryBlue.cgColor)
-        btnCreateGame.layer.cornerRadius = 5
+        btnCreateGame.baseStyle()
         
         //Segmented Control
         scHomeAway.layer.backgroundColor = colour.secondaryBlue.cgColor
@@ -97,7 +96,6 @@ class AddFixtureViewController: UIViewController {
         }
     }
 
-    
     @IBAction func btnCreateGameTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }

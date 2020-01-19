@@ -37,11 +37,37 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableview" destination="zTM-WM-LIA" id="WPd-kN-mh6"/>
+                        <segue destination="J8E-wA-DjB" kind="show" identifier="fixtureDetailSegue" id="388-ek-MsV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XN1-Jn-7PN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-110.14492753623189" y="19.419642857142858"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="qvC-aR-k4e">
+            <objects>
+                <viewController id="J8E-wA-DjB" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="woD-0I-lDH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fixture Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1J-Hm-ghq">
+                                <rect key="frame" x="153" y="158" width="109" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="YHN-aY-U0w"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="GtL-kA-Qwv"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZyY-6n-V0z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="971.01449275362324" y="18.75"/>
         </scene>
         <!--Add Fixture View Controller-->
         <scene sceneID="tUd-iI-9Wg">

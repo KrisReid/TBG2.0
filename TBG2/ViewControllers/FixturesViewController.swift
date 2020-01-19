@@ -61,6 +61,12 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            print(indexPath.row)
+        }
+    }
+    
     @objc func addFixtureTapped() {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Fixtures", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "AddFixtureViewController") as! AddFixtureViewController
