@@ -293,7 +293,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qeL-82-2Ev">
                                 <rect key="frame" x="20" y="162" width="374" height="34"/>
-                                <color key="backgroundColor" red="0.26274509800000001" green="0.51372549020000002" blue="0.54901960780000003" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.2627450980392157" green="0.51372549019607838" blue="0.5490196078431373" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="F5a-MA-E5C"/>
                                 </constraints>

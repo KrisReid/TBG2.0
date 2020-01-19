@@ -26,7 +26,6 @@ class TeamPinViewController: UIViewController {
     }
 
     @IBAction func btnDoneClicked(_ sender: Any) {
-        print("Clicked Done Button")
         dismiss(animated: true, completion: nil)
     }
     

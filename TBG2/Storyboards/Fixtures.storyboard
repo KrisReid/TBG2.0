@@ -159,6 +159,19 @@
                                 <color key="textColor" red="0.26274509800000001" green="0.51372549020000002" blue="0.54901960780000003" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ozq-yn-vab">
+                                <rect key="frame" x="44" y="462" width="326" height="34"/>
+                                <color key="backgroundColor" red="0.2627450980392157" green="0.51372549019607838" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="mqk-lT-xsS"/>
+                                </constraints>
+                                <state key="normal" title="Create Game">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnCreateGameTapped:" destination="H02-57-GCT" eventType="touchUpInside" id="063-0l-fRe"/>
+                                </connections>
+                            </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OCv-cu-hKU">
                                 <rect key="frame" x="343" y="369" width="27" height="27"/>
                                 <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -187,12 +200,15 @@
                             <constraint firstItem="7Dj-zm-pCQ" firstAttribute="trailing" secondItem="qeI-Pe-V2i" secondAttribute="trailing" constant="44" id="LTj-gE-hYD"/>
                             <constraint firstItem="zXR-gl-0Pl" firstAttribute="leading" secondItem="7Dj-zm-pCQ" secondAttribute="leading" constant="44" id="MCC-cB-Ree"/>
                             <constraint firstItem="7Dj-zm-pCQ" firstAttribute="trailing" secondItem="fil-L5-8ck" secondAttribute="trailing" constant="44" id="Q0D-VL-TRM"/>
+                            <constraint firstItem="ozq-yn-vab" firstAttribute="leading" secondItem="7Dj-zm-pCQ" secondAttribute="leading" constant="44" id="TJ9-Gn-NEI"/>
                             <constraint firstItem="fil-L5-8ck" firstAttribute="width" secondItem="0Cu-WW-HBX" secondAttribute="width" id="TSA-SL-J3e"/>
+                            <constraint firstItem="ozq-yn-vab" firstAttribute="top" secondItem="K0K-kp-GxM" secondAttribute="bottom" constant="40" id="Wbs-PO-egG"/>
                             <constraint firstItem="eZ5-kE-sYn" firstAttribute="top" secondItem="3sv-1R-zcK" secondAttribute="top" constant="20" symbolic="YES" id="Z0k-cB-QQr"/>
                             <constraint firstItem="eZ5-kE-sYn" firstAttribute="trailing" secondItem="7Dj-zm-pCQ" secondAttribute="trailing" id="Z1A-pj-wcP"/>
                             <constraint firstItem="OCv-cu-hKU" firstAttribute="bottom" secondItem="0Cu-WW-HBX" secondAttribute="bottom" id="Z7O-Xx-zLF"/>
                             <constraint firstItem="7Dj-zm-pCQ" firstAttribute="trailing" secondItem="0Cu-WW-HBX" secondAttribute="trailing" constant="44" id="b5R-lN-IYf"/>
                             <constraint firstItem="K0K-kp-GxM" firstAttribute="leading" secondItem="7Dj-zm-pCQ" secondAttribute="leading" constant="44" id="c7E-aa-0KH"/>
+                            <constraint firstItem="7Dj-zm-pCQ" firstAttribute="trailing" secondItem="ozq-yn-vab" secondAttribute="trailing" constant="44" id="cNy-bc-E0T"/>
                             <constraint firstItem="RIO-TR-luC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hMv-mI-lTV" secondAttribute="trailing" constant="36" id="dCM-H3-cSC"/>
                             <constraint firstItem="7Dj-zm-pCQ" firstAttribute="trailing" secondItem="RIO-TR-luC" secondAttribute="trailing" constant="44" id="g3p-1T-L6G"/>
                             <constraint firstItem="0Cu-WW-HBX" firstAttribute="top" secondItem="nPA-aS-UwO" secondAttribute="bottom" constant="25" id="gAG-1V-M9y"/>
@@ -207,6 +223,7 @@
                     <size key="freeformSize" width="414" height="896"/>
                     <connections>
                         <outlet property="btnAssistant" destination="0Cu-WW-HBX" id="hPK-zz-qCN"/>
+                        <outlet property="btnCreateGame" destination="ozq-yn-vab" id="wXI-UZ-0oa"/>
                         <outlet property="btnManager" destination="zXR-gl-0Pl" id="Cla-aG-aUO"/>
                         <outlet property="ivAssistantAvailability" destination="OCv-cu-hKU" id="MmX-Ku-RPo"/>
                         <outlet property="ivManagerAvailability" destination="VC9-AN-X2Q" id="szs-w4-8Q7"/>

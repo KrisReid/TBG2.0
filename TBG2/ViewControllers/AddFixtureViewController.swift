@@ -19,6 +19,8 @@ class AddFixtureViewController: UIViewController {
     @IBOutlet weak var ivAssistantAvailability: UIImageView!
     @IBOutlet weak var btnManager: UIButton!
     @IBOutlet weak var btnAssistant: UIButton!
+    @IBOutlet weak var btnCreateGame: UIButton!
+    
     
     private var datePicker: UIDatePicker?
     private var timePicker: UIDatePicker?
@@ -40,6 +42,7 @@ class AddFixtureViewController: UIViewController {
         ivManagerAvailability.circle(colour: colour.secondaryBlue.cgColor)
         btnAssistant.circle(colour: colour.secondaryBlue.cgColor)
         ivAssistantAvailability.circle(colour: colour.secondaryBlue.cgColor)
+        btnCreateGame.layer.cornerRadius = 5
         
         //Segmented Control
         scHomeAway.layer.backgroundColor = colour.secondaryBlue.cgColor
@@ -73,25 +76,32 @@ class AddFixtureViewController: UIViewController {
     }
     
     @IBAction func btnManagerTapped(_ sender: Any) {
-        
+        self.view.endEditing(true)
         if ManagerAvailability {
-            ivManagerAvailability.backgroundColor = UIColor.systemGreen
+            ivManagerAvailability.backgroundColor = UIColor.systemRed
             ManagerAvailability = false
         } else {
-            ivManagerAvailability.backgroundColor = UIColor.systemRed
+            ivManagerAvailability.backgroundColor = UIColor.systemGreen
             ManagerAvailability = true
         }
     }
     
     @IBAction func btnAssistantTapped(_ sender: Any) {
+        self.view.endEditing(true)
         if AssistantAvailability {
-            ivAssistantAvailability.backgroundColor = UIColor.systemGreen
+            ivAssistantAvailability.backgroundColor = UIColor.systemRed
             AssistantAvailability = false
         } else {
-            ivAssistantAvailability.backgroundColor = UIColor.systemRed
+            ivAssistantAvailability.backgroundColor = UIColor.systemGreen
             AssistantAvailability = true
         }
     }
+
+    
+    @IBAction func btnCreateGameTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     //closes the keyboard when you touch white space
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
