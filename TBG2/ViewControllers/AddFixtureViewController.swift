@@ -73,6 +73,7 @@ class AddFixtureViewController: UIViewController {
     }
     
     @IBAction func btnManagerTapped(_ sender: Any) {
+        
         if ManagerAvailability {
             ivManagerAvailability.backgroundColor = UIColor.systemGreen
             ManagerAvailability = false
