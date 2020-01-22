@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		021A59D423D4DFCF005DE007 /* FixtureDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021A59D323D4DFCF005DE007 /* FixtureDetailViewController.swift */; };
+		021A59D723D4F1C1005DE007 /* FixtureDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021A59D523D4F1C1005DE007 /* FixtureDetailTableViewCell.swift */; };
+		021A59D823D4F1C1005DE007 /* FixtureDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021A59D623D4F1C1005DE007 /* FixtureDetailTableViewCell.xib */; };
+		021A59DA23D6021A005DE007 /* Score.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021A59D923D6021A005DE007 /* Score.xib */; };
+		021A59DC23D60254005DE007 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021A59DB23D60254005DE007 /* Score.swift */; };
 		026F1E702381CA9400682063 /* TeamData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F1E6F2381CA9400682063 /* TeamData.swift */; };
 		026F1E722381CC5600682063 /* PlayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F1E712381CC5600682063 /* PlayerData.swift */; };
 		026F1E77238295EE00682063 /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F1E75238295EE00682063 /* TeamTableViewCell.swift */; };
@@ -36,6 +41,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		021A59D323D4DFCF005DE007 /* FixtureDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureDetailViewController.swift; sourceTree = "<group>"; };
+		021A59D523D4F1C1005DE007 /* FixtureDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureDetailTableViewCell.swift; sourceTree = "<group>"; };
+		021A59D623D4F1C1005DE007 /* FixtureDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FixtureDetailTableViewCell.xib; sourceTree = "<group>"; };
+		021A59D923D6021A005DE007 /* Score.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Score.xib; sourceTree = "<group>"; };
+		021A59DB23D60254005DE007 /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		026F1E6F2381CA9400682063 /* TeamData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamData.swift; sourceTree = "<group>"; };
 		026F1E712381CC5600682063 /* PlayerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerData.swift; sourceTree = "<group>"; };
 		026F1E75238295EE00682063 /* TeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
@@ -138,6 +148,7 @@
 				02F7BF5D23B12CBD00DE70BB /* ShareTeamViewController.swift */,
 				02821A0C2395AAD30090E400 /* TeamPinViewController.swift */,
 				0288B25A236F44B60014DA4E /* FixturesViewController.swift */,
+				021A59D323D4DFCF005DE007 /* FixtureDetailViewController.swift */,
 				02F7BF6A23B8984B00DE70BB /* AddFixtureViewController.swift */,
 				0288B25C236F44D20014DA4E /* SettingsViewController.swift */,
 			);
@@ -155,6 +166,10 @@
 				02821A122398F68A0090E400 /* Slide.xib */,
 				02F7BF6623B7F56000DE70BB /* FixturesTableViewCell.swift */,
 				02F7BF6723B7F56000DE70BB /* FixturesTableViewCell.xib */,
+				021A59D523D4F1C1005DE007 /* FixtureDetailTableViewCell.swift */,
+				021A59D623D4F1C1005DE007 /* FixtureDetailTableViewCell.xib */,
+				021A59DB23D60254005DE007 /* Score.swift */,
+				021A59D923D6021A005DE007 /* Score.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -224,7 +239,9 @@
 				02821A132398F68A0090E400 /* Slide.xib in Resources */,
 				0288B224236AD9540014DA4E /* Team.storyboard in Resources */,
 				02F7BF6923B7F56000DE70BB /* FixturesTableViewCell.xib in Resources */,
+				021A59DA23D6021A005DE007 /* Score.xib in Resources */,
 				026F1E78238295EE00682063 /* TeamTableViewCell.xib in Resources */,
+				021A59D823D4F1C1005DE007 /* FixtureDetailTableViewCell.xib in Resources */,
 				027A08CE2318248900B0DF59 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -243,12 +260,15 @@
 				02F7BF6B23B8984B00DE70BB /* AddFixtureViewController.swift in Sources */,
 				026F1E722381CC5600682063 /* PlayerData.swift in Sources */,
 				0288B25F236F44F60014DA4E /* TeamViewController.swift in Sources */,
+				021A59D723D4F1C1005DE007 /* FixtureDetailTableViewCell.swift in Sources */,
 				0288B25B236F44B60014DA4E /* FixturesViewController.swift in Sources */,
 				02F7BF6323B6400200DE70BB /* ShareTableViewCell.swift in Sources */,
 				027A08C42318248300B0DF59 /* SceneDelegate.swift in Sources */,
 				02821A15239A811A0090E400 /* Extensions.swift in Sources */,
 				0288B25D236F44D20014DA4E /* SettingsViewController.swift in Sources */,
 				026F1E77238295EE00682063 /* TeamTableViewCell.swift in Sources */,
+				021A59DC23D60254005DE007 /* Score.swift in Sources */,
+				021A59D423D4DFCF005DE007 /* FixtureDetailViewController.swift in Sources */,
 				02821A0F2395C1260090E400 /* PlayerDetailViewController.swift in Sources */,
 				02821A112398F5E50090E400 /* Slide.swift in Sources */,
 				027A08C22318248300B0DF59 /* AppDelegate.swift in Sources */,

@@ -18,8 +18,6 @@ class FixturesTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
-        
     }
     
 }
