@@ -51,24 +51,22 @@ class FixtureDetailViewController: UIViewController, UITableViewDelegate, UITabl
         return cell
     }
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?
-    {
-          // 1
-          let shareAction = UITableViewRowAction(style: .default, title: "Share" , handler: { (action:UITableViewRowAction, indexPath: IndexPath) -> Void in
-          // 2
-          let shareMenu = UIAlertController(title: nil, message: "Share using", preferredStyle: .actionSheet)
-                  
-          let twitterAction = UIAlertAction(title: "Twitter", style: .default, handler: nil)
-                  let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                  
-          shareMenu.addAction(twitterAction)
-          shareMenu.addAction(cancelAction)
-                  
-          self.present(shareMenu, animated: true, completion: nil)
-          })
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let contextItem = UIContextualAction(style: .normal, title: "MOTM") {  (contextualAction, view, boolValue) in
+            
+            let shareMenu = UIAlertController(title: nil, message: "Share using", preferredStyle: .actionSheet)
 
-          return [shareAction]
+            let twitterAction = UIAlertAction(title: "Twitter", style: .default, handler: nil)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+            shareMenu.addAction(twitterAction)
+            shareMenu.addAction(cancelAction)
+
+            self.present(shareMenu, animated: true, completion: nil)
+            
+        }
+        let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
+        return swipeActions
     }
-    
 
 }
