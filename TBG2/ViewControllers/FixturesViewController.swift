@@ -61,6 +61,19 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let snapshot = teamData[indexPath.row]
+        performSegue(withIdentifier: "fixtureDetailSegue", sender: snapshot)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? FixtureDetailViewController {
+            if let team = sender as? Team {
+                vc.test = team.teamName
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
             print(indexPath.row)
