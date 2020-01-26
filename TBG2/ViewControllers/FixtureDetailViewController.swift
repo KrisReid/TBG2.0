@@ -38,7 +38,6 @@ class FixtureDetailViewController: UIViewController, UITableViewDelegate, UITabl
 //        xibview.ivClubBadge.image = teamData[0].teamImage
 //        xibview.lblClubName.text = teamData[0].teamName
 //        xibview.lblClubPostcode.text = teamData[0].teamPostcode
-
         
     }
     

@@ -18,6 +18,7 @@ class FixtureDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var lblGoal: UILabel!
     
     var colours = Colours()
+    var goalCount = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,5 +26,19 @@ class FixtureDetailTableViewCell: UITableViewCell {
         ivPlayer.circle(colour: colours.primaryBlue.cgColor)
         ivPlayerAvailability.circle(colour: colours.primaryBlue.cgColor)
     }
+    
+    @IBAction func btnGoalIncrementTapped(_ sender: Any) {
+        goalCount += 1
+        lblGoal.text = String(goalCount)
+        
+    }
+    
+    @IBAction func btnGoalDecrementTapped(_ sender: Any) {
+        if goalCount != 0 {
+            goalCount -= 1
+            lblGoal.text = String(goalCount)
+        }
+    }
+    
     
 }

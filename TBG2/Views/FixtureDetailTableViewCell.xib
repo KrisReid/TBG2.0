@@ -43,6 +43,9 @@
                             <constraint firstAttribute="width" constant="20" id="z0L-gl-RaY"/>
                         </constraints>
                         <state key="normal" title="Button" image="increment_icon"/>
+                        <connections>
+                            <action selector="btnGoalIncrementTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Ykc-b8-rgY"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kIK-D8-CKs">
                         <rect key="frame" x="262" y="15" width="22" height="20"/>
@@ -60,6 +63,9 @@
                             <constraint firstAttribute="width" constant="20" id="WP3-eS-paN"/>
                         </constraints>
                         <state key="normal" title="Button" image="decrement_icon"/>
+                        <connections>
+                            <action selector="btnGoalDecrementTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="BXl-Y3-YED"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
