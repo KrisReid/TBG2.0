@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+
 class Colours {
     var primaryBlue = UIColor( red: 98/255, green: 190/255, blue:204/255, alpha: 1.0 )
     var secondaryBlue = UIColor( red: 67/255, green: 131/255, blue:140/255, alpha: 1.0 )
@@ -22,6 +23,32 @@ class Circles {
         name.layer.masksToBounds = true
         name.layer.borderWidth = 1.0
         name.layer.borderColor = colour
+    }
+}
+
+extension UIViewController {
+    class func displayLoading(withView: UIView) -> UIView {
+        //background view for spinner
+        let spinnerView = UIView.init(frame: withView.bounds)
+        spinnerView.backgroundColor = UIColor.clear
+        
+        //Spinner size/colour and animation
+        let ai = UIActivityIndicatorView.init(style: .medium)
+        ai.startAnimating()
+        ai.center = spinnerView.center
+        
+        //Async call
+        DispatchQueue.main.async {
+            spinnerView.addSubview(ai)
+            withView.addSubview(spinnerView)
+        }
+        return spinnerView
+    }
+    
+    class func removeLoading(spinner: UIView) {
+        DispatchQueue.main.async {
+            spinner.removeFromSuperview()
+        }
     }
 }
 
