@@ -10,7 +10,6 @@ import UIKit
 
 class FixtureDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
     @IBOutlet weak var vScore: UIView!
     @IBOutlet weak var tableview: UITableView!
     
@@ -32,7 +31,6 @@ class FixtureDetailViewController: UIViewController, UITableViewDelegate, UITabl
         
         //Xib Code
         xibview.frame = CGRect(x: vScore.bounds.origin.x, y: vScore.bounds.origin.y , width: UIScreen.main.bounds.width, height: vScore.bounds.height)
-        
         vScore.addSubview(xibview)
 
 //        xibview.ivClubBadge.image = teamData[0].teamImage

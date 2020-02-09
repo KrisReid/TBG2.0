@@ -100,7 +100,6 @@ class AddFixtureViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    
     //closes the keyboard when you touch white space
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
