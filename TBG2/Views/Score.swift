@@ -54,6 +54,5 @@ class Score: UIView {
         awayGoalCount += 1
         lblScore.text = "\(homeGoalCount) - \(awayGoalCount)"
     }
-    
 
 }
