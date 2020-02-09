@@ -6,6 +6,7 @@
 //  Copyright © 2019 Kris Reid. All rights reserved.
 //
 import UIKit
+import Firebase
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -14,52 +15,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     @available(iOS 13.0, *)
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-        let tabController = UITabBarController()
+        FirebaseApp.configure()
         
-        let teamStoryboard = UIStoryboard(name: "Team", bundle: nil)
-        let fixturesStoryboard = UIStoryboard(name: "Fixtures", bundle: nil)
-        let settingsStoryboard = UIStoryboard(name: "Settings", bundle: nil)
-        
-        let teamVC = teamStoryboard.instantiateViewController(withIdentifier: "Team") as! TeamViewController
-        let fixturesVC = fixturesStoryboard.instantiateViewController(withIdentifier: "Fixtures") as! FixturesViewController
-        
-        let settingsVC = settingsStoryboard.instantiateViewController(withIdentifier: "Settings") as! SettingsViewController
-        
-        
-        let vcData: [(UIViewController, UIImage, UIImage)] = [
-        
-            (teamVC, UIImage(named: "team_tab_icon")!, UIImage(named: "team_selected_tab_icon")!),
-            (fixturesVC, UIImage(named: "fixtures_tab_icon")!, UIImage(named: "fixtures_selected_tab_icon")!),
-            (settingsVC, UIImage(named: "settings_tab_icon")!, UIImage(named: "settings_selected_tab_icon")!)
-        
-        ]
-        
-        let vcs = vcData.map { (vc, defaultImage, selectedImage) -> UINavigationController in
+        if let _ = Auth.auth().currentUser {
             
-            let nav = UINavigationController(rootViewController: vc)
-            nav.tabBarItem.image = defaultImage
-            nav.tabBarItem.selectedImage = selectedImage
-            return nav
+            
         }
-        
-        tabController.viewControllers = vcs
-        tabController.tabBar.isTranslucent = false
-        
-        if let items = tabController.tabBar.items {
-            for item in items {
-                if let image = item.image {
-                    item.image = image.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-                }
-                if let selectedImage = item.selectedImage {
-                    item.selectedImage = selectedImage.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-                }
-                item.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
-            }
+        else {
+            let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            
+            let loginViewController = loginStoryboard.instantiateViewController(withIdentifier: "Login") as! LoginViewController
+            
+            window?.rootViewController = loginViewController
         }
-        
-        UINavigationBar.appearance().backgroundColor = UIColor.white
-        
-        window?.rootViewController = tabController
 
     }
 

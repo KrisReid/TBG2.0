@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-
+// Maybe move these classes to helper????
 class Colours {
     var primaryBlue = UIColor( red: 98/255, green: 190/255, blue:204/255, alpha: 1.0 )
     var secondaryBlue = UIColor( red: 67/255, green: 131/255, blue:140/255, alpha: 1.0 )
