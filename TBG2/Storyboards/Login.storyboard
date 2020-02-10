@@ -46,6 +46,9 @@
                                         <state key="normal" title="Login">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="btnLoginTapped:" destination="9RB-qa-kAc" eventType="touchUpInside" id="PQ9-yR-lfY"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHF-b0-DiC">
                                         <rect key="frame" x="20" y="259" width="374" height="34"/>
@@ -56,6 +59,9 @@
                                         <state key="normal" title="Don't have an account? Sign up instead">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="btnSignUpTapped:" destination="9RB-qa-kAc" eventType="touchUpInside" id="T4l-tC-H4M"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="12t-b2-Gtk">
                                         <rect key="frame" x="20" y="91" width="374" height="34"/>
@@ -100,6 +106,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6w2-n2-Hwo"/>
                     </view>
+                    <connections>
+                        <outlet property="ivTbgLogo" destination="foz-22-6OJ" id="n1J-NV-A3p"/>
+                        <outlet property="tfEmailAddress" destination="aqb-bw-gWX" id="Dd5-t3-bVB"/>
+                        <outlet property="tfPassword" destination="12t-b2-Gtk" id="QDT-oZ-7vc"/>
+                        <outlet property="vAuthentication" destination="Q3E-9p-7jd" id="kpX-XX-PM4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4zf-hg-5Hm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
