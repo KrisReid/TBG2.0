@@ -19,7 +19,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let _ = Auth.auth().currentUser {
             
-            
         }
         else {
             let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)

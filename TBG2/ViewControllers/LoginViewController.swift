@@ -15,5 +15,12 @@ class LoginViewController: UIViewController {
 
     }
     
+    @IBAction func btnTestTapped(_ sender: Any) {
+        
+        Helper.login()
+        
+    }
+    
+    
 
 }
