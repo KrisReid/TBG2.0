@@ -17,7 +17,9 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func btnLogoutTapped(_ sender: Any) {
+        print("I HAVE BEEN TAPPED YOU KNOW")
         Helper.logout()
+        print("I HAVE BEEN TAPPED YOU KNOW")
     }
     
     

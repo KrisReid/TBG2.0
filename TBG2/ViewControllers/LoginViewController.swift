@@ -48,6 +48,7 @@ class LoginViewController: UIViewController {
             if error == nil {
                 DispatchQueue.main.async {
                     //login
+                    print("8888888 No Errors and using the helper login function")
                     Helper.login()
                 }
             }

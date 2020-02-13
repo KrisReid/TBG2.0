@@ -22,38 +22,39 @@ class Helper {
     }
     
     class func login() {
+        print("8888888 - login function")
         let tabController = UITabBarController()
-        
+
         let teamStoryboard = UIStoryboard(name: "Team", bundle: nil)
         let fixturesStoryboard = UIStoryboard(name: "Fixtures", bundle: nil)
         let settingsStoryboard = UIStoryboard(name: "Settings", bundle: nil)
-        
+
         let teamVC = teamStoryboard.instantiateViewController(withIdentifier: "Team") as! TeamViewController
         let fixturesVC = fixturesStoryboard.instantiateViewController(withIdentifier: "Fixtures") as! FixturesViewController
-        
+
         let settingsVC = settingsStoryboard.instantiateViewController(withIdentifier: "Settings") as! SettingsViewController
-        
-        
+
+
         let vcData: [(UIViewController, UIImage, UIImage)] = [
-        
+
             (teamVC, UIImage(named: "team_tab_icon")!, UIImage(named: "team_selected_tab_icon")!),
             (fixturesVC, UIImage(named: "fixtures_tab_icon")!, UIImage(named: "fixtures_selected_tab_icon")!),
             (settingsVC, UIImage(named: "settings_tab_icon")!, UIImage(named: "settings_selected_tab_icon")!)
-        
+
         ]
-        
+
         let vcs = vcData.map { (vc, defaultImage, selectedImage) -> UINavigationController in
-            
+
             let nav = UINavigationController(rootViewController: vc)
             nav.tabBarItem.image = defaultImage
             nav.tabBarItem.selectedImage = selectedImage
             return nav
         }
-        
+
         tabController.viewControllers = vcs
         tabController.tabBar.isTranslucent = false
 //        tabController.delegate = tabBarDelegate
-        
+
         if let items = tabController.tabBar.items {
             for item in items {
                 if let image = item.image {
@@ -65,31 +66,30 @@ class Helper {
                 item.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
             }
         }
-        
+
         UINavigationBar.appearance().backgroundColor = UIColor.white
         
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        guard let window = appDelegate.window else { return }
-//        window.rootViewController = tabController
-        
-//        window?.rootViewController = tabController
-//        let mySceneDelegate = self.view.window.windowScene.delegate
-        
-        let sceneDelegate = UIApplication.shared.delegate as! SceneDelegate
-        guard let window = sceneDelegate.window else { return }
-        window.rootViewController = tabController
-        
+        let scene = UIApplication.shared.connectedScenes.first
+        if let sd : SceneDelegate = (scene?.delegate as? SceneDelegate) {
+            guard let window = sd.window else { return }
+            window.rootViewController = tabController
+        }
     }
     
     class func logout() {
+        print("8888888 - logout function")
         
         do {
             try Auth.auth().signOut()
             let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
             let loginViewController = loginStoryboard.instantiateViewController(withIdentifier: "Login") as! LoginViewController
-            let sceneDelegate = UIApplication.shared.delegate as! SceneDelegate
-            guard let window = sceneDelegate.window else { return }
-            window.rootViewController = loginViewController
+            
+            let scene = UIApplication.shared.connectedScenes.first
+            if let sd : SceneDelegate = (scene?.delegate as? SceneDelegate) {
+                guard let window = sd.window else { return }
+                window.rootViewController = loginViewController
+            }
+            
         } catch let error as NSError {
             print(error.localizedDescription)
         }

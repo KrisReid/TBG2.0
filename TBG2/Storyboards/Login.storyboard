@@ -28,7 +28,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q3E-9p-7jd">
                                 <rect key="frame" x="0.0" y="570" width="414" height="306"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aqb-bw-gWX">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="krisreid_06@hotmail.com" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aqb-bw-gWX">
                                         <rect key="frame" x="20" y="37" width="374" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="fO5-cU-eKC"/>
@@ -63,7 +63,7 @@
                                             <action selector="btnSignUpTapped:" destination="9RB-qa-kAc" eventType="touchUpInside" id="T4l-tC-H4M"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="12t-b2-Gtk">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="12345678" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="12t-b2-Gtk">
                                         <rect key="frame" x="20" y="91" width="374" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="jpq-Jp-vhy"/>
