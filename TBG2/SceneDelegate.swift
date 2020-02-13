@@ -24,6 +24,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
 
         if let _ = Auth.auth().currentUser {
+            
+            //LOGIC BUG MEANING I CAN"T USE HELPER.LOGIN ----- WHY????
 //            Helper.login()
             
             let tabController = UITabBarController()
@@ -71,18 +73,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
 
             UINavigationBar.appearance().backgroundColor = UIColor.white
-
             window.rootViewController = tabController
-            
-            print("SCENE DELEGATE LOGIN FUNTION 1")
-            print(window.rootViewController)
+
                     
         } else {
             let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
             let loginViewController = loginStoryboard.instantiateViewController(withIdentifier: "Login") as! LoginViewController
             window.rootViewController = loginViewController
-            print("SCENE DELEGATE LOGIN FUNTION 2")
-            print(window.rootViewController)
         }
 
         self.window = window

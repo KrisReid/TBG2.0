@@ -22,7 +22,6 @@ class Helper {
     }
     
     class func login() {
-        print("8888888 - login function")
         let tabController = UITabBarController()
 
         let teamStoryboard = UIStoryboard(name: "Team", bundle: nil)
@@ -77,8 +76,6 @@ class Helper {
     }
     
     class func logout() {
-        print("8888888 - logout function")
-        
         do {
             try Auth.auth().signOut()
             let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
