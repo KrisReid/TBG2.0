@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
 
 class Helper {
     
@@ -51,6 +52,7 @@ class Helper {
         
         tabController.viewControllers = vcs
         tabController.tabBar.isTranslucent = false
+//        tabController.delegate = tabBarDelegate
         
         if let items = tabController.tabBar.items {
             for item in items {
@@ -66,36 +68,32 @@ class Helper {
         
         UINavigationBar.appearance().backgroundColor = UIColor.white
         
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        guard let window = appDelegate.window else { return }
+//        window.rootViewController = tabController
+        
+//        window?.rootViewController = tabController
+//        let mySceneDelegate = self.view.window.windowScene.delegate
         
         let sceneDelegate = UIApplication.shared.delegate as! SceneDelegate
         guard let window = sceneDelegate.window else { return }
         window.rootViewController = tabController
+        
     }
     
     class func logout() {
         
-        let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
-        
-        let loginViewController = loginStoryboard.instantiateViewController(withIdentifier: "Login") as! LoginViewController
-        
-        let sceneDelegate = UIApplication.shared.delegate as! SceneDelegate
-        guard let window = sceneDelegate.window else { return }
-        window.rootViewController = loginViewController
+        do {
+            try Auth.auth().signOut()
+            let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            let loginViewController = loginStoryboard.instantiateViewController(withIdentifier: "Login") as! LoginViewController
+            let sceneDelegate = UIApplication.shared.delegate as! SceneDelegate
+            guard let window = sceneDelegate.window else { return }
+            window.rootViewController = loginViewController
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
         
     }
-    
-//    class func colours () {
-//        var primaryBlue = UIColor( red: 98/255, green: 190/255, blue:204/255, alpha: 1.0 )
-//        var secondaryBlue = UIColor( red: 67/255, green: 131/255, blue:140/255, alpha: 1.0 )
-//        var tertiaryBlue = UIColor( red: 37/255, green: 71/255, blue:77/255, alpha: 1.0 )
-//        var primaryGrey = UIColor( red: 120/255, green: 120/255, blue:120/255, alpha: 1.0 )
-//    }
-//
-//    class func circles (name: AnyObject, colour: CGColor) {
-//        name.layer.cornerRadius = name.frame.width / 2
-//        name.layer.masksToBounds = true
-//        name.layer.borderWidth = 1.0
-//        name.layer.borderColor = colour
-//    }
     
 }

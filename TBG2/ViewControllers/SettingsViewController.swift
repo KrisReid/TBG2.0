@@ -16,5 +16,10 @@ class SettingsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func btnLogoutTapped(_ sender: Any) {
+        Helper.logout()
+    }
+    
+    
 
 }

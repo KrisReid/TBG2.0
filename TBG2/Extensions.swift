@@ -15,6 +15,7 @@ class Colours {
     var secondaryBlue = UIColor( red: 67/255, green: 131/255, blue:140/255, alpha: 1.0 )
     var tertiaryBlue = UIColor( red: 37/255, green: 71/255, blue:77/255, alpha: 1.0 )
     var primaryGrey = UIColor( red: 120/255, green: 120/255, blue:120/255, alpha: 1.0 )
+    var white = UIColor( red: 255/255, green: 255/255, blue:255/255, alpha: 1.0 )
 }
 
 class Circles {
@@ -76,10 +77,10 @@ extension UILabel {
 }
 
 extension UITextField {
-    func underlined(){
+    func underlined(colour: CGColor){
         let border = CALayer()
         let width = CGFloat(1.0)
-        border.borderColor = Colours.init().secondaryBlue.cgColor
+        border.borderColor = colour
         border.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
         border.borderWidth = width
         self.layer.addSublayer(border)

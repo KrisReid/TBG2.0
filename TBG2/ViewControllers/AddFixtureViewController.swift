@@ -33,10 +33,10 @@ class AddFixtureViewController: UIViewController {
         super.viewDidLoad()
         
         //Styling
-        tfOpposition.underlined()
-        tfDate.underlined()
-        tfTime.underlined()
-        tfPostcode.underlined()
+        tfOpposition.underlined(colour: Colours.init().secondaryBlue.cgColor)
+        tfDate.underlined(colour: Colours.init().secondaryBlue.cgColor)
+        tfTime.underlined(colour: Colours.init().secondaryBlue.cgColor)
+        tfPostcode.underlined(colour: Colours.init().secondaryBlue.cgColor)
         btnManager.circle(colour: colour.secondaryBlue.cgColor)
         ivManagerAvailability.circle(colour: colour.secondaryBlue.cgColor)
         btnAssistant.circle(colour: colour.secondaryBlue.cgColor)

@@ -20,7 +20,7 @@ class TeamPinViewController: UIViewController {
         
         //Styling
         btnDone.baseStyle()
-        tfTeamPIN.underlined()
+        tfTeamPIN.underlined(colour: Colours.init().secondaryBlue.cgColor)
 
         tfTeamPIN.text = teamPIN
     }
