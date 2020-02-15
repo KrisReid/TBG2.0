@@ -21,11 +21,12 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tfEmailAddress.underlined(colour: Colours.init().white.cgColor)
-        tfPassword.underlined(colour: Colours.init().white.cgColor)
+        tfEmailAddress.underlined(colour: colour.white.cgColor)
+        tfPassword.underlined(colour: colour.white.cgColor)
         tfEmailAddress.textColor = .white
         tfPassword.textColor = .white
-
+        tfEmailAddress.placeholderText(text: "Email Address")
+        tfPassword.placeholderText(text: "Password")
     }
     
     override func viewDidAppear(_ animated: Bool) {

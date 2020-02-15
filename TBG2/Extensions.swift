@@ -78,7 +78,7 @@ extension UILabel {
 }
 
 extension UITextField {
-    func underlined(colour: CGColor){
+    func underlined (colour: CGColor) {
         let border = CALayer()
         let width = CGFloat(1.0)
         border.borderColor = colour
@@ -87,6 +87,13 @@ extension UITextField {
         self.layer.addSublayer(border)
         self.layer.masksToBounds = true
     }
+    
+    func placeholderText (text: String) {
+        self.attributedPlaceholder = NSAttributedString(string: text, attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
+    }
+    
+    
+
     
 }
 

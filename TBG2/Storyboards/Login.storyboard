@@ -143,6 +143,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <state key="normal" image="camera_icon"/>
+                                                <connections>
+                                                    <action selector="btnProfilePictureTapped:" destination="KPI-9K-CEV" eventType="touchUpInside" id="o67-TE-Es3"/>
+                                                </connections>
                                             </button>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Alison Bell" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="uSu-xk-kbt">
                                                 <rect key="frame" x="20" y="280" width="374" height="34"/>
@@ -207,6 +210,9 @@
                                                 <state key="normal" title="Create Team">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="btnCreateTeamTapped:" destination="KPI-9K-CEV" eventType="touchUpInside" id="GQa-f7-pS3"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dT8-oc-dpr">
                                                 <rect key="frame" x="20" y="718" width="374" height="34"/>
@@ -217,6 +223,9 @@
                                                 <state key="normal" title="Join Team">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="btnJoinTeamTapped:" destination="KPI-9K-CEV" eventType="touchUpInside" id="Eq7-b2-Loy"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.26274509800000001" green="0.51372549020000002" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -276,6 +285,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Y8H-sc-HjH"/>
                     </view>
+                    <connections>
+                        <outlet property="btnCreateTeam" destination="gAR-NE-8Os" id="zed-bD-IJC"/>
+                        <outlet property="btnJoinTeam" destination="dT8-oc-dpr" id="pew-dq-ZWz"/>
+                        <outlet property="btnProfilePicture" destination="qNS-xn-Pv2" id="ruE-Cm-y8u"/>
+                        <outlet property="tfDateOfBirth" destination="WaS-yp-8Ls" id="FM3-r9-mFB"/>
+                        <outlet property="tfEmailAddress" destination="bHZ-hM-2x6" id="rqC-dn-RNJ"/>
+                        <outlet property="tfFullName" destination="uSu-xk-kbt" id="Pif-Fd-1di"/>
+                        <outlet property="tfHouseNumber" destination="FTN-y9-Str" id="26P-9b-qyo"/>
+                        <outlet property="tfPassword" destination="ZIf-Uy-qdT" id="w5N-7g-bge"/>
+                        <outlet property="tfPostcode" destination="aRh-To-JMG" id="agg-hl-a7N"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xtl-dM-E6V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
