@@ -48,7 +48,6 @@ class LoginViewController: UIViewController {
             if error == nil {
                 DispatchQueue.main.async {
                     //login
-                    print("8888888 No Errors and using the helper login function")
                     Helper.login()
                 }
             }
@@ -58,8 +57,8 @@ class LoginViewController: UIViewController {
                 if let errorCode = AuthErrorCode(rawValue: error._code) {
                     switch errorCode {
                     case .wrongPassword:
-                        errorTitle = "Wrong Password"
-                        errorMessage = "The password provided is wrong"
+                        errorTitle = "Incorrect Password"
+                        errorMessage = "The password provided is incorrect"
                     case .invalidEmail:
                         errorTitle = "Invalid Email"
                         errorMessage = "Please enter a valid email address"
@@ -77,6 +76,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func btnSignUpTapped(_ sender: Any) {
         print("Sign me up y'all")
+        performSegue(withIdentifier: "signupSegue", sender: nil)
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
