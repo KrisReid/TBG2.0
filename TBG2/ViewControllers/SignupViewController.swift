@@ -42,7 +42,11 @@ class SignupViewController: UIViewController {
         tfHouseNumber.whitePlaceholderText(text: "House Number")
         tfPostcode.whitePlaceholderText(text: "Postcode")
         
-        btnProfilePicture.circle(colour: colour.white.cgColor)
+//        btnProfilePicture.circle(colour: colour.white.cgColor)
+        btnProfilePicture.layer.cornerRadius = btnProfilePicture.frame.width / 2
+        btnProfilePicture.layer.masksToBounds = true
+        btnProfilePicture.layer.borderWidth = 1.0
+        btnProfilePicture.layer.borderColor = colour.white.cgColor
         
     }
     

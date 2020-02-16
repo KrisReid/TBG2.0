@@ -134,6 +134,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qNS-xn-Pv2">
                                                 <rect key="frame" x="127" y="70" width="160" height="160"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="160" id="XX5-Jg-KTw"/>
                                                     <constraint firstAttribute="height" constant="160" id="ulp-td-1lA"/>
@@ -238,11 +239,11 @@
                                             <constraint firstItem="aRh-To-JMG" firstAttribute="leading" secondItem="NDM-A0-Fco" secondAttribute="leading" constant="20" id="SNT-Nt-thh"/>
                                             <constraint firstItem="qNS-xn-Pv2" firstAttribute="top" secondItem="NDM-A0-Fco" secondAttribute="top" constant="70" id="VT6-GO-2ok"/>
                                             <constraint firstItem="uSu-xk-kbt" firstAttribute="top" secondItem="qNS-xn-Pv2" secondAttribute="bottom" constant="50" id="Wdq-pJ-Bm7"/>
-                                            <constraint firstAttribute="trailing" secondItem="qNS-xn-Pv2" secondAttribute="trailing" constant="127" id="bEr-Kd-MKo"/>
                                             <constraint firstAttribute="trailing" secondItem="WaS-yp-8Ls" secondAttribute="trailing" constant="20" id="fc6-J7-rQy"/>
                                             <constraint firstAttribute="trailing" secondItem="FTN-y9-Str" secondAttribute="trailing" constant="20" id="fsd-3i-y1L"/>
                                             <constraint firstAttribute="trailing" secondItem="bHZ-hM-2x6" secondAttribute="trailing" constant="20" id="ihB-sa-LPE"/>
                                             <constraint firstItem="uSu-xk-kbt" firstAttribute="leading" secondItem="NDM-A0-Fco" secondAttribute="leading" constant="20" id="jUD-M0-izf"/>
+                                            <constraint firstItem="qNS-xn-Pv2" firstAttribute="centerX" secondItem="NDM-A0-Fco" secondAttribute="centerX" id="lTm-kW-rOo"/>
                                             <constraint firstItem="dT8-oc-dpr" firstAttribute="leading" secondItem="NDM-A0-Fco" secondAttribute="leading" constant="20" id="lcG-mw-CUC"/>
                                             <constraint firstAttribute="trailing" secondItem="dT8-oc-dpr" secondAttribute="trailing" constant="20" id="lnM-6A-2Kl"/>
                                             <constraint firstItem="bHZ-hM-2x6" firstAttribute="top" secondItem="uSu-xk-kbt" secondAttribute="bottom" constant="20" id="mGg-Xv-x4E"/>
@@ -251,7 +252,6 @@
                                             <constraint firstItem="WaS-yp-8Ls" firstAttribute="top" secondItem="ZIf-Uy-qdT" secondAttribute="bottom" constant="20" id="ob4-GT-fL9"/>
                                             <constraint firstItem="ZIf-Uy-qdT" firstAttribute="top" secondItem="bHZ-hM-2x6" secondAttribute="bottom" constant="20" id="qHG-9I-CGB"/>
                                             <constraint firstItem="bHZ-hM-2x6" firstAttribute="leading" secondItem="NDM-A0-Fco" secondAttribute="leading" constant="20" id="qvc-Ku-Rdn"/>
-                                            <constraint firstItem="qNS-xn-Pv2" firstAttribute="leading" secondItem="NDM-A0-Fco" secondAttribute="leading" constant="127" id="rkL-3f-lrI"/>
                                             <constraint firstItem="aRh-To-JMG" firstAttribute="top" secondItem="FTN-y9-Str" secondAttribute="bottom" constant="20" id="rl8-rz-DIG"/>
                                             <constraint firstAttribute="trailing" secondItem="uSu-xk-kbt" secondAttribute="trailing" constant="20" id="sYb-5F-sUc"/>
                                             <constraint firstItem="dT8-oc-dpr" firstAttribute="top" secondItem="gAR-NE-8Os" secondAttribute="bottom" constant="20" id="zyJ-gb-koB"/>
