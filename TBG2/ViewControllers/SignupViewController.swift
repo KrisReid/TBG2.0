@@ -21,7 +21,10 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var btnCreateTeam: UIButton!
     @IBOutlet weak var btnJoinTeam: UIButton!
     
+    private var datePicker: UIDatePicker?
+    
     var colour = Colours()
+    var keyboardHeight : CGFloat = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,11 +45,13 @@ class SignupViewController: UIViewController {
         tfHouseNumber.whitePlaceholderText(text: "House Number")
         tfPostcode.whitePlaceholderText(text: "Postcode")
         
-//        btnProfilePicture.circle(colour: colour.white.cgColor)
-        btnProfilePicture.layer.cornerRadius = btnProfilePicture.frame.width / 2
-        btnProfilePicture.layer.masksToBounds = true
-        btnProfilePicture.layer.borderWidth = 1.0
-        btnProfilePicture.layer.borderColor = colour.white.cgColor
+        btnProfilePicture.circle(colour: colour.white.cgColor)
+        
+        //Date Picker
+        datePicker = UIDatePicker()
+        datePicker?.datePickerMode = .date
+        datePicker?.addTarget(self, action: #selector(AddFixtureViewController.dateChanged(datePicker:)), for: .valueChanged)
+        tfDateOfBirth.inputView = datePicker
         
     }
     
@@ -67,19 +72,28 @@ class SignupViewController: UIViewController {
         
     }
     
-    @objc func keyboardWillShow(notificationa: NSNotification) {
-        if ((notificationa.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= 250
+    @objc func dateChanged(datePicker: UIDatePicker) {
+        datePicker.standardDateFormat(datePicker: datePicker, textField: tfDateOfBirth)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardFrame : NSValue = notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            if self.keyboardHeight == 0 {
+                self.keyboardHeight = keyboardHeight
+                if self.view.frame.origin.y == 0 {
+                    self.view.frame.origin.y -= keyboardHeight
+                }
             }
         }
     }
-    
+
     @objc func keyboardWillHide(notification: NSNotification) {
-        
         if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += 250
+                self.view.frame.origin.y += self.keyboardHeight
+                self.keyboardHeight = 0.0
             }
         }
     }

@@ -85,7 +85,6 @@ class LoginViewController: UIViewController {
         if let keyboardFrame : NSValue = notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
-            //if keyboard height already has a value over 0 then keep it and don't update it (DEFECT without this check as the height from the keyboard rectangle chnges but not really)
             if self.keyboardHeight == 0 {
                 self.keyboardHeight = keyboardHeight
                 if self.view.frame.origin.y == 0 {

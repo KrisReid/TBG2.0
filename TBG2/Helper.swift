@@ -90,7 +90,6 @@ class Helper {
         } catch let error as NSError {
             print(error.localizedDescription)
         }
-        
     }
     
 }

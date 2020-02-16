@@ -105,3 +105,12 @@ extension UITextField {
     }
 
 }
+
+
+extension UIDatePicker {
+    func standardDateFormat (datePicker: UIDatePicker, textField: UITextField) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM yyyy"
+        return textField.text = dateFormatter.string(from: datePicker.date)
+    }
+}

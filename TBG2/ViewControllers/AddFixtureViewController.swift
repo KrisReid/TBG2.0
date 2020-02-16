@@ -63,9 +63,7 @@ class AddFixtureViewController: UIViewController {
     
     
     @objc func dateChanged(datePicker: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy"
-        tfDate.text = dateFormatter.string(from: datePicker.date)
+        datePicker.standardDateFormat(datePicker: datePicker, textField: tfDate)
     }
     
     @objc func timeChanged(timePicker: UIDatePicker) {
