@@ -132,9 +132,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NDM-A0-Fco">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Auth_Background" translatesAutoresizingMaskIntoConstraints="NO" id="rAO-yR-b1w">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
-                                            </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qNS-xn-Pv2">
                                                 <rect key="frame" x="127" y="70" width="160" height="160"/>
                                                 <constraints>
@@ -228,16 +225,14 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.26274509800000001" green="0.51372549020000002" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="FTN-y9-Str" firstAttribute="leading" secondItem="NDM-A0-Fco" secondAttribute="leading" constant="20" id="5Rh-Gm-1Vy"/>
                                             <constraint firstItem="gAR-NE-8Os" firstAttribute="top" secondItem="aRh-To-JMG" secondAttribute="bottom" constant="80" id="65g-po-mhA"/>
                                             <constraint firstItem="WaS-yp-8Ls" firstAttribute="leading" secondItem="NDM-A0-Fco" secondAttribute="leading" constant="20" id="Bdi-Z6-Mxz"/>
                                             <constraint firstItem="FTN-y9-Str" firstAttribute="top" secondItem="WaS-yp-8Ls" secondAttribute="bottom" constant="20" id="DSU-iT-HJZ"/>
                                             <constraint firstAttribute="trailing" secondItem="aRh-To-JMG" secondAttribute="trailing" constant="20" id="Gp2-tS-Q5w"/>
-                                            <constraint firstItem="rAO-yR-b1w" firstAttribute="leading" secondItem="NDM-A0-Fco" secondAttribute="leading" id="JQV-W5-920"/>
                                             <constraint firstItem="gAR-NE-8Os" firstAttribute="leading" secondItem="NDM-A0-Fco" secondAttribute="leading" constant="20" id="JeA-AQ-gql"/>
-                                            <constraint firstItem="rAO-yR-b1w" firstAttribute="top" secondItem="NDM-A0-Fco" secondAttribute="top" id="Mpb-48-C6n"/>
                                             <constraint firstAttribute="trailing" secondItem="ZIf-Uy-qdT" secondAttribute="trailing" constant="20" id="QCM-PW-VGk"/>
                                             <constraint firstItem="ZIf-Uy-qdT" firstAttribute="leading" secondItem="NDM-A0-Fco" secondAttribute="leading" constant="20" id="Qpj-qv-wjP"/>
                                             <constraint firstItem="aRh-To-JMG" firstAttribute="leading" secondItem="NDM-A0-Fco" secondAttribute="leading" constant="20" id="SNT-Nt-thh"/>
@@ -246,7 +241,6 @@
                                             <constraint firstAttribute="trailing" secondItem="qNS-xn-Pv2" secondAttribute="trailing" constant="127" id="bEr-Kd-MKo"/>
                                             <constraint firstAttribute="trailing" secondItem="WaS-yp-8Ls" secondAttribute="trailing" constant="20" id="fc6-J7-rQy"/>
                                             <constraint firstAttribute="trailing" secondItem="FTN-y9-Str" secondAttribute="trailing" constant="20" id="fsd-3i-y1L"/>
-                                            <constraint firstAttribute="trailing" secondItem="rAO-yR-b1w" secondAttribute="trailing" id="hM7-8V-0rC"/>
                                             <constraint firstAttribute="trailing" secondItem="bHZ-hM-2x6" secondAttribute="trailing" constant="20" id="ihB-sa-LPE"/>
                                             <constraint firstItem="uSu-xk-kbt" firstAttribute="leading" secondItem="NDM-A0-Fco" secondAttribute="leading" constant="20" id="jUD-M0-izf"/>
                                             <constraint firstItem="dT8-oc-dpr" firstAttribute="leading" secondItem="NDM-A0-Fco" secondAttribute="leading" constant="20" id="lcG-mw-CUC"/>
@@ -259,13 +253,12 @@
                                             <constraint firstItem="bHZ-hM-2x6" firstAttribute="leading" secondItem="NDM-A0-Fco" secondAttribute="leading" constant="20" id="qvc-Ku-Rdn"/>
                                             <constraint firstItem="qNS-xn-Pv2" firstAttribute="leading" secondItem="NDM-A0-Fco" secondAttribute="leading" constant="127" id="rkL-3f-lrI"/>
                                             <constraint firstItem="aRh-To-JMG" firstAttribute="top" secondItem="FTN-y9-Str" secondAttribute="bottom" constant="20" id="rl8-rz-DIG"/>
-                                            <constraint firstAttribute="bottom" secondItem="rAO-yR-b1w" secondAttribute="bottom" id="sYV-GW-IPO"/>
                                             <constraint firstAttribute="trailing" secondItem="uSu-xk-kbt" secondAttribute="trailing" constant="20" id="sYb-5F-sUc"/>
                                             <constraint firstItem="dT8-oc-dpr" firstAttribute="top" secondItem="gAR-NE-8Os" secondAttribute="bottom" constant="20" id="zyJ-gb-koB"/>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.26274509800000001" green="0.51372549020000002" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="NDM-A0-Fco" firstAttribute="top" secondItem="h4F-KG-7tW" secondAttribute="top" id="Otw-ix-lWl"/>
                                     <constraint firstItem="NDM-A0-Fco" firstAttribute="trailing" secondItem="h4F-KG-7tW" secondAttribute="trailing" id="a3T-u3-Gkh"/>
@@ -276,7 +269,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.26274509800000001" green="0.51372549020000002" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="h4F-KG-7tW" firstAttribute="top" secondItem="Y8H-sc-HjH" secondAttribute="top" id="Qxe-hN-G2v"/>
                             <constraint firstItem="h4F-KG-7tW" firstAttribute="trailing" secondItem="Y8H-sc-HjH" secondAttribute="trailing" id="TMv-kt-gyZ"/>
@@ -295,6 +288,7 @@
                         <outlet property="tfHouseNumber" destination="FTN-y9-Str" id="26P-9b-qyo"/>
                         <outlet property="tfPassword" destination="ZIf-Uy-qdT" id="w5N-7g-bge"/>
                         <outlet property="tfPostcode" destination="aRh-To-JMG" id="agg-hl-a7N"/>
+                        <outlet property="vPlayerSignupDetails" destination="NDM-A0-Fco" id="ZHQ-RJ-5B3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xtl-dM-E6V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

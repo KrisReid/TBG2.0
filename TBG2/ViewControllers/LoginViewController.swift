@@ -17,6 +17,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var tfPassword: UITextField!
     
     var colour = Colours()
+    var keyboardHeight : CGFloat = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +26,8 @@ class LoginViewController: UIViewController {
         tfPassword.underlined(colour: colour.white.cgColor)
         tfEmailAddress.textColor = .white
         tfPassword.textColor = .white
-        tfEmailAddress.placeholderText(text: "Email Address")
-        tfPassword.placeholderText(text: "Password")
+        tfEmailAddress.whitePlaceholderText(text: "Email Address")
+        tfPassword.whitePlaceholderText(text: "Password")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -81,17 +82,24 @@ class LoginViewController: UIViewController {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= 300
+        if let keyboardFrame : NSValue = notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            //if keyboard height already has a value over 0 then keep it and don't update it (DEFECT without this check as the height from the keyboard rectangle chnges but not really)
+            if self.keyboardHeight == 0 {
+                self.keyboardHeight = keyboardHeight
+                if self.view.frame.origin.y == 0 {
+                    self.view.frame.origin.y -= keyboardHeight
+                }
             }
         }
     }
-    
+
     @objc func keyboardWillHide(notification: NSNotification) {
         if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += 300
+                self.view.frame.origin.y += self.keyboardHeight
+                self.keyboardHeight = 0.0
             }
         }
     }
@@ -100,12 +108,5 @@ class LoginViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
-    //enter button will close the keyboard
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-
 
 }
