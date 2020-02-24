@@ -106,7 +106,6 @@ extension UITextField {
 
 }
 
-
 extension UIDatePicker {
     func standardDateFormat (datePicker: UIDatePicker, textField: UITextField) {
         let dateFormatter = DateFormatter()

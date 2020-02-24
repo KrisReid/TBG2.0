@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignupViewController: UIViewController {
+class SignupViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var vPlayerSignupDetails: UIView!
     @IBOutlet weak var btnProfilePicture: UIButton!
@@ -50,6 +50,7 @@ class SignupViewController: UIViewController {
         //Date Picker
         datePicker = UIDatePicker()
         datePicker?.datePickerMode = .date
+        datePicker?.frame.size.height = 250
         datePicker?.addTarget(self, action: #selector(AddFixtureViewController.dateChanged(datePicker:)), for: .valueChanged)
         tfDateOfBirth.inputView = datePicker
         
@@ -61,7 +62,22 @@ class SignupViewController: UIViewController {
     }
     
     @IBAction func btnProfilePictureTapped(_ sender: Any) {
-        
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
+        imagePickerController.allowsEditing = true
+        self.present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+
+        guard let image = info[.editedImage] as? UIImage else {
+            print("No image found")
+            return
+        }
+        btnProfilePicture.setImage(image , for: UIControl.State.normal)
+        btnProfilePicture.setTitle("",for: .normal)
     }
     
     @IBAction func btnCreateTeamTapped(_ sender: Any) {
@@ -97,7 +113,5 @@ class SignupViewController: UIViewController {
             }
         }
     }
-    
-    
 
 }
