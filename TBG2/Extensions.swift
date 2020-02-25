@@ -113,3 +113,18 @@ extension UIDatePicker {
         return textField.text = dateFormatter.string(from: datePicker.date)
     }
 }
+
+extension UISegmentedControl {
+    func defaultSegmentedControlFormat (backgroundColour: UIColor) {
+        
+        let blueText = [NSAttributedString.Key.foregroundColor: Colours.init().secondaryBlue, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)]
+        let whiteText = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)]
+        
+        self.setTitleTextAttributes(whiteText, for: .normal)
+        self.setTitleTextAttributes(blueText, for: .selected)
+        
+        self.layer.borderWidth = 1
+        self.layer.borderColor = Colours.init().tertiaryBlue.cgColor
+        self.backgroundColor = backgroundColour
+    }
+}

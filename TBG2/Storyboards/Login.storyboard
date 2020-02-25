@@ -333,8 +333,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="giI-Hp-VCs">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J4t-PY-d5m">
-                                        <rect key="frame" x="24" y="22" width="414" height="842"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J4t-PY-d5m">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Dl-NU-5ys">
                                                 <rect key="frame" x="127" y="70" width="160" height="160"/>
@@ -347,11 +347,97 @@
                                                     <action selector="btnTeamCrestTapped:" destination="XaW-fd-jBW" eventType="touchUpInside" id="lj8-Kr-9R6"/>
                                                 </connections>
                                             </button>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Team Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BcT-On-cWS">
+                                                <rect key="frame" x="20" y="280" width="374" height="34"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="34" id="PTh-OX-wxn"/>
+                                                </constraints>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Team PIN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wmh-6y-rH7">
+                                                <rect key="frame" x="20" y="334" width="374" height="34"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="34" id="KZ9-mh-0e6"/>
+                                                </constraints>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Team Postcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qsG-cA-PNo">
+                                                <rect key="frame" x="20" y="388" width="374" height="34"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="34" id="8Ub-5v-tHM"/>
+                                                </constraints>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bSK-L0-Ug4">
+                                                <rect key="frame" x="20" y="452" width="374" height="32"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="31" id="3P1-He-a2Y"/>
+                                                </constraints>
+                                                <segments>
+                                                    <segment title="Manager Only"/>
+                                                    <segment title="Player / Manager"/>
+                                                </segments>
+                                                <color key="selectedSegmentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="scPlayerManagerTapped:" destination="XaW-fd-jBW" eventType="valueChanged" id="zKe-jT-Woz"/>
+                                                </connections>
+                                            </segmentedControl>
+                                            <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bNK-sU-KVS">
+                                                <rect key="frame" x="20" y="513" width="374" height="32"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="31" id="7lO-Wd-1Kt"/>
+                                                </constraints>
+                                                <segments>
+                                                    <segment title="Goalkeeper"/>
+                                                    <segment title="Defender"/>
+                                                    <segment title="Midfielder"/>
+                                                    <segment title="Striker"/>
+                                                </segments>
+                                            </segmentedControl>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFL-NU-x34">
+                                                <rect key="frame" x="20" y="624" width="374" height="34"/>
+                                                <color key="backgroundColor" red="0.1450980392" green="0.2784313725" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="34" id="9jR-qS-fv9"/>
+                                                </constraints>
+                                                <state key="normal" title="Submit">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="btnSubmitTapped:" destination="XaW-fd-jBW" eventType="touchUpInside" id="efQ-LM-5PZ"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="wmh-6y-rH7" secondAttribute="trailing" constant="20" id="8df-42-9G2"/>
+                                            <constraint firstItem="bNK-sU-KVS" firstAttribute="leading" secondItem="J4t-PY-d5m" secondAttribute="leading" constant="20" id="DT7-it-bOt"/>
+                                            <constraint firstItem="wmh-6y-rH7" firstAttribute="top" secondItem="BcT-On-cWS" secondAttribute="bottom" constant="20" id="FEn-dr-0sN"/>
+                                            <constraint firstItem="BcT-On-cWS" firstAttribute="leading" secondItem="J4t-PY-d5m" secondAttribute="leading" constant="20" id="NNb-M2-3Ja"/>
+                                            <constraint firstAttribute="trailing" secondItem="bSK-L0-Ug4" secondAttribute="trailing" constant="20" id="OBz-LI-Qoh"/>
+                                            <constraint firstItem="bSK-L0-Ug4" firstAttribute="top" secondItem="qsG-cA-PNo" secondAttribute="bottom" constant="30" id="QTC-bp-L6L"/>
+                                            <constraint firstItem="vFL-NU-x34" firstAttribute="leading" secondItem="J4t-PY-d5m" secondAttribute="leading" constant="20" id="RsK-Dw-W51"/>
+                                            <constraint firstItem="qsG-cA-PNo" firstAttribute="top" secondItem="wmh-6y-rH7" secondAttribute="bottom" constant="20" id="SsS-Tl-dsc"/>
+                                            <constraint firstItem="qsG-cA-PNo" firstAttribute="leading" secondItem="J4t-PY-d5m" secondAttribute="leading" constant="20" id="XBZ-dc-wCQ"/>
+                                            <constraint firstItem="vFL-NU-x34" firstAttribute="top" secondItem="bNK-sU-KVS" secondAttribute="bottom" constant="80" id="XFX-i7-WdE"/>
+                                            <constraint firstAttribute="trailing" secondItem="vFL-NU-x34" secondAttribute="trailing" constant="20" id="YWF-na-bFg"/>
+                                            <constraint firstItem="BcT-On-cWS" firstAttribute="top" secondItem="5Dl-NU-5ys" secondAttribute="bottom" constant="50" id="bSH-OT-5xM"/>
+                                            <constraint firstAttribute="trailing" secondItem="BcT-On-cWS" secondAttribute="trailing" constant="20" id="eLi-kf-jKg"/>
+                                            <constraint firstItem="wmh-6y-rH7" firstAttribute="leading" secondItem="J4t-PY-d5m" secondAttribute="leading" constant="20" id="j44-d9-pmn"/>
+                                            <constraint firstItem="bNK-sU-KVS" firstAttribute="top" secondItem="bSK-L0-Ug4" secondAttribute="bottom" constant="30" id="oqI-f4-m4M"/>
+                                            <constraint firstItem="bSK-L0-Ug4" firstAttribute="leading" secondItem="J4t-PY-d5m" secondAttribute="leading" constant="20" id="p2n-X5-9TG"/>
+                                            <constraint firstAttribute="trailing" secondItem="bNK-sU-KVS" secondAttribute="trailing" constant="20" id="sYE-9f-VYg"/>
                                             <constraint firstItem="5Dl-NU-5ys" firstAttribute="centerX" secondItem="J4t-PY-d5m" secondAttribute="centerX" id="u6B-Kt-NdQ"/>
                                             <constraint firstItem="5Dl-NU-5ys" firstAttribute="top" secondItem="J4t-PY-d5m" secondAttribute="top" constant="70" id="x40-Bk-PxA"/>
+                                            <constraint firstAttribute="trailing" secondItem="qsG-cA-PNo" secondAttribute="trailing" constant="20" id="zTg-lo-aOy"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -376,7 +462,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="1as-mK-TDu"/>
                     <connections>
+                        <outlet property="btnSubmit" destination="vFL-NU-x34" id="PXv-ZN-m8E"/>
                         <outlet property="btnTeamCrest" destination="5Dl-NU-5ys" id="EO2-B2-o1h"/>
+                        <outlet property="scPlayerManager" destination="bSK-L0-Ug4" id="Ecf-T2-b8r"/>
+                        <outlet property="scPlayerPosition" destination="bNK-sU-KVS" id="6uB-7c-PRg"/>
+                        <outlet property="tfTeamName" destination="BcT-On-cWS" id="Dtt-Jh-iiX"/>
+                        <outlet property="tfTeamPIN" destination="wmh-6y-rH7" id="P2Z-ck-uue"/>
+                        <outlet property="tfTeamPostcode" destination="qsG-cA-PNo" id="4CX-Sk-1fq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L7s-wN-XTZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

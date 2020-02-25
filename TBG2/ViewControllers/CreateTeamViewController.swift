@@ -11,14 +11,34 @@ import UIKit
 class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var btnTeamCrest: UIButton!
+    @IBOutlet weak var tfTeamName: UITextField!
+    @IBOutlet weak var tfTeamPIN: UITextField!
+    @IBOutlet weak var tfTeamPostcode: UITextField!
+    @IBOutlet weak var scPlayerManager: UISegmentedControl!
+    @IBOutlet weak var scPlayerPosition: UISegmentedControl!
+    @IBOutlet weak var btnSubmit: UIButton!
+    
     
     var colour = Colours()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Buttons
         btnTeamCrest.circle(colour: colour.white.cgColor)
-
+        
+        //TextFields
+        tfTeamName.underlined(colour: colour.white.cgColor)
+        tfTeamPIN.underlined(colour: colour.white.cgColor)
+        tfTeamPostcode.underlined(colour: colour.white.cgColor)
+        tfTeamName.whitePlaceholderText(text: "Team Name")
+        tfTeamPIN.whitePlaceholderText(text: "Team PIN")
+        tfTeamPostcode.whitePlaceholderText(text: "Team Postcode")
+        
+        //Segmented Control
+        scPlayerManager.defaultSegmentedControlFormat(backgroundColour: UIColor.clear)
+        scPlayerPosition.defaultSegmentedControlFormat(backgroundColour: UIColor.clear)
+        
     }
     
     @IBAction func btnTeamCrestTapped(_ sender: Any) {
@@ -41,5 +61,17 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
         btnTeamCrest.setTitle("",for: .normal)
     }
     
-
+    
+    @IBAction func scPlayerManagerTapped(_ sender: Any) {
+        if scPlayerManager.selectedSegmentIndex == 1 {
+            scPlayerPosition.isHidden = false
+        } else {
+            scPlayerPosition.isHidden = true
+        }
+    }
+    
+    @IBAction func btnSubmitTapped(_ sender: Any) {
+        
+    }
+    
 }

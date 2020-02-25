@@ -44,8 +44,7 @@ class AddFixtureViewController: UIViewController {
         btnCreateGame.baseStyle()
         
         //Segmented Control
-        scHomeAway.layer.backgroundColor = colour.secondaryBlue.cgColor
-        scHomeAway.setTitleTextAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)], for: .normal)
+        scHomeAway.defaultSegmentedControlFormat(backgroundColour: colour.secondaryBlue)
         
         //Date Picker
         datePicker = UIDatePicker()
