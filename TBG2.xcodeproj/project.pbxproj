@@ -32,6 +32,7 @@
 		02821A112398F5E50090E400 /* Slide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02821A102398F5E50090E400 /* Slide.swift */; };
 		02821A132398F68A0090E400 /* Slide.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02821A122398F68A0090E400 /* Slide.xib */; };
 		02821A15239A811A0090E400 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02821A14239A811A0090E400 /* Extensions.swift */; };
+		0282C7F52405CD8400259BEF /* JoinTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0282C7F42405CD8400259BEF /* JoinTeamViewController.swift */; };
 		0288B22023683A600014DA4E /* Fixtures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0288B21F23683A600014DA4E /* Fixtures.storyboard */; };
 		0288B224236AD9540014DA4E /* Team.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0288B223236AD9540014DA4E /* Team.storyboard */; };
 		0288B226236AD9B40014DA4E /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0288B225236AD9B40014DA4E /* Settings.storyboard */; };
@@ -75,6 +76,7 @@
 		02821A102398F5E50090E400 /* Slide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slide.swift; sourceTree = "<group>"; };
 		02821A122398F68A0090E400 /* Slide.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Slide.xib; sourceTree = "<group>"; };
 		02821A14239A811A0090E400 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		0282C7F42405CD8400259BEF /* JoinTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTeamViewController.swift; sourceTree = "<group>"; };
 		0288B21F23683A600014DA4E /* Fixtures.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Fixtures.storyboard; sourceTree = "<group>"; };
 		0288B223236AD9540014DA4E /* Team.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Team.storyboard; sourceTree = "<group>"; };
 		0288B225236AD9B40014DA4E /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				0231525823F0A8F600AAFB0B /* LoginViewController.swift */,
 				0231525A23F60B7A00AAFB0B /* SignupViewController.swift */,
 				025280E924032E17002DB761 /* CreateTeamViewController.swift */,
+				0282C7F42405CD8400259BEF /* JoinTeamViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				021A59D423D4DFCF005DE007 /* FixtureDetailViewController.swift in Sources */,
 				02821A0F2395C1260090E400 /* PlayerDetailViewController.swift in Sources */,
 				02821A112398F5E50090E400 /* Slide.swift in Sources */,
+				0282C7F52405CD8400259BEF /* JoinTeamViewController.swift in Sources */,
 				027A08C22318248300B0DF59 /* AppDelegate.swift in Sources */,
 				0231525B23F60B7B00AAFB0B /* SignupViewController.swift in Sources */,
 				02821A0D2395AAD30090E400 /* TeamPinViewController.swift in Sources */,

@@ -24,6 +24,9 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Keyboard Dismissal
+        self.setupHideKeyboardOnTap()
+        
         //Buttons
         btnTeamCrest.circle(colour: colour.white.cgColor)
         

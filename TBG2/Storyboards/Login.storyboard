@@ -297,30 +297,87 @@
             </objects>
             <point key="canvasLocation" x="617.39130434782612" y="91.741071428571431"/>
         </scene>
-        <!--View Controller-->
+        <!--Join Team View Controller-->
         <scene sceneID="gGE-mc-JJT">
             <objects>
-                <viewController id="1uF-vO-42f" sceneMemberID="viewController">
+                <viewController id="1uF-vO-42f" customClass="JoinTeamViewController" customModule="TBG2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Giu-Cq-HQU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Join Team" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bA9-k2-aQg">
-                                <rect key="frame" x="168" y="411" width="78" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Team ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZMr-S8-Uev">
+                                <rect key="frame" x="20" y="250" width="374" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="Y4Z-W6-X1g"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Team PIN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c6D-QY-lor">
+                                <rect key="frame" x="20" y="304" width="374" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="zbP-t8-W2D"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="one-time-code"/>
+                            </textField>
+                            <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0es-XK-9Sx">
+                                <rect key="frame" x="20" y="368" width="374" height="32"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="WLs-Ts-b8v"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Goalkeeper"/>
+                                    <segment title="Defender"/>
+                                    <segment title="Midfielder"/>
+                                    <segment title="Striker"/>
+                                </segments>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4C0-d8-yf1">
+                                <rect key="frame" x="20" y="479" width="374" height="34"/>
+                                <color key="backgroundColor" red="0.1450980392" green="0.2784313725" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="qNP-MM-8KS"/>
+                                </constraints>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnSubmitTapped:" destination="XaW-fd-jBW" eventType="touchUpInside" id="C8S-le-vww"/>
+                                    <action selector="btnSubmitTapped:" destination="1uF-vO-42f" eventType="touchUpInside" id="RRg-Vz-SkB"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.26274509800000001" green="0.51372549020000002" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="QhR-rK-Y0y" firstAttribute="trailing" secondItem="4C0-d8-yf1" secondAttribute="trailing" constant="20" id="8I5-VG-hSW"/>
+                            <constraint firstItem="0es-XK-9Sx" firstAttribute="top" secondItem="c6D-QY-lor" secondAttribute="bottom" constant="30" id="COD-Hr-bkA"/>
+                            <constraint firstItem="0es-XK-9Sx" firstAttribute="leading" secondItem="QhR-rK-Y0y" secondAttribute="leading" constant="20" id="CZ8-Rn-6GR"/>
+                            <constraint firstItem="QhR-rK-Y0y" firstAttribute="trailing" secondItem="c6D-QY-lor" secondAttribute="trailing" constant="20" id="Lpv-IR-2LI"/>
+                            <constraint firstItem="4C0-d8-yf1" firstAttribute="leading" secondItem="QhR-rK-Y0y" secondAttribute="leading" constant="20" id="MVt-fg-aXb"/>
+                            <constraint firstItem="QhR-rK-Y0y" firstAttribute="trailing" secondItem="0es-XK-9Sx" secondAttribute="trailing" constant="20" id="dfW-Xl-e5v"/>
+                            <constraint firstItem="4C0-d8-yf1" firstAttribute="top" secondItem="0es-XK-9Sx" secondAttribute="bottom" constant="80" id="ha4-cZ-XyE"/>
+                            <constraint firstItem="ZMr-S8-Uev" firstAttribute="leading" secondItem="QhR-rK-Y0y" secondAttribute="leading" constant="20" id="iMW-w8-idr"/>
+                            <constraint firstItem="c6D-QY-lor" firstAttribute="top" secondItem="ZMr-S8-Uev" secondAttribute="bottom" constant="20" id="lVW-Kb-pbE"/>
+                            <constraint firstItem="ZMr-S8-Uev" firstAttribute="top" secondItem="QhR-rK-Y0y" secondAttribute="top" constant="250" id="tl8-4G-GWb"/>
+                            <constraint firstItem="c6D-QY-lor" firstAttribute="leading" secondItem="QhR-rK-Y0y" secondAttribute="leading" constant="20" id="xz4-yV-4jF"/>
+                            <constraint firstItem="QhR-rK-Y0y" firstAttribute="trailing" secondItem="ZMr-S8-Uev" secondAttribute="trailing" constant="20" id="z1K-Ia-bhx"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="QhR-rK-Y0y"/>
                     </view>
                     <navigationItem key="navigationItem" id="Kr4-6O-hF7"/>
+                    <connections>
+                        <outlet property="scPlayerPosition" destination="0es-XK-9Sx" id="KXw-YH-94z"/>
+                        <outlet property="tfTeamID" destination="ZMr-S8-Uev" id="ghX-cX-Jos"/>
+                        <outlet property="tfTeamPIN" destination="c6D-QY-lor" id="hwI-gY-2SI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bfk-r1-Kbg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1712" y="471"/>
+            <point key="canvasLocation" x="1711.5942028985507" y="470.75892857142856"/>
         </scene>
         <!--Create Team View Controller-->
         <scene sceneID="Upy-dz-Q7j">
@@ -363,7 +420,7 @@
                                                 </constraints>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="one-time-code"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Team Postcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qsG-cA-PNo">
                                                 <rect key="frame" x="20" y="388" width="374" height="34"/>

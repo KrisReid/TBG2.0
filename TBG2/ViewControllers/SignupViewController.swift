@@ -29,15 +29,16 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Keyboard Dismissal
         self.setupHideKeyboardOnTap()
         
+        //TextFields
         tfFullName.underlined(colour: colour.white.cgColor)
         tfEmailAddress.underlined(colour: colour.white.cgColor)
         tfPassword.underlined(colour: colour.white.cgColor)
         tfDateOfBirth.underlined(colour: colour.white.cgColor)
         tfHouseNumber.underlined(colour: colour.white.cgColor)
         tfPostcode.underlined(colour: colour.white.cgColor)
-        
         tfFullName.whitePlaceholderText(text: "Full Name")
         tfEmailAddress.whitePlaceholderText(text: "Email Address")
         tfPassword.whitePlaceholderText(text: "Password")
@@ -45,6 +46,7 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
         tfHouseNumber.whitePlaceholderText(text: "House Number")
         tfPostcode.whitePlaceholderText(text: "Postcode")
         
+        //Buttons
         btnProfilePicture.circle(colour: colour.white.cgColor)
         
         //Date Picker
