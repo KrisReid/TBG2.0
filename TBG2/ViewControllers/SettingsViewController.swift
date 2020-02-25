@@ -16,5 +16,12 @@ class SettingsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func btnLogoutTapped(_ sender: Any) {
+        print("I HAVE BEEN TAPPED YOU KNOW")
+        Helper.logout()
+        print("I HAVE BEEN TAPPED YOU KNOW")
+    }
+    
+    
 
 }

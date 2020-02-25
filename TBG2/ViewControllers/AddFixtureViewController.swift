@@ -33,10 +33,10 @@ class AddFixtureViewController: UIViewController {
         super.viewDidLoad()
         
         //Styling
-        tfOpposition.underlined()
-        tfDate.underlined()
-        tfTime.underlined()
-        tfPostcode.underlined()
+        tfOpposition.underlined(colour: Colours.init().secondaryBlue.cgColor)
+        tfDate.underlined(colour: Colours.init().secondaryBlue.cgColor)
+        tfTime.underlined(colour: Colours.init().secondaryBlue.cgColor)
+        tfPostcode.underlined(colour: Colours.init().secondaryBlue.cgColor)
         btnManager.circle(colour: colour.secondaryBlue.cgColor)
         ivManagerAvailability.circle(colour: colour.secondaryBlue.cgColor)
         btnAssistant.circle(colour: colour.secondaryBlue.cgColor)
@@ -44,8 +44,7 @@ class AddFixtureViewController: UIViewController {
         btnCreateGame.baseStyle()
         
         //Segmented Control
-        scHomeAway.layer.backgroundColor = colour.secondaryBlue.cgColor
-        scHomeAway.setTitleTextAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)], for: .normal)
+        scHomeAway.defaultSegmentedControlFormat(backgroundColour: colour.secondaryBlue)
         
         //Date Picker
         datePicker = UIDatePicker()
@@ -63,9 +62,7 @@ class AddFixtureViewController: UIViewController {
     
     
     @objc func dateChanged(datePicker: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy"
-        tfDate.text = dateFormatter.string(from: datePicker.date)
+        datePicker.standardDateFormat(datePicker: datePicker, textField: tfDate)
     }
     
     @objc func timeChanged(timePicker: UIDatePicker) {

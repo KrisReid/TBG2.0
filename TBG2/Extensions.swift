@@ -9,11 +9,13 @@
 import Foundation
 import UIKit
 
+// Maybe move these classes to helper????
 class Colours {
     var primaryBlue = UIColor( red: 98/255, green: 190/255, blue:204/255, alpha: 1.0 )
     var secondaryBlue = UIColor( red: 67/255, green: 131/255, blue:140/255, alpha: 1.0 )
     var tertiaryBlue = UIColor( red: 37/255, green: 71/255, blue:77/255, alpha: 1.0 )
     var primaryGrey = UIColor( red: 120/255, green: 120/255, blue:120/255, alpha: 1.0 )
+    var white = UIColor( red: 255/255, green: 255/255, blue:255/255, alpha: 1.0 )
 }
 
 class Circles {
@@ -23,6 +25,45 @@ class Circles {
         name.layer.borderWidth = 1.0
         name.layer.borderColor = colour
     }
+}
+
+extension UIViewController {
+    class func displayLoading(withView: UIView) -> UIView {
+        //background view for spinner
+        let spinnerView = UIView.init(frame: withView.bounds)
+        spinnerView.backgroundColor = UIColor.clear
+        
+        //Spinner size/colour and animation
+        let ai = UIActivityIndicatorView.init(style: .large)
+        ai.color = .white
+        ai.startAnimating()
+        ai.center = spinnerView.center
+        
+        //Async call
+        DispatchQueue.main.async {
+            spinnerView.addSubview(ai)
+            withView.addSubview(spinnerView)
+        }
+        return spinnerView
+    }
+    
+    class func removeLoading(spinner: UIView) {
+        DispatchQueue.main.async {
+            spinner.removeFromSuperview()
+        }
+    }
+    
+    func setupHideKeyboardOnTap() {
+        self.view.addGestureRecognizer(self.endEditingRecognizer())
+        self.navigationController?.navigationBar.addGestureRecognizer(self.endEditingRecognizer())
+    }
+    
+    private func endEditingRecognizer() -> UIGestureRecognizer {
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(self.view.endEditing(_:)))
+        tap.cancelsTouchesInView = false
+        return tap
+    }
+    
 }
 
 extension UIImageView {
@@ -49,15 +90,41 @@ extension UILabel {
 }
 
 extension UITextField {
-    func underlined(){
+    func underlined (colour: CGColor) {
         let border = CALayer()
         let width = CGFloat(1.0)
-        border.borderColor = Colours.init().secondaryBlue.cgColor
+        border.borderColor = colour
         border.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
         border.borderWidth = width
         self.layer.addSublayer(border)
         self.layer.masksToBounds = true
     }
     
+    func whitePlaceholderText (text: String) {
+        self.attributedPlaceholder = NSAttributedString(string: text, attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
+    }
+
 }
 
+extension UIDatePicker {
+    func standardDateFormat (datePicker: UIDatePicker, textField: UITextField) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM yyyy"
+        return textField.text = dateFormatter.string(from: datePicker.date)
+    }
+}
+
+extension UISegmentedControl {
+    func defaultSegmentedControlFormat (backgroundColour: UIColor) {
+        
+        let blueText = [NSAttributedString.Key.foregroundColor: Colours.init().secondaryBlue, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)]
+        let whiteText = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)]
+        
+        self.setTitleTextAttributes(whiteText, for: .normal)
+        self.setTitleTextAttributes(blueText, for: .selected)
+        
+        self.layer.borderWidth = 1
+        self.layer.borderColor = Colours.init().tertiaryBlue.cgColor
+        self.backgroundColor = backgroundColour
+    }
+}
