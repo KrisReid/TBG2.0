@@ -15,8 +15,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8sQ-z8-Xp0">
+                                <rect key="frame" x="0.0" y="44" width="414" height="300"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="rcg-aJ-5Rs"/>
+                                </constraints>
+                            </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Kg-qH-ywC">
-                                <rect key="frame" x="148" y="189" width="118" height="30"/>
+                                <rect key="frame" x="148" y="433" width="118" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Log the truck out"/>
                                 <connections>
@@ -25,12 +32,17 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="8sQ-z8-Xp0" firstAttribute="top" secondItem="fur-ZS-3Qg" secondAttribute="top" id="Bb8-L9-7Gw"/>
+                            <constraint firstItem="8sQ-z8-Xp0" firstAttribute="leading" secondItem="fur-ZS-3Qg" secondAttribute="leading" id="YPX-0s-F08"/>
+                            <constraint firstItem="8sQ-z8-Xp0" firstAttribute="trailing" secondItem="fur-ZS-3Qg" secondAttribute="trailing" id="pKX-vx-LvI"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="fur-ZS-3Qg"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AlT-Fh-0v5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="151" y="-215"/>
+            <point key="canvasLocation" x="150.72463768115944" y="-215.625"/>
         </scene>
     </scenes>
 </document>
