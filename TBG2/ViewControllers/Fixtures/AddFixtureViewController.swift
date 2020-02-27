@@ -56,6 +56,8 @@ class AddFixtureViewController: UIViewController {
         timePicker = UIDatePicker()
         timePicker?.datePickerMode = .time
         timePicker?.minuteInterval = 15
+        timePicker?.frame.size.height = 250
+        timePicker?.backgroundColor = UIColor.white
         timePicker?.addTarget(self, action: #selector(AddFixtureViewController.timeChanged(timePicker:)), for: .valueChanged)
         tfTime.inputView = timePicker
     }
