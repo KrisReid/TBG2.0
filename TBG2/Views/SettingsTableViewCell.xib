@@ -57,6 +57,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="ivNext" destination="DSV-ia-ySu" id="pLg-nB-HOv"/>
                 <outlet property="lblAnswer" destination="iIz-Ia-3OD" id="wT6-op-Goh"/>
                 <outlet property="lblTitle" destination="oDJ-VL-gQC" id="y0B-BS-yJz"/>
             </connections>

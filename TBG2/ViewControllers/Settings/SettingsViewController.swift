@@ -8,37 +8,62 @@
 
 import UIKit
 
+struct Settings {
+    var title: String
+    var answer: String
+    var image: Bool
+}
+
+
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableview: UITableView!
     
+    var settingsList: [Settings] = []
+    var colours = Colours()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableview.estimatedRowHeight = CGFloat(70.0)
+        let setting1 = Settings(title: "Team Information", answer: "", image: false)
+        let setting2 = Settings(title: "Managers", answer: "", image: false)
+        let setting3 = Settings(title: "Season Settings", answer: "123456", image: false)
+        let setting4 = Settings(title: "Sign Out", answer: "", image: true)
+
+        settingsList.append(setting1)
+        settingsList.append(setting2)
+        settingsList.append(setting3)
+        settingsList.append(setting4)
+        
+        tableview.estimatedRowHeight = CGFloat(60.0)
         tableview.rowHeight = UITableView.automaticDimension
         tableview.register(UINib(nibName: "SettingsTableViewCell", bundle: nil), forCellReuseIdentifier: "SettingsTableViewCell")
 
     }
     
-    @IBAction func btnLogoutTapped(_ sender: Any) {
-        print("I HAVE BEEN TAPPED YOU KNOW")
-        Helper.logout()
-        print("I HAVE BEEN TAPPED YOU KNOW")
-    }
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-           return 5
+        return settingsList.count
        }
        
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsTableViewCell") as! SettingsTableViewCell
         
-        cell.lblTitle.text = "Hello"
-        cell.lblAnswer.text = "World"
-        
+        cell.lblTitle.text = settingsList[indexPath.row].title
+        if settingsList[indexPath.row].image == true {
+            cell.ivNext.image = UIImage(named: "small_error_next_icon")
+            cell.lblTitle.textColor = colours.red
+        }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath.row == 3 {
+            Helper.logout()
+        }
+        
+        
+        
     }
 
 }

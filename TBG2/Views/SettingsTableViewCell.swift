@@ -13,6 +13,7 @@ class SettingsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblAnswer: UILabel!
+    @IBOutlet weak var ivNext: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

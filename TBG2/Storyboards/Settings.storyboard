@@ -26,14 +26,6 @@
                                     <outlet property="delegate" destination="CSi-Te-Mo8" id="coU-lG-eOc"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Kg-qH-ywC">
-                                <rect key="frame" x="148" y="433" width="118" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Log the truck out"/>
-                                <connections>
-                                    <action selector="btnLogoutTapped:" destination="CSi-Te-Mo8" eventType="touchUpInside" id="DQM-vP-qXd"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
