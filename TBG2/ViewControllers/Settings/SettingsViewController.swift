@@ -14,7 +14,6 @@ struct Settings {
     var image: Bool
 }
 
-
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableview: UITableView!
@@ -57,13 +56,18 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        if indexPath.row == 3 {
-            Helper.logout()
+        switch indexPath.row {
+            case 0:
+                performSegue(withIdentifier: "teamInformationSegue", sender: nil)
+            case 1:
+                performSegue(withIdentifier: "managersSegue", sender: nil)
+            case 2:
+                performSegue(withIdentifier: "seasonSettingsSegue", sender: nil)
+            case 3:
+                Helper.logout()
+            default:
+                Helper.errorAlert(title: "Oooooooops", message: "Something seems to have gone wrong! Please check back later.")
         }
-        
-        
-        
     }
-
+    
 }

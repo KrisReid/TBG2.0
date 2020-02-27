@@ -37,11 +37,89 @@
                     </view>
                     <connections>
                         <outlet property="tableview" destination="8sQ-z8-Xp0" id="y6m-Qi-d8T"/>
+                        <segue destination="f9I-et-o7H" kind="show" identifier="teamInformationSegue" id="chQ-e8-xFL"/>
+                        <segue destination="xJk-7u-abf" kind="show" identifier="managersSegue" id="HAS-tF-7P9"/>
+                        <segue destination="bgI-cM-4Mc" kind="show" identifier="seasonSettingsSegue" id="c0p-Bl-Cxs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AlT-Fh-0v5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="150.72463768115944" y="-215.625"/>
+        </scene>
+        <!--Team Information View Controller-->
+        <scene sceneID="69m-Lk-8tl">
+            <objects>
+                <viewController id="f9I-et-o7H" customClass="TeamInformationViewController" customModule="TBG2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ydD-yf-sDm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Team Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zP-69-Vd3">
+                                <rect key="frame" x="141" y="218" width="133" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="xhN-Q4-yZr"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="JbT-Z2-C6H"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="awf-qb-fsB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1448" y="-1076"/>
+        </scene>
+        <!--Managers View Controller-->
+        <scene sceneID="Wyq-Bz-MuT">
+            <objects>
+                <viewController id="xJk-7u-abf" customClass="ManagersViewController" customModule="TBG2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="u2k-hg-4YZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Managers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bR9-6f-zmd">
+                                <rect key="frame" x="169" y="184" width="76" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="LGy-od-wJf"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="NCM-8b-hGx"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PS8-yk-lUl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1448" y="-354"/>
+        </scene>
+        <!--Season Settings View Controller-->
+        <scene sceneID="k2E-OH-JIv">
+            <objects>
+                <viewController id="bgI-cM-4Mc" customClass="SeasonSettingsViewController" customModule="TBG2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zpo-bd-vQc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Season Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AR5-Ys-iYU">
+                                <rect key="frame" x="144" y="239" width="126" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="b92-5Q-vC3"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="iuK-t5-eoC"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6S6-94-lj1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1446.376811594203" y="350.89285714285711"/>
         </scene>
     </scenes>
 </document>

@@ -51,9 +51,8 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         //Date Picker
         datePicker = UIDatePicker()
-        datePicker?.datePickerMode = .date
-        datePicker?.frame.size.height = 250
-        datePicker?.addTarget(self, action: #selector(AddFixtureViewController.dateChanged(datePicker:)), for: .valueChanged)
+        datePicker?.standardDatePicker(datePicker: datePicker!)
+        datePicker?.addTarget(self, action: #selector(SignupViewController.dateChanged(datePicker:)), for: .valueChanged)
         tfDateOfBirth.inputView = datePicker
         
     }

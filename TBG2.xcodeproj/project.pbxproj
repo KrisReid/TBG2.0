@@ -35,6 +35,9 @@
 		0282C7F52405CD8400259BEF /* JoinTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0282C7F42405CD8400259BEF /* JoinTeamViewController.swift */; };
 		0282C7FD24066A8400259BEF /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0282C7FB24066A8400259BEF /* SettingsTableViewCell.swift */; };
 		0282C7FE24066A8400259BEF /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0282C7FC24066A8400259BEF /* SettingsTableViewCell.xib */; };
+		0282C80024085E7F00259BEF /* TeamInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0282C7FF24085E7F00259BEF /* TeamInformationViewController.swift */; };
+		0282C80224085ECB00259BEF /* ManagersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0282C80124085ECB00259BEF /* ManagersViewController.swift */; };
+		0282C804240863FC00259BEF /* SeasonSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0282C803240863FC00259BEF /* SeasonSettingsViewController.swift */; };
 		0288B22023683A600014DA4E /* Fixtures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0288B21F23683A600014DA4E /* Fixtures.storyboard */; };
 		0288B224236AD9540014DA4E /* Team.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0288B223236AD9540014DA4E /* Team.storyboard */; };
 		0288B226236AD9B40014DA4E /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0288B225236AD9B40014DA4E /* Settings.storyboard */; };
@@ -81,6 +84,9 @@
 		0282C7F42405CD8400259BEF /* JoinTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTeamViewController.swift; sourceTree = "<group>"; };
 		0282C7FB24066A8400259BEF /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		0282C7FC24066A8400259BEF /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
+		0282C7FF24085E7F00259BEF /* TeamInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInformationViewController.swift; sourceTree = "<group>"; };
+		0282C80124085ECB00259BEF /* ManagersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagersViewController.swift; sourceTree = "<group>"; };
+		0282C803240863FC00259BEF /* SeasonSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonSettingsViewController.swift; sourceTree = "<group>"; };
 		0288B21F23683A600014DA4E /* Fixtures.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Fixtures.storyboard; sourceTree = "<group>"; };
 		0288B223236AD9540014DA4E /* Team.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Team.storyboard; sourceTree = "<group>"; };
 		0288B225236AD9B40014DA4E /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
@@ -193,6 +199,9 @@
 			isa = PBXGroup;
 			children = (
 				0288B25C236F44D20014DA4E /* SettingsViewController.swift */,
+				0282C7FF24085E7F00259BEF /* TeamInformationViewController.swift */,
+				0282C80124085ECB00259BEF /* ManagersViewController.swift */,
+				0282C803240863FC00259BEF /* SeasonSettingsViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -390,6 +399,7 @@
 				027A08CC2318248300B0DF59 /* TBG2.xcdatamodeld in Sources */,
 				026F1E702381CA9400682063 /* TeamData.swift in Sources */,
 				02F7BF6823B7F56000DE70BB /* FixturesTableViewCell.swift in Sources */,
+				0282C80224085ECB00259BEF /* ManagersViewController.swift in Sources */,
 				02F7BF6B23B8984B00DE70BB /* AddFixtureViewController.swift in Sources */,
 				026F1E722381CC5600682063 /* PlayerData.swift in Sources */,
 				0288B25F236F44F60014DA4E /* TeamViewController.swift in Sources */,
@@ -401,6 +411,7 @@
 				02F7BF6323B6400200DE70BB /* ShareTableViewCell.swift in Sources */,
 				027A08C42318248300B0DF59 /* SceneDelegate.swift in Sources */,
 				02821A15239A811A0090E400 /* Extensions.swift in Sources */,
+				0282C804240863FC00259BEF /* SeasonSettingsViewController.swift in Sources */,
 				0288B25D236F44D20014DA4E /* SettingsViewController.swift in Sources */,
 				026F1E77238295EE00682063 /* TeamTableViewCell.swift in Sources */,
 				021A59DC23D60254005DE007 /* Score.swift in Sources */,
@@ -409,6 +420,7 @@
 				02821A0F2395C1260090E400 /* PlayerDetailViewController.swift in Sources */,
 				02821A112398F5E50090E400 /* Slide.swift in Sources */,
 				0282C7F52405CD8400259BEF /* JoinTeamViewController.swift in Sources */,
+				0282C80024085E7F00259BEF /* TeamInformationViewController.swift in Sources */,
 				027A08C22318248300B0DF59 /* AppDelegate.swift in Sources */,
 				0231525B23F60B7B00AAFB0B /* SignupViewController.swift in Sources */,
 				02821A0D2395AAD30090E400 /* TeamPinViewController.swift in Sources */,

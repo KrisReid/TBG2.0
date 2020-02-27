@@ -113,6 +113,13 @@ extension UIDatePicker {
         dateFormatter.dateFormat = "dd MMM yyyy"
         return textField.text = dateFormatter.string(from: datePicker.date)
     }
+    
+    func standardDatePicker (datePicker: UIDatePicker) {
+        datePicker.backgroundColor = UIColor.white
+        datePicker.datePickerMode = .date
+        datePicker.frame.size.height = 250
+    }
+    
 }
 
 extension UISegmentedControl {

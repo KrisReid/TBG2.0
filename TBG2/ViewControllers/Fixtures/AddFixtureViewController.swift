@@ -48,7 +48,7 @@ class AddFixtureViewController: UIViewController {
         
         //Date Picker
         datePicker = UIDatePicker()
-        datePicker?.datePickerMode = .date
+        datePicker?.standardDatePicker(datePicker: datePicker!)
         datePicker?.addTarget(self, action: #selector(AddFixtureViewController.dateChanged(datePicker:)), for: .valueChanged)
         tfDate.inputView = datePicker
         
