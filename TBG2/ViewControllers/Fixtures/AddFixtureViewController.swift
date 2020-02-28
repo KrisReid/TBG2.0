@@ -21,6 +21,12 @@ class AddFixtureViewController: UIViewController {
     @IBOutlet weak var btnAssistant: UIButton!
     @IBOutlet weak var btnCreateGame: UIButton!
     
+    
+    //Assistant Manager
+    @IBOutlet weak var vAssistantManager: UIView!
+    let assitantManager = true
+    
+    
     private var datePicker: UIDatePicker?
     private var timePicker: UIDatePicker?
     
@@ -31,6 +37,14 @@ class AddFixtureViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Assistant Manager
+        if assitantManager {
+            vAssistantManager.isHidden = false
+        } else {
+            vAssistantManager.isHidden = true
+        }
+        
         
         //Styling
         tfOpposition.underlined(colour: Colours.init().secondaryBlue.cgColor)

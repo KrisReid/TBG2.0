@@ -66,7 +66,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             case 3:
                 Helper.logout()
             default:
-                Helper.errorAlert(title: "Oooooooops", message: "Something seems to have gone wrong! Please check back later.")
+                print("Invalid Response")
         }
     }
     
