@@ -62,14 +62,14 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let snapshot = teamData[indexPath.row]
+        let snapshot = teamData[0].fixtures[indexPath.row]
         performSegue(withIdentifier: "fixtureDetailSegue", sender: snapshot)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? FixtureDetailViewController {
-            if let team = sender as? Team {
-                vc.test = team.teamName
+            if let snapshot = sender as? Fixture {
+                vc.result = snapshot.result
             }
         }
     }

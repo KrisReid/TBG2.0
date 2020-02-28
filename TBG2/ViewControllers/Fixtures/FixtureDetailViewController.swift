@@ -13,7 +13,8 @@ class FixtureDetailViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var vScore: UIView!
     @IBOutlet weak var tableview: UITableView!
     
-    var test: String = String()
+    var result: String = ""
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +33,9 @@ class FixtureDetailViewController: UIViewController, UITableViewDelegate, UITabl
         //Xib Code
         xibview.frame = CGRect(x: vScore.bounds.origin.x, y: vScore.bounds.origin.y , width: UIScreen.main.bounds.width, height: vScore.bounds.height)
         vScore.addSubview(xibview)
-
-//        xibview.ivClubBadge.image = teamData[0].teamImage
-//        xibview.lblClubName.text = teamData[0].teamName
-//        xibview.lblClubPostcode.text = teamData[0].teamPostcode
+        
+        xibview.lblScore.text = result
+        
         
     }
     
@@ -48,22 +48,42 @@ class FixtureDetailViewController: UIViewController, UITableViewDelegate, UITabl
         return cell
     }
     
+    // What is the current state of the cell
+    
+    var motmIdentified = false
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let contextItem = UIContextualAction(style: .normal, title: "MOTM") {  (contextualAction, view, boolValue) in
+        let motmAction = UIContextualAction(style: .normal, title: "MOTM") { (action, view, actionPerformed) in
             
-            let shareMenu = UIAlertController(title: nil, message: "Share using", preferredStyle: .actionSheet)
-
-            let twitterAction = UIAlertAction(title: "Twitter", style: .default, handler: nil)
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-
-            shareMenu.addAction(twitterAction)
-            shareMenu.addAction(cancelAction)
-
-            self.present(shareMenu, animated: true, completion: nil)
-            
+            if (self.motmIdentified) {
+                self.setCell(color: .clear, at: indexPath)
+                self.motmIdentified = false
+                print(self.motmIdentified)
+                actionPerformed(true)
+            } else{
+                self.setCell(color: .yellow, at: indexPath)
+                self.motmIdentified = true
+                print(self.motmIdentified)
+                actionPerformed(true)
+            }
         }
-        let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
-        return swipeActions
+        motmAction.backgroundColor = .yellow
+        return UISwipeActionsConfiguration(actions: [motmAction])
     }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let paymentsAction = UIContextualAction(style: .normal, title: "Payments") { (action, view, actionPerformed) in
+            print("Making Payment?")
+        }
+        return UISwipeActionsConfiguration(actions: [paymentsAction])
+    }
+    
+    
+    func setCell(color:UIColor, at indexPath: IndexPath){
+//        self.view.backgroundColor = color
+        let cell = tableview.cellForRow(at: indexPath )
+        cell?.backgroundColor = color
+    }
+    
 
 }
