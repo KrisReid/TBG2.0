@@ -12,7 +12,9 @@ class FixturesTableViewCell: UITableViewCell {
     
     @IBOutlet weak var lblOpposition: UILabel!
     @IBOutlet weak var lblDateTime: UILabel!
-    @IBOutlet weak var lblResult: UILabel!
+    @IBOutlet weak var lblHomeGoals: UILabel!
+    @IBOutlet weak var lblAwayGoals: UILabel!
+    
     @IBOutlet weak var ivHomeAway: UIImageView!
     
     override func awakeFromNib() {

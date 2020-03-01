@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,7 +24,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Southmead Reserves" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sik-0w-I7a">
-                        <rect key="frame" x="20" y="10" width="230" height="21"/>
+                        <rect key="frame" x="20" y="10" width="155.5" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="sYd-kM-8jp"/>
                         </constraints>
@@ -32,18 +32,20 @@
                         <color key="textColor" red="0.38431372549999998" green="0.74509803919999995" blue="0.80000000000000004" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 - 10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoA-FO-mQ8">
-                        <rect key="frame" x="260" y="10" width="40" height="50"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="40" id="Dyv-Wg-7er"/>
-                            <constraint firstAttribute="height" constant="50" id="tDS-6N-rYk"/>
-                        </constraints>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoA-FO-mQ8">
+                        <rect key="frame" x="268" y="5" width="13.5" height="60"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vtw-6W-fxo">
+                        <rect key="frame" x="291.5" y="5" width="13.5" height="60"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20-10-2019 (15:00)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dk2-Pu-kMc">
-                        <rect key="frame" x="20" y="45" width="230" height="15"/>
+                        <rect key="frame" x="20" y="45" width="112" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="aO2-g2-FCn"/>
                         </constraints>
@@ -51,28 +53,44 @@
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSb-dB-Tzv">
+                        <rect key="frame" x="283.5" y="5" width="6" height="60"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="dk2-Pu-kMc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="0BT-Gp-YU7"/>
+                    <constraint firstItem="Vtw-6W-fxo" firstAttribute="leading" secondItem="bSb-dB-Tzv" secondAttribute="trailing" constant="2" id="4ab-PA-hjM"/>
+                    <constraint firstAttribute="bottom" secondItem="Vtw-6W-fxo" secondAttribute="bottom" constant="5" id="5bC-4f-Yja"/>
                     <constraint firstAttribute="trailing" secondItem="KQg-6D-1FA" secondAttribute="trailing" constant="15" id="BV1-31-c5K"/>
-                    <constraint firstItem="hoA-FO-mQ8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="CN9-fV-oRv"/>
+                    <constraint firstItem="bSb-dB-Tzv" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="DUW-Sh-jFa"/>
+                    <constraint firstItem="hoA-FO-mQ8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dk2-Pu-kMc" secondAttribute="trailing" constant="10" id="GCs-xa-IRL"/>
                     <constraint firstItem="dk2-Pu-kMc" firstAttribute="top" secondItem="Sik-0w-I7a" secondAttribute="bottom" constant="14" id="JOJ-zf-c1c"/>
-                    <constraint firstItem="KQg-6D-1FA" firstAttribute="leading" secondItem="hoA-FO-mQ8" secondAttribute="trailing" constant="10" id="SyE-15-ERz"/>
-                    <constraint firstAttribute="bottom" secondItem="hoA-FO-mQ8" secondAttribute="bottom" constant="10" id="gcI-QI-HmW"/>
+                    <constraint firstItem="hoA-FO-mQ8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="LvY-uy-Aw5"/>
+                    <constraint firstItem="hoA-FO-mQ8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Sik-0w-I7a" secondAttribute="trailing" constant="10" id="SaH-ma-VPB"/>
+                    <constraint firstItem="bSb-dB-Tzv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="SjX-GG-Tyh"/>
+                    <constraint firstItem="KQg-6D-1FA" firstAttribute="leading" secondItem="Vtw-6W-fxo" secondAttribute="trailing" constant="5" id="Vsx-SV-7eR"/>
+                    <constraint firstItem="Vtw-6W-fxo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="XML-BR-Kzb"/>
+                    <constraint firstAttribute="bottom" secondItem="bSb-dB-Tzv" secondAttribute="bottom" constant="5" id="Yqz-dj-GhY"/>
+                    <constraint firstItem="Vtw-6W-fxo" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bmg-yG-kPb"/>
                     <constraint firstItem="Sik-0w-I7a" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="gli-ZU-GYJ"/>
+                    <constraint firstItem="hoA-FO-mQ8" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="gto-ra-rGk"/>
                     <constraint firstAttribute="bottom" secondItem="KQg-6D-1FA" secondAttribute="bottom" constant="10" id="hce-rs-cT0"/>
-                    <constraint firstItem="hoA-FO-mQ8" firstAttribute="leading" relation="lessThanOrEqual" secondItem="dk2-Pu-kMc" secondAttribute="trailing" constant="10" id="lUW-8W-rsC"/>
                     <constraint firstItem="Sik-0w-I7a" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="opk-Z4-U79"/>
-                    <constraint firstItem="hoA-FO-mQ8" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Sik-0w-I7a" secondAttribute="trailing" constant="10" id="syd-XV-uUz"/>
+                    <constraint firstAttribute="bottom" secondItem="hoA-FO-mQ8" secondAttribute="bottom" constant="5" id="tNV-oP-UGZ"/>
                     <constraint firstItem="KQg-6D-1FA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="uTm-lD-TSQ"/>
+                    <constraint firstItem="bSb-dB-Tzv" firstAttribute="leading" secondItem="hoA-FO-mQ8" secondAttribute="trailing" constant="2" id="wbI-RS-Jh4"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="ivHomeAway" destination="KQg-6D-1FA" id="djS-QN-W75"/>
+                <outlet property="lblAwayGoals" destination="Vtw-6W-fxo" id="CIq-QL-QbA"/>
                 <outlet property="lblDateTime" destination="dk2-Pu-kMc" id="GkE-Iz-OHl"/>
+                <outlet property="lblHomeGoals" destination="hoA-FO-mQ8" id="l7a-6G-MFT"/>
                 <outlet property="lblOpposition" destination="Sik-0w-I7a" id="eAn-4R-in2"/>
-                <outlet property="lblResult" destination="hoA-FO-mQ8" id="MUN-V2-Y0C"/>
             </connections>
             <point key="canvasLocation" x="128.2608695652174" y="101.78571428571428"/>
         </tableViewCell>

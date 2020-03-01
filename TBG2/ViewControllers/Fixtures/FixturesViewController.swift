@@ -53,7 +53,8 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
             cell.ivHomeAway.image = UIImage(named: "away_icon")
         }
         
-        cell.lblResult.text = teamData[0].fixtures[indexPath.row].result
+        cell.lblHomeGoals.text = teamData[0].fixtures[indexPath.row].homeGoals
+        cell.lblAwayGoals.text = teamData[0].fixtures[indexPath.row].awayGoals
         
         let timeDate = "\(teamData[0].fixtures[indexPath.row].date) (\(teamData[0].fixtures[indexPath.row].time))"
         cell.lblDateTime.text = timeDate
@@ -63,15 +64,20 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let snapshot = teamData[0].fixtures[indexPath.row]
-        performSegue(withIdentifier: "fixtureDetailSegue", sender: snapshot)
+        performSegue(withIdentifier: "fixtureInformationSegue", sender: snapshot)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? FixtureDetailViewController {
+        if let vc = segue.destination as? FixtureInformationViewController {
             if let snapshot = sender as? Fixture {
-                vc.result = snapshot.result
+                vc.fixtureDate = snapshot.date
+                vc.fixtureTime = snapshot.time
+                vc.fixturePostcode = snapshot.postcode
+                vc.awayGoals = snapshot.awayGoals
+                vc.homeGoals = snapshot.homeGoals
             }
         }
+        
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

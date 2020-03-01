@@ -38,6 +38,7 @@
                     <connections>
                         <outlet property="tableview" destination="zTM-WM-LIA" id="WPd-kN-mh6"/>
                         <segue destination="J8E-wA-DjB" kind="show" identifier="fixtureDetailSegue" id="388-ek-MsV"/>
+                        <segue destination="tKu-m3-TTt" kind="show" identifier="fixtureInformationSegue" id="x6y-qa-nhQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XN1-Jn-7PN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -90,10 +91,10 @@
             </objects>
             <point key="canvasLocation" x="971.01449275362324" y="18.75"/>
         </scene>
-        <!--View Controller-->
+        <!--Fixture Information View Controller-->
         <scene sceneID="QgD-q5-JVn">
             <objects>
-                <viewController id="tKu-m3-TTt" sceneMemberID="viewController">
+                <viewController id="tKu-m3-TTt" customClass="FixtureInformationViewController" customModule="TBG2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ofm-K8-OdA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -135,6 +136,9 @@
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g95-kR-Zsy">
                                                 <rect key="frame" x="0.0" y="0.0" width="138" height="100"/>
+                                                <connections>
+                                                    <action selector="btnScorelineTapped:" destination="tKu-m3-TTt" eventType="touchUpInside" id="Pf2-0r-60u"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -233,6 +237,9 @@
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qOb-2Y-pGK">
                                                 <rect key="frame" x="0.0" y="8" width="138" height="34"/>
+                                                <connections>
+                                                    <action selector="btnFixturePostcodeTapped:" destination="tKu-m3-TTt" eventType="touchUpInside" id="QLM-2N-1v3"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -255,6 +262,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zmn-Tf-HVb">
                                 <rect key="frame" x="0.0" y="232" width="414" height="664"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="tKu-m3-TTt" id="PFN-p5-zdP"/>
+                                    <outlet property="delegate" destination="tKu-m3-TTt" id="TM4-PS-gAL"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -272,10 +283,21 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZDW-wf-5jV"/>
                     </view>
+                    <navigationItem key="navigationItem" id="PJf-Z2-V0g"/>
+                    <connections>
+                        <outlet property="ivAwayTeam" destination="c3v-Da-g4W" id="27O-61-ssH"/>
+                        <outlet property="ivHomeTeam" destination="lTE-dL-Emw" id="fTA-wr-BgQ"/>
+                        <outlet property="lblAwayGoals" destination="F4O-OW-zTy" id="pe5-b1-7Vm"/>
+                        <outlet property="lblFixtureDate" destination="s4v-fz-RjF" id="hQF-lm-frI"/>
+                        <outlet property="lblFixturePostcode" destination="amH-BR-Qeq" id="fsk-dO-4Kf"/>
+                        <outlet property="lblFixtureTime" destination="kne-th-RSx" id="8E1-MF-IYK"/>
+                        <outlet property="lblHomeGoals" destination="vJg-DR-e0i" id="NQN-Dx-BwF"/>
+                        <outlet property="tableview" destination="zmn-Tf-HVb" id="WVf-VL-jTt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YZC-S3-l3j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1718.840579710145" y="18.75"/>
+            <point key="canvasLocation" x="971" y="737"/>
         </scene>
         <!--Add Fixture View Controller-->
         <scene sceneID="tUd-iI-9Wg">

@@ -16,8 +16,9 @@ struct Fixture {
     var opposition: String
     var hosts: String
     var homeFixture: Bool
-    var venue: String
-    var result: String
+    var postcode: String
+    var homeGoals: String
+    var awayGoals: String
 }
 
 struct Team {
@@ -35,9 +36,9 @@ class TeamModel {
     
     init() {
         
-        let fixture1 = Fixture(time: "15:00", date: "20-10-2019", opposition: "Challengers FC", hosts: "Avonmouth FC", homeFixture: true, venue: "Old place", result: "4-2")
-        let fixture2 = Fixture(time: "17:00", date: "27-10-2019", opposition: "Bolltox FC", hosts: "Avonmouth FC", homeFixture: true, venue: "Old place", result: "5-0")
-        let fixture3 = Fixture(time: "15:00", date: "06-11-2019", opposition: "Assticit FC", hosts: "Avonmouth FC", homeFixture: false, venue: "Old place", result: "- - -")
+        let fixture1 = Fixture(time: "15:00", date: "20-10-2019", opposition: "Challengers FC", hosts: "Avonmouth FC", homeFixture: true, postcode: "AL8 7SH", homeGoals: "2", awayGoals: "0")
+        let fixture2 = Fixture(time: "17:00", date: "27-10-2019", opposition: "Bolltox FC", hosts: "Avonmouth FC", homeFixture: true, postcode: "BS11 0HY", homeGoals: "5", awayGoals: "5")
+        let fixture3 = Fixture(time: "15:00", date: "06-11-2019", opposition: "Assticit FC", hosts: "Avonmouth FC", homeFixture: false, postcode: "BH12 8DD", homeGoals: "-", awayGoals: "-")
         
         let team1 = Team(teamId: "-99dhjeh3HHD3i9s", teamPIN: 123456, teamName: "Avonmouth FC", teamPostcode: "BS11 8YT", teamImage: UIImage(named: "AFC_icon")!, fixtures: [fixture1, fixture2, fixture3])
         teamList.append(team1)
