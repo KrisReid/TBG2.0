@@ -7,11 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		021A59D423D4DFCF005DE007 /* FixtureDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021A59D323D4DFCF005DE007 /* FixtureDetailViewController.swift */; };
 		021A59D723D4F1C1005DE007 /* FixtureDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021A59D523D4F1C1005DE007 /* FixtureDetailTableViewCell.swift */; };
 		021A59D823D4F1C1005DE007 /* FixtureDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021A59D623D4F1C1005DE007 /* FixtureDetailTableViewCell.xib */; };
-		021A59DA23D6021A005DE007 /* Score.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021A59D923D6021A005DE007 /* Score.xib */; };
-		021A59DC23D60254005DE007 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021A59DB23D60254005DE007 /* Score.swift */; };
 		0231525323F03A2100AAFB0B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0231525223F03A2000AAFB0B /* GoogleService-Info.plist */; };
 		0231525523F0426300AAFB0B /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231525423F0426300AAFB0B /* Helper.swift */; };
 		0231525723F095C200AAFB0B /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0231525623F095C200AAFB0B /* Login.storyboard */; };
@@ -55,11 +52,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		021A59D323D4DFCF005DE007 /* FixtureDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureDetailViewController.swift; sourceTree = "<group>"; };
 		021A59D523D4F1C1005DE007 /* FixtureDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureDetailTableViewCell.swift; sourceTree = "<group>"; };
 		021A59D623D4F1C1005DE007 /* FixtureDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FixtureDetailTableViewCell.xib; sourceTree = "<group>"; };
-		021A59D923D6021A005DE007 /* Score.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Score.xib; sourceTree = "<group>"; };
-		021A59DB23D60254005DE007 /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		0231525223F03A2000AAFB0B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0231525423F0426300AAFB0B /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		0231525623F095C200AAFB0B /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -191,7 +185,6 @@
 			isa = PBXGroup;
 			children = (
 				0288B25A236F44B60014DA4E /* FixturesViewController.swift */,
-				021A59D323D4DFCF005DE007 /* FixtureDetailViewController.swift */,
 				0282C805240C27B000259BEF /* FixtureInformationViewController.swift */,
 				02F7BF6A23B8984B00DE70BB /* AddFixtureViewController.swift */,
 			);
@@ -244,8 +237,6 @@
 				02F7BF6723B7F56000DE70BB /* FixturesTableViewCell.xib */,
 				021A59D523D4F1C1005DE007 /* FixtureDetailTableViewCell.swift */,
 				021A59D623D4F1C1005DE007 /* FixtureDetailTableViewCell.xib */,
-				021A59DB23D60254005DE007 /* Score.swift */,
-				021A59D923D6021A005DE007 /* Score.xib */,
 				0282C7FB24066A8400259BEF /* SettingsTableViewCell.swift */,
 				0282C7FC24066A8400259BEF /* SettingsTableViewCell.xib */,
 			);
@@ -338,7 +329,6 @@
 				0231525323F03A2100AAFB0B /* GoogleService-Info.plist in Resources */,
 				0288B224236AD9540014DA4E /* Team.storyboard in Resources */,
 				02F7BF6923B7F56000DE70BB /* FixturesTableViewCell.xib in Resources */,
-				021A59DA23D6021A005DE007 /* Score.xib in Resources */,
 				026F1E78238295EE00682063 /* TeamTableViewCell.xib in Resources */,
 				021A59D823D4F1C1005DE007 /* FixtureDetailTableViewCell.xib in Resources */,
 				027A08CE2318248900B0DF59 /* Assets.xcassets in Resources */,
@@ -417,9 +407,7 @@
 				0282C804240863FC00259BEF /* SeasonSettingsViewController.swift in Sources */,
 				0288B25D236F44D20014DA4E /* SettingsViewController.swift in Sources */,
 				026F1E77238295EE00682063 /* TeamTableViewCell.swift in Sources */,
-				021A59DC23D60254005DE007 /* Score.swift in Sources */,
 				0282C7FD24066A8400259BEF /* SettingsTableViewCell.swift in Sources */,
-				021A59D423D4DFCF005DE007 /* FixtureDetailViewController.swift in Sources */,
 				02821A0F2395C1260090E400 /* PlayerDetailViewController.swift in Sources */,
 				02821A112398F5E50090E400 /* Slide.swift in Sources */,
 				0282C7F52405CD8400259BEF /* JoinTeamViewController.swift in Sources */,
