@@ -99,7 +99,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="b4p-GU-uE9">
-                                <rect key="frame" x="0.0" y="44" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="100"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yhw-XN-KpO">
                                         <rect key="frame" x="0.0" y="0.0" width="138" height="100"/>
@@ -172,7 +172,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gIg-6e-asD">
-                                <rect key="frame" x="0.0" y="144" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="174" width="414" height="50"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hDn-oY-yeE">
                                         <rect key="frame" x="0.0" y="0.0" width="138" height="50"/>
@@ -252,14 +252,22 @@
                                     <constraint firstAttribute="height" constant="50" id="cRM-C6-99f"/>
                                 </constraints>
                             </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zmn-Tf-HVb">
+                                <rect key="frame" x="0.0" y="232" width="414" height="664"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="zmn-Tf-HVb" firstAttribute="top" secondItem="gIg-6e-asD" secondAttribute="bottom" constant="8" symbolic="YES" id="0Ms-uR-hfo"/>
                             <constraint firstItem="b4p-GU-uE9" firstAttribute="leading" secondItem="ZDW-wf-5jV" secondAttribute="leading" id="3Tq-Ux-MTP"/>
-                            <constraint firstItem="b4p-GU-uE9" firstAttribute="top" secondItem="ZDW-wf-5jV" secondAttribute="top" id="5Vh-6t-xvV"/>
+                            <constraint firstItem="b4p-GU-uE9" firstAttribute="top" secondItem="ZDW-wf-5jV" secondAttribute="top" constant="20" id="5Vh-6t-xvV"/>
                             <constraint firstItem="b4p-GU-uE9" firstAttribute="trailing" secondItem="ZDW-wf-5jV" secondAttribute="trailing" id="Rax-o7-o7B"/>
                             <constraint firstItem="gIg-6e-asD" firstAttribute="leading" secondItem="ZDW-wf-5jV" secondAttribute="leading" id="Uw0-HH-fgz"/>
-                            <constraint firstItem="gIg-6e-asD" firstAttribute="top" secondItem="b4p-GU-uE9" secondAttribute="bottom" id="sIt-A8-vIU"/>
+                            <constraint firstItem="zmn-Tf-HVb" firstAttribute="leading" secondItem="ZDW-wf-5jV" secondAttribute="leading" id="Y5N-cW-naR"/>
+                            <constraint firstItem="zmn-Tf-HVb" firstAttribute="trailing" secondItem="ZDW-wf-5jV" secondAttribute="trailing" id="mMM-gj-g8w"/>
+                            <constraint firstAttribute="bottom" secondItem="zmn-Tf-HVb" secondAttribute="bottom" id="nVi-yh-y1d"/>
+                            <constraint firstItem="gIg-6e-asD" firstAttribute="top" secondItem="b4p-GU-uE9" secondAttribute="bottom" constant="10" id="sIt-A8-vIU"/>
                             <constraint firstItem="gIg-6e-asD" firstAttribute="trailing" secondItem="ZDW-wf-5jV" secondAttribute="trailing" id="zXr-UL-xeR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZDW-wf-5jV"/>
