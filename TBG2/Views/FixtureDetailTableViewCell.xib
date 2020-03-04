@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,85 +25,72 @@
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="auW-Ij-KCv">
                         <rect key="frame" x="30" y="30" width="13" height="13"/>
+                        <color key="backgroundColor" red="0.59215686270000001" green="0.59215686270000001" blue="0.59215686270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="13" id="J7f-gU-6Z0"/>
                             <constraint firstAttribute="width" constant="13" id="hvC-QI-QTS"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rOE-BW-Rn4">
-                        <rect key="frame" x="51" y="17" width="160" height="17"/>
+                        <rect key="frame" x="51" y="17" width="81.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6f-93-YTn">
-                        <rect key="frame" x="292" y="15" width="20" height="20"/>
+                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="football_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Zd4-ag-9d9">
+                        <rect key="frame" x="281" y="16.5" width="17" height="17"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="nbH-cV-hMw"/>
-                            <constraint firstAttribute="width" constant="20" id="z0L-gl-RaY"/>
+                            <constraint firstAttribute="height" constant="17" id="Tnd-IC-qRJ"/>
+                            <constraint firstAttribute="width" constant="17" id="qca-3Y-rGX"/>
                         </constraints>
-                        <state key="normal" title="Button" image="increment_icon"/>
-                        <connections>
-                            <action selector="btnGoalIncrementTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Ykc-b8-rgY"/>
-                        </connections>
-                    </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kIK-D8-CKs">
-                        <rect key="frame" x="262" y="15" width="22" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="22" id="0gX-Js-Gia"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </imageView>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLM-rg-qQc">
+                        <rect key="frame" x="300" y="25" width="10" height="10"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                        <color key="textColor" red="0.38431372549999998" green="0.74509803919999995" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sGQ-vS-toz">
-                        <rect key="frame" x="234" y="15" width="20" height="20"/>
+                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="motm_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Sta-IY-G4I">
+                        <rect key="frame" x="260" y="15.5" width="12" height="19"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="QHq-tH-Zwz"/>
-                            <constraint firstAttribute="width" constant="20" id="WP3-eS-paN"/>
+                            <constraint firstAttribute="width" constant="12" id="4fK-3z-gTU"/>
+                            <constraint firstAttribute="height" constant="19" id="VZM-WV-d7N"/>
                         </constraints>
-                        <state key="normal" title="Button" image="decrement_icon"/>
-                        <connections>
-                            <action selector="btnGoalDecrementTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="BXl-Y3-YED"/>
-                        </connections>
-                    </button>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="kIK-D8-CKs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="0v0-oQ-aHY"/>
-                    <constraint firstItem="m6f-93-YTn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="0xa-uD-fZa"/>
-                    <constraint firstAttribute="bottom" secondItem="kIK-D8-CKs" secondAttribute="bottom" constant="15" id="1oo-qJ-dVe"/>
                     <constraint firstItem="rOE-BW-Rn4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="17" id="B3n-4o-3EX"/>
-                    <constraint firstItem="m6f-93-YTn" firstAttribute="leading" secondItem="kIK-D8-CKs" secondAttribute="trailing" constant="8" id="FEw-BJ-vlS"/>
                     <constraint firstItem="auW-Ij-KCv" firstAttribute="trailing" secondItem="uah-eb-9x1" secondAttribute="trailing" id="FOO-MY-L6p"/>
-                    <constraint firstAttribute="bottom" secondItem="m6f-93-YTn" secondAttribute="bottom" constant="15" id="GuN-5D-eGJ"/>
                     <constraint firstItem="uah-eb-9x1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="Hgo-RZ-PR9"/>
-                    <constraint firstItem="sGQ-vS-toz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="K00-eI-x6m"/>
-                    <constraint firstItem="kIK-D8-CKs" firstAttribute="leading" secondItem="sGQ-vS-toz" secondAttribute="trailing" constant="8" id="Kfn-Fx-3mw"/>
                     <constraint firstAttribute="bottom" secondItem="rOE-BW-Rn4" secondAttribute="bottom" constant="16" id="NPv-QQ-q3l"/>
-                    <constraint firstAttribute="bottom" secondItem="sGQ-vS-toz" secondAttribute="bottom" constant="15" id="Nup-yN-3nr"/>
-                    <constraint firstItem="sGQ-vS-toz" firstAttribute="leading" relation="lessThanOrEqual" secondItem="rOE-BW-Rn4" secondAttribute="trailing" constant="23" id="OUl-tE-uVV"/>
-                    <constraint firstAttribute="trailing" secondItem="m6f-93-YTn" secondAttribute="trailing" constant="8" id="Qmr-yF-msu"/>
+                    <constraint firstItem="Zd4-ag-9d9" firstAttribute="leading" secondItem="Sta-IY-G4I" secondAttribute="trailing" constant="9" id="QMk-dO-KlO"/>
+                    <constraint firstItem="wLM-rg-qQc" firstAttribute="leading" secondItem="Zd4-ag-9d9" secondAttribute="trailing" constant="2" id="VNo-Db-QcG"/>
                     <constraint firstItem="uah-eb-9x1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="VUr-va-mam"/>
                     <constraint firstItem="auW-Ij-KCv" firstAttribute="bottom" secondItem="uah-eb-9x1" secondAttribute="bottom" id="efE-8e-pm4"/>
+                    <constraint firstItem="Sta-IY-G4I" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fZN-QV-vCe"/>
+                    <constraint firstItem="Zd4-ag-9d9" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fd8-WA-M2x"/>
+                    <constraint firstAttribute="bottom" secondItem="wLM-rg-qQc" secondAttribute="bottom" constant="15" id="k5V-Q8-zs5"/>
+                    <constraint firstItem="wLM-rg-qQc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="25" id="pCS-CY-0sB"/>
                     <constraint firstAttribute="bottom" secondItem="uah-eb-9x1" secondAttribute="bottom" constant="7" id="r6r-dW-QhA"/>
                     <constraint firstItem="rOE-BW-Rn4" firstAttribute="leading" secondItem="uah-eb-9x1" secondAttribute="trailing" constant="8" id="yos-QR-DOH"/>
+                    <constraint firstAttribute="trailing" secondItem="wLM-rg-qQc" secondAttribute="trailing" constant="10" id="zsR-Mn-CrW"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="btnGoalDecrement" destination="sGQ-vS-toz" id="ULt-dr-Umw"/>
-                <outlet property="btnGoalIncrement" destination="m6f-93-YTn" id="TUK-5u-GEM"/>
+                <outlet property="ivGoalScored" destination="Zd4-ag-9d9" id="zKA-rd-2Em"/>
+                <outlet property="ivMotmAward" destination="Sta-IY-G4I" id="02E-6r-EhR"/>
                 <outlet property="ivPlayer" destination="uah-eb-9x1" id="LL0-6G-joV"/>
                 <outlet property="ivPlayerAvailability" destination="auW-Ij-KCv" id="8Mo-ro-LFF"/>
-                <outlet property="lblGoal" destination="kIK-D8-CKs" id="GR0-cB-QZr"/>
+                <outlet property="lblGoalScoredCount" destination="wLM-rg-qQc" id="8Br-8d-dPq"/>
                 <outlet property="lblPlayerName" destination="rOE-BW-Rn4" id="0dq-kK-3EU"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="81.696428571428569"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="decrement_icon" width="22" height="22"/>
-        <image name="increment_icon" width="22" height="22"/>
+        <image name="football_icon" width="17" height="17"/>
+        <image name="motm_icon" width="14" height="19"/>
         <image name="player1" width="60" height="60"/>
     </resources>
 </document>
