@@ -14,6 +14,14 @@ class JoinTeamViewController: UIViewController {
     @IBOutlet weak var tfTeamPIN: UITextField!
     @IBOutlet weak var scPlayerPosition: UISegmentedControl!
     
+    var playerProfilePicture: UIImageView? = nil
+    var playerFullName: String = ""
+    var playerEmailAddress: String = ""
+    var playerPassword: String = ""
+    var playerDateOfBirth: String = ""
+    var playerHouseNumber: String = ""
+    var playerPostcode: String = ""
+    
     var colour = Colours()
     
     override func viewDidLoad() {

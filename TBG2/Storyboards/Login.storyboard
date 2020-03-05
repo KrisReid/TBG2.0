@@ -210,7 +210,7 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="btnCreateTeamTapped:" destination="KPI-9K-CEV" eventType="touchUpInside" id="GQa-f7-pS3"/>
-                                                    <segue destination="XaW-fd-jBW" kind="show" id="bEy-Pt-EWs"/>
+                                                    <segue destination="XaW-fd-jBW" kind="show" identifier="createTeamSegue" id="bEy-Pt-EWs"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dT8-oc-dpr">
@@ -224,7 +224,7 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="btnJoinTeamTapped:" destination="KPI-9K-CEV" eventType="touchUpInside" id="Eq7-b2-Loy"/>
-                                                    <segue destination="1uF-vO-42f" kind="show" id="bbs-wB-2gG"/>
+                                                    <segue destination="1uF-vO-42f" kind="show" identifier="joinTeamSegue" id="bbs-wB-2gG"/>
                                                 </connections>
                                             </button>
                                         </subviews>

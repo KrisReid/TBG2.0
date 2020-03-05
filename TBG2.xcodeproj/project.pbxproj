@@ -162,9 +162,9 @@
 		0282C7F6240666A500259BEF /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				025280E924032E17002DB761 /* CreateTeamViewController.swift */,
-				0231525A23F60B7A00AAFB0B /* SignupViewController.swift */,
 				0231525823F0A8F600AAFB0B /* LoginViewController.swift */,
+				0231525A23F60B7A00AAFB0B /* SignupViewController.swift */,
+				025280E924032E17002DB761 /* CreateTeamViewController.swift */,
 				0282C7F42405CD8400259BEF /* JoinTeamViewController.swift */,
 			);
 			path = Login;

@@ -82,16 +82,46 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     @IBAction func btnCreateTeamTapped(_ sender: Any) {
-        
+        performSegue(withIdentifier: "createTeamSegue", sender: nil)
     }
     
     @IBAction func btnJoinTeamTapped(_ sender: Any) {
+        performSegue(withIdentifier: "joinTeamSegue", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let playerFullName = tfFullName.text, let playerProfilePicture = btnProfilePicture.imageView, let playerEmailAddress = tfEmailAddress.text, let playerPassword = tfPassword.text, let playerDateOfBirth = tfDateOfBirth.text, let playerHouseNumber = tfHouseNumber.text, let playerPostcode = tfPostcode.text {
+
+            if let vc = segue.destination as? CreateTeamViewController {
+                vc.playerFullName = playerFullName
+                vc.playerProfilePicture = playerProfilePicture
+                vc.playerEmailAddress = playerEmailAddress
+                vc.playerPassword = playerPassword
+                vc.playerDateOfBirth = playerDateOfBirth
+                vc.playerHouseNumber = playerHouseNumber
+                vc.playerPostcode = playerPostcode
+            }
+
+            if let vc = segue.destination as? JoinTeamViewController {
+                vc.playerFullName = playerFullName
+                vc.playerProfilePicture = playerProfilePicture
+                vc.playerEmailAddress = playerEmailAddress
+                vc.playerPassword = playerPassword
+                vc.playerDateOfBirth = playerDateOfBirth
+                vc.playerHouseNumber = playerHouseNumber
+                vc.playerPostcode = playerPostcode
+            }
+            
+        }
         
     }
+    
     
     @objc func dateChanged(datePicker: UIDatePicker) {
         datePicker.standardDateFormat(datePicker: datePicker, textField: tfDateOfBirth)
     }
+    
     
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardFrame : NSValue = notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue {

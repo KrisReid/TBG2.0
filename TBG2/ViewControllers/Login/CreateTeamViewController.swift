@@ -18,7 +18,14 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var scPlayerPosition: UISegmentedControl!
     @IBOutlet weak var btnSubmit: UIButton!
     
-    
+    var playerProfilePicture: UIImageView? = nil
+    var playerFullName: String = ""
+    var playerEmailAddress: String = ""
+    var playerPassword: String = ""
+    var playerDateOfBirth: String = ""
+    var playerHouseNumber: String = ""
+    var playerPostcode: String = ""
+
     var colour = Colours()
     
     override func viewDidLoad() {

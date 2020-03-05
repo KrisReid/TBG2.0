@@ -77,7 +77,6 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func btnSignUpTapped(_ sender: Any) {
-        print("Sign me up y'all")
         performSegue(withIdentifier: "signupSegue", sender: nil)
     }
     
