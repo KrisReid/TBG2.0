@@ -152,57 +152,61 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
                         
                     } else if let error = error  {
                         print(error.localizedDescription)
-                        
-//                        Helper.signupError(error: error)
-                        
-                        //DUPLICATE CODE?
-                        var errorTitle: String = "Signup Error"
-                        var errorMessage: String = "There was a problem signing up"
-                        if let errorCode = AuthErrorCode(rawValue: error._code) {
-                            switch errorCode {
-                            case .emailAlreadyInUse:
-                                errorTitle = "Email in use"
-                                errorMessage = "The email address you provided is already in use"
-                            case .invalidEmail:
-                                errorTitle = "Invalid Email"
-                                errorMessage = "Please enter a valid email address"
-                            case .weakPassword:
-                                errorTitle = "Weak password provided"
-                                errorMessage = "Please enter a stronger password"
-                            default:
-                                break
-                            }
-                            let alert = Helper.errorAlert(title: errorTitle, message: errorMessage)
-                            DispatchQueue.main.async {
-                                strongSelf.present(alert, animated: true, completion: nil)
-                            }
+                        let alert = Helper.signupError(error: error)
+                        DispatchQueue.main.async {
+                            strongSelf.present(alert, animated: true, completion: nil)
                         }
+                        
+//                        var errorTitle: String = "Signup Error"
+//                        var errorMessage: String = "There was a problem signing up"
+//                        if let errorCode = AuthErrorCode(rawValue: error._code) {
+//                            switch errorCode {
+//                            case .emailAlreadyInUse:
+//                                errorTitle = "Email in use"
+//                                errorMessage = "The email address you provided is already in use"
+//                            case .invalidEmail:
+//                                errorTitle = "Invalid Email"
+//                                errorMessage = "Please enter a valid email address"
+//                            case .weakPassword:
+//                                errorTitle = "Weak password provided"
+//                                errorMessage = "Please enter a stronger password"
+//                            default:
+//                                break
+//                            }
+//                            let alert = Helper.errorAlert(title: errorTitle, message: errorMessage)
+//                            DispatchQueue.main.async {
+//                                strongSelf.present(alert, animated: true, completion: nil)
+//                            }
+//                        }
                         
                     }
                 }
                 
             } else if let error = error {
                 print(error.localizedDescription)
-                
-                //DUPLICATE CODE?
-                var errorTitle: String = "Login Error"
-                var errorMessage: String = "There was a problem loggin in"
-                if let errorCode = AuthErrorCode(rawValue: error._code) {
-                    switch errorCode {
-                    case .wrongPassword:
-                        errorTitle = "Incorrect Password"
-                        errorMessage = "The password provided is incorrect"
-                    case .invalidEmail:
-                        errorTitle = "Invalid Email"
-                        errorMessage = "Please enter a valid email address"
-                    default:
-                        break
-                    }
-                    let alert = Helper.errorAlert(title: errorTitle, message: errorMessage)
-                    DispatchQueue.main.async {
-                        strongSelf.present(alert, animated: true, completion: nil)
-                    }
+                let alert = Helper.loginError(error: error)
+                DispatchQueue.main.async {
+                    strongSelf.present(alert, animated: true, completion: nil)
                 }
+
+//                var errorTitle: String = "Login Error"
+//                var errorMessage: String = "There was a problem loggin in"
+//                if let errorCode = AuthErrorCode(rawValue: error._code) {
+//                    switch errorCode {
+//                    case .wrongPassword:
+//                        errorTitle = "Incorrect Password"
+//                        errorMessage = "The password provided is incorrect"
+//                    case .invalidEmail:
+//                        errorTitle = "Invalid Email"
+//                        errorMessage = "Please enter a valid email address"
+//                    default:
+//                        break
+//                    }
+//                    let alert = Helper.errorAlert(title: errorTitle, message: errorMessage)
+//                    DispatchQueue.main.async {
+//                        strongSelf.present(alert, animated: true, completion: nil)
+//                    }
+//                }
                 
             }
         }

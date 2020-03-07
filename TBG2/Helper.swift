@@ -114,4 +114,23 @@ class Helper {
         return Helper.errorAlert(title: errorTitle, message: errorMessage)
     }
     
+    class func loginError(error: Error) -> UIAlertController {
+        let rawErrorCode = error._code
+        var errorTitle: String = "Login Error"
+        var errorMessage: String = "There was a problem loggin in"
+        if let errorCode = AuthErrorCode(rawValue: rawErrorCode) {
+            switch errorCode {
+            case .wrongPassword:
+                errorTitle = "Incorrect Password"
+                errorMessage = "The password provided is incorrect"
+            case .invalidEmail:
+                errorTitle = "Invalid Email"
+                errorMessage = "Please enter a valid email address"
+            default:
+                break
+            }
+        }
+        return Helper.errorAlert(title: errorTitle, message: errorMessage)
+    }
+    
 }
