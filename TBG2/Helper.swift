@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 class Helper {
     
@@ -20,6 +21,7 @@ class Helper {
         alert.addAction(okAction)
         return alert
     }
+    
     
     class func login() {
         let tabController = UITabBarController()
@@ -75,6 +77,7 @@ class Helper {
         }
     }
     
+    
     class func logout() {
         do {
             try Auth.auth().signOut()
@@ -91,6 +94,7 @@ class Helper {
             print(error.localizedDescription)
         }
     }
+    
     
     class func signupError(error: Error) -> UIAlertController {
         let rawErrorCode = error._code
@@ -114,6 +118,7 @@ class Helper {
         return Helper.errorAlert(title: errorTitle, message: errorMessage)
     }
     
+    
     class func loginError(error: Error) -> UIAlertController {
         let rawErrorCode = error._code
         var errorTitle: String = "Login Error"
@@ -131,6 +136,29 @@ class Helper {
             }
         }
         return Helper.errorAlert(title: errorTitle, message: errorMessage)
+    }
+    
+    
+    class func postNewTeam(userId: String, playerFullName: String,playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, playerManager: Bool, playerPosition: String, teamName: String, teamPIN: Int, teamPostcode: String) {
+        
+        let playerDictionary : [String:Any] =
+        [
+            "id": userId,
+            "fullName" : playerFullName,
+//            "imageURL" : self!.playerProfilePicture!,
+            "email" : playerEmailAddress,
+            "dateOfBirth" : playerDateOfBirth,
+            "houseNumber" : playerHouseNumber,
+            "postcode" : playerPostcode,
+            "manager" : true,
+            "playerManager" : playerManager,
+            "position" : playerPosition
+        ]
+        
+        let teamRef = Database.database().reference().child("teams").childByAutoId()
+        let newKey = teamRef.key
+        let TeamDictionary : [String:Any] = ["name": teamName, "pin": teamPIN, "postcode":teamPostcode, "id": newKey as Any, "players": [playerDictionary]]
+        teamRef.setValue(TeamDictionary)
     }
     
 }

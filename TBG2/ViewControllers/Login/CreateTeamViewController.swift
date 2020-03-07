@@ -106,8 +106,8 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
     @IBAction func btnSubmitTapped(_ sender: Any) {
         
         guard let teamName = tfTeamName.text else { return }
-        guard let teamCrest = btnTeamCrest.imageView else { return }
-        guard let teamPIN = tfTeamPIN.text else { return }
+//        guard let teamCrest = btnTeamCrest.imageView else { return }
+        guard let teamPIN = Int(tfTeamPIN.text!) else { return }
         guard let teamPostcode = tfTeamPostcode.text else { return }
         
         let spinner = UIViewController.displayLoading(withView: self.view)
@@ -125,26 +125,7 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
                         UIViewController.removeLoading(spinner: spinner)
                     }
                     if error == nil {
-                        
-                        //Add user to the database
-                        let playerDictionary : [String:Any] =
-                        [
-                            "id": userId,
-                            "fullName" : self!.playerFullName,
-//                                "imageURL" : self!.playerProfilePicture!,
-                            "email" : self!.playerEmailAddress,
-                            "dateOfBirth" : self!.playerDateOfBirth,
-                            "houseNumber" : self!.playerHouseNumber,
-                            "postcode" : self!.playerPostcode,
-                            "manager" : true,
-                            "playerManager" : self!.playerManager,
-                            "position" : self!.playerPosition
-                        ]
-                        
-                        let teamRef = Database.database().reference().child("teams").childByAutoId()
-                        let newKey = teamRef.key
-                        let TeamDictionary : [String:Any] = ["name": teamName, "pin": teamPIN, "postcode":teamPostcode, "id": newKey as Any, "players": [playerDictionary]]
-                        teamRef.setValue(TeamDictionary)
+                        Helper.postNewTeam(userId: userId, playerFullName: self!.playerFullName, playerEmailAddress: self!.playerEmailAddress, playerDateOfBirth: self!.playerDateOfBirth, playerHouseNumber: self!.playerHouseNumber, playerPostcode: self!.playerPostcode, manager: true, playerManager: self!.playerManager, playerPosition: self!.playerPosition, teamName: teamName, teamPIN: teamPIN, teamPostcode: teamPostcode)
                         
                         DispatchQueue.main.async {
                             Helper.login()
@@ -156,29 +137,6 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
                         DispatchQueue.main.async {
                             strongSelf.present(alert, animated: true, completion: nil)
                         }
-                        
-//                        var errorTitle: String = "Signup Error"
-//                        var errorMessage: String = "There was a problem signing up"
-//                        if let errorCode = AuthErrorCode(rawValue: error._code) {
-//                            switch errorCode {
-//                            case .emailAlreadyInUse:
-//                                errorTitle = "Email in use"
-//                                errorMessage = "The email address you provided is already in use"
-//                            case .invalidEmail:
-//                                errorTitle = "Invalid Email"
-//                                errorMessage = "Please enter a valid email address"
-//                            case .weakPassword:
-//                                errorTitle = "Weak password provided"
-//                                errorMessage = "Please enter a stronger password"
-//                            default:
-//                                break
-//                            }
-//                            let alert = Helper.errorAlert(title: errorTitle, message: errorMessage)
-//                            DispatchQueue.main.async {
-//                                strongSelf.present(alert, animated: true, completion: nil)
-//                            }
-//                        }
-                        
                     }
                 }
                 
@@ -188,26 +146,6 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
                 DispatchQueue.main.async {
                     strongSelf.present(alert, animated: true, completion: nil)
                 }
-
-//                var errorTitle: String = "Login Error"
-//                var errorMessage: String = "There was a problem loggin in"
-//                if let errorCode = AuthErrorCode(rawValue: error._code) {
-//                    switch errorCode {
-//                    case .wrongPassword:
-//                        errorTitle = "Incorrect Password"
-//                        errorMessage = "The password provided is incorrect"
-//                    case .invalidEmail:
-//                        errorTitle = "Invalid Email"
-//                        errorMessage = "Please enter a valid email address"
-//                    default:
-//                        break
-//                    }
-//                    let alert = Helper.errorAlert(title: errorTitle, message: errorMessage)
-//                    DispatchQueue.main.async {
-//                        strongSelf.present(alert, animated: true, completion: nil)
-//                    }
-//                }
-                
             }
         }
         
