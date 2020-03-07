@@ -141,6 +141,19 @@ class Helper {
     
     class func postNewTeam(userId: String, playerFullName: String,playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, playerManager: Bool, playerPosition: String, teamName: String, teamPIN: Int, teamPostcode: String) {
         
+        let teamRef = Database.database().reference().child("teams").childByAutoId()
+        let newKey = teamRef.key
+        let TeamDictionary : [String:Any] = ["name": teamName, "pin": teamPIN, "postcode":teamPostcode, "id": newKey as Any]
+        teamRef.setValue(TeamDictionary)
+        
+        DispatchQueue.main.async {
+            postPlayerToTeam(userId: userId, playerFullName: playerFullName, playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: true, playerManager: playerManager, playerPosition: playerPosition, teamID: newKey!, teamPIN: teamPIN)
+        }
+    }
+    
+    
+    class func postPlayerToTeam(userId: String, playerFullName: String,playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, playerManager: Bool, playerPosition: String, teamID: String, teamPIN: Int) {
+        
         let playerDictionary : [String:Any] =
         [
             "id": userId,
@@ -150,15 +163,15 @@ class Helper {
             "dateOfBirth" : playerDateOfBirth,
             "houseNumber" : playerHouseNumber,
             "postcode" : playerPostcode,
-            "manager" : true,
-            "playerManager" : playerManager,
+            "manager" : false,
+            "playerManager" : false,
             "position" : playerPosition
         ]
         
-        let teamRef = Database.database().reference().child("teams").childByAutoId()
-        let newKey = teamRef.key
-        let TeamDictionary : [String:Any] = ["name": teamName, "pin": teamPIN, "postcode":teamPostcode, "id": newKey as Any, "players": [playerDictionary]]
-        teamRef.setValue(TeamDictionary)
+        // PIN Validation required
+        
+        // Team ID validation
+    Database.database().reference().child("teams").child(teamID).child("players").child(userId).updateChildValues(playerDictionary)
     }
     
 }
