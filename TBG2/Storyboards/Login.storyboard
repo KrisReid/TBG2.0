@@ -458,6 +458,9 @@
                                                     <segment title="Midfielder"/>
                                                     <segment title="Striker"/>
                                                 </segments>
+                                                <connections>
+                                                    <action selector="scPlayerPositionTapped:" destination="XaW-fd-jBW" eventType="valueChanged" id="28j-bP-BW6"/>
+                                                </connections>
                                             </segmentedControl>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFL-NU-x34">
                                                 <rect key="frame" x="20" y="624" width="374" height="34"/>

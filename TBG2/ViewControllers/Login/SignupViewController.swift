@@ -91,32 +91,33 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if let playerFullName = tfFullName.text, let playerProfilePicture = btnProfilePicture.imageView, let playerEmailAddress = tfEmailAddress.text, let playerPassword = tfPassword.text, let playerDateOfBirth = tfDateOfBirth.text, let playerHouseNumber = tfHouseNumber.text, let playerPostcode = tfPostcode.text {
+        guard let playerFullName = tfFullName.text else { return }
+        guard let playerProfilePicture = btnProfilePicture.imageView else { return }
+        guard let playerEmailAddress = tfEmailAddress.text else { return }
+        guard let playerPassword = tfPassword.text else { return }
+        guard let playerDateOfBirth = tfDateOfBirth.text else { return }
+        guard let playerHouseNumber = tfHouseNumber.text else { return }
+        guard let playerPostcode = tfPostcode.text else { return }
 
-            if let vc = segue.destination as? CreateTeamViewController {
-                vc.playerFullName = playerFullName
-                vc.playerProfilePicture = playerProfilePicture
-                vc.playerEmailAddress = playerEmailAddress
-                vc.playerPassword = playerPassword
-                vc.playerDateOfBirth = playerDateOfBirth
-                vc.playerHouseNumber = playerHouseNumber
-                vc.playerPostcode = playerPostcode
-            }
-
-            if let vc = segue.destination as? JoinTeamViewController {
-                vc.playerFullName = playerFullName
-                vc.playerProfilePicture = playerProfilePicture
-                vc.playerEmailAddress = playerEmailAddress
-                vc.playerPassword = playerPassword
-                vc.playerDateOfBirth = playerDateOfBirth
-                vc.playerHouseNumber = playerHouseNumber
-                vc.playerPostcode = playerPostcode
-            }
-            
+        if let vc = segue.destination as? CreateTeamViewController {
+            vc.playerFullName = playerFullName
+            vc.playerProfilePicture = playerProfilePicture
+            vc.playerEmailAddress = playerEmailAddress
+            vc.playerPassword = playerPassword
+            vc.playerDateOfBirth = playerDateOfBirth
+            vc.playerHouseNumber = playerHouseNumber
+            vc.playerPostcode = playerPostcode
         }
-        
+        if let vc = segue.destination as? JoinTeamViewController {
+            vc.playerFullName = playerFullName
+            vc.playerProfilePicture = playerProfilePicture
+            vc.playerEmailAddress = playerEmailAddress
+            vc.playerPassword = playerPassword
+            vc.playerDateOfBirth = playerDateOfBirth
+            vc.playerHouseNumber = playerHouseNumber
+            vc.playerPostcode = playerPostcode
+        }
     }
-    
     
     @objc func dateChanged(datePicker: UIDatePicker) {
         datePicker.standardDateFormat(datePicker: datePicker, textField: tfDateOfBirth)

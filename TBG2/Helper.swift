@@ -92,4 +92,26 @@ class Helper {
         }
     }
     
+    class func signupError(error: Error) -> UIAlertController {
+        let rawErrorCode = error._code
+        var errorTitle: String = "Signup Error"
+        var errorMessage: String = "There was a problem signing up"
+        if let errorCode = AuthErrorCode(rawValue: rawErrorCode) {
+            switch errorCode {
+            case .emailAlreadyInUse:
+                errorTitle = "Email in use"
+                errorMessage = "The email address you provided is already in use"
+            case .invalidEmail:
+                errorTitle = "Invalid Email"
+                errorMessage = "Please enter a valid email address"
+            case .weakPassword:
+                errorTitle = "Weak password provided"
+                errorMessage = "Please enter a stronger password"
+            default:
+                break
+            }
+        }
+        return Helper.errorAlert(title: errorTitle, message: errorMessage)
+    }
+    
 }
