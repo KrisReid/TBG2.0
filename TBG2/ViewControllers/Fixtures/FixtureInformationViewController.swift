@@ -19,7 +19,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet weak var lblFixturePostcode: UILabel!
     @IBOutlet weak var tableview: UITableView!
     
-    let data: [Fixture] = TeamModel.init().teamList[0].fixtures
+    let data: [Fixture] = TeamsModel.init().teamList[0].fixtures
     
     var homeGoals: String = ""
     var awayGoals: String = ""

@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
 struct GamePlayer {
     var id: Int
@@ -37,9 +39,7 @@ struct Team {
     var fixtures: [Fixture]
 }
 
-
-
-class TeamModel {
+class TeamsModel {
     
     var teamList: [Team] = [Team]()
     
@@ -72,4 +72,30 @@ class TeamModel {
         
     }
     
+}
+
+
+
+
+
+
+//PRODUCTION CODDE
+
+class TeamModel {
+    
+    static var collection: DatabaseReference {
+        get {
+            return Database.database().reference().child("teams")
+        }
+    }
+    
+    var keys: Dictionary<String, Any>.Keys
+    var team: Dictionary<String, Any>
+    
+    init?(_ snapshot: DataSnapshot) {
+        guard let value = snapshot.value as? [String: Any] else { return nil }
+        
+        self.keys = value.keys
+        self.team = value
+    }
 }

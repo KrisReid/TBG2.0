@@ -167,11 +167,19 @@ class Helper {
             "playerManager" : false,
             "position" : playerPosition
         ]
-        
-        // PIN Validation required
-        
-        // Team ID validation
     Database.database().reference().child("teams").child(teamID).child("players").child(userId).updateChildValues(playerDictionary)
     }
+    
+    
+    class func getTeams() -> [DataSnapshot] {
+        var teams : [DataSnapshot] = []
+
+        Database.database().reference().child("teams").observe(.childAdded, with: { (snapshot) in
+            teams.append(snapshot)
+        })
+        
+        return teams
+    }
+    
     
 }

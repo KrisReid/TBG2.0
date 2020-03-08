@@ -15,11 +15,11 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
      var colours = Colours()
     
     lazy var team: [Team] = {
-        let teamModel = TeamModel()
+        let teamModel = TeamsModel()
         return teamModel.teamList
     } ()
 
-    let teamData: [Team] = TeamModel.init().teamList
+    let teamData: [Team] = TeamsModel.init().teamList
     
     override func viewDidLoad() {
         super.viewDidLoad()
