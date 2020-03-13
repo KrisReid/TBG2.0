@@ -54,30 +54,16 @@ class LoginViewController: UIViewController {
                 }
             }
             else if let error = error {
-                var errorTitle: String = "Login Error"
-                var errorMessage: String = "There was a problem loggin in"
-                if let errorCode = AuthErrorCode(rawValue: error._code) {
-                    switch errorCode {
-                    case .wrongPassword:
-                        errorTitle = "Incorrect Password"
-                        errorMessage = "The password provided is incorrect"
-                    case .invalidEmail:
-                        errorTitle = "Invalid Email"
-                        errorMessage = "Please enter a valid email address"
-                    default:
-                        break
-                    }
-                    let alert = Helper.errorAlert(title: errorTitle, message: errorMessage)
-                    DispatchQueue.main.async {
-                        strongSelf.present(alert, animated: true, completion: nil)
-                    }
+                print(error.localizedDescription)
+                let alert = Helper.loginError(error: error)
+                DispatchQueue.main.async {
+                    strongSelf.present(alert, animated: true, completion: nil)
                 }
             }
         }
     }
     
     @IBAction func btnSignUpTapped(_ sender: Any) {
-        print("Sign me up y'all")
         performSegue(withIdentifier: "signupSegue", sender: nil)
     }
     

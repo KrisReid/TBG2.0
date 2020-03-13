@@ -7,11 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		021A59D423D4DFCF005DE007 /* FixtureDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021A59D323D4DFCF005DE007 /* FixtureDetailViewController.swift */; };
 		021A59D723D4F1C1005DE007 /* FixtureDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021A59D523D4F1C1005DE007 /* FixtureDetailTableViewCell.swift */; };
 		021A59D823D4F1C1005DE007 /* FixtureDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021A59D623D4F1C1005DE007 /* FixtureDetailTableViewCell.xib */; };
-		021A59DA23D6021A005DE007 /* Score.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021A59D923D6021A005DE007 /* Score.xib */; };
-		021A59DC23D60254005DE007 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021A59DB23D60254005DE007 /* Score.swift */; };
 		0231525323F03A2100AAFB0B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0231525223F03A2000AAFB0B /* GoogleService-Info.plist */; };
 		0231525523F0426300AAFB0B /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231525423F0426300AAFB0B /* Helper.swift */; };
 		0231525723F095C200AAFB0B /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0231525623F095C200AAFB0B /* Login.storyboard */; };
@@ -33,12 +30,19 @@
 		02821A132398F68A0090E400 /* Slide.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02821A122398F68A0090E400 /* Slide.xib */; };
 		02821A15239A811A0090E400 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02821A14239A811A0090E400 /* Extensions.swift */; };
 		0282C7F52405CD8400259BEF /* JoinTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0282C7F42405CD8400259BEF /* JoinTeamViewController.swift */; };
+		0282C7FD24066A8400259BEF /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0282C7FB24066A8400259BEF /* SettingsTableViewCell.swift */; };
+		0282C7FE24066A8400259BEF /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0282C7FC24066A8400259BEF /* SettingsTableViewCell.xib */; };
+		0282C80024085E7F00259BEF /* TeamInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0282C7FF24085E7F00259BEF /* TeamInformationViewController.swift */; };
+		0282C80224085ECB00259BEF /* ManagersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0282C80124085ECB00259BEF /* ManagersViewController.swift */; };
+		0282C804240863FC00259BEF /* SeasonSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0282C803240863FC00259BEF /* SeasonSettingsViewController.swift */; };
+		0282C806240C27B000259BEF /* FixtureInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0282C805240C27B000259BEF /* FixtureInformationViewController.swift */; };
 		0288B22023683A600014DA4E /* Fixtures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0288B21F23683A600014DA4E /* Fixtures.storyboard */; };
 		0288B224236AD9540014DA4E /* Team.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0288B223236AD9540014DA4E /* Team.storyboard */; };
 		0288B226236AD9B40014DA4E /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0288B225236AD9B40014DA4E /* Settings.storyboard */; };
 		0288B25B236F44B60014DA4E /* FixturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288B25A236F44B60014DA4E /* FixturesViewController.swift */; };
 		0288B25D236F44D20014DA4E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288B25C236F44D20014DA4E /* SettingsViewController.swift */; };
 		0288B25F236F44F60014DA4E /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288B25E236F44F60014DA4E /* TeamViewController.swift */; };
+		02B553C72415599F00F47DF0 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B553C62415599F00F47DF0 /* UserData.swift */; };
 		02F7BF5F23B12CBD00DE70BB /* ShareTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F7BF5D23B12CBD00DE70BB /* ShareTeamViewController.swift */; };
 		02F7BF6323B6400200DE70BB /* ShareTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F7BF6123B6400200DE70BB /* ShareTableViewCell.swift */; };
 		02F7BF6423B6400200DE70BB /* ShareTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02F7BF6223B6400200DE70BB /* ShareTableViewCell.xib */; };
@@ -49,11 +53,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		021A59D323D4DFCF005DE007 /* FixtureDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureDetailViewController.swift; sourceTree = "<group>"; };
 		021A59D523D4F1C1005DE007 /* FixtureDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureDetailTableViewCell.swift; sourceTree = "<group>"; };
 		021A59D623D4F1C1005DE007 /* FixtureDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FixtureDetailTableViewCell.xib; sourceTree = "<group>"; };
-		021A59D923D6021A005DE007 /* Score.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Score.xib; sourceTree = "<group>"; };
-		021A59DB23D60254005DE007 /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		0231525223F03A2000AAFB0B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0231525423F0426300AAFB0B /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		0231525623F095C200AAFB0B /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -77,12 +78,19 @@
 		02821A122398F68A0090E400 /* Slide.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Slide.xib; sourceTree = "<group>"; };
 		02821A14239A811A0090E400 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0282C7F42405CD8400259BEF /* JoinTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTeamViewController.swift; sourceTree = "<group>"; };
+		0282C7FB24066A8400259BEF /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		0282C7FC24066A8400259BEF /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
+		0282C7FF24085E7F00259BEF /* TeamInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInformationViewController.swift; sourceTree = "<group>"; };
+		0282C80124085ECB00259BEF /* ManagersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagersViewController.swift; sourceTree = "<group>"; };
+		0282C803240863FC00259BEF /* SeasonSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonSettingsViewController.swift; sourceTree = "<group>"; };
+		0282C805240C27B000259BEF /* FixtureInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureInformationViewController.swift; sourceTree = "<group>"; };
 		0288B21F23683A600014DA4E /* Fixtures.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Fixtures.storyboard; sourceTree = "<group>"; };
 		0288B223236AD9540014DA4E /* Team.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Team.storyboard; sourceTree = "<group>"; };
 		0288B225236AD9B40014DA4E /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		0288B25A236F44B60014DA4E /* FixturesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesViewController.swift; sourceTree = "<group>"; };
 		0288B25C236F44D20014DA4E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0288B25E236F44F60014DA4E /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
+		02B553C62415599F00F47DF0 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		02F7BF5D23B12CBD00DE70BB /* ShareTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTeamViewController.swift; sourceTree = "<group>"; };
 		02F7BF6123B6400200DE70BB /* ShareTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTableViewCell.swift; sourceTree = "<group>"; };
 		02F7BF6223B6400200DE70BB /* ShareTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShareTableViewCell.xib; sourceTree = "<group>"; };
@@ -111,6 +119,7 @@
 			children = (
 				026F1E6F2381CA9400682063 /* TeamData.swift */,
 				026F1E712381CC5600682063 /* PlayerData.swift */,
+				02B553C62415599F00F47DF0 /* UserData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -153,13 +162,56 @@
 			path = TBG2;
 			sourceTree = "<group>";
 		};
+		0282C7F6240666A500259BEF /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				0231525823F0A8F600AAFB0B /* LoginViewController.swift */,
+				0231525A23F60B7A00AAFB0B /* SignupViewController.swift */,
+				025280E924032E17002DB761 /* CreateTeamViewController.swift */,
+				0282C7F42405CD8400259BEF /* JoinTeamViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		0282C7F7240666DB00259BEF /* Team */ = {
+			isa = PBXGroup;
+			children = (
+				0288B25E236F44F60014DA4E /* TeamViewController.swift */,
+				02821A0E2395C1260090E400 /* PlayerDetailViewController.swift */,
+				02F7BF5D23B12CBD00DE70BB /* ShareTeamViewController.swift */,
+				02821A0C2395AAD30090E400 /* TeamPinViewController.swift */,
+			);
+			path = Team;
+			sourceTree = "<group>";
+		};
+		0282C7F92406671D00259BEF /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				0288B25A236F44B60014DA4E /* FixturesViewController.swift */,
+				0282C805240C27B000259BEF /* FixtureInformationViewController.swift */,
+				02F7BF6A23B8984B00DE70BB /* AddFixtureViewController.swift */,
+			);
+			path = Fixtures;
+			sourceTree = "<group>";
+		};
+		0282C7FA2406674A00259BEF /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				0288B25C236F44D20014DA4E /* SettingsViewController.swift */,
+				0282C7FF24085E7F00259BEF /* TeamInformationViewController.swift */,
+				0282C80124085ECB00259BEF /* ManagersViewController.swift */,
+				0282C803240863FC00259BEF /* SeasonSettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		0288B21E236839EE0014DA4E /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				0231525623F095C200AAFB0B /* Login.storyboard */,
 				0288B223236AD9540014DA4E /* Team.storyboard */,
 				0288B21F23683A600014DA4E /* Fixtures.storyboard */,
 				0288B225236AD9B40014DA4E /* Settings.storyboard */,
-				0231525623F095C200AAFB0B /* Login.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -167,18 +219,10 @@
 		0288B22123683AC80014DA4E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				0288B25E236F44F60014DA4E /* TeamViewController.swift */,
-				02821A0E2395C1260090E400 /* PlayerDetailViewController.swift */,
-				02F7BF5D23B12CBD00DE70BB /* ShareTeamViewController.swift */,
-				02821A0C2395AAD30090E400 /* TeamPinViewController.swift */,
-				0288B25A236F44B60014DA4E /* FixturesViewController.swift */,
-				021A59D323D4DFCF005DE007 /* FixtureDetailViewController.swift */,
-				02F7BF6A23B8984B00DE70BB /* AddFixtureViewController.swift */,
-				0288B25C236F44D20014DA4E /* SettingsViewController.swift */,
-				0231525823F0A8F600AAFB0B /* LoginViewController.swift */,
-				0231525A23F60B7A00AAFB0B /* SignupViewController.swift */,
-				025280E924032E17002DB761 /* CreateTeamViewController.swift */,
-				0282C7F42405CD8400259BEF /* JoinTeamViewController.swift */,
+				0282C7F6240666A500259BEF /* Login */,
+				0282C7F7240666DB00259BEF /* Team */,
+				0282C7F92406671D00259BEF /* Fixtures */,
+				0282C7FA2406674A00259BEF /* Settings */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -196,8 +240,8 @@
 				02F7BF6723B7F56000DE70BB /* FixturesTableViewCell.xib */,
 				021A59D523D4F1C1005DE007 /* FixtureDetailTableViewCell.swift */,
 				021A59D623D4F1C1005DE007 /* FixtureDetailTableViewCell.xib */,
-				021A59DB23D60254005DE007 /* Score.swift */,
-				021A59D923D6021A005DE007 /* Score.xib */,
+				0282C7FB24066A8400259BEF /* SettingsTableViewCell.swift */,
+				0282C7FC24066A8400259BEF /* SettingsTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -279,6 +323,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0282C7FE24066A8400259BEF /* SettingsTableViewCell.xib in Resources */,
 				0288B22023683A600014DA4E /* Fixtures.storyboard in Resources */,
 				027A08D12318248900B0DF59 /* LaunchScreen.storyboard in Resources */,
 				0288B226236AD9B40014DA4E /* Settings.storyboard in Resources */,
@@ -287,7 +332,6 @@
 				0231525323F03A2100AAFB0B /* GoogleService-Info.plist in Resources */,
 				0288B224236AD9540014DA4E /* Team.storyboard in Resources */,
 				02F7BF6923B7F56000DE70BB /* FixturesTableViewCell.xib in Resources */,
-				021A59DA23D6021A005DE007 /* Score.xib in Resources */,
 				026F1E78238295EE00682063 /* TeamTableViewCell.xib in Resources */,
 				021A59D823D4F1C1005DE007 /* FixtureDetailTableViewCell.xib in Resources */,
 				027A08CE2318248900B0DF59 /* Assets.xcassets in Resources */,
@@ -351,6 +395,7 @@
 				027A08CC2318248300B0DF59 /* TBG2.xcdatamodeld in Sources */,
 				026F1E702381CA9400682063 /* TeamData.swift in Sources */,
 				02F7BF6823B7F56000DE70BB /* FixturesTableViewCell.swift in Sources */,
+				0282C80224085ECB00259BEF /* ManagersViewController.swift in Sources */,
 				02F7BF6B23B8984B00DE70BB /* AddFixtureViewController.swift in Sources */,
 				026F1E722381CC5600682063 /* PlayerData.swift in Sources */,
 				0288B25F236F44F60014DA4E /* TeamViewController.swift in Sources */,
@@ -362,14 +407,17 @@
 				02F7BF6323B6400200DE70BB /* ShareTableViewCell.swift in Sources */,
 				027A08C42318248300B0DF59 /* SceneDelegate.swift in Sources */,
 				02821A15239A811A0090E400 /* Extensions.swift in Sources */,
+				0282C804240863FC00259BEF /* SeasonSettingsViewController.swift in Sources */,
 				0288B25D236F44D20014DA4E /* SettingsViewController.swift in Sources */,
 				026F1E77238295EE00682063 /* TeamTableViewCell.swift in Sources */,
-				021A59DC23D60254005DE007 /* Score.swift in Sources */,
-				021A59D423D4DFCF005DE007 /* FixtureDetailViewController.swift in Sources */,
+				0282C7FD24066A8400259BEF /* SettingsTableViewCell.swift in Sources */,
 				02821A0F2395C1260090E400 /* PlayerDetailViewController.swift in Sources */,
 				02821A112398F5E50090E400 /* Slide.swift in Sources */,
+				02B553C72415599F00F47DF0 /* UserData.swift in Sources */,
 				0282C7F52405CD8400259BEF /* JoinTeamViewController.swift in Sources */,
+				0282C80024085E7F00259BEF /* TeamInformationViewController.swift in Sources */,
 				027A08C22318248300B0DF59 /* AppDelegate.swift in Sources */,
+				0282C806240C27B000259BEF /* FixtureInformationViewController.swift in Sources */,
 				0231525B23F60B7B00AAFB0B /* SignupViewController.swift in Sources */,
 				02821A0D2395AAD30090E400 /* TeamPinViewController.swift in Sources */,
 			);

@@ -16,6 +16,7 @@ class Colours {
     var tertiaryBlue = UIColor( red: 37/255, green: 71/255, blue:77/255, alpha: 1.0 )
     var primaryGrey = UIColor( red: 120/255, green: 120/255, blue:120/255, alpha: 1.0 )
     var white = UIColor( red: 255/255, green: 255/255, blue:255/255, alpha: 1.0 )
+    var red = UIColor(red: 206/255, green: 50/255, blue: 50/255, alpha: 1.0)
 }
 
 class Circles {
@@ -112,6 +113,13 @@ extension UIDatePicker {
         dateFormatter.dateFormat = "dd MMM yyyy"
         return textField.text = dateFormatter.string(from: datePicker.date)
     }
+    
+    func standardDatePicker (datePicker: UIDatePicker) {
+        datePicker.backgroundColor = UIColor.white
+        datePicker.datePickerMode = .date
+        datePicker.frame.size.height = 250
+    }
+    
 }
 
 extension UISegmentedControl {

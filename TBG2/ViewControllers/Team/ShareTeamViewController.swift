@@ -14,11 +14,11 @@ class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableVie
     var answerArray: [String]! = ["-299fFFCJE8DJEEddf","123456"]
     
     lazy var team: [Team] = {
-        let teamModel = TeamModel()
+        let teamModel = TeamsModel()
         return teamModel.teamList
     } ()
 
-    let teamData: [Team] = TeamModel.init().teamList
+    let teamData: [Team] = TeamsModel.init().teamList
     
     @IBOutlet weak var ivTeamBadge: UIImageView!
     @IBOutlet weak var lblTeamName: UILabel!

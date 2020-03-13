@@ -45,11 +45,10 @@ class PlayerDetailViewController: UIViewController, UIScrollViewDelegate {
         
         scrollView.delegate = self
         
-        vScrollView.layer.shadowColor = UIColor.black.cgColor
+        vScrollView.layer.shadowColor = colours.primaryGrey.cgColor
         vScrollView.layer.shadowOpacity = 1
-        vScrollView.layer.shadowRadius = 10
-        
-        
+        vScrollView.layer.shadowRadius = 2
+
         pageControl.pageIndicatorTintColor = UIColor.lightGray
         pageControl.currentPageIndicatorTintColor = colours.secondaryBlue
         

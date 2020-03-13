@@ -8,7 +8,15 @@
 
 import Foundation
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
+struct GamePlayer {
+    var id: Int
+    var playerImage: UIImage
+    var playerName: String
+    var playerAvailable: String
+}
 
 struct Fixture {
     var time: String
@@ -16,8 +24,10 @@ struct Fixture {
     var opposition: String
     var hosts: String
     var homeFixture: Bool
-    var venue: String
-    var result: String
+    var postcode: String
+    var homeGoals: String
+    var awayGoals: String
+    var players: [GamePlayer]
 }
 
 struct Team {
@@ -29,15 +39,30 @@ struct Team {
     var fixtures: [Fixture]
 }
 
-class TeamModel {
+class TeamsModel {
     
     var teamList: [Team] = [Team]()
     
     init() {
         
-        let fixture1 = Fixture(time: "15:00", date: "20-10-2019", opposition: "Challengers FC", hosts: "Avonmouth FC", homeFixture: true, venue: "Old place", result: "4-2")
-        let fixture2 = Fixture(time: "17:00", date: "27-10-2019", opposition: "Bolltox FC", hosts: "Avonmouth FC", homeFixture: true, venue: "Old place", result: "5-0")
-        let fixture3 = Fixture(time: "15:00", date: "06-11-2019", opposition: "Assticit FC", hosts: "Avonmouth FC", homeFixture: false, venue: "Old place", result: "- - -")
+        let player1 = GamePlayer(id: 1, playerImage: UIImage(named: "player1")!, playerName: "John Carrick", playerAvailable: "")
+        
+        let player2 = GamePlayer(id: 2, playerImage: UIImage(named: "player2")!, playerName: "Dwayne Jenas", playerAvailable: "")
+        
+        let player3 = GamePlayer(id: 3, playerImage: UIImage(named: "player1")!, playerName: "Mike Cole", playerAvailable: "")
+        
+        let player4 = GamePlayer(id: 4, playerImage: UIImage(named: "player1")!, playerName: "Dean Reid", playerAvailable: "")
+        
+        let player5 = GamePlayer(id: 5, playerImage: UIImage(named: "player2")!, playerName: "Dean Reid", playerAvailable: "Yes")
+        
+        let player6 = GamePlayer(id: 6, playerImage: UIImage(named: "player2")!, playerName: "Dean Reid", playerAvailable: "No")
+        
+        let player7 = GamePlayer(id: 7, playerImage: UIImage(named: "player1")!, playerName: "Dean Reid", playerAvailable: "Yes")
+        
+        let fixture1 = Fixture(time: "15:00", date: "20-10-2019", opposition: "Challengers FC", hosts: "Avonmouth FC", homeFixture: true, postcode: "AL8 7SH", homeGoals: "2", awayGoals: "0", players: [player1, player2, player3, player4, player5, player6, player7])
+        let fixture2 = Fixture(time: "17:00", date: "27-10-2019", opposition: "Bolltox FC", hosts: "Avonmouth FC", homeFixture: true, postcode: "BS11 0HY", homeGoals: "5", awayGoals: "5", players: [player1, player2, player3, player4, player5, player6, player7])
+        let fixture3 = Fixture(time: "15:00", date: "06-11-2019", opposition: "Assticit FC", hosts: "Avonmouth FC", homeFixture: false, postcode: "BH12 8DD", homeGoals: "-", awayGoals: "-", players: [player1, player2, player3, player4, player5, player6, player7])
+        
         
         let team1 = Team(teamId: "-99dhjeh3HHD3i9s", teamPIN: 123456, teamName: "Avonmouth FC", teamPostcode: "BS11 8YT", teamImage: UIImage(named: "AFC_icon")!, fixtures: [fixture1, fixture2, fixture3])
         teamList.append(team1)
@@ -47,4 +72,30 @@ class TeamModel {
         
     }
     
+}
+
+
+
+
+
+
+//PRODUCTION CODDE
+
+class TeamModel {
+    
+    static var collection: DatabaseReference {
+        get {
+            return Database.database().reference().child("teams")
+        }
+    }
+    
+    var keys: Dictionary<String, Any>.Keys
+    var team: Dictionary<String, Any>
+    
+    init?(_ snapshot: DataSnapshot) {
+        guard let value = snapshot.value as? [String: Any] else { return nil }
+        
+        self.keys = value.keys
+        self.team = value
+    }
 }

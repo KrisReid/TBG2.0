@@ -145,7 +145,7 @@
                                                     <action selector="btnProfilePictureTapped:" destination="KPI-9K-CEV" eventType="touchUpInside" id="o67-TE-Es3"/>
                                                 </connections>
                                             </button>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uSu-xk-kbt">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Alison A" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uSu-xk-kbt">
                                                 <rect key="frame" x="20" y="280" width="374" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="kv9-Cv-if1"/>
@@ -154,7 +154,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" textContentType="name"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date of Birth" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WaS-yp-8Ls">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="29-09-1988" placeholder="Date of Birth" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WaS-yp-8Ls">
                                                 <rect key="frame" x="20" y="442" width="374" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="S2Y-DB-i8h"/>
@@ -163,7 +163,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="House Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FTN-y9-Str">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123" placeholder="House Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FTN-y9-Str">
                                                 <rect key="frame" x="20" y="496" width="374" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="GOf-vb-Dnm"/>
@@ -172,7 +172,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" textContentType="address-line1"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZIf-Uy-qdT">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1234678" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZIf-Uy-qdT">
                                                 <rect key="frame" x="20" y="388" width="374" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="G1F-eY-fX4"/>
@@ -181,7 +181,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bHZ-hM-2x6">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="alison.m.bell@hotmail.com" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bHZ-hM-2x6">
                                                 <rect key="frame" x="20" y="334" width="374" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="d7c-zb-vRf"/>
@@ -190,7 +190,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" textContentType="email"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Postcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aRh-To-JMG">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="AL8 7DD" placeholder="Postcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aRh-To-JMG">
                                                 <rect key="frame" x="20" y="550" width="374" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="Zv3-BK-oxe"/>
@@ -210,7 +210,7 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="btnCreateTeamTapped:" destination="KPI-9K-CEV" eventType="touchUpInside" id="GQa-f7-pS3"/>
-                                                    <segue destination="XaW-fd-jBW" kind="show" id="bEy-Pt-EWs"/>
+                                                    <segue destination="XaW-fd-jBW" kind="show" identifier="createTeamSegue" id="bEy-Pt-EWs"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dT8-oc-dpr">
@@ -224,7 +224,7 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="btnJoinTeamTapped:" destination="KPI-9K-CEV" eventType="touchUpInside" id="Eq7-b2-Loy"/>
-                                                    <segue destination="1uF-vO-42f" kind="show" id="bbs-wB-2gG"/>
+                                                    <segue destination="1uF-vO-42f" kind="show" identifier="joinTeamSegue" id="bbs-wB-2gG"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -305,7 +305,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Team ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZMr-S8-Uev">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-M1pNqOmXYlxB4NtINx8" placeholder="Team ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZMr-S8-Uev">
                                 <rect key="frame" x="20" y="250" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="Y4Z-W6-X1g"/>
@@ -314,7 +314,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Team PIN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c6D-QY-lor">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="12345" placeholder="Team PIN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c6D-QY-lor">
                                 <rect key="frame" x="20" y="304" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="zbP-t8-W2D"/>
@@ -335,6 +335,9 @@
                                     <segment title="Midfielder"/>
                                     <segment title="Striker"/>
                                 </segments>
+                                <connections>
+                                    <action selector="scPlayerPositionTapped:" destination="1uF-vO-42f" eventType="valueChanged" id="Zlj-3a-fSY"/>
+                                </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4C0-d8-yf1">
                                 <rect key="frame" x="20" y="479" width="374" height="34"/>
@@ -458,6 +461,9 @@
                                                     <segment title="Midfielder"/>
                                                     <segment title="Striker"/>
                                                 </segments>
+                                                <connections>
+                                                    <action selector="scPlayerPositionTapped:" destination="XaW-fd-jBW" eventType="valueChanged" id="28j-bP-BW6"/>
+                                                </connections>
                                             </segmentedControl>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFL-NU-x34">
                                                 <rect key="frame" x="20" y="624" width="374" height="34"/>
