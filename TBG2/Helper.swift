@@ -125,6 +125,9 @@ class Helper {
         var errorMessage: String = "There was a problem loggin in"
         if let errorCode = AuthErrorCode(rawValue: rawErrorCode) {
             switch errorCode {
+            case .emailAlreadyInUse:
+                errorTitle = "Email in use"
+                errorMessage = "The email address you provided is already in use"
             case .wrongPassword:
                 errorTitle = "Incorrect Password"
                 errorMessage = "The password provided is incorrect"

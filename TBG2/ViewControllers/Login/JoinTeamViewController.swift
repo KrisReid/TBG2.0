@@ -25,8 +25,9 @@ class JoinTeamViewController: UIViewController {
     var playerPostcode: String = ""
     var playerPosition: String = ""
     
-    var teams: TeamModel?
+    var match: Bool = false
     
+    var teams: TeamModel?
     var colour = Colours()
     
     override func viewDidLoad() {
@@ -50,8 +51,10 @@ class JoinTeamViewController: UIViewController {
     
     func loadTeams() {
         let teamRef = TeamModel.collection
+        let spinner = UIViewController.displayLoading(withView: self.view)
         teamRef.observe(.value) { [weak self] (snapshot) in
             guard let strongSelf = self else { return }
+            UIViewController.removeLoading(spinner: spinner)
             guard let teams = TeamModel(snapshot) else { return }
             strongSelf.teams = teams
         }
@@ -72,90 +75,90 @@ class JoinTeamViewController: UIViewController {
         }
     }
     
-    
-    func check() -> Bool {
-        guard let teames = teams?.team else { return false }
-        for team in teames {
-            if team.key == tfTeamID.text {
-                let result = team.value as! Dictionary<String, Any>
-                let pin = result["pin"] as! Int
-                let stringPin = String(pin)
-                if stringPin == tfTeamPIN.text {
-                    // ID and PIN Match so return true
-                    return true
+    func teamIDPINValidation() {
+        let validaion = DispatchQueue(label: "validation")
+        validaion.sync {
+            guard let teams = teams?.team else { return }
+            for team in teams {
+                if team.key == tfTeamID.text {
+                    let result = team.value as! Dictionary<String, Any>
+                    let pin = result["pin"] as! Int
+                    if String(pin) == tfTeamPIN.text {
+                        // ID and PIN Match
+                        self.match = true
+                    }
                 }
-                else {
-                    //PIN Error
-                    let alert = Helper.errorAlert(title: "Incorrect PIN", message: "The PIN supplied is incorrect. Please use the correct PIN")
+            }
+        }
+    }
+    
+    @IBAction func btnSubmitTapped(_ sender: Any) {
+        
+        let teamCheck = DispatchQueue(label: "team_check")
+        let authenticate = DispatchQueue(label: "authenticate")
+        
+        teamCheck.sync {
+            self.teamIDPINValidation()
+        }
+        
+        authenticate.sync {
+            if self.match {
+                
+                guard let teamPIN = Int(tfTeamPIN.text!) else { return }
+                guard let teamID = tfTeamID.text else { return }
+
+                let spinner = UIViewController.displayLoading(withView: self.view)
+
+                // Create the Account in Firebase
+                Auth.auth().createUser(withEmail: playerEmailAddress, password: playerPassword) { [weak self] (user, error) in
+
+                    guard let strongSelf = self else { return }
+
+                    if error == nil {
+                        guard let userId = user?.user.uid else { return }
+
+                        // Sign in with Firebase
+                        Auth.auth().signIn(withEmail: self!.playerEmailAddress, password: self!.playerPassword) { (user, error) in
+                            DispatchQueue.main.async {
+                                UIViewController.removeLoading(spinner: spinner)
+                            }
+                            if error == nil {
+                                DispatchQueue.main.async {
+                                    //Join Team
+                                    Helper.postPlayerToTeam(userId: userId, playerFullName: self!.playerFullName, playerEmailAddress: self!.playerEmailAddress, playerDateOfBirth: self!.playerDateOfBirth, playerHouseNumber: self!.playerHouseNumber, playerPostcode: self!.playerPostcode, manager: false, playerManager: false, playerPosition: self!.playerPosition, teamID: teamID, teamPIN: teamPIN)
+
+                                    DispatchQueue.main.async {
+                                        Helper.login()
+                                    }
+                                }
+                            } else if let error = error  {
+                                // Signup Error
+                                print(error.localizedDescription)
+                                let alert = Helper.signupError(error: error)
+                                DispatchQueue.main.async {
+                                    strongSelf.present(alert, animated: true, completion: nil)
+                                    UIViewController.removeLoading(spinner: spinner)
+                                }
+                            }
+                        }
+                    } else if let error = error {
+                        // Login Error
+                        print(error.localizedDescription)
+                        let alert = Helper.loginError(error: error)
+                        DispatchQueue.main.async {
+                            strongSelf.present(alert, animated: true, completion: nil)
+                            UIViewController.removeLoading(spinner: spinner)
+                        }
+                    }
+                }
+                
+            } else {
+                let alert = Helper.errorAlert(title: "Team ID/PIN Error", message: "There has been an issue with either the PIN or ID ... Please try again")
+                DispatchQueue.main.async {
                     self.present(alert, animated: true, completion: nil)
                 }
             }
-            else {
-                //ID Error
-                let alert = Helper.errorAlert(title: "Incorrect ID", message: "The ID supplied is incorrect. Please use the correct ID")
-                self.present(alert, animated: true, completion: nil)
-            }
-        }
-        // Retrun false if nothing found in the loop
-        return false
-    }
-
-    
-    @IBAction func btnSubmitTapped(_ sender: Any) {
-        //Validate the Team and PIN before creating accounts etc
-        let team = self.check()
-        if team {
-            guard let teamPIN = Int(tfTeamPIN.text!) else { return }
-            guard let teamID = tfTeamID.text else { return }
-            
-            let spinner = UIViewController.displayLoading(withView: self.view)
-            
-            // Create the Account in Firebase
-            Auth.auth().createUser(withEmail: playerEmailAddress, password: playerPassword) { [weak self] (user, error) in
-
-                guard let strongSelf = self else { return }
-
-                if error == nil {
-                    guard let userId = user?.user.uid else { return }
-                    
-                    // Sign in with Firebase
-                    Auth.auth().signIn(withEmail: self!.playerEmailAddress, password: self!.playerPassword) { (user, error) in
-                        DispatchQueue.main.async {
-                            UIViewController.removeLoading(spinner: spinner)
-                        }
-                        if error == nil {
-                            DispatchQueue.main.async {
-                                //Join Team
-                                Helper.postPlayerToTeam(userId: userId, playerFullName: self!.playerFullName, playerEmailAddress: self!.playerEmailAddress, playerDateOfBirth: self!.playerDateOfBirth, playerHouseNumber: self!.playerHouseNumber, playerPostcode: self!.playerPostcode, manager: false, playerManager: false, playerPosition: self!.playerPosition, teamID: teamID, teamPIN: teamPIN)
-
-                                DispatchQueue.main.async {
-                                    Helper.login()
-                                }
-                            }
-                        } else if let error = error  {
-                            // Signup Error
-                            print(error.localizedDescription)
-                            let alert = Helper.signupError(error: error)
-                            DispatchQueue.main.async {
-                                strongSelf.present(alert, animated: true, completion: nil)
-                            }
-                        }
-                    }
-                } else if let error = error {
-                    // Login Error
-                    print(error.localizedDescription)
-                    let alert = Helper.loginError(error: error)
-                    DispatchQueue.main.async {
-                        strongSelf.present(alert, animated: true, completion: nil)
-                    }
-                }
-            }
-        }
-        else {
-            //Do Nothing
-            print("Do Nothing")
         }
     }
-
 
 }
