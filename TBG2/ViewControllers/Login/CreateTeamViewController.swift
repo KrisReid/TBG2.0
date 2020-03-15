@@ -105,9 +105,11 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
     @IBAction func btnSubmitTapped(_ sender: Any) {
         
         guard let teamName = tfTeamName.text else { return }
-//        guard let teamCrest = btnTeamCrest.imageView else { return }
+        guard let buttonTeamCrest = btnTeamCrest.imageView else { return }
+        guard let teamCrest = buttonTeamCrest.image else { return }
         guard let teamPIN = Int(tfTeamPIN.text!) else { return }
         guard let teamPostcode = tfTeamPostcode.text else { return }
+        guard let playerProfilePicture = playerProfilePicture?.image else { return }
         
         let spinner = UIViewController.displayLoading(withView: self.view)
         
@@ -124,7 +126,8 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
                         UIViewController.removeLoading(spinner: spinner)
                     }
                     if error == nil {
-                        Helper.postNewTeam(userId: userId, playerFullName: self!.playerFullName, playerEmailAddress: self!.playerEmailAddress, playerDateOfBirth: self!.playerDateOfBirth, playerHouseNumber: self!.playerHouseNumber, playerPostcode: self!.playerPostcode, manager: true, playerManager: self!.playerManager, playerPosition: self!.playerPosition, teamName: teamName, teamPIN: teamPIN, teamPostcode: teamPostcode)
+                        
+                        Helper.postNewTeam(userId: userId, playerProfilePicture: playerProfilePicture, playerFullName: self!.playerFullName, playerEmailAddress: self!.playerEmailAddress, playerDateOfBirth: self!.playerDateOfBirth, playerHouseNumber: self!.playerHouseNumber, playerPostcode: self!.playerPostcode, manager: true, playerManager: self!.playerManager, playerPosition: self!.playerPosition, teamName: teamName, teamPIN: teamPIN, teamPostcode: teamPostcode, teamCrest: teamCrest)
                         
                         DispatchQueue.main.async {
                             Helper.login()

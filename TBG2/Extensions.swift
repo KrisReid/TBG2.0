@@ -136,3 +136,20 @@ extension UISegmentedControl {
         self.backgroundColor = backgroundColour
     }
 }
+
+
+
+//extension UIImagePickerControllerDelegate {
+//
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//        picker.dismiss(animated: true)
+//
+//        guard let image = info[.editedImage] as? UIImage else {
+//            print("No image found")
+//            return
+//        }
+//
+////        self.setImage(image , for: UIControl.State.normal)
+////        self.setTitle("",for: .normal)
+//    }
+//}

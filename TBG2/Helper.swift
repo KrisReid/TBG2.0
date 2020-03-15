@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
 
 class Helper {
     
@@ -142,26 +143,60 @@ class Helper {
     }
     
     
-    class func postNewTeam(userId: String, playerFullName: String,playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, playerManager: Bool, playerPosition: String, teamName: String, teamPIN: Int, teamPostcode: String) {
+    class func postNewTeam(userId: String, playerProfilePicture: UIImage, playerFullName: String,playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, playerManager: Bool, playerPosition: String, teamName: String, teamPIN: Int, teamPostcode: String, teamCrest: UIImage) {
         
-        let teamRef = Database.database().reference().child("teams").childByAutoId()
-        let newKey = teamRef.key
-        let TeamDictionary : [String:Any] = ["name": teamName, "pin": teamPIN, "postcode":teamPostcode, "id": newKey as Any]
-        teamRef.setValue(TeamDictionary)
         
-        DispatchQueue.main.async {
-            postPlayerToTeam(userId: userId, playerFullName: playerFullName, playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: true, playerManager: playerManager, playerPosition: playerPosition, teamID: newKey!, teamPIN: teamPIN)
+        let imageFolder = Storage.storage().reference().child("crest_images")
+        if let uploadData = teamCrest.jpegData(compressionQuality: 0.75) {
+           
+            imageFolder.child("\(NSUUID().uuidString).jpeg").putData(uploadData, metadata: nil) { (metadata, error) in
+                if let error = error {
+                    print("ERROR: \(error)")
+                    print(error.localizedDescription)
+                } else {
+                    let teamRef = Database.database().reference().child("teams").childByAutoId()
+                     let newKey = teamRef.key
+                    let TeamDictionary : [String:Any] = ["crest": String((metadata?.path)!), "name": teamName, "pin": teamPIN, "postcode":teamPostcode, "id": newKey as Any]
+                     teamRef.setValue(TeamDictionary)
+                     
+                     DispatchQueue.main.async {
+
+                         postPlayerProfile(profilePicture: playerProfilePicture, userId: userId, playerFullName: playerFullName, playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: true, playerManager: playerManager, playerPosition: playerPosition, teamID: newKey!, teamPIN: teamPIN)
+
+                     }
+                }
+            }
         }
     }
     
     
-    class func postPlayerToTeam(userId: String, playerFullName: String,playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, playerManager: Bool, playerPosition: String, teamID: String, teamPIN: Int) {
+    class func postPlayerProfile(profilePicture: UIImage, userId: String, playerFullName: String, playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, playerManager: Bool, playerPosition: String, teamID: String, teamPIN: Int) {
+        
+        let imageFolder = Storage.storage().reference().child("player_images")
+        if let uploadData = profilePicture.jpegData(compressionQuality: 0.75) {
+            
+            imageFolder.child("\(NSUUID().uuidString).jpeg").putData(uploadData, metadata: nil) { (metadata, error) in
+                if let error = error {
+                    print("ERROR: \(error)")
+                    print(error.localizedDescription)
+                } else {
+                    let playerProfilePictureUrl =  String((metadata?.path)!)
+
+                    postPlayerToTeam(userId: userId, playerProfilePictureUrl: playerProfilePictureUrl, playerFullName: playerFullName, playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: true, playerManager: playerManager, playerPosition: playerPosition, teamID: teamID, teamPIN: teamPIN)
+                }
+            }
+        }
+    }
+    
+    
+    
+    class private func postPlayerToTeam(userId: String, playerProfilePictureUrl:String, playerFullName: String, playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, playerManager: Bool, playerPosition: String, teamID: String, teamPIN: Int) {
         
         let playerDictionary : [String:Any] =
         [
             "id": userId,
             "fullName" : playerFullName,
-//            "imageURL" : self!.playerProfilePicture!,
+            "profilePictureUrl" : playerProfilePictureUrl,
             "email" : playerEmailAddress,
             "dateOfBirth" : playerDateOfBirth,
             "houseNumber" : playerHouseNumber,

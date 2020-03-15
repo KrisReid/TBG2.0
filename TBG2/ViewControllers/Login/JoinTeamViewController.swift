@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseStorage
 
 class JoinTeamViewController: UIViewController {
     
@@ -105,7 +106,8 @@ class JoinTeamViewController: UIViewController {
             if self.match {
                 
                 guard let teamPIN = Int(tfTeamPIN.text!) else { return }
-                guard let teamID = tfTeamID.text else { return }
+                guard let teamId = tfTeamID.text else { return }
+                guard let profilePicture = playerProfilePicture?.image else { return }
 
                 let spinner = UIViewController.displayLoading(withView: self.view)
 
@@ -123,13 +125,11 @@ class JoinTeamViewController: UIViewController {
                                 UIViewController.removeLoading(spinner: spinner)
                             }
                             if error == nil {
+                                
+                                Helper.postPlayerProfile(profilePicture: profilePicture, userId: userId, playerFullName: self!.playerFullName, playerEmailAddress: self!.playerEmailAddress, playerDateOfBirth: self!.playerDateOfBirth, playerHouseNumber: self!.playerHouseNumber, playerPostcode: self!.playerPostcode, manager: false, playerManager: false, playerPosition: self!.playerPosition, teamID: teamId, teamPIN: teamPIN)
+                                
                                 DispatchQueue.main.async {
-                                    //Join Team
-                                    Helper.postPlayerToTeam(userId: userId, playerFullName: self!.playerFullName, playerEmailAddress: self!.playerEmailAddress, playerDateOfBirth: self!.playerDateOfBirth, playerHouseNumber: self!.playerHouseNumber, playerPostcode: self!.playerPostcode, manager: false, playerManager: false, playerPosition: self!.playerPosition, teamID: teamID, teamPIN: teamPIN)
-
-                                    DispatchQueue.main.async {
-                                        Helper.login()
-                                    }
+                                    Helper.login()
                                 }
                             } else if let error = error  {
                                 // Signup Error

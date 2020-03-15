@@ -54,7 +54,6 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
         datePicker?.standardDatePicker(datePicker: datePicker!)
         datePicker?.addTarget(self, action: #selector(SignupViewController.dateChanged(datePicker:)), for: .valueChanged)
         tfDateOfBirth.inputView = datePicker
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -72,11 +71,12 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
-
+        
         guard let image = info[.editedImage] as? UIImage else {
             print("No image found")
             return
         }
+        
         btnProfilePicture.setImage(image , for: UIControl.State.normal)
         btnProfilePicture.setTitle("",for: .normal)
     }
