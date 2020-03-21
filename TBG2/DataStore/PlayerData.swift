@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
 struct Player {
     var id: Int
@@ -16,6 +18,7 @@ struct Player {
     var playerAge: Int
     var playerPostion: String
 }
+
 
 class PlayersModel {
     
@@ -57,3 +60,5 @@ class PlayersModel {
         
     }
 }
+
+

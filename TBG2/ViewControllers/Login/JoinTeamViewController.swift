@@ -47,10 +47,10 @@ class JoinTeamViewController: UIViewController {
         scPlayerPosition.defaultSegmentedControlFormat(backgroundColour: UIColor.clear)
 
         //Load Data
-        loadTeams()
+        getTeams()
     }
     
-    func loadTeams() {
+    func getTeams() {
         let teamRef = TeamModel.collection
         let spinner = UIViewController.displayLoading(withView: self.view)
         teamRef.observe(.value) { [weak self] (snapshot) in
@@ -60,6 +60,7 @@ class JoinTeamViewController: UIViewController {
             strongSelf.teams = teams
         }
     }
+    
     
     @IBAction func scPlayerPositionTapped(_ sender: Any) {
         switch scPlayerPosition.selectedSegmentIndex {
@@ -79,7 +80,7 @@ class JoinTeamViewController: UIViewController {
     func teamIDPINValidation() {
         let validaion = DispatchQueue(label: "validation")
         validaion.sync {
-            guard let teams = teams?.team else { return }
+            guard let teams = teams?.teams else { return }
             for team in teams {
                 if team.key == tfTeamID.text {
                     let result = team.value as! Dictionary<String, Any>

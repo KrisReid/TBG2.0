@@ -90,12 +90,15 @@ class TeamModel {
     }
     
     var keys: Dictionary<String, Any>.Keys
+    var teams: Dictionary<String, Any>
     var team: Dictionary<String, Any>
     
     init?(_ snapshot: DataSnapshot) {
         guard let value = snapshot.value as? [String: Any] else { return nil }
         
         self.keys = value.keys
+        self.teams = value
         self.team = value
     }
+
 }

@@ -161,7 +161,7 @@ class Helper {
                      
                      DispatchQueue.main.async {
 
-                         postPlayerProfile(profilePicture: playerProfilePicture, userId: userId, playerFullName: playerFullName, playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: true, playerManager: playerManager, playerPosition: playerPosition, teamID: newKey!, teamPIN: teamPIN)
+                         postPlayerProfile(profilePicture: playerProfilePicture, userId: userId, playerFullName: playerFullName, playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: manager, playerManager: playerManager, playerPosition: playerPosition, teamID: newKey!, teamPIN: teamPIN)
 
                      }
                 }
@@ -181,8 +181,8 @@ class Helper {
                     print(error.localizedDescription)
                 } else {
                     let playerProfilePictureUrl =  String((metadata?.path)!)
-
-                    postPlayerToTeam(userId: userId, playerProfilePictureUrl: playerProfilePictureUrl, playerFullName: playerFullName, playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: true, playerManager: playerManager, playerPosition: playerPosition, teamID: teamID, teamPIN: teamPIN)
+                    
+                    postPlayer(userId: userId, playerProfilePictureUrl: playerProfilePictureUrl, playerFullName: playerFullName, playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: manager, playerManager: playerManager, playerPosition: playerPosition, teamID: teamID, teamPIN: teamPIN)
                 }
             }
         }
@@ -190,7 +190,7 @@ class Helper {
     
     
     
-    class private func postPlayerToTeam(userId: String, playerProfilePictureUrl:String, playerFullName: String, playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, playerManager: Bool, playerPosition: String, teamID: String, teamPIN: Int) {
+    class private func postPlayer(userId: String, playerProfilePictureUrl:String, playerFullName: String, playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, playerManager: Bool, playerPosition: String, teamID: String, teamPIN: Int) {
         
         let playerDictionary : [String:Any] =
         [
@@ -201,23 +201,25 @@ class Helper {
             "dateOfBirth" : playerDateOfBirth,
             "houseNumber" : playerHouseNumber,
             "postcode" : playerPostcode,
-            "manager" : false,
-            "playerManager" : false,
-            "position" : playerPosition
+            "manager" : manager,
+            "playerManager" : playerManager,
+            "position" : playerPosition,
+            "teamId" : teamID
         ]
+        
+        Database.database().reference().child("players").child(userId).updateChildValues(playerDictionary)
     Database.database().reference().child("teams").child(teamID).child("players").child(userId).updateChildValues(playerDictionary)
     }
     
     
-    class func getTeams() -> [DataSnapshot] {
-        var teams : [DataSnapshot] = []
-
-        Database.database().reference().child("teams").observe(.childAdded, with: { (snapshot) in
-            teams.append(snapshot)
-        })
-        
-        return teams
-    }
-    
+//    class func getTeams() -> [DataSnapshot] {
+//        var teams : [DataSnapshot] = []
+//
+//        Database.database().reference().child("teams").observe(.childAdded, with: { (snapshot) in
+//            teams.append(snapshot)
+//        })
+//
+//        return teams
+//    }
     
 }

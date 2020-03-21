@@ -13,6 +13,8 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableview: UITableView!
     
     var colours = Colours()
+    var team: TeamModel?
+    
     
     lazy var players: [Player] = {
         let model = PlayersModel()
@@ -44,7 +46,25 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         var rightBarItemImage = UIImage(named: "plus_icon")
         rightBarItemImage = rightBarItemImage?.withRenderingMode(.alwaysOriginal)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: rightBarItemImage, style: .plain, target: self, action: #selector(shareTeamInformationTapped))
+        
+        //Load Data
+        getTeam()
     }
+    
+    func getTeam() {
+
+        
+        
+        let teamRef = TeamModel.collection
+        let spinner = UIViewController.displayLoading(withView: self.view)
+        teamRef.observe(.value) { [weak self] (snapshot) in
+            guard let strongSelf = self else { return }
+            UIViewController.removeLoading(spinner: spinner)
+            guard let teams = TeamModel(snapshot) else { return }
+            strongSelf.teams = teams
+        }
+    }
+    
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
