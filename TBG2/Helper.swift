@@ -211,15 +211,16 @@ class Helper {
     Database.database().reference().child("teams").child(teamID).child("players").child(userId).updateChildValues(playerDictionary)
     }
     
+    class func getPlayer () -> DatabaseReference {
+        let uuid = PlayerModel.authCollection
+        let player = PlayerModel.collection.child(uuid)
+        return player
+    }
     
-//    class func getTeams() -> [DataSnapshot] {
-//        var teams : [DataSnapshot] = []
-//
-//        Database.database().reference().child("teams").observe(.childAdded, with: { (snapshot) in
-//            teams.append(snapshot)
-//        })
-//
-//        return teams
+//    class func getUsersTeamId () -> String {
+//        let user = getPlayer()
+//        let usersTeamId = user.child("teamId")
+//        return String(usersTeamId)
 //    }
     
 }

@@ -36,7 +36,6 @@
 		0282C80224085ECB00259BEF /* ManagersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0282C80124085ECB00259BEF /* ManagersViewController.swift */; };
 		0282C804240863FC00259BEF /* SeasonSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0282C803240863FC00259BEF /* SeasonSettingsViewController.swift */; };
 		0282C806240C27B000259BEF /* FixtureInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0282C805240C27B000259BEF /* FixtureInformationViewController.swift */; };
-		028733FB24261C5300A759BC /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028733FA24261C5300A759BC /* DataStore.swift */; };
 		0288B22023683A600014DA4E /* Fixtures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0288B21F23683A600014DA4E /* Fixtures.storyboard */; };
 		0288B224236AD9540014DA4E /* Team.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0288B223236AD9540014DA4E /* Team.storyboard */; };
 		0288B226236AD9B40014DA4E /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0288B225236AD9B40014DA4E /* Settings.storyboard */; };
@@ -84,7 +83,6 @@
 		0282C80124085ECB00259BEF /* ManagersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagersViewController.swift; sourceTree = "<group>"; };
 		0282C803240863FC00259BEF /* SeasonSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonSettingsViewController.swift; sourceTree = "<group>"; };
 		0282C805240C27B000259BEF /* FixtureInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureInformationViewController.swift; sourceTree = "<group>"; };
-		028733FA24261C5300A759BC /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		0288B21F23683A600014DA4E /* Fixtures.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Fixtures.storyboard; sourceTree = "<group>"; };
 		0288B223236AD9540014DA4E /* Team.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Team.storyboard; sourceTree = "<group>"; };
 		0288B225236AD9B40014DA4E /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 		026F1E6E2381CA5600682063 /* DataStore */ = {
 			isa = PBXGroup;
 			children = (
-				028733FA24261C5300A759BC /* DataStore.swift */,
 				026F1E6F2381CA9400682063 /* TeamData.swift */,
 				026F1E712381CC5600682063 /* PlayerData.swift */,
 			);
@@ -404,7 +401,6 @@
 				0288B25B236F44B60014DA4E /* FixturesViewController.swift in Sources */,
 				0231525923F0A8F600AAFB0B /* LoginViewController.swift in Sources */,
 				025280EA24032E18002DB761 /* CreateTeamViewController.swift in Sources */,
-				028733FB24261C5300A759BC /* DataStore.swift in Sources */,
 				02F7BF6323B6400200DE70BB /* ShareTableViewCell.swift in Sources */,
 				027A08C42318248300B0DF59 /* SceneDelegate.swift in Sources */,
 				02821A15239A811A0090E400 /* Extensions.swift in Sources */,
