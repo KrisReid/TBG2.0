@@ -217,10 +217,9 @@ class Helper {
         return player
     }
     
-//    class func getUsersTeamId () -> String {
-//        let user = getPlayer()
-//        let usersTeamId = user.child("teamId")
-//        return String(usersTeamId)
-//    }
+    class func getTeamPlayers (teamId: String) -> DatabaseReference {
+        let players = TeamModel.collection.child("teams").child(teamId).child("players")
+        return players
+    }
     
 }

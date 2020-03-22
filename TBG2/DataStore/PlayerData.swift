@@ -77,6 +77,12 @@ class PlayerModel {
         }
     }
     
+    static var teamCollection: DatabaseReference {
+        get {
+            return Database.database().reference().child("team")
+        }
+    }
+    
     var id: String = ""
     var fullName: String = ""
     var email: String = ""

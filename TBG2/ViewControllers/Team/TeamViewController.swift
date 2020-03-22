@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class TeamViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -14,6 +15,8 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var colours = Colours()
     var player: PlayerModel?
+    
+    var teamPlayers: NSMutableArray = []
     
     lazy var players: [Player] = {
         let model = PlayersModel()
@@ -56,12 +59,30 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         let spinner = UIViewController.displayLoading(withView: self.view)
         playerRef.observe(.value) { [weak self] (snapshot) in
             guard let strongSelf = self else { return }
-            UIViewController.removeLoading(spinner: spinner)
+//            UIViewController.removeLoading(spinner: spinner)
             guard let player = PlayerModel(snapshot) else {return}
             strongSelf.player = player
             print(strongSelf.player?.fullName as Any)
+            
+            let playersRef = TeamModel.collection.child(strongSelf.player?.teamId ?? "").child("players")
+            let playerRefQuery = playersRef.queryOrderedByKey()
+            playerRefQuery.observeSingleEvent(of: .value) { [weak self] (snapshot) in
+                guard let strongSelf = self else { return }
+                UIViewController.removeLoading(spinner: spinner)
+                for item in snapshot.children {
+                    guard let snapshot = item as? DataSnapshot else { continue }
+                    guard let player = PlayerModel(snapshot) else { continue }
+//                    print("77777777777")
+//                    print(player.fullName)
+                    strongSelf.teamPlayers.insert(player, at: 0)
+                }
+//                DispatchQueue.main.async {
+//                    storngSelf.tableview.reloadData()
+//                }
+            }
         }
     }
+    
      
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (sectionData[section]?.count)!
@@ -92,7 +113,11 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "TeamTableViewCell") as! TeamTableViewCell
-
+        
+//        let player = teamPlayers[indexPath.row] as! PlayerModel
+//        
+//        cell.lblPlayerName.text = player.fullName
+        
         cell.lblPlayerName.text = sectionData[indexPath.section]![indexPath.row].playerName
         cell.ivPlayerImage.image = sectionData[indexPath.section]![indexPath.row].playerImage
         
