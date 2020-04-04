@@ -16,26 +16,19 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     var colours = Colours()
     var player: PlayerModel?
     
-    var teamPlayers: NSMutableArray = []
     
-    lazy var players: [Player] = {
-        let model = PlayersModel()
-        return model.playerList
-    } ()
-    
+    var goalkeepers: NSMutableArray = []
+    var defenders: NSMutableArray = []
+    var midfielders: NSMutableArray = []
+    var strikers: NSMutableArray = []
     let sectionTitles: [String] = ["Goalkeepers","Defenders","Midfielders","Strikers"]
+    var sectionData: [Int: NSMutableArray] = [:]
     
-    let s1Data: [Player] = PlayersModel.init().goalkeeperList
-    let s2Data: [Player] = PlayersModel.init().defenderList
-    let s3Data: [Player] = PlayersModel.init().midfielderList
-    let s4Data: [Player] = PlayersModel.init().strikerList
-
-    var sectionData: [Int: [Player]] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sectionData = [0 : s1Data, 1 : s2Data, 2 : s3Data, 3 : s4Data]
+        sectionData = [0 : goalkeepers, 1 : defenders, 2 : midfielders, 3 : strikers]
 
         tableview.estimatedRowHeight = CGFloat(60.0)
         tableview.rowHeight = UITableView.automaticDimension
@@ -55,30 +48,38 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func loadPlayerData() {
+        print("TRIGGRERED...")
         let playerRef = Helper.getPlayer()
-        let spinner = UIViewController.displayLoading(withView: self.view)
         playerRef.observe(.value) { [weak self] (snapshot) in
             guard let strongSelf = self else { return }
-//            UIViewController.removeLoading(spinner: spinner)
             guard let player = PlayerModel(snapshot) else {return}
             strongSelf.player = player
-            print(strongSelf.player?.fullName as Any)
             
+            //Helper?
             let playersRef = TeamModel.collection.child(strongSelf.player?.teamId ?? "").child("players")
             let playerRefQuery = playersRef.queryOrderedByKey()
             playerRefQuery.observeSingleEvent(of: .value) { [weak self] (snapshot) in
                 guard let strongSelf = self else { return }
-                UIViewController.removeLoading(spinner: spinner)
                 for item in snapshot.children {
                     guard let snapshot = item as? DataSnapshot else { continue }
                     guard let player = PlayerModel(snapshot) else { continue }
-//                    print("77777777777")
-//                    print(player.fullName)
-                    strongSelf.teamPlayers.insert(player, at: 0)
+                    
+                    switch player.position {
+                    case "Goalkeeper":
+                        strongSelf.goalkeepers.insert(player, at: 0)
+                    case "Defender":
+                        strongSelf.defenders.insert(player, at: 0)
+                    case "Midfielder":
+                        strongSelf.midfielders.insert(player, at: 0)
+                    case "Striker":
+                        strongSelf.strikers.insert(player, at: 0)
+                    default:
+                        break
+                    }
                 }
-//                DispatchQueue.main.async {
-//                    storngSelf.tableview.reloadData()
-//                }
+                DispatchQueue.main.async {
+                    strongSelf.tableview.reloadData()
+                }
             }
         }
     }
@@ -114,12 +115,10 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "TeamTableViewCell") as! TeamTableViewCell
         
-//        let player = teamPlayers[indexPath.row] as! PlayerModel
-//        
-//        cell.lblPlayerName.text = player.fullName
+        let players = sectionData[indexPath.section]![indexPath.row] as! PlayerModel
         
-        cell.lblPlayerName.text = sectionData[indexPath.section]![indexPath.row].playerName
-        cell.ivPlayerImage.image = sectionData[indexPath.section]![indexPath.row].playerImage
+        cell.lblPlayerName.text = players.position
+//        cell.ivPlayerImage.image = players.profilePictureUrl
         
         return cell
     }

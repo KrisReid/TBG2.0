@@ -221,5 +221,5 @@ class Helper {
         let players = TeamModel.collection.child("teams").child(teamId).child("players")
         return players
     }
-    
+        
 }
