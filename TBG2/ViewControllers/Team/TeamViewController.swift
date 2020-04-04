@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import SDWebImage
 
 class TeamViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -48,7 +49,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func loadPlayerData() {
-        print("TRIGGRERED...")
+        //Change this to get user not player
         let playerRef = Helper.getPlayer()
         playerRef.observe(.value) { [weak self] (snapshot) in
             guard let strongSelf = self else { return }
@@ -117,8 +118,10 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let players = sectionData[indexPath.section]![indexPath.row] as! PlayerModel
         
-        cell.lblPlayerName.text = players.position
-//        cell.ivPlayerImage.image = players.profilePictureUrl
+        cell.lblPlayerName.text = players.fullName
+        
+        cell.ivPlayerImage.sd_cancelCurrentImageLoad()
+        cell.ivPlayerImage?.sd_setImage(with: players.profilePictureUrl, completed: nil)
         
         return cell
     }

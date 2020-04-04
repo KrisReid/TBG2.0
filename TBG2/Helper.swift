@@ -175,14 +175,21 @@ class Helper {
         let imageFolder = Storage.storage().reference().child("player_images")
         if let uploadData = profilePicture.jpegData(compressionQuality: 0.75) {
             
-            imageFolder.child("\(NSUUID().uuidString).jpeg").putData(uploadData, metadata: nil) { (metadata, error) in
+            let UID = NSUUID().uuidString
+            
+            imageFolder.child("\(UID).jpeg").putData(uploadData, metadata: nil) { (metadata, error) in
                 if let error = error {
-                    print("ERROR: \(error)")
                     print(error.localizedDescription)
                 } else {
-                    let playerProfilePictureUrl =  String((metadata?.path)!)
-                    
-                    postPlayer(userId: userId, playerProfilePictureUrl: playerProfilePictureUrl, playerFullName: playerFullName, playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: manager, playerManager: playerManager, playerPosition: playerPosition, teamID: teamID, teamPIN: teamPIN)
+                    imageFolder.child("\(UID).jpeg").downloadURL { (url, error) in
+                        if let url = url,
+                            error == nil {
+                            print("URL!!!!!!!: \(url)")
+                            let playerProfilePictureUrl = url.absoluteString
+
+                            postPlayer(userId: userId, playerProfilePictureUrl: playerProfilePictureUrl, playerFullName: playerFullName, playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: manager, playerManager: playerManager, playerPosition: playerPosition, teamID: teamID, teamPIN: teamPIN)
+                        }
+                    }
                 }
             }
         }
