@@ -218,10 +218,10 @@ class Helper {
     Database.database().reference().child("teams").child(teamID).child("players").child(userId).updateChildValues(playerDictionary)
     }
     
-    class func getPlayer () -> DatabaseReference {
+    class func getUser () -> DatabaseReference {
         let uuid = PlayerModel.authCollection
-        let player = PlayerModel.collection.child(uuid)
-        return player
+        let user = PlayerModel.collection.child(uuid)
+        return user
     }
     
     class func getTeamPlayers (teamId: String) -> DatabaseReference {

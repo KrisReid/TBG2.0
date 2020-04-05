@@ -49,14 +49,14 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func loadPlayerData() {
-        //Change this to get user not player
-        let playerRef = Helper.getPlayer()
-        playerRef.observe(.value) { [weak self] (snapshot) in
+        
+        let userRef = Helper.getUser()
+        userRef.observe(.value) { [weak self] (snapshot) in
             guard let strongSelf = self else { return }
             guard let player = PlayerModel(snapshot) else {return}
             strongSelf.player = player
             
-            //Helper?
+            
             let playersRef = TeamModel.collection.child(strongSelf.player?.teamId ?? "").child("players")
             let playerRefQuery = playersRef.queryOrderedByKey()
             playerRefQuery.observeSingleEvent(of: .value) { [weak self] (snapshot) in
@@ -127,17 +127,17 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let snapshot = sectionData[indexPath.section]![indexPath.row]
+        let snapshot = sectionData[indexPath.section]![indexPath.row] as! PlayerModel
         performSegue(withIdentifier: "playerDetailSegue", sender: snapshot)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? PlayerDetailViewController {
-            if let snapshot = sender as? Player {
-                vc.playerName = snapshot.playerName
-                vc.playerProfilePic = snapshot.playerImage
-                vc.playerAge = snapshot.playerAge
-                vc.playerPosition = snapshot.playerPostion
+            if let snapshot = sender as? PlayerModel {
+                vc.playerName = snapshot.fullName
+                vc.playerProfilePicUrl = snapshot.profilePictureUrl
+                vc.playerDateOfBirth = snapshot.dateOfBirth
+                vc.playerPosition = snapshot.position
             }
         }
     }

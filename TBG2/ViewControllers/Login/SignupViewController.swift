@@ -81,12 +81,26 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
         btnProfilePicture.setTitle("",for: .normal)
     }
     
+    
+    func pageValidation (segueIdentifier: String) {
+        if (tfFullName.text == "" || tfPassword.text == "" || tfPostcode.text == "" || tfDateOfBirth.text == "" || tfHouseNumber.text == "" || tfEmailAddress.text == "") {
+            
+            let alert = Helper.errorAlert(title: "Ooops", message: "All fields must be populated. This will save you signing on each season 🥳")
+            DispatchQueue.main.async {
+                self.present(alert, animated: true, completion: nil)
+            }
+        } else {
+            performSegue(withIdentifier: segueIdentifier, sender: nil)
+        }
+    }
+    
+    
     @IBAction func btnCreateTeamTapped(_ sender: Any) {
-        performSegue(withIdentifier: "createTeamSegue", sender: nil)
+        pageValidation(segueIdentifier: "createTeamSegue")
     }
     
     @IBAction func btnJoinTeamTapped(_ sender: Any) {
-        performSegue(withIdentifier: "joinTeamSegue", sender: nil)
+        pageValidation(segueIdentifier: "joinTeamSegue")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

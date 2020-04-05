@@ -210,7 +210,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="btnCreateTeamTapped:" destination="KPI-9K-CEV" eventType="touchUpInside" id="GQa-f7-pS3"/>
-                                                    <segue destination="XaW-fd-jBW" kind="show" identifier="createTeamSegue" id="bEy-Pt-EWs"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dT8-oc-dpr">
@@ -224,7 +223,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="btnJoinTeamTapped:" destination="KPI-9K-CEV" eventType="touchUpInside" id="Eq7-b2-Loy"/>
-                                                    <segue destination="1uF-vO-42f" kind="show" identifier="joinTeamSegue" id="bbs-wB-2gG"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -291,6 +289,8 @@
                         <outlet property="tfPassword" destination="ZIf-Uy-qdT" id="w5N-7g-bge"/>
                         <outlet property="tfPostcode" destination="aRh-To-JMG" id="agg-hl-a7N"/>
                         <outlet property="vPlayerSignupDetails" destination="NDM-A0-Fco" id="ZHQ-RJ-5B3"/>
+                        <segue destination="XaW-fd-jBW" kind="show" identifier="createTeamSegue" id="Z5u-nz-DzB"/>
+                        <segue destination="1uF-vO-42f" kind="show" identifier="joinTeamSegue" id="lId-m4-6Q1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xtl-dM-E6V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
