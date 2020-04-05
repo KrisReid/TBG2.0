@@ -72,7 +72,7 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
             return
         }
         btnTeamCrest.setImage(image , for: UIControl.State.normal)
-        btnTeamCrest.setTitle("",for: .normal)
+        btnTeamCrest.setTitle("team_crest",for: .normal)
     }
     
     
@@ -111,44 +111,56 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
         guard let teamPostcode = tfTeamPostcode.text else { return }
         guard let playerProfilePicture = playerProfilePicture?.image else { return }
         
-        let spinner = UIViewController.displayLoading(withView: self.view)
         
-        Auth.auth().createUser(withEmail: playerEmailAddress, password: playerPassword) { [weak self] (user, error) in
+        if (tfTeamName.text == "" || tfTeamPIN.text == "" || tfTeamPostcode.text == "" || btnTeamCrest.currentTitle == nil) {
             
-            guard let strongSelf = self else { return }
+            let alert = Helper.errorAlert(title: "Ooops", message: "All fields must be populated and picutre added. This will save you signing on each season 🥳")
+            DispatchQueue.main.async {
+                self.present(alert, animated: true, completion: nil)
+            }
             
-            if error == nil {
+        } else {
+            
+            let spinner = UIViewController.displayLoading(withView: self.view)
+            
+            Auth.auth().createUser(withEmail: playerEmailAddress, password: playerPassword) { [weak self] (user, error) in
                 
-                guard let userId = user?.user.uid else { return }
+                guard let strongSelf = self else { return }
                 
-                Auth.auth().signIn(withEmail: self!.playerEmailAddress, password: self!.playerPassword) { (user, error) in
+                if error == nil {
+                    
+                    guard let userId = user?.user.uid else { return }
+                    
+                    Auth.auth().signIn(withEmail: self!.playerEmailAddress, password: self!.playerPassword) { (user, error) in
+                        DispatchQueue.main.async {
+                            UIViewController.removeLoading(spinner: spinner)
+                        }
+                        if error == nil {
+                            
+                            Helper.postNewTeam(userId: userId, playerProfilePicture: playerProfilePicture, playerFullName: self!.playerFullName, playerEmailAddress: self!.playerEmailAddress, playerDateOfBirth: self!.playerDateOfBirth, playerHouseNumber: self!.playerHouseNumber, playerPostcode: self!.playerPostcode, manager: true, playerManager: self!.playerManager, playerPosition: self!.playerPosition, teamName: teamName, teamPIN: teamPIN, teamPostcode: teamPostcode, teamCrest: teamCrest)
+                            
+                            DispatchQueue.main.async {
+                                Helper.login()
+                            }
+                            
+                        } else if let error = error  {
+                            print(error.localizedDescription)
+                            let alert = Helper.signupError(error: error)
+                            DispatchQueue.main.async {
+                                strongSelf.present(alert, animated: true, completion: nil)
+                            }
+                        }
+                    }
+                    
+                } else if let error = error {
+                    print(error.localizedDescription)
+                    let alert = Helper.loginError(error: error)
                     DispatchQueue.main.async {
-                        UIViewController.removeLoading(spinner: spinner)
+                        strongSelf.present(alert, animated: true, completion: nil)
                     }
-                    if error == nil {
-                        
-                        Helper.postNewTeam(userId: userId, playerProfilePicture: playerProfilePicture, playerFullName: self!.playerFullName, playerEmailAddress: self!.playerEmailAddress, playerDateOfBirth: self!.playerDateOfBirth, playerHouseNumber: self!.playerHouseNumber, playerPostcode: self!.playerPostcode, manager: true, playerManager: self!.playerManager, playerPosition: self!.playerPosition, teamName: teamName, teamPIN: teamPIN, teamPostcode: teamPostcode, teamCrest: teamCrest)
-                        
-                        DispatchQueue.main.async {
-                            Helper.login()
-                        }
-                        
-                    } else if let error = error  {
-                        print(error.localizedDescription)
-                        let alert = Helper.signupError(error: error)
-                        DispatchQueue.main.async {
-                            strongSelf.present(alert, animated: true, completion: nil)
-                        }
-                    }
-                }
-                
-            } else if let error = error {
-                print(error.localizedDescription)
-                let alert = Helper.loginError(error: error)
-                DispatchQueue.main.async {
-                    strongSelf.present(alert, animated: true, completion: nil)
                 }
             }
+            
         }
         
     }

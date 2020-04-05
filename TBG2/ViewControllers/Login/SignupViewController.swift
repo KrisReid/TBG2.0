@@ -81,7 +81,6 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
         btnProfilePicture.setTitle("User_Profile",for: .normal)
     }
     
-    
     func pageValidation (segueIdentifier: String) {
         if (tfFullName.text == "" || tfPassword.text == "" || tfPostcode.text == "" || tfDateOfBirth.text == "" || tfHouseNumber.text == "" || tfEmailAddress.text == "") || btnProfilePicture.currentTitle == nil {
             
@@ -93,7 +92,6 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
             performSegue(withIdentifier: segueIdentifier, sender: nil)
         }
     }
-    
     
     @IBAction func btnCreateTeamTapped(_ sender: Any) {
         pageValidation(segueIdentifier: "createTeamSegue")
@@ -137,7 +135,6 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
         datePicker.standardDateFormat(datePicker: datePicker, textField: tfDateOfBirth)
     }
     
-    
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardFrame : NSValue = notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
@@ -159,5 +156,5 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
             }
         }
     }
-
+    
 }
