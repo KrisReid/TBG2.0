@@ -111,7 +111,6 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
         guard let teamPostcode = tfTeamPostcode.text else { return }
         guard let playerProfilePicture = playerProfilePicture?.image else { return }
         
-        
         if (tfTeamName.text == "" || tfTeamPIN.text == "" || tfTeamPostcode.text == "" || btnTeamCrest.currentTitle == nil) {
             
             let alert = Helper.errorAlert(title: "Ooops", message: "All fields must be populated and picutre added. This will save you signing on each season 🥳")
