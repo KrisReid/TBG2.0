@@ -76,6 +76,10 @@ class AddFixtureViewController: UIViewController {
         timePicker?.addTarget(self, action: #selector(AddFixtureViewController.timeChanged(timePicker:)), for: .valueChanged)
         tfTime.inputView = timePicker
         
+        
+//        //COREDATA TEST
+//        Helper.getUserCoreData()
+        
     }
     
     @objc func dateChanged(datePicker: UIDatePicker) {

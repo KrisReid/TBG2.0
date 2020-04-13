@@ -11,6 +11,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
+import CoreData
 
 class Helper {
     
@@ -257,5 +258,24 @@ class Helper {
         let players = TeamModel.collection.child("teams").child(teamId).child("players")
         return players
     }
+    
+    
+    
+//    //NEW CODE FOR FETCHING USER DATA FROM CORE DATA
+//    
+//    class func getUserCoreData () {
+//        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+//        
+//        do {
+//            let result = try context.fetch(fetchRequest)
+//            for data in result as! [NSManagedObject] {
+//                print(data.value(forKey: "id") as! String)
+//                print(data.value(forKey: "teamId") as! String)
+//            }
+//        } catch {
+//            print("Error")
+//        }
+//    }
 
 }
