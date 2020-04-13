@@ -59,17 +59,17 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             
             
-            //NEW CODE FOR STORING USER DATA IN CORE DATA
-            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-            let userEntity = NSEntityDescription.entity(forEntityName: "User", in: context)
-            let user = NSManagedObject(entity: userEntity!, insertInto: context)
-            user.setValue(player.id, forKey: "id")
-            user.setValue(player.teamId, forKey: "teamId")
-            do {
-                try context.save()
-            } catch let error as NSError {
-                print("Could not save data! \(error), \(error.userInfo)")
-            }
+//            //NEW CODE FOR STORING USER DATA IN CORE DATA
+//            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//            let userEntity = NSEntityDescription.entity(forEntityName: "User", in: context)
+//            let user = NSManagedObject(entity: userEntity!, insertInto: context)
+//            user.setValue(player.id, forKey: "id")
+//            user.setValue(player.teamId, forKey: "teamId")
+//            do {
+//                try context.save()
+//            } catch let error as NSError {
+//                print("Could not save data! \(error), \(error.userInfo)")
+//            }
             
             
             
