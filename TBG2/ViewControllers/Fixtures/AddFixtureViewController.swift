@@ -45,7 +45,6 @@ class AddFixtureViewController: UIViewController {
             vAssistantManager.isHidden = true
         }
         
-        
         //Styling
         tfOpposition.underlined(colour: Colours.init().secondaryBlue.cgColor)
         tfDate.underlined(colour: Colours.init().secondaryBlue.cgColor)
@@ -111,6 +110,7 @@ class AddFixtureViewController: UIViewController {
 
     @IBAction func btnCreateGameTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+        
     }
     
     //closes the keyboard when you touch white space

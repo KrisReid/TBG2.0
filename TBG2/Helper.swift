@@ -214,6 +214,7 @@ class Helper {
             "teamId" : teamID
         ]
         
+        
         Database.database().reference().child("players").child(userId).updateChildValues(playerDictionary)
     Database.database().reference().child("teams").child(teamID).child("players").child(userId).updateChildValues(playerDictionary)
     }

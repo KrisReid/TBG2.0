@@ -89,17 +89,18 @@ class TeamModel {
         }
     }
     
+    
     var keys: Dictionary<String, Any>.Keys
     var teams: Dictionary<String, Any>
+    
     
     var crest: String = ""
     var id: String = ""
     var name: String = ""
     var pin: Int = 000000
     var postcode: String = ""
+//    var fixtures: Dictionary<String, Any>
     
-//    var players: NSMutableArray = []
-
     
     init?(_ snapshot: DataSnapshot) {
         guard let value = snapshot.value as? [String: Any] else { return nil }
@@ -113,7 +114,8 @@ class TeamModel {
         self.pin = value["pin"] as? Int ?? 000000
         self.postcode = value["postcode"] as? String ?? ""
         
-//        self.players = value["players"] as? NSMutableArray ?? []
+        print("Value 222222222")
+        print(value)
         
     }
 
