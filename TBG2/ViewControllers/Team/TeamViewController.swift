@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 import SDWebImage
+import CoreData
 
 class TeamViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -57,6 +58,22 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
             strongSelf.player = player
             
             
+            
+            //NEW CODE FOR STORING USER DATA IN CORE DATA
+            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            let userEntity = NSEntityDescription.entity(forEntityName: "User", in: context)
+            let user = NSManagedObject(entity: userEntity!, insertInto: context)
+            user.setValue(player.id, forKey: "id")
+            user.setValue(player.teamId, forKey: "teamId")
+            do {
+                try context.save()
+            } catch let error as NSError {
+                print("Could not save data! \(error), \(error.userInfo)")
+            }
+            
+            
+            
+            //CODE CONTINUE
             let playersRef = TeamModel.collection.child(strongSelf.player?.teamId ?? "").child("players")
             let playerRefQuery = playersRef.queryOrderedByKey()
             playerRefQuery.observeSingleEvent(of: .value) { [weak self] (snapshot) in
