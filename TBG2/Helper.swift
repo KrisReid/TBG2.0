@@ -143,6 +143,9 @@ class Helper {
     }
     
     
+    
+    
+    
     class func postNewTeam(userId: String, playerProfilePicture: UIImage, playerFullName: String,playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, playerManager: Bool, playerPosition: String, teamName: String, teamPIN: Int, teamPostcode: String, teamCrest: UIImage) {
         
         
@@ -151,17 +154,23 @@ class Helper {
            
             imageFolder.child("\(NSUUID().uuidString).jpeg").putData(uploadData, metadata: nil) { (metadata, error) in
                 if let error = error {
-                    print("ERROR: \(error)")
                     print(error.localizedDescription)
                 } else {
-                    let teamRef = Database.database().reference().child("teams").childByAutoId()
-                     let newKey = teamRef.key
-                    let TeamDictionary : [String:Any] = ["crest": String((metadata?.path)!), "name": teamName, "pin": teamPIN, "postcode":teamPostcode, "id": newKey as Any]
+                    let teamRef = TeamModel.collection.childByAutoId()
+                    let newKey = teamRef.key
+                    let TeamDictionary : [String:Any] =
+                        [
+                            "crest": String((metadata?.path)!),
+                            "name": teamName,
+                            "pin": teamPIN,
+                            "postcode":teamPostcode,
+                            "id": newKey as Any
+                        ]
                      teamRef.setValue(TeamDictionary)
-                     
+                    
                      DispatchQueue.main.async {
 
-                         postPlayerProfile(profilePicture: playerProfilePicture, userId: userId, playerFullName: playerFullName, playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: manager, playerManager: playerManager, playerPosition: playerPosition, teamID: newKey!, teamPIN: teamPIN)
+                         postPlayerProfile(profilePicture: playerProfilePicture, userId: userId, playerFullName: playerFullName, playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: manager, playerManager: playerManager, playerPosition: playerPosition, teamId: newKey!, teamPIN: teamPIN)
 
                      }
                 }
@@ -170,7 +179,7 @@ class Helper {
     }
     
     
-    class func postPlayerProfile(profilePicture: UIImage, userId: String, playerFullName: String, playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, playerManager: Bool, playerPosition: String, teamID: String, teamPIN: Int) {
+    class func postPlayerProfile(profilePicture: UIImage, userId: String, playerFullName: String, playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, playerManager: Bool, playerPosition: String, teamId: String, teamPIN: Int) {
         
         let imageFolder = Storage.storage().reference().child("player_images")
         if let uploadData = profilePicture.jpegData(compressionQuality: 0.75) {
@@ -184,10 +193,9 @@ class Helper {
                     imageFolder.child("\(UID).jpeg").downloadURL { (url, error) in
                         if let url = url,
                             error == nil {
-                            print("URL!!!!!!!: \(url)")
                             let playerProfilePictureUrl = url.absoluteString
 
-                            postPlayer(userId: userId, playerProfilePictureUrl: playerProfilePictureUrl, playerFullName: playerFullName, playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: manager, playerManager: playerManager, playerPosition: playerPosition, teamID: teamID, teamPIN: teamPIN)
+                            postPlayer(userId: userId, playerProfilePictureUrl: playerProfilePictureUrl, playerFullName: playerFullName, playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: manager, playerManager: playerManager, playerPosition: playerPosition, teamId: teamId, teamPIN: teamPIN)
                         }
                     }
                 }
@@ -197,7 +205,7 @@ class Helper {
     
     
     
-    class private func postPlayer(userId: String, playerProfilePictureUrl:String, playerFullName: String, playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, playerManager: Bool, playerPosition: String, teamID: String, teamPIN: Int) {
+    class private func postPlayer(userId: String, playerProfilePictureUrl:String, playerFullName: String, playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, playerManager: Bool, playerPosition: String, teamId: String, teamPIN: Int) {
         
         let playerDictionary : [String:Any] =
         [
@@ -211,13 +219,33 @@ class Helper {
             "manager" : manager,
             "playerManager" : playerManager,
             "position" : playerPosition,
-            "teamId" : teamID
+            "teamId" : teamId
         ]
         
-        
-        Database.database().reference().child("players").child(userId).updateChildValues(playerDictionary)
-    Database.database().reference().child("teams").child(teamID).child("players").child(userId).updateChildValues(playerDictionary)
+        PlayerModel.collection.child(userId).updateChildValues(playerDictionary)
+        TeamModel.collection.child(teamId).child("players").child(userId).updateChildValues(playerDictionary)
     }
+    
+    
+    class func postFixture (teamId: String, homeFixture: Bool, opposition: String, date: String, time: String, postcode: String) {
+        
+        let fixtureDictionary : [String:Any] =
+        [
+            "homeFixture": homeFixture,
+            "opposition": opposition,
+            "date": date,
+            "time": time,
+            "postcode": postcode,
+            "homeGoals": "-",
+            "awayGoals": "-"
+        ]
+        
+        let fixtureRef = TeamModel.collection.child(teamId).child("fixtures").childByAutoId()
+        fixtureRef.setValue(fixtureDictionary)
+        
+    }
+    
+    
     
     class func getUser () -> DatabaseReference {
         let uuid = PlayerModel.authCollection
@@ -229,5 +257,5 @@ class Helper {
         let players = TeamModel.collection.child("teams").child(teamId).child("players")
         return players
     }
-        
+
 }

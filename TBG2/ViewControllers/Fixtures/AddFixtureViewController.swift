@@ -31,9 +31,11 @@ class AddFixtureViewController: UIViewController {
     private var timePicker: UIDatePicker?
     
     var colour = Colours()
+    var player: PlayerModel?
     
     var ManagerAvailability = false
     var AssistantAvailability = false
+    var HomeFixture = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,8 +75,8 @@ class AddFixtureViewController: UIViewController {
         timePicker?.backgroundColor = UIColor.white
         timePicker?.addTarget(self, action: #selector(AddFixtureViewController.timeChanged(timePicker:)), for: .valueChanged)
         tfTime.inputView = timePicker
+        
     }
-    
     
     @objc func dateChanged(datePicker: UIDatePicker) {
         datePicker.standardDateFormat(datePicker: datePicker, textField: tfDate)
@@ -85,6 +87,15 @@ class AddFixtureViewController: UIViewController {
         timeFormatter.timeStyle = .short
         tfTime.text = timeFormatter.string(from: timePicker.date)
     }
+    
+    @IBAction func scHomeAwayTapped(_ sender: Any) {
+        if scHomeAway.selectedSegmentIndex == 0 {
+            HomeFixture = true
+        } else {
+            HomeFixture = false
+        }
+    }
+    
     
     @IBAction func btnManagerTapped(_ sender: Any) {
         self.view.endEditing(true)
@@ -109,8 +120,35 @@ class AddFixtureViewController: UIViewController {
     }
 
     @IBAction func btnCreateGameTapped(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+
+        guard let opposition = tfOpposition.text else { return }
+        guard let date = tfDate.text else { return }
+        guard let time = tfTime.text else { return }
+        guard let postcode = tfPostcode.text else { return }
         
+        if (opposition == "" || date == "" || time == "" || postcode == "") {
+            
+            let alert = Helper.errorAlert(title: "Ooops", message: "All fields must be populated to create a game")
+            DispatchQueue.main.async {
+                self.present(alert, animated: true, completion: nil)
+            }
+            
+        } else {
+            //Get the team ID from somewhere else (Store it on login?)
+            
+            let userRef = Helper.getUser()
+            userRef.observe(.value) { [weak self] (snapshot) in
+                guard let strongSelf = self else { return }
+                guard let player = PlayerModel(snapshot) else {return}
+                strongSelf.player = player
+                
+                Helper.postFixture(teamId: player.teamId, homeFixture: strongSelf.HomeFixture, opposition: opposition, date: date, time: time, postcode: postcode)
+                
+                strongSelf.dismiss(animated: true, completion: nil)
+            }
+            
+        }
+
     }
     
     //closes the keyboard when you touch white space

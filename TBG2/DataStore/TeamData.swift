@@ -99,9 +99,8 @@ class TeamModel {
     var name: String = ""
     var pin: Int = 000000
     var postcode: String = ""
-//    var fixtures: Dictionary<String, Any>
     
-    
+
     init?(_ snapshot: DataSnapshot) {
         guard let value = snapshot.value as? [String: Any] else { return nil }
         
@@ -113,9 +112,6 @@ class TeamModel {
         self.name = value["name"] as? String ?? ""
         self.pin = value["pin"] as? Int ?? 000000
         self.postcode = value["postcode"] as? String ?? ""
-        
-        print("Value 222222222")
-        print(value)
         
     }
 
