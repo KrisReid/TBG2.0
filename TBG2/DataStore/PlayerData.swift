@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
 struct Player {
     var id: Int
@@ -16,6 +18,7 @@ struct Player {
     var playerAge: Int
     var playerPostion: String
 }
+
 
 class PlayersModel {
     
@@ -57,3 +60,56 @@ class PlayersModel {
         
     }
 }
+
+
+
+class PlayerModel {
+    
+    static var authCollection: String {
+        get {
+            return Auth.auth().currentUser?.uid ?? ""
+        }
+    }
+    
+    static var collection: DatabaseReference {
+        get {
+            return Database.database().reference().child("players")
+        }
+    }
+    
+    var id: String = ""
+    var fullName: String = ""
+    var email: String = ""
+    var dateOfBirth: String = ""
+    var profilePictureUrl: URL?
+    var houseNumber: String = ""
+    var postcode: String = ""
+    var manager: Bool = false
+    var playerManager: Bool = false
+    var position: String = ""
+    var teamId: String = ""
+
+    
+    init?(_ snapshot: DataSnapshot) {
+        guard let value = snapshot.value as? [String: Any] else { return nil }
+        
+        // CHANGE THESE TO GUARD STATEMENTS ONCE VALIDATION ADDED AT LOGIN
+        self.id = value["id"] as? String ?? ""
+        self.fullName = value["fullName"] as? String ?? ""
+        self.email = value["email"] as? String ?? ""
+        self.dateOfBirth = value["dateOfBirth"] as? String ?? ""
+        self.houseNumber = value["houseNumber"] as? String ?? ""
+        self.postcode = value["postcode"] as? String ?? ""
+        self.manager = value["manager"] as? Bool ?? false
+        self.playerManager = value["playerManager"] as? Bool ?? false
+        self.position = value["position"] as? String ?? ""
+        self.teamId = value["teamId"] as? String ?? ""
+        
+        if let profilePicture = value["profilePictureUrl"] as? String {
+            self.profilePictureUrl = URL(string: profilePicture)
+        }
+        
+    }
+
+}
+

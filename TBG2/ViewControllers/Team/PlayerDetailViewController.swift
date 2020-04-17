@@ -18,10 +18,10 @@ class PlayerDetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var vScrollView: UIView!
     
-    var playerProfilePic: UIImage = UIImage()
-    var playerName: String = String()
-    var playerAge: Int = Int()
-    var playerPosition: String = String()
+    var playerProfilePicUrl: URL?
+    var playerName: String?
+    var playerDateOfBirth: String?
+    var playerPosition: String?
     
     var slides:[Slide] = [];
     
@@ -32,9 +32,11 @@ class PlayerDetailViewController: UIViewController, UIScrollViewDelegate {
         
         ivPlayerIProfilePic.circle(colour: colours.primaryBlue.cgColor)
         
-        ivPlayerIProfilePic.image = playerProfilePic
+        ivPlayerIProfilePic.sd_setImage(with: playerProfilePicUrl, completed: nil)
         lblPlayerName.text = playerName
-        lblPlayerAge.text = "\(playerAge) years old"
+        
+        //Change to be DOB not age
+        lblPlayerAge.text = playerDateOfBirth
         
         slides = createSlides()
         setupSlideScrollView(slides: slides)

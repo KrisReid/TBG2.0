@@ -54,7 +54,6 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
         datePicker?.standardDatePicker(datePicker: datePicker!)
         datePicker?.addTarget(self, action: #selector(SignupViewController.dateChanged(datePicker:)), for: .valueChanged)
         tfDateOfBirth.inputView = datePicker
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -72,21 +71,34 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
-
+        
         guard let image = info[.editedImage] as? UIImage else {
             print("No image found")
             return
         }
+        
         btnProfilePicture.setImage(image , for: UIControl.State.normal)
-        btnProfilePicture.setTitle("",for: .normal)
+        btnProfilePicture.setTitle("User_Profile",for: .normal)
+    }
+    
+    func pageValidation (segueIdentifier: String) {
+        if (tfFullName.text == "" || tfPassword.text == "" || tfPostcode.text == "" || tfDateOfBirth.text == "" || tfHouseNumber.text == "" || tfEmailAddress.text == "") || btnProfilePicture.currentTitle == nil {
+            
+            let alert = Helper.errorAlert(title: "Ooops", message: "All fields must be populated and picutre added. This will save you signing on each season 🥳")
+            DispatchQueue.main.async {
+                self.present(alert, animated: true, completion: nil)
+            }
+        } else {
+            performSegue(withIdentifier: segueIdentifier, sender: nil)
+        }
     }
     
     @IBAction func btnCreateTeamTapped(_ sender: Any) {
-        performSegue(withIdentifier: "createTeamSegue", sender: nil)
+        pageValidation(segueIdentifier: "createTeamSegue")
     }
     
     @IBAction func btnJoinTeamTapped(_ sender: Any) {
-        performSegue(withIdentifier: "joinTeamSegue", sender: nil)
+        pageValidation(segueIdentifier: "joinTeamSegue")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -123,7 +135,6 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
         datePicker.standardDateFormat(datePicker: datePicker, textField: tfDateOfBirth)
     }
     
-    
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardFrame : NSValue = notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
@@ -145,5 +156,5 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
             }
         }
     }
-
+    
 }

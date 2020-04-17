@@ -12,7 +12,8 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var tableview: UITableView!
     
-     var colours = Colours()
+    var colours = Colours()
+    var player: PlayerModel?
     
     lazy var team: [Team] = {
         let teamModel = TeamsModel()
@@ -34,7 +35,40 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
         rightBarItemImage = rightBarItemImage?.withRenderingMode(.alwaysOriginal)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: rightBarItemImage, style: .plain, target: self, action: #selector(addFixtureTapped))
         
+//        //Load Fixture Data
+//        loadFixtureData()
     }
+    
+    
+//    func loadFixtureData() {
+//
+//        let userRef = Helper.getUser()
+//        userRef.observe(.value) { [weak self] (snapshot) in
+//            guard let strongSelf = self else { return }
+//            guard let player = PlayerModel(snapshot) else {return}
+//            strongSelf.player = player
+//
+//
+//            let playersRef = TeamModel.collection.child(strongSelf.player?.teamId ?? "").child("fixtures")
+//            let playerRefQuery = playersRef.queryOrderedByKey()
+//            playerRefQuery.observeSingleEvent(of: .value) { (snapshot) in
+////                guard let strongSelf = self else { return }
+//                for item in snapshot.children {
+//                    print(item)
+////                    guard let snapshot = item as? DataSnapshot else { continue }
+////                    guard let player = PlayerModel(snapshot) else { continue }
+//
+//
+//                }
+////                DispatchQueue.main.async {
+////                    strongSelf.tableview.reloadData()
+////                }
+//            }
+//        }
+//    }
+//
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return teamData[0].fixtures.count

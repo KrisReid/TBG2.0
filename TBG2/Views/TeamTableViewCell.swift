@@ -19,5 +19,6 @@ class TeamTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         ivPlayerImage.circle(colour: colours.primaryBlue.cgColor)
+        ivPlayerImage.clipsToBounds = true
     }
 }

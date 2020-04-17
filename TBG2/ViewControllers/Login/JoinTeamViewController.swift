@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseStorage
 
 class JoinTeamViewController: UIViewController {
     
@@ -46,10 +47,10 @@ class JoinTeamViewController: UIViewController {
         scPlayerPosition.defaultSegmentedControlFormat(backgroundColour: UIColor.clear)
 
         //Load Data
-        loadTeams()
+        getTeams()
     }
     
-    func loadTeams() {
+    func getTeams() {
         let teamRef = TeamModel.collection
         let spinner = UIViewController.displayLoading(withView: self.view)
         teamRef.observe(.value) { [weak self] (snapshot) in
@@ -59,6 +60,7 @@ class JoinTeamViewController: UIViewController {
             strongSelf.teams = teams
         }
     }
+    
     
     @IBAction func scPlayerPositionTapped(_ sender: Any) {
         switch scPlayerPosition.selectedSegmentIndex {
@@ -78,7 +80,7 @@ class JoinTeamViewController: UIViewController {
     func teamIDPINValidation() {
         let validaion = DispatchQueue(label: "validation")
         validaion.sync {
-            guard let teams = teams?.team else { return }
+            guard let teams = teams?.teams else { return }
             for team in teams {
                 if team.key == tfTeamID.text {
                     let result = team.value as! Dictionary<String, Any>
@@ -105,7 +107,8 @@ class JoinTeamViewController: UIViewController {
             if self.match {
                 
                 guard let teamPIN = Int(tfTeamPIN.text!) else { return }
-                guard let teamID = tfTeamID.text else { return }
+                guard let teamId = tfTeamID.text else { return }
+                guard let profilePicture = playerProfilePicture?.image else { return }
 
                 let spinner = UIViewController.displayLoading(withView: self.view)
 
@@ -123,13 +126,11 @@ class JoinTeamViewController: UIViewController {
                                 UIViewController.removeLoading(spinner: spinner)
                             }
                             if error == nil {
+                                
+                                Helper.postPlayerProfile(profilePicture: profilePicture, userId: userId, playerFullName: self!.playerFullName, playerEmailAddress: self!.playerEmailAddress, playerDateOfBirth: self!.playerDateOfBirth, playerHouseNumber: self!.playerHouseNumber, playerPostcode: self!.playerPostcode, manager: false, playerManager: false, playerPosition: self!.playerPosition, teamId: teamId, teamPIN: teamPIN)
+                                
                                 DispatchQueue.main.async {
-                                    //Join Team
-                                    Helper.postPlayerToTeam(userId: userId, playerFullName: self!.playerFullName, playerEmailAddress: self!.playerEmailAddress, playerDateOfBirth: self!.playerDateOfBirth, playerHouseNumber: self!.playerHouseNumber, playerPostcode: self!.playerPostcode, manager: false, playerManager: false, playerPosition: self!.playerPosition, teamID: teamID, teamPIN: teamPIN)
-
-                                    DispatchQueue.main.async {
-                                        Helper.login()
-                                    }
+                                    Helper.login()
                                 }
                             } else if let error = error  {
                                 // Signup Error

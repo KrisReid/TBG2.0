@@ -89,13 +89,30 @@ class TeamModel {
         }
     }
     
-    var keys: Dictionary<String, Any>.Keys
-    var team: Dictionary<String, Any>
     
+    var keys: Dictionary<String, Any>.Keys
+    var teams: Dictionary<String, Any>
+    
+    
+    var crest: String = ""
+    var id: String = ""
+    var name: String = ""
+    var pin: Int = 000000
+    var postcode: String = ""
+    
+
     init?(_ snapshot: DataSnapshot) {
         guard let value = snapshot.value as? [String: Any] else { return nil }
         
         self.keys = value.keys
-        self.team = value
+        self.teams = value
+        
+        self.crest = value["crest"] as? String ?? ""
+        self.id = value["id"] as? String ?? ""
+        self.name = value["name"] as? String ?? ""
+        self.pin = value["pin"] as? Int ?? 000000
+        self.postcode = value["postcode"] as? String ?? ""
+        
     }
+
 }

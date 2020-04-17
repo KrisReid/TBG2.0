@@ -28,7 +28,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q3E-9p-7jd">
                                 <rect key="frame" x="0.0" y="570" width="414" height="306"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="krisreid_06@hotmail.com" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aqb-bw-gWX">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="alison.m.bell@hotmail.com" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aqb-bw-gWX">
                                         <rect key="frame" x="20" y="37" width="374" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="fO5-cU-eKC"/>
@@ -64,7 +64,7 @@
                                             <segue destination="KPI-9K-CEV" kind="show" identifier="signupSegue" id="vlG-Qy-gop"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="12345678" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="12t-b2-Gtk">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1234678" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="12t-b2-Gtk">
                                         <rect key="frame" x="20" y="91" width="374" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="jpq-Jp-vhy"/>
@@ -145,7 +145,7 @@
                                                     <action selector="btnProfilePictureTapped:" destination="KPI-9K-CEV" eventType="touchUpInside" id="o67-TE-Es3"/>
                                                 </connections>
                                             </button>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Alison A" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uSu-xk-kbt">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Player 3" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uSu-xk-kbt">
                                                 <rect key="frame" x="20" y="280" width="374" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="kv9-Cv-if1"/>
@@ -181,7 +181,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="alison.m.bell@hotmail.com" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bHZ-hM-2x6">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="player1@tbg.com" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bHZ-hM-2x6">
                                                 <rect key="frame" x="20" y="334" width="374" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="d7c-zb-vRf"/>
@@ -210,7 +210,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="btnCreateTeamTapped:" destination="KPI-9K-CEV" eventType="touchUpInside" id="GQa-f7-pS3"/>
-                                                    <segue destination="XaW-fd-jBW" kind="show" identifier="createTeamSegue" id="bEy-Pt-EWs"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dT8-oc-dpr">
@@ -224,7 +223,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="btnJoinTeamTapped:" destination="KPI-9K-CEV" eventType="touchUpInside" id="Eq7-b2-Loy"/>
-                                                    <segue destination="1uF-vO-42f" kind="show" identifier="joinTeamSegue" id="bbs-wB-2gG"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -291,6 +289,8 @@
                         <outlet property="tfPassword" destination="ZIf-Uy-qdT" id="w5N-7g-bge"/>
                         <outlet property="tfPostcode" destination="aRh-To-JMG" id="agg-hl-a7N"/>
                         <outlet property="vPlayerSignupDetails" destination="NDM-A0-Fco" id="ZHQ-RJ-5B3"/>
+                        <segue destination="XaW-fd-jBW" kind="show" identifier="createTeamSegue" id="Z5u-nz-DzB"/>
+                        <segue destination="1uF-vO-42f" kind="show" identifier="joinTeamSegue" id="lId-m4-6Q1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xtl-dM-E6V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -305,7 +305,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-M1pNqOmXYlxB4NtINx8" placeholder="Team ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZMr-S8-Uev">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-M4AvvqqhDcTvPnIH9Ns" placeholder="Team ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZMr-S8-Uev">
                                 <rect key="frame" x="20" y="250" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="Y4Z-W6-X1g"/>
@@ -314,7 +314,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="12345" placeholder="Team PIN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c6D-QY-lor">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" placeholder="Team PIN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c6D-QY-lor">
                                 <rect key="frame" x="20" y="304" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="zbP-t8-W2D"/>

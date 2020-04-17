@@ -7,31 +7,30 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import SDWebImage
+import CoreData
 
 class TeamViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableview: UITableView!
     
     var colours = Colours()
+    var player: PlayerModel?
     
-    lazy var players: [Player] = {
-        let model = PlayersModel()
-        return model.playerList
-    } ()
     
+    var goalkeepers: NSMutableArray = []
+    var defenders: NSMutableArray = []
+    var midfielders: NSMutableArray = []
+    var strikers: NSMutableArray = []
     let sectionTitles: [String] = ["Goalkeepers","Defenders","Midfielders","Strikers"]
+    var sectionData: [Int: NSMutableArray] = [:]
     
-    let s1Data: [Player] = PlayersModel.init().goalkeeperList
-    let s2Data: [Player] = PlayersModel.init().defenderList
-    let s3Data: [Player] = PlayersModel.init().midfielderList
-    let s4Data: [Player] = PlayersModel.init().strikerList
-
-    var sectionData: [Int: [Player]] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sectionData = [0 : s1Data, 1 : s2Data, 2 : s3Data, 3 : s4Data]
+        sectionData = [0 : goalkeepers, 1 : defenders, 2 : midfielders, 3 : strikers]
 
         tableview.estimatedRowHeight = CGFloat(60.0)
         tableview.rowHeight = UITableView.automaticDimension
@@ -44,9 +43,66 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         var rightBarItemImage = UIImage(named: "plus_icon")
         rightBarItemImage = rightBarItemImage?.withRenderingMode(.alwaysOriginal)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: rightBarItemImage, style: .plain, target: self, action: #selector(shareTeamInformationTapped))
+        
+        //Load Data
+        loadPlayerData()
+        
     }
     
+    func loadPlayerData() {
+        
+        let userRef = Helper.getUser()
+        userRef.observe(.value) { [weak self] (snapshot) in
+            guard let strongSelf = self else { return }
+            guard let player = PlayerModel(snapshot) else {return}
+            strongSelf.player = player
+            
+            
+            
+//            //NEW CODE FOR STORING USER DATA IN CORE DATA
+//            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//            let userEntity = NSEntityDescription.entity(forEntityName: "User", in: context)
+//            let user = NSManagedObject(entity: userEntity!, insertInto: context)
+//            user.setValue(player.id, forKey: "id")
+//            user.setValue(player.teamId, forKey: "teamId")
+//            do {
+//                try context.save()
+//            } catch let error as NSError {
+//                print("Could not save data! \(error), \(error.userInfo)")
+//            }
+            
+            
+            
+            //CODE CONTINUE
+            let playersRef = TeamModel.collection.child(strongSelf.player?.teamId ?? "").child("players")
+            let playerRefQuery = playersRef.queryOrderedByKey()
+            playerRefQuery.observeSingleEvent(of: .value) { [weak self] (snapshot) in
+                guard let strongSelf = self else { return }
+                for item in snapshot.children {
+                    guard let snapshot = item as? DataSnapshot else { continue }
+                    guard let player = PlayerModel(snapshot) else { continue }
+                    
+                    switch player.position {
+                    case "Goalkeeper":
+                        strongSelf.goalkeepers.insert(player, at: 0)
+                    case "Defender":
+                        strongSelf.defenders.insert(player, at: 0)
+                    case "Midfielder":
+                        strongSelf.midfielders.insert(player, at: 0)
+                    case "Striker":
+                        strongSelf.strikers.insert(player, at: 0)
+                    default:
+                        break
+                    }
+                }
+                DispatchQueue.main.async {
+                    strongSelf.tableview.reloadData()
+                }
+            }
+        }
+    }
     
+     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (sectionData[section]?.count)!
     }
@@ -76,25 +132,29 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "TeamTableViewCell") as! TeamTableViewCell
-
-        cell.lblPlayerName.text = sectionData[indexPath.section]![indexPath.row].playerName
-        cell.ivPlayerImage.image = sectionData[indexPath.section]![indexPath.row].playerImage
+        
+        let players = sectionData[indexPath.section]![indexPath.row] as! PlayerModel
+        
+        cell.lblPlayerName.text = players.fullName
+        
+        cell.ivPlayerImage.sd_cancelCurrentImageLoad()
+        cell.ivPlayerImage?.sd_setImage(with: players.profilePictureUrl, completed: nil)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let snapshot = sectionData[indexPath.section]![indexPath.row]
+        let snapshot = sectionData[indexPath.section]![indexPath.row] as! PlayerModel
         performSegue(withIdentifier: "playerDetailSegue", sender: snapshot)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? PlayerDetailViewController {
-            if let snapshot = sender as? Player {
-                vc.playerName = snapshot.playerName
-                vc.playerProfilePic = snapshot.playerImage
-                vc.playerAge = snapshot.playerAge
-                vc.playerPosition = snapshot.playerPostion
+            if let snapshot = sender as? PlayerModel {
+                vc.playerName = snapshot.fullName
+                vc.playerProfilePicUrl = snapshot.profilePictureUrl
+                vc.playerDateOfBirth = snapshot.dateOfBirth
+                vc.playerPosition = snapshot.position
             }
         }
     }
