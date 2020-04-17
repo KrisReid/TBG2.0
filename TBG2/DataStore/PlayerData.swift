@@ -20,9 +20,6 @@ struct Player {
 }
 
 
-// TEST LINES
-
-
 class PlayersModel {
     
     var playerList: [Player] = [Player]()
