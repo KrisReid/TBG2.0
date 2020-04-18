@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseStorage
 
 struct Player {
     var id: Int
@@ -109,6 +110,54 @@ class PlayerModel {
             self.profilePictureUrl = URL(string: profilePicture)
         }
         
+    }
+    
+    
+    static func postPlayerProfile(profilePicture: UIImage, userId: String, playerFullName: String, playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, playerManager: Bool, playerPosition: String, teamId: String, teamPIN: Int) {
+        
+        let imageFolder = Storage.storage().reference().child("player_images")
+        if let uploadData = profilePicture.jpegData(compressionQuality: 0.75) {
+            
+            let UID = NSUUID().uuidString
+            
+            imageFolder.child("\(UID).jpeg").putData(uploadData, metadata: nil) { (metadata, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    imageFolder.child("\(UID).jpeg").downloadURL { (url, error) in
+                        if let url = url,
+                            error == nil {
+                            let playerProfilePictureUrl = url.absoluteString
+
+                            postPlayer(userId: userId, playerProfilePictureUrl: playerProfilePictureUrl, playerFullName: playerFullName, playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: manager, playerManager: playerManager, playerPosition: playerPosition, teamId: teamId, teamPIN: teamPIN)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    static private func postPlayer(userId: String, playerProfilePictureUrl:String, playerFullName: String, playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, playerManager: Bool, playerPosition: String, teamId: String, teamPIN: Int) {
+        
+        let playerDictionary : [String:Any] =
+        [
+            "id": userId,
+            "fullName" : playerFullName,
+            "profilePictureUrl" : playerProfilePictureUrl,
+            "email" : playerEmailAddress,
+            "dateOfBirth" : playerDateOfBirth,
+            "houseNumber" : playerHouseNumber,
+            "postcode" : playerPostcode,
+            "manager" : manager,
+            "playerManager" : playerManager,
+            "position" : playerPosition,
+            "teamId" : teamId
+        ]
+        
+        collection.child(userId).updateChildValues(playerDictionary)
+//        PlayerModel.collection.child(userId).updateChildValues(playerDictionary)
+        TeamModel.collection.child(teamId).child("players").child(userId).updateChildValues(playerDictionary)
     }
 
 }
