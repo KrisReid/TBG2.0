@@ -77,9 +77,6 @@ class AddFixtureViewController: UIViewController {
         tfTime.inputView = timePicker
         
         
-//        //COREDATA TEST
-//        Helper.getUserCoreData()
-        
     }
     
     @objc func dateChanged(datePicker: UIDatePicker) {
