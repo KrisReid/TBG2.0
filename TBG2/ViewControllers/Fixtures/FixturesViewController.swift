@@ -77,7 +77,6 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FixturesTableViewCell") as! FixturesTableViewCell
         
-        
         cell.lblOpposition.text = teamData[0].fixtures[indexPath.row].opposition
         
         if teamData[0].fixtures[indexPath.row].homeFixture == true {

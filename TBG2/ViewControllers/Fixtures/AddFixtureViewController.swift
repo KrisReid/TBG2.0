@@ -97,7 +97,6 @@ class AddFixtureViewController: UIViewController {
         }
     }
     
-    
     @IBAction func btnManagerTapped(_ sender: Any) {
         self.view.endEditing(true)
         if ManagerAvailability {
@@ -135,15 +134,17 @@ class AddFixtureViewController: UIViewController {
             }
             
         } else {
+            
             //Get the team ID from somewhere else (Store it on login?)
             
-            let userRef = Helper.getUser()
+//            let userRef = Helper.getUser()
+            let userRef = PlayerModel.getUser()
             userRef.observe(.value) { [weak self] (snapshot) in
                 guard let strongSelf = self else { return }
                 guard let player = PlayerModel(snapshot) else {return}
                 strongSelf.player = player
                 
-                Helper.postFixture(teamId: player.teamId, homeFixture: strongSelf.HomeFixture, opposition: opposition, date: date, time: time, postcode: postcode)
+                FixtureModel.postFixture(teamId: player.teamId, homeFixture: strongSelf.HomeFixture, opposition: opposition, date: date, time: time, postcode: postcode)
                 
                 strongSelf.dismiss(animated: true, completion: nil)
             }
