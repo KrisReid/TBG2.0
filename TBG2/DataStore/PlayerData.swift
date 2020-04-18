@@ -113,6 +113,13 @@ class PlayerModel {
     }
     
     
+    static func getUser () -> DatabaseReference {
+        let uuid = PlayerModel.authCollection
+        let user = PlayerModel.collection.child(uuid)
+        return user
+    }
+    
+    
     static func postPlayerProfile(profilePicture: UIImage, userId: String, playerFullName: String, playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, playerManager: Bool, playerPosition: String, teamId: String, teamPIN: Int) {
         
         let imageFolder = Storage.storage().reference().child("player_images")

@@ -116,6 +116,14 @@ class TeamModel {
         
     }
     
+    
+//    static func getTeamPlayers (teamId: String) -> DatabaseReference {
+//        let players = TeamModel.collection.child("teams").child(teamId).child("players")
+//        return players
+//    }
+    
+    
+    
     static func postNewTeam(userId: String, playerProfilePicture: UIImage, playerFullName: String,playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, playerManager: Bool, playerPosition: String, teamName: String, teamPIN: Int, teamPostcode: String, teamCrest: UIImage) {
         
         

@@ -143,37 +143,5 @@ class Helper {
         return Helper.errorAlert(title: errorTitle, message: errorMessage)
     }
     
-    
-    
-    
-    class func postFixture (teamId: String, homeFixture: Bool, opposition: String, date: String, time: String, postcode: String) {
-        
-        let fixtureDictionary : [String:Any] =
-        [
-            "homeFixture": homeFixture,
-            "opposition": opposition,
-            "date": date,
-            "time": time,
-            "postcode": postcode,
-            "homeGoals": "-",
-            "awayGoals": "-"
-        ]
-        
-        let fixtureRef = TeamModel.collection.child(teamId).child("fixtures").childByAutoId()
-        fixtureRef.setValue(fixtureDictionary)
-        
-    }
-    
-    
-    class func getUser () -> DatabaseReference {
-        let uuid = PlayerModel.authCollection
-        let user = PlayerModel.collection.child(uuid)
-        return user
-    }
-    
-    class func getTeamPlayers (teamId: String) -> DatabaseReference {
-        let players = TeamModel.collection.child("teams").child(teamId).child("players")
-        return players
-    }
 
 }
