@@ -78,6 +78,8 @@ class PlayerModel {
         }
     }
     
+    //This is just a way to parse the snapshot
+    
     var id: String = ""
     var fullName: String = ""
     var email: String = ""
@@ -90,6 +92,8 @@ class PlayerModel {
     var position: String = ""
     var teamId: String = ""
 
+    
+    //IN THE CODE PASS A SNAPSHOT INTO THE MODEL AND THEN GET BACK THE PARSED VALUES
     
     init?(_ snapshot: DataSnapshot) {
         guard let value = snapshot.value as? [String: Any] else { return nil }

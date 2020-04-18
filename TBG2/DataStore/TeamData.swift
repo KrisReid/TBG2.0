@@ -90,10 +90,8 @@ class TeamModel {
         }
     }
     
-    
     var keys: Dictionary<String, Any>.Keys
     var teams: Dictionary<String, Any>
-    
     
     var crest: String = ""
     var id: String = ""
@@ -102,6 +100,8 @@ class TeamModel {
     var postcode: String = ""
     
 
+    //IN THE CODE PASS A SNAPSHOT INTO THE MODEL AND THEN GET BACK THE PARSED VALUES
+    
     init?(_ snapshot: DataSnapshot) {
         guard let value = snapshot.value as? [String: Any] else { return nil }
         

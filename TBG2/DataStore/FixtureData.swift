@@ -18,29 +18,31 @@ class FixtureModel {
         }
     }
     
-//    var id: String
-//    var homeFixture: Bool
-//    var opposition: String
-//    var date: String
-//    var time: String
-//    var postcode: String
-//    var homeGoals: String
-//    var awayGoals: String
-//
-//
-//    init?(_ snapshot: DataSnapshot) {
-//        guard let value = snapshot.value as? [String: Any] else { return nil }
-//
-//        self.id = value["id"] as? String ?? ""
-//        self.homeFixture = value["homeFixture"] as? Bool ?? false
-//        self.opposition = value["opposition"] as? String ?? ""
-//        self.date = value["date"] as? String ?? ""
-//        self.time = value["time"] as? String ?? ""
-//        self.postcode = value["postcode"] as? String ?? ""
-//        self.homeGoals = value["homeGoals"] as? String ?? "-"
-//        self.awayGoals = value["awayGoals"] as? String ?? "-"
-//
-//    }
+    var id: String
+    var homeFixture: Bool
+    var opposition: String
+    var date: String
+    var time: String
+    var postcode: String
+    var homeGoals: String
+    var awayGoals: String
+
+    
+    //IN THE CODE PASS A SNAPSHOT INTO THE MODEL AND THEN GET BACK THE PARSED VALUES
+
+    init?(_ snapshot: DataSnapshot) {
+        guard let value = snapshot.value as? [String: Any] else { return nil }
+
+        self.id = value["id"] as? String ?? ""
+        self.homeFixture = value["homeFixture"] as? Bool ?? false
+        self.opposition = value["opposition"] as? String ?? ""
+        self.date = value["date"] as? String ?? ""
+        self.time = value["time"] as? String ?? ""
+        self.postcode = value["postcode"] as? String ?? ""
+        self.homeGoals = value["homeGoals"] as? String ?? "-"
+        self.awayGoals = value["awayGoals"] as? String ?? "-"
+
+    }
     
     
     class func postFixture (teamId: String, homeFixture: Bool, opposition: String, date: String, time: String, postcode: String) {

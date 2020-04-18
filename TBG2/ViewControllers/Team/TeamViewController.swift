@@ -51,12 +51,11 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func loadPlayerData() {
         
-        let userRef = Helper.getUser()
+        let userRef = PlayerModel.getUser()
         userRef.observe(.value) { [weak self] (snapshot) in
             guard let strongSelf = self else { return }
             guard let player = PlayerModel(snapshot) else {return}
             strongSelf.player = player
-            
             
             let playersRef = TeamModel.collection.child(strongSelf.player?.teamId ?? "").child("players")
             let playerRefQuery = playersRef.queryOrderedByKey()
