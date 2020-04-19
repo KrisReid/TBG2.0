@@ -170,6 +170,7 @@ class PlayerModel {
 //        PlayerModel.collection.child(userId).updateChildValues(playerDictionary)
         TeamModel.collection.child(teamId).child("players").child(userId).updateChildValues(playerDictionary)
     }
+    
 
 }
 
