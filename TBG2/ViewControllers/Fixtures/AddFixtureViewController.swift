@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class AddFixtureViewController: UIViewController {
     
@@ -32,11 +33,14 @@ class AddFixtureViewController: UIViewController {
     
     var colour = Colours()
     var player: PlayerModel?
+    var players: NSMutableArray = []
+    
     
     var ManagerAvailability = false
     var AssistantAvailability = false
     var HomeFixture = true
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,7 +80,8 @@ class AddFixtureViewController: UIViewController {
         timePicker?.addTarget(self, action: #selector(AddFixtureViewController.timeChanged(timePicker:)), for: .valueChanged)
         tfTime.inputView = timePicker
         
-        
+        //Load Players Data
+        loadPlayersData()
     }
     
     @objc func dateChanged(datePicker: UIDatePicker) {
@@ -118,6 +123,29 @@ class AddFixtureViewController: UIViewController {
             AssistantAvailability = true
         }
     }
+    
+    func loadPlayersData() {
+        let userRef = PlayerModel.getUser()
+        userRef.observe(.value) { [weak self] (snapshot) in
+            guard let strongSelf = self else { return }
+            guard let player = PlayerModel(snapshot) else {return}
+            strongSelf.player = player
+            
+            let playerRef = TeamModel.getTeamPlayers(teamId: player.teamId)
+            let playerRefQuery = playerRef.queryOrderedByKey()
+
+            playerRefQuery.observeSingleEvent(of: .value) { (snapshot) in
+                
+                guard let strongSelf = self else { return }
+                for item in snapshot.children {
+                    guard let snapshot = item as? DataSnapshot else { continue }
+                    
+                    strongSelf.players.insert(snapshot.key, at: 0)
+                    print(strongSelf.players)
+                }
+            }
+        }
+    }
 
     @IBAction func btnCreateGameTapped(_ sender: Any) {
 
@@ -125,6 +153,7 @@ class AddFixtureViewController: UIViewController {
         guard let date = tfDate.text else { return }
         guard let time = tfTime.text else { return }
         guard let postcode = tfPostcode.text else { return }
+        guard let teamId = player?.teamId else { return }
         
         if (opposition == "" || date == "" || time == "" || postcode == "") {
             
@@ -135,19 +164,10 @@ class AddFixtureViewController: UIViewController {
             
         } else {
             
-            //Get the team ID from somewhere else (Store it on login?)
-            
-//            let userRef = Helper.getUser()
-            let userRef = PlayerModel.getUser()
-            userRef.observe(.value) { [weak self] (snapshot) in
-                guard let strongSelf = self else { return }
-                guard let player = PlayerModel(snapshot) else {return}
-                strongSelf.player = player
-                
-                FixtureModel.postFixture(teamId: player.teamId, homeFixture: strongSelf.HomeFixture, opposition: opposition, date: date, time: time, postcode: postcode)
-                
-                strongSelf.dismiss(animated: true, completion: nil)
-            }
+            FixtureModel.postFixture(teamId: teamId, homeFixture: self.HomeFixture, opposition: opposition, date: date, time: time, postcode: postcode, playerIds: players)
+
+            self.dismiss(animated: true, completion: nil)
+
             
         }
 

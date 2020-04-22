@@ -129,8 +129,6 @@ class JoinTeamViewController: UIViewController {
                                 
                                 PlayerModel.postPlayerProfile(profilePicture: profilePicture, userId: userId, playerFullName: self!.playerFullName, playerEmailAddress: self!.playerEmailAddress, playerDateOfBirth: self!.playerDateOfBirth, playerHouseNumber: self!.playerHouseNumber, playerPostcode: self!.playerPostcode, manager: false, playerManager: false, playerPosition: self!.playerPosition, teamId: teamId, teamPIN: teamPIN)
                                 
-//                                Helper.postPlayerProfile(profilePicture: profilePicture, userId: userId, playerFullName: self!.playerFullName, playerEmailAddress: self!.playerEmailAddress, playerDateOfBirth: self!.playerDateOfBirth, playerHouseNumber: self!.playerHouseNumber, playerPostcode: self!.playerPostcode, manager: false, playerManager: false, playerPosition: self!.playerPosition, teamId: teamId, teamPIN: teamPIN)
-                                
                                 DispatchQueue.main.async {
                                     Helper.login()
                                 }

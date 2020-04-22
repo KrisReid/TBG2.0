@@ -80,17 +80,17 @@ class PlayerModel {
     
     //This is just a way to parse the snapshot
     
-    var id: String = ""
-    var fullName: String = ""
-    var email: String = ""
-    var dateOfBirth: String = ""
+    var id: String
+    var fullName: String
+    var email: String
+    var dateOfBirth: String
     var profilePictureUrl: URL?
-    var houseNumber: String = ""
-    var postcode: String = ""
-    var manager: Bool = false
-    var playerManager: Bool = false
-    var position: String = ""
-    var teamId: String = ""
+    var houseNumber: String
+    var postcode: String
+    var manager: Bool
+    var playerManager: Bool
+    var position: String
+    var teamId: String
 
     
     //IN THE CODE PASS A SNAPSHOT INTO THE MODEL AND THEN GET BACK THE PARSED VALUES
@@ -167,9 +167,9 @@ class PlayerModel {
         ]
         
         collection.child(userId).updateChildValues(playerDictionary)
-//        PlayerModel.collection.child(userId).updateChildValues(playerDictionary)
         TeamModel.collection.child(teamId).child("players").child(userId).updateChildValues(playerDictionary)
     }
+    
 
 }
 

@@ -117,10 +117,10 @@ class TeamModel {
     }
     
     
-//    static func getTeamPlayers (teamId: String) -> DatabaseReference {
-//        let players = TeamModel.collection.child("teams").child(teamId).child("players")
-//        return players
-//    }
+    static func getTeamPlayers (teamId: String) -> DatabaseReference {
+        let players = collection.child(teamId).child("players")
+        return players
+    }
     
     
     
