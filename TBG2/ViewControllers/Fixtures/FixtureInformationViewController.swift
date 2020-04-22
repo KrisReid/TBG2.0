@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class FixtureInformationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -17,6 +18,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet weak var lblFixtureDate: UILabel!
     @IBOutlet weak var lblFixtureTime: UILabel!
     @IBOutlet weak var lblFixturePostcode: UILabel!
+    
     @IBOutlet weak var tableview: UITableView!
     
     let data: [Fixture] = TeamsModel.init().teamList[0].fixtures
@@ -26,6 +28,9 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     var fixtureDate: String = ""
     var fixtureTime: String = ""
     var fixturePostcode: String = ""
+    var players: Dictionary<String, Any> = [:]
+    
+    var playersPersonalData: NSMutableArray = []
     
     var colours = Colours()
     
@@ -45,21 +50,47 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         tableview.rowHeight = UITableView.automaticDimension
         tableview.register(UINib(nibName: "FixtureDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "FixtureDetailTableViewCell")
         
-
+        //Load Player Data
+        loadPlayerFixtureData()
+    }
+    
+    
+    func loadPlayerFixtureData() {
+        
+        for player in players {
+            
+            let spinner = UIViewController.displayLoading(withView: self.view)
+            
+            let playerRef = PlayerModel.collection.child(player.key)
+            let playerRefQuery = playerRef.queryOrderedByKey()
+                
+            playerRefQuery.observe(.value) { [weak self] (snapshot) in
+                
+                guard let strongSelf = self else { return }
+                guard let a = PlayerModel(snapshot) else { return }
+                strongSelf.playersPersonalData.insert(a, at: 0)
+                UIViewController.removeLoading(spinner: spinner)
+                
+                DispatchQueue.main.async {
+                    strongSelf.tableview.reloadData()
+                }
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+//        3
+        playersPersonalData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FixtureDetailTableViewCell") as! FixtureDetailTableViewCell
         
-        for player in data[indexPath.row].players {
-            print(player.playerName)
-            cell.lblPlayerName.text = player.playerName
-        }
+        let player = playersPersonalData[indexPath.row] as! PlayerModel
+        cell.lblPlayerName.text = player.fullName
         
+        cell.ivPlayer.sd_cancelCurrentImageLoad()
+        cell.ivPlayer?.sd_setImage(with: player.profilePictureUrl, completed: nil)
         
         return cell
     }

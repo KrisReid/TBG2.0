@@ -100,6 +100,7 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
                 vc.fixturePostcode = snapshot.postcode
                 vc.awayGoals = snapshot.awayGoals
                 vc.homeGoals = snapshot.homeGoals
+                vc.players = snapshot.players
             }
         }
     }

@@ -26,7 +26,7 @@ class FixtureModel {
     var postcode: String
     var homeGoals: String
     var awayGoals: String
-
+    var players: Dictionary<String, Any>
     
     //IN THE CODE PASS A SNAPSHOT INTO THE MODEL AND THEN GET BACK THE PARSED VALUES
 
@@ -40,7 +40,7 @@ class FixtureModel {
         self.postcode = value["postcode"] as? String ?? ""
         self.homeGoals = value["homeGoals"] as? String ?? "-"
         self.awayGoals = value["awayGoals"] as? String ?? "-"
-
+        self.players = value["players"] as? Dictionary ?? ["":""]
     }
     
     
