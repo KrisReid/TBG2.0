@@ -111,7 +111,7 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    @objc func addFixtureTapped() {
+    @objc func addFixtureTapped () {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Fixtures", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "AddFixtureViewController") as! AddFixtureViewController
         self.present(nextViewController, animated: true, completion: nil)

@@ -406,7 +406,6 @@
                                                 </constraints>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="DPf-Gr-HoN" firstAttribute="centerX" secondItem="PxL-bi-2DQ" secondAttribute="centerX" id="96Y-pN-ueF"/>
                                             <constraint firstItem="U9x-Gc-qJs" firstAttribute="trailing" secondItem="DPf-Gr-HoN" secondAttribute="trailing" id="BSw-aC-PHY"/>
@@ -473,11 +472,13 @@
                         <outlet property="ivAssistantAvailability" destination="U9x-Gc-qJs" id="oI5-Vz-yQD"/>
                         <outlet property="ivManagerAvailability" destination="ZgS-Ua-fmy" id="YeO-q9-AEB"/>
                         <outlet property="scHomeAway" destination="qeI-Pe-V2i" id="6ky-FQ-Pl7"/>
+                        <outlet property="svStackView" destination="ISN-a2-u6A" id="JbX-q7-i9F"/>
                         <outlet property="tfDate" destination="hMv-mI-lTV" id="Fmv-mV-INY"/>
                         <outlet property="tfOpposition" destination="q7E-nn-VaK" id="Dst-8T-nCP"/>
                         <outlet property="tfPostcode" destination="nPA-aS-UwO" id="zuV-mn-ZRr"/>
                         <outlet property="tfTime" destination="RIO-TR-luC" id="myz-fM-d6K"/>
                         <outlet property="vAssistantManager" destination="PxL-bi-2DQ" id="Gu0-nv-QXM"/>
+                        <outlet property="vManager" destination="b4m-Ag-SfX" id="VZh-jQ-RN7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Cb-CR-dcL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
