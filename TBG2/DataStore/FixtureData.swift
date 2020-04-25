@@ -44,7 +44,7 @@ class FixtureModel {
     }
     
     
-    class func postFixture (teamId: String, homeFixture: Bool, opposition: String, date: String, time: String, postcode: String, playerIds: NSMutableArray) {
+    class func postFixture (teamId: String, homeFixture: Bool, opposition: String, date: String, time: String, postcode: String, playerIds: NSMutableArray, managerAvailability: Bool, managerId: String, assistantManagerAvailability: Bool, assistantManagerId: String) {
         
         let fixtureDictionary : [String:Any] =
         [
@@ -61,10 +61,10 @@ class FixtureModel {
         fixtureRef.setValue(fixtureDictionary)
         let fixtureId = String(fixtureRef.key ?? "")
         
-        
         for playerId in playerIds {
             guard let id = playerId as? String else { return }
-
+            
+            //Set the base data regardless of who it is
             let baseData : [String:Any] =
             [
                 "availability": "Unknown",
@@ -72,9 +72,36 @@ class FixtureModel {
                 "motm" : false
             ]
             let playerData : [String:Any] = [id:baseData]
-
             let playerRef = collection.child(teamId).child(fixtureId).child("players")
             playerRef.updateChildValues(playerData)
+            
+            //Set with the manager or assistant as available
+            if id == managerId && managerAvailability == true || id == assistantManagerId && assistantManagerAvailability == true {
+                
+                let baseData : [String:Any] =
+                [
+                    "availability": "Yes",
+                    "goals" : 0,
+                    "motm" : false
+                ]
+                let managerData : [String:Any] = [id:baseData]
+                let managerRef = collection.child(teamId).child(fixtureId).child("players")
+                managerRef.updateChildValues(managerData)
+            }
+            //Set with the manager or assistant as not available
+            else if id == managerId && managerAvailability == false || id == assistantManagerId && assistantManagerAvailability == false {
+                
+                let baseData : [String:Any] =
+                [
+                    "availability": "No",
+                    "goals" : 0,
+                    "motm" : false
+                ]
+                let managerData : [String:Any] = [id:baseData]
+                let managerRef = collection.child(teamId).child(fixtureId).child("players")
+                managerRef.updateChildValues(managerData)
+            }
+  
         }
         
     }
