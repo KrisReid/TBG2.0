@@ -43,6 +43,7 @@
 		0288B25B236F44B60014DA4E /* FixturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288B25A236F44B60014DA4E /* FixturesViewController.swift */; };
 		0288B25D236F44D20014DA4E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288B25C236F44D20014DA4E /* SettingsViewController.swift */; };
 		0288B25F236F44F60014DA4E /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288B25E236F44F60014DA4E /* TeamViewController.swift */; };
+		02DC38B02455F8A70012018D /* TBG2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DC38AF2455F8A70012018D /* TBG2Tests.swift */; };
 		02F7BF5F23B12CBD00DE70BB /* ShareTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F7BF5D23B12CBD00DE70BB /* ShareTeamViewController.swift */; };
 		02F7BF6323B6400200DE70BB /* ShareTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F7BF6123B6400200DE70BB /* ShareTableViewCell.swift */; };
 		02F7BF6423B6400200DE70BB /* ShareTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02F7BF6223B6400200DE70BB /* ShareTableViewCell.xib */; };
@@ -51,6 +52,16 @@
 		02F7BF6B23B8984B00DE70BB /* AddFixtureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F7BF6A23B8984B00DE70BB /* AddFixtureViewController.swift */; };
 		C4AE885B568EE0194CEEFA29 /* Pods_TBG2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3625DBE16623C89D5A607B62 /* Pods_TBG2.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		02DC38B22455F8A70012018D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 027A08B62318248300B0DF59 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 027A08BD2318248300B0DF59;
+			remoteInfo = TBG2;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		021A59D523D4F1C1005DE007 /* FixtureDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureDetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -91,6 +102,9 @@
 		0288B25A236F44B60014DA4E /* FixturesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesViewController.swift; sourceTree = "<group>"; };
 		0288B25C236F44D20014DA4E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0288B25E236F44F60014DA4E /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
+		02DC38AD2455F8A70012018D /* TBG2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TBG2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		02DC38AF2455F8A70012018D /* TBG2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBG2Tests.swift; sourceTree = "<group>"; };
+		02DC38B12455F8A70012018D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02F7BF5D23B12CBD00DE70BB /* ShareTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTeamViewController.swift; sourceTree = "<group>"; };
 		02F7BF6123B6400200DE70BB /* ShareTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTableViewCell.swift; sourceTree = "<group>"; };
 		02F7BF6223B6400200DE70BB /* ShareTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShareTableViewCell.xib; sourceTree = "<group>"; };
@@ -112,6 +126,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		02DC38AA2455F8A70012018D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -129,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				027A08C02318248300B0DF59 /* TBG2 */,
+				02DC38AE2455F8A70012018D /* TBG2Tests */,
 				027A08BF2318248300B0DF59 /* Products */,
 				8C194D163F31E37D8C6E8541 /* Pods */,
 				2A7E7159D212AD018D13AE74 /* Frameworks */,
@@ -139,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				027A08BE2318248300B0DF59 /* TBG2.app */,
+				02DC38AD2455F8A70012018D /* TBG2Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -247,6 +270,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		02DC38AE2455F8A70012018D /* TBG2Tests */ = {
+			isa = PBXGroup;
+			children = (
+				02DC38AF2455F8A70012018D /* TBG2Tests.swift */,
+				02DC38B12455F8A70012018D /* Info.plist */,
+			);
+			path = TBG2Tests;
+			sourceTree = "<group>";
+		};
 		2A7E7159D212AD018D13AE74 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,18 +320,40 @@
 			productReference = 027A08BE2318248300B0DF59 /* TBG2.app */;
 			productType = "com.apple.product-type.application";
 		};
+		02DC38AC2455F8A70012018D /* TBG2Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 02DC38B42455F8A70012018D /* Build configuration list for PBXNativeTarget "TBG2Tests" */;
+			buildPhases = (
+				02DC38A92455F8A70012018D /* Sources */,
+				02DC38AA2455F8A70012018D /* Frameworks */,
+				02DC38AB2455F8A70012018D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				02DC38B32455F8A70012018D /* PBXTargetDependency */,
+			);
+			name = TBG2Tests;
+			productName = TBG2Tests;
+			productReference = 02DC38AD2455F8A70012018D /* TBG2Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		027A08B62318248300B0DF59 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
+				LastSwiftUpdateCheck = 1130;
 				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "Kris Reid";
 				TargetAttributes = {
 					027A08BD2318248300B0DF59 = {
 						CreatedOnToolsVersion = 11.0;
+					};
+					02DC38AC2455F8A70012018D = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 027A08BD2318248300B0DF59;
 					};
 				};
 			};
@@ -317,6 +371,7 @@
 			projectRoot = "";
 			targets = (
 				027A08BD2318248300B0DF59 /* TBG2 */,
+				02DC38AC2455F8A70012018D /* TBG2Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -339,6 +394,13 @@
 				021A59D823D4F1C1005DE007 /* FixtureDetailTableViewCell.xib in Resources */,
 				027A08CE2318248900B0DF59 /* Assets.xcassets in Resources */,
 				0231525723F095C200AAFB0B /* Login.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02DC38AB2455F8A70012018D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,7 +510,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		02DC38A92455F8A70012018D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02DC38B02455F8A70012018D /* TBG2Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		02DC38B32455F8A70012018D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 027A08BD2318248300B0DF59 /* TBG2 */;
+			targetProxy = 02DC38B22455F8A70012018D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		027A08CF2318248900B0DF59 /* LaunchScreen.storyboard */ = {
@@ -703,6 +781,69 @@
 			};
 			name = Release;
 		};
+		02DC38B52455F8A70012018D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S9H4B38ZQN;
+				INFOPLIST_FILE = TBG2Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.krisreid.TBG2Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TBG2.app/TBG2";
+			};
+			name = Debug;
+		};
+		02DC38B62455F8A70012018D /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S9H4B38ZQN;
+				INFOPLIST_FILE = TBG2Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.krisreid.TBG2Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TBG2.app/TBG2";
+			};
+			name = Distribution;
+		};
+		02DC38B72455F8A70012018D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S9H4B38ZQN;
+				INFOPLIST_FILE = TBG2Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.krisreid.TBG2Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TBG2.app/TBG2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -722,6 +863,16 @@
 				027A08D62318248900B0DF59 /* Debug */,
 				027A08D72318248900B0DF59 /* Distribution */,
 				027FCA94243D0346004B3CBC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Distribution;
+		};
+		02DC38B42455F8A70012018D /* Build configuration list for PBXNativeTarget "TBG2Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				02DC38B52455F8A70012018D /* Debug */,
+				02DC38B62455F8A70012018D /* Distribution */,
+				02DC38B72455F8A70012018D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Distribution;

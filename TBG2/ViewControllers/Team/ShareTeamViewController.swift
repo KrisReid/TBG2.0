@@ -10,15 +10,17 @@ import UIKit
 
 class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    
+    
     var titleArray: [String]! = ["Team ID","Team PIN","Share"]
     var answerArray: [String]! = ["-299fFFCJE8DJEEddf","123456"]
     
-    lazy var team: [Team] = {
-        let teamModel = TeamsModel()
-        return teamModel.teamList
-    } ()
-
-    let teamData: [Team] = TeamsModel.init().teamList
+//    lazy var team: [Team] = {
+//        let teamModel = TeamsModel()
+//        return teamModel.teamList
+//    } ()
+//
+//    let teamData: [Team] = TeamsModel.init().teamList
     
     @IBOutlet weak var ivTeamBadge: UIImageView!
     @IBOutlet weak var lblTeamName: UILabel!
@@ -26,18 +28,55 @@ class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var tableview: UITableView!
     
     var colours = Colours()
+    var player: PlayerModel?
+    var team: TeamModel?
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableview.register(UINib(nibName: "ShareTableViewCell", bundle: nil), forCellReuseIdentifier: "ShareTableViewCell")
         tableview.isScrollEnabled = false
+        
     
-        ivTeamBadge.image = teamData[0].teamImage
-        lblTeamName.text = teamData[0].teamName
-        lblTeamPostcode.text = teamData[0].teamPostcode
+//        ivTeamBadge.image = teamData[0].teamImage
+//        lblTeamName.text = teamData[0].teamName
+//        lblTeamPostcode.text = teamData[0].teamPostcode
         
         ivTeamBadge.circle(colour: colours.primaryBlue.cgColor)
+        
+        //Load Team Data
+        loadTeamData()
+    }
+    
+    
+    func loadTeamData() {
+        
+        let userRef = PlayerModel.getUser()
+        userRef.observe(.value) { [weak self] (snapshot) in
+            guard let strongSelf = self else { return }
+            guard let player = PlayerModel(snapshot) else {return}
+            strongSelf.player = player
+            
+            let teamRef = TeamModel.collection.child(strongSelf.player?.teamId ?? "")
+            teamRef.observe(.value) { [weak self] (snapshot) in
+                guard let strongSelf = self else { return }
+                guard let team = TeamModel(snapshot) else {return}
+                strongSelf.team = team
+                
+                let image = Helper.ImageUrlConverter(url: team.crest!)
+                strongSelf.ivTeamBadge.image = image.image
+                
+                strongSelf.lblTeamName.text = team.name
+                strongSelf.lblTeamPostcode.text = team.postcode
+                
+                DispatchQueue.main.async {
+                    strongSelf.tableview.reloadData()
+                }
+                
+            }
+            
+        }
     }
     
 
@@ -54,21 +93,30 @@ class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShareTableViewCell") as! ShareTableViewCell
 
         cell.lblTitle.text = titleArray[indexPath.row]
+
         
+        if (indexPath.row == 0) {cell.lblAnswer.text = team?.id}
+        let pin = team?.pin
+        if (indexPath.row == 1) {cell.lblAnswer.text = pin?.description}
         if (indexPath.row == 2) {cell.ivAnswer.image = UIImage(named: "share_icon")}
-        else {cell.lblAnswer.text = answerArray[indexPath.row]}
+//        else {cell.lblAnswer.text = answerArray[indexPath.row]}
         
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let pin = team?.pin
+        
         if indexPath.row == 1 {
-            let snapshot = answerArray[indexPath.row]
+            let snapshot = pin?.description
+//            let snapshot = answerArray[indexPath.row]
             performSegue(withIdentifier: "teamPINSegue", sender: snapshot)
         }
         if indexPath.row == 2 {
-            let firstActivityItem = "ID: \(answerArray[0]), PIN: \(answerArray[1])"
+            let firstActivityItem = "ID: \(String(team!.id)), PIN: \(String(team!.pin))"
+//            let firstActivityItem = "ID: \(answerArray[0]), PIN: \(answerArray[1])"
 
             let activityViewController = UIActivityViewController(
                 activityItems: [firstActivityItem], applicationActivities: nil)

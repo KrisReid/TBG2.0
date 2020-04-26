@@ -144,7 +144,7 @@ class AddFixtureViewController: UIViewController {
                         strongSelf.managerId = player.id
                         if (player.playerManager) {
                             strongSelf.vManager.isHidden = false
-                            let image = Helper.ImageUrlConverter(profileUrl: player.profilePictureUrl!)
+                            let image = Helper.ImageUrlConverter(url: player.profilePictureUrl!)
                             strongSelf.btnManager.setBackgroundImage(image.image, for: .normal)
                         }
                     }
@@ -154,7 +154,7 @@ class AddFixtureViewController: UIViewController {
                         strongSelf.assistantManagerId = player.id
                         if (player.playerManager) {
                             strongSelf.vAssistantManager.isHidden = false
-                            let image = Helper.ImageUrlConverter(profileUrl: player.profilePictureUrl!)
+                            let image = Helper.ImageUrlConverter(url: player.profilePictureUrl!)
                             strongSelf.btnAssistant.setBackgroundImage(image.image, for: .normal)
                         }
                     }
