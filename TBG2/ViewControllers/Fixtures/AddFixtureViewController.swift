@@ -158,21 +158,6 @@ class AddFixtureViewController: UIViewController {
                             strongSelf.btnAssistant.setBackgroundImage(image.image, for: .normal)
                         }
                     }
-                    
-//                    if player.manager && player.playerManager {
-//                        strongSelf.vManager.isHidden = false
-//                        strongSelf.managerId = player.id
-//                        let image = Helper.ImageUrlConverter(profileUrl: player.profilePictureUrl!)
-//                        strongSelf.btnManager.setBackgroundImage(image.image, for: .normal)
-//                    }
-//
-//                    if player.assistantManager && player.playerManager {
-//                        strongSelf.vAssistantManager.isHidden = false
-//                        strongSelf.assistantManagerId = player.id
-//                        let image = Helper.ImageUrlConverter(profileUrl: player.profilePictureUrl!)
-//                        strongSelf.btnAssistant.setBackgroundImage(image.image, for: .normal)
-//                    }
-                    
                 }
             }
         }

@@ -10,17 +10,7 @@ import UIKit
 
 class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
-    
     var titleArray: [String]! = ["Team ID","Team PIN","Share"]
-    var answerArray: [String]! = ["-299fFFCJE8DJEEddf","123456"]
-    
-//    lazy var team: [Team] = {
-//        let teamModel = TeamsModel()
-//        return teamModel.teamList
-//    } ()
-//
-//    let teamData: [Team] = TeamsModel.init().teamList
     
     @IBOutlet weak var ivTeamBadge: UIImageView!
     @IBOutlet weak var lblTeamName: UILabel!
@@ -34,15 +24,12 @@ class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
+        //Table View
         tableview.register(UINib(nibName: "ShareTableViewCell", bundle: nil), forCellReuseIdentifier: "ShareTableViewCell")
         tableview.isScrollEnabled = false
         
-    
-//        ivTeamBadge.image = teamData[0].teamImage
-//        lblTeamName.text = teamData[0].teamName
-//        lblTeamPostcode.text = teamData[0].teamPostcode
-        
+        //Styling
         ivTeamBadge.circle(colour: colours.primaryBlue.cgColor)
         
         //Load Team Data
@@ -73,9 +60,7 @@ class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableVie
                 DispatchQueue.main.async {
                     strongSelf.tableview.reloadData()
                 }
-                
             }
-            
         }
     }
     
@@ -94,12 +79,10 @@ class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableVie
 
         cell.lblTitle.text = titleArray[indexPath.row]
 
-        
         if (indexPath.row == 0) {cell.lblAnswer.text = team?.id}
         let pin = team?.pin
         if (indexPath.row == 1) {cell.lblAnswer.text = pin?.description}
         if (indexPath.row == 2) {cell.ivAnswer.image = UIImage(named: "share_icon")}
-//        else {cell.lblAnswer.text = answerArray[indexPath.row]}
         
         return cell
     }
@@ -111,12 +94,10 @@ class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableVie
         
         if indexPath.row == 1 {
             let snapshot = pin?.description
-//            let snapshot = answerArray[indexPath.row]
             performSegue(withIdentifier: "teamPINSegue", sender: snapshot)
         }
         if indexPath.row == 2 {
             let firstActivityItem = "ID: \(String(team!.id)), PIN: \(String(team!.pin))"
-//            let firstActivityItem = "ID: \(answerArray[0]), PIN: \(answerArray[1])"
 
             let activityViewController = UIActivityViewController(
                 activityItems: [firstActivityItem], applicationActivities: nil)
