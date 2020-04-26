@@ -57,36 +57,82 @@ class TeamModel {
     }
     
     
-    static func postNewTeam(userId: String, playerProfilePicture: UIImage, playerFullName: String,playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, assistantManager: Bool, playerManager: Bool, playerPosition: String, teamName: String, teamPIN: Int, teamPostcode: String, teamCrest: UIImage) {
-        
+    static func postTeamCrest(userId: String, playerProfilePicture: UIImage, playerFullName: String,playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, assistantManager: Bool, playerManager: Bool, playerPosition: String, teamName: String, teamPIN: Int, teamPostcode: String, teamCrest: UIImage) {
         
         let imageFolder = Storage.storage().reference().child("crest_images")
         if let uploadData = teamCrest.jpegData(compressionQuality: 0.75) {
-           
-            imageFolder.child("\(NSUUID().uuidString).jpeg").putData(uploadData, metadata: nil) { (metadata, error) in
+            
+            let UID = NSUUID().uuidString
+            
+            imageFolder.child("\(UID).jpeg").putData(uploadData, metadata: nil) { (metadata, error) in
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
-                    let teamRef = TeamModel.collection.childByAutoId()
-                    let newKey = teamRef.key
-                    let TeamDictionary : [String:Any] =
-                        [
-                            "crest": String((metadata?.path)!),
-                            "name": teamName,
-                            "pin": teamPIN,
-                            "postcode":teamPostcode,
-                            "id": newKey as Any
-                        ]
-                     teamRef.setValue(TeamDictionary)
-                    
-                     DispatchQueue.main.async {
-
-                        PlayerModel.postPlayerProfile(profilePicture: playerProfilePicture, userId: userId, playerFullName: playerFullName, playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: manager, assistantManager: assistantManager, playerManager: playerManager, playerPosition: playerPosition, teamId: newKey!, teamPIN: teamPIN)
-
-                     }
+                    imageFolder.child("\(UID).jpeg").downloadURL { (url, error) in
+                        if let url = url,
+                            error == nil {
+                            let teamCrestUrl = url.absoluteString
+                            
+                            postTeam(userId: userId, playerProfilePicture: playerProfilePicture, playerFullName: playerFullName,playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: manager, assistantManager: assistantManager, playerManager: playerManager, playerPosition: playerPosition, teamName: teamName, teamPIN: teamPIN, teamPostcode: teamPostcode, teamCrestUrl: teamCrestUrl)
+                        }
+                    }
                 }
             }
         }
     }
+    
+    private static func postTeam(userId: String, playerProfilePicture: UIImage, playerFullName: String,playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, assistantManager: Bool, playerManager: Bool, playerPosition: String, teamName: String, teamPIN: Int, teamPostcode: String, teamCrestUrl: String) {
+        
+        let teamRef = TeamModel.collection.childByAutoId()
+        let newKey = teamRef.key
+        let TeamDictionary : [String:Any] =
+            [
+                "crest": teamCrestUrl,
+                "name": teamName,
+                "pin": teamPIN,
+                "postcode":teamPostcode,
+                "id": newKey as Any
+            ]
+         teamRef.setValue(TeamDictionary)
+        
+         DispatchQueue.main.async {
+
+            PlayerModel.postPlayerProfile(profilePicture: playerProfilePicture, userId: userId, playerFullName: playerFullName, playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: manager, assistantManager: assistantManager, playerManager: playerManager, playerPosition: playerPosition, teamId: newKey!, teamPIN: teamPIN)
+
+         }
+    }
+    
+    
+//    static func postNewTeam(userId: String, playerProfilePicture: UIImage, playerFullName: String,playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, assistantManager: Bool, playerManager: Bool, playerPosition: String, teamName: String, teamPIN: Int, teamPostcode: String, teamCrest: UIImage) {
+//
+//
+//        let imageFolder = Storage.storage().reference().child("crest_images")
+//        if let uploadData = teamCrest.jpegData(compressionQuality: 0.75) {
+//
+//            imageFolder.child("\(NSUUID().uuidString).jpeg").putData(uploadData, metadata: nil) { (metadata, error) in
+//                if let error = error {
+//                    print(error.localizedDescription)
+//                } else {
+//                    let teamRef = TeamModel.collection.childByAutoId()
+//                    let newKey = teamRef.key
+//                    let TeamDictionary : [String:Any] =
+//                        [
+//                            "crest": String((metadata?.path)!),
+//                            "name": teamName,
+//                            "pin": teamPIN,
+//                            "postcode":teamPostcode,
+//                            "id": newKey as Any
+//                        ]
+//                     teamRef.setValue(TeamDictionary)
+//
+//                     DispatchQueue.main.async {
+//
+//                        PlayerModel.postPlayerProfile(profilePicture: playerProfilePicture, userId: userId, playerFullName: playerFullName, playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: manager, assistantManager: assistantManager, playerManager: playerManager, playerPosition: playerPosition, teamId: newKey!, teamPIN: teamPIN)
+//
+//                     }
+//                }
+//            }
+//        }
+//    }
 
 }
