@@ -292,7 +292,7 @@
                                     <constraint firstItem="xv2-Uc-dxM" firstAttribute="centerX" secondItem="eZ5-kE-sYn" secondAttribute="centerX" id="XcK-Ko-o1W"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Opposition" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="q7E-nn-VaK">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Team 1" placeholder="Opposition" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="q7E-nn-VaK">
                                 <rect key="frame" x="44" y="139" width="326" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="weB-nm-kKh"/>
@@ -300,7 +300,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hMv-mI-lTV">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="27 Apr 2019" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hMv-mI-lTV">
                                 <rect key="frame" x="44" y="193" width="190" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="190" id="TeG-Gi-Ep9"/>
@@ -309,7 +309,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Time" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RIO-TR-luC">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="21:15" placeholder="Time" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RIO-TR-luC">
                                 <rect key="frame" x="270" y="193" width="100" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="M9P-w0-3nB"/>
@@ -318,7 +318,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Venue's Postcode" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="nPA-aS-UwO">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="skskskk" placeholder="Venue's Postcode" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="nPA-aS-UwO">
                                 <rect key="frame" x="44" y="247" width="326" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="TU1-jD-CdL"/>
@@ -406,7 +406,6 @@
                                                 </constraints>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="DPf-Gr-HoN" firstAttribute="centerX" secondItem="PxL-bi-2DQ" secondAttribute="centerX" id="96Y-pN-ueF"/>
                                             <constraint firstItem="U9x-Gc-qJs" firstAttribute="trailing" secondItem="DPf-Gr-HoN" secondAttribute="trailing" id="BSw-aC-PHY"/>
@@ -473,11 +472,13 @@
                         <outlet property="ivAssistantAvailability" destination="U9x-Gc-qJs" id="oI5-Vz-yQD"/>
                         <outlet property="ivManagerAvailability" destination="ZgS-Ua-fmy" id="YeO-q9-AEB"/>
                         <outlet property="scHomeAway" destination="qeI-Pe-V2i" id="6ky-FQ-Pl7"/>
+                        <outlet property="svStackView" destination="ISN-a2-u6A" id="JbX-q7-i9F"/>
                         <outlet property="tfDate" destination="hMv-mI-lTV" id="Fmv-mV-INY"/>
                         <outlet property="tfOpposition" destination="q7E-nn-VaK" id="Dst-8T-nCP"/>
                         <outlet property="tfPostcode" destination="nPA-aS-UwO" id="zuV-mn-ZRr"/>
                         <outlet property="tfTime" destination="RIO-TR-luC" id="myz-fM-d6K"/>
                         <outlet property="vAssistantManager" destination="PxL-bi-2DQ" id="Gu0-nv-QXM"/>
+                        <outlet property="vManager" destination="b4m-Ag-SfX" id="VZh-jQ-RN7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Cb-CR-dcL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

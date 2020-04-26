@@ -21,12 +21,9 @@ class AddFixtureViewController: UIViewController {
     @IBOutlet weak var btnManager: UIButton!
     @IBOutlet weak var btnAssistant: UIButton!
     @IBOutlet weak var btnCreateGame: UIButton!
-    
-    
-    //Assistant Manager
+    @IBOutlet weak var svStackView: UIStackView!
+    @IBOutlet weak var vManager: UIView!
     @IBOutlet weak var vAssistantManager: UIView!
-    let assitantManager = true
-    
     
     private var datePicker: UIDatePicker?
     private var timePicker: UIDatePicker?
@@ -34,22 +31,19 @@ class AddFixtureViewController: UIViewController {
     var colour = Colours()
     var player: PlayerModel?
     var players: NSMutableArray = []
-    
-    
     var ManagerAvailability = false
     var AssistantAvailability = false
+    var managerId: String = ""
+    var assistantManagerId: String = ""
     var HomeFixture = true
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Assistant Manager
-        if assitantManager {
-            vAssistantManager.isHidden = false
-        } else {
-            vAssistantManager.isHidden = true
-        }
+        //Hide Manager & Assistant
+        vManager.isHidden = true
+        vAssistantManager.isHidden = true
         
         //Styling
         tfOpposition.underlined(colour: Colours.init().secondaryBlue.cgColor)
@@ -82,6 +76,7 @@ class AddFixtureViewController: UIViewController {
         
         //Load Players Data
         loadPlayersData()
+        
     }
     
     @objc func dateChanged(datePicker: UIDatePicker) {
@@ -139,9 +134,45 @@ class AddFixtureViewController: UIViewController {
                 guard let strongSelf = self else { return }
                 for item in snapshot.children {
                     guard let snapshot = item as? DataSnapshot else { continue }
+                    guard let player = PlayerModel(snapshot) else { continue }
                     
+                    //Load the players keys into an array
                     strongSelf.players.insert(snapshot.key, at: 0)
-                    print(strongSelf.players)
+                    
+                    //Load the manager as an optional player for the game
+                    if player.manager {
+                        strongSelf.managerId = player.id
+                        if (player.playerManager) {
+                            strongSelf.vManager.isHidden = false
+                            let image = Helper.ImageUrlConverter(profileUrl: player.profilePictureUrl!)
+                            strongSelf.btnManager.setBackgroundImage(image.image, for: .normal)
+                        }
+                    }
+                    
+                    //Load the assistant manager as an optional player for the game
+                    if player.assistantManager {
+                        strongSelf.assistantManagerId = player.id
+                        if (player.playerManager) {
+                            strongSelf.vAssistantManager.isHidden = false
+                            let image = Helper.ImageUrlConverter(profileUrl: player.profilePictureUrl!)
+                            strongSelf.btnAssistant.setBackgroundImage(image.image, for: .normal)
+                        }
+                    }
+                    
+//                    if player.manager && player.playerManager {
+//                        strongSelf.vManager.isHidden = false
+//                        strongSelf.managerId = player.id
+//                        let image = Helper.ImageUrlConverter(profileUrl: player.profilePictureUrl!)
+//                        strongSelf.btnManager.setBackgroundImage(image.image, for: .normal)
+//                    }
+//
+//                    if player.assistantManager && player.playerManager {
+//                        strongSelf.vAssistantManager.isHidden = false
+//                        strongSelf.assistantManagerId = player.id
+//                        let image = Helper.ImageUrlConverter(profileUrl: player.profilePictureUrl!)
+//                        strongSelf.btnAssistant.setBackgroundImage(image.image, for: .normal)
+//                    }
+                    
                 }
             }
         }
@@ -164,11 +195,9 @@ class AddFixtureViewController: UIViewController {
             
         } else {
             
-            FixtureModel.postFixture(teamId: teamId, homeFixture: self.HomeFixture, opposition: opposition, date: date, time: time, postcode: postcode, playerIds: players)
+            FixtureModel.postFixture(teamId: teamId, homeFixture: self.HomeFixture, opposition: opposition, date: date, time: time, postcode: postcode, playerIds: players, managerAvailability: self.ManagerAvailability, managerId: self.managerId, assistantManagerAvailability: self.AssistantAvailability, assistantManagerId: self.assistantManagerId)
 
             self.dismiss(animated: true, completion: nil)
-
-            
         }
 
     }

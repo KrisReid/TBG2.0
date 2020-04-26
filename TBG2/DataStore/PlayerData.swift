@@ -87,6 +87,7 @@ class PlayerModel {
     var profilePictureUrl: URL?
     var houseNumber: String
     var postcode: String
+    var assistantManager: Bool
     var manager: Bool
     var playerManager: Bool
     var position: String
@@ -106,6 +107,7 @@ class PlayerModel {
         self.houseNumber = value["houseNumber"] as? String ?? ""
         self.postcode = value["postcode"] as? String ?? ""
         self.manager = value["manager"] as? Bool ?? false
+        self.assistantManager = value["assistantManager"] as? Bool ?? false
         self.playerManager = value["playerManager"] as? Bool ?? false
         self.position = value["position"] as? String ?? ""
         self.teamId = value["teamId"] as? String ?? ""
@@ -124,7 +126,7 @@ class PlayerModel {
     }
     
     
-    static func postPlayerProfile(profilePicture: UIImage, userId: String, playerFullName: String, playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, playerManager: Bool, playerPosition: String, teamId: String, teamPIN: Int) {
+    static func postPlayerProfile(profilePicture: UIImage, userId: String, playerFullName: String, playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, assistantManager: Bool, playerManager: Bool, playerPosition: String, teamId: String, teamPIN: Int) {
         
         let imageFolder = Storage.storage().reference().child("player_images")
         if let uploadData = profilePicture.jpegData(compressionQuality: 0.75) {
@@ -140,7 +142,7 @@ class PlayerModel {
                             error == nil {
                             let playerProfilePictureUrl = url.absoluteString
 
-                            postPlayer(userId: userId, playerProfilePictureUrl: playerProfilePictureUrl, playerFullName: playerFullName, playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: manager, playerManager: playerManager, playerPosition: playerPosition, teamId: teamId, teamPIN: teamPIN)
+                            postPlayer(userId: userId, playerProfilePictureUrl: playerProfilePictureUrl, playerFullName: playerFullName, playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: manager, assistantManager: assistantManager, playerManager: playerManager, playerPosition: playerPosition, teamId: teamId, teamPIN: teamPIN)
                         }
                     }
                 }
@@ -149,7 +151,7 @@ class PlayerModel {
     }
     
     
-    static private func postPlayer(userId: String, playerProfilePictureUrl:String, playerFullName: String, playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, playerManager: Bool, playerPosition: String, teamId: String, teamPIN: Int) {
+    static private func postPlayer(userId: String, playerProfilePictureUrl:String, playerFullName: String, playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, assistantManager: Bool, playerManager: Bool, playerPosition: String, teamId: String, teamPIN: Int) {
         
         let playerDictionary : [String:Any] =
         [
@@ -161,6 +163,7 @@ class PlayerModel {
             "houseNumber" : playerHouseNumber,
             "postcode" : playerPostcode,
             "manager" : manager,
+            "assistantManager" : assistantManager,
             "playerManager" : playerManager,
             "position" : playerPosition,
             "teamId" : teamId
