@@ -21,15 +21,12 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     
     @IBOutlet weak var tableview: UITableView!
     
-    let data: [Fixture] = TeamsModel.init().teamList[0].fixtures
-    
     var homeGoals: String = ""
     var awayGoals: String = ""
     var fixtureDate: String = ""
     var fixtureTime: String = ""
     var fixturePostcode: String = ""
     var players: Dictionary<String, Any> = [:]
-    
     var playersPersonalData: NSMutableArray = []
     
     var colours = Colours()
@@ -43,9 +40,11 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         lblHomeGoals.text = homeGoals
         lblAwayGoals.text = awayGoals
         
+        //Styling
         ivHomeTeam.circle(colour: colours.primaryBlue.cgColor)
         ivAwayTeam.circle(colour: colours.primaryBlue.cgColor)
 
+        //Table View
         tableview.estimatedRowHeight = CGFloat(50.0)
         tableview.rowHeight = UITableView.automaticDimension
         tableview.register(UINib(nibName: "FixtureDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "FixtureDetailTableViewCell")
@@ -79,7 +78,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        3
         playersPersonalData.count
     }
     

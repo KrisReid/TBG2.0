@@ -143,10 +143,10 @@ class Helper {
         return Helper.errorAlert(title: errorTitle, message: errorMessage)
     }
     
-    class func ImageUrlConverter (profileUrl: URL) -> UIImageView {
+    class func ImageUrlConverter (url: URL) -> UIImageView {
         let image = UIImageView()
         image.sd_cancelCurrentImageLoad()
-        image.sd_setImage(with: profileUrl, completed: nil)
+        image.sd_setImage(with: url, completed: nil)
         return image
     }
 
