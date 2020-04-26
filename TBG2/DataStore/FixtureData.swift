@@ -18,7 +18,6 @@ class FixtureModel {
         }
     }
     
-    
     var homeFixture: Bool
     var opposition: String
     var date: String
@@ -29,7 +28,6 @@ class FixtureModel {
     var players: Dictionary<String, Any>
     
     //IN THE CODE PASS A SNAPSHOT INTO THE MODEL AND THEN GET BACK THE PARSED VALUES
-
     init?(_ snapshot: DataSnapshot) {
         guard let value = snapshot.value as? [String: Any] else { return nil }
 
