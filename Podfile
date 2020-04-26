@@ -12,5 +12,6 @@ target 'TBG2' do
   pod 'Firebase/Database'
   pod 'Firebase/Analytics'
   pod 'FirebaseUI/Storage'
+  pod 'Firebase/Crashlytics'
 
 end
