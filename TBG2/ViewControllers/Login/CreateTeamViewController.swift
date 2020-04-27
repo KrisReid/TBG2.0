@@ -136,7 +136,7 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
                         }
                         if error == nil {
                             
-                            TeamModel.postNewTeam(userId: userId, playerProfilePicture: playerProfilePicture, playerFullName: self!.playerFullName, playerEmailAddress: self!.playerEmailAddress, playerDateOfBirth: self!.playerDateOfBirth, playerHouseNumber: self!.playerHouseNumber, playerPostcode: self!.playerPostcode, manager: true, assistantManager: false, playerManager: self!.playerManager, playerPosition: self!.playerPosition, teamName: teamName, teamPIN: teamPIN, teamPostcode: teamPostcode, teamCrest: teamCrest)
+                            TeamModel.postTeamCrest(userId: userId, playerProfilePicture: playerProfilePicture, playerFullName: self!.playerFullName, playerEmailAddress: self!.playerEmailAddress, playerDateOfBirth: self!.playerDateOfBirth, playerHouseNumber: self!.playerHouseNumber, playerPostcode: self!.playerPostcode, manager: true, assistantManager: false, playerManager: self!.playerManager, playerPosition: self!.playerPosition, teamName: teamName, teamPIN: teamPIN, teamPostcode: teamPostcode, teamCrest: teamCrest)
                             
                             DispatchQueue.main.async {
                                 Helper.login()
