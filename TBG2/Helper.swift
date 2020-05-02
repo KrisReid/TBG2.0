@@ -149,5 +149,10 @@ class Helper {
         image.sd_setImage(with: url, completed: nil)
         return image
     }
+    
+    class func setImageView (imageView: UIImageView, url: URL) {
+        imageView.sd_cancelCurrentImageLoad()
+        imageView.sd_setImage(with: url, completed: nil)
+    }
 
 }
