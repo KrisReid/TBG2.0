@@ -16,6 +16,7 @@ import FirebaseStorage
 
 class PlayerFixtureModel {
 
+    var playerId: String
     var fullName: String
     var profilePictureUrl: URL?
     var availability: String
@@ -26,6 +27,7 @@ class PlayerFixtureModel {
     init?(_ snapshot: DataSnapshot) {
         guard let value = snapshot.value as? [String: Any] else { return nil }
 
+        self.playerId = value["playerId"] as? String ?? ""
         self.fullName = value["fullName"] as? String ?? ""
         self.availability = value["availability"] as? String ?? ""
         self.goals = value["goals"] as? Int ?? 0

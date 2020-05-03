@@ -107,6 +107,14 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             cell.ivPlayerAvailability.backgroundColor = colours.primaryGrey
         }
         
+        
+        if player.motm {
+            cell.ivMotmAward.isHidden = false
+        } else {
+            cell.ivMotmAward.isHidden = true
+        }
+        
+        
         return cell
     }
     
@@ -118,75 +126,58 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         
     }
     
-//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        let motmAction = UIContextualAction(style: .normal, title: "MOTM") { (action, view, actionPerformed) in
-//
-//            // INSIDE THE CLICK
-//
-//            actionPerformed(true)
-//        }
-//        motmAction.backgroundColor = .yellow
-//
-//        return UISwipeActionsConfiguration(actions: [motmAction])
-//    }
     
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
     
-    
-    
-    
-//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        let flagAction = self.contextualToggleFlagAction(forRowAtIndexPath: indexPath)
-//        let swipeConfig = UISwipeActionsConfiguration(actions: [flagAction])
-//        return swipeConfig
-//    }
-    
-    
-//    func contextualToggleFlagAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
-//        // 1
-//        var data = data[indexPath.row]
-//        // 2
-//        let action = UIContextualAction(style: .normal,
-//                                        title: "Flag") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-//            // 3
-//            if email.toggleFlaggedFlag() {
-//                // 4
-//                self.data[indexPath.row] = email
-//                self.tableview.reloadRows(at: [indexPath], with: .none)
-//                // 5
-//                completionHandler(true)
-//            } else {
-//                // 6
-//                completionHandler(false)
-//            }
-//        }
-//        // 7
-//        action.title = "Flag"
-////        action.image = UIImage(named: "flag")
-//        action.backgroundColor = email.isFlagged ? UIColor.gray : UIColor.orange
-//        return action
-//    }
-    
-    
-//    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        let paymentsAction = UIContextualAction(style: .normal, title: "Payments") { (action, view, actionPerformed) in
-//            print("Making Payment?")
-//        }
-//        motmAction.backgroundColor = .yellow
-//        return UISwipeActionsConfiguration(actions: [paymentsAction])
-//    }
-    
+
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let motmAction = UIContextualAction(style: .normal, title: "MOTM") { (action, view, actionPerformed) in
+            
+            let player = self.playerArray[indexPath.row] as! PlayerFixtureModel
+            
+            //Update the database with MOM (Move this out)
+            let playerRef = FixtureModel.collection.child(self.teamId).child(self.fixtureId).child("players").child(player.playerId).child("motm")
+            playerRef.setValue(true)
+            
+            //reload the xib / table
+            self.tableview.reloadRows(at: [indexPath], with: .fade)
+            
+            DispatchQueue.main.async {
+                self.tableview.reloadData()
+            }
+            
+            actionPerformed(true)
+            
+        }
+        motmAction.backgroundColor = .black
+        return UISwipeActionsConfiguration(actions: [motmAction])
+    }
     
     
     
     func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
+        DispatchQueue.main.async {
+            self.tableview.reloadData()
+        }
         print("did end editing")
-        guard let indexPath = indexPath else {return}
-        tableView.reloadRows(at: [indexPath], with: .none)
     }
     
-    func setCell(color:UIColor, at indexPath: IndexPath){
-        let cell = tableview.cellForRow(at: indexPath )
-        cell?.backgroundColor = color
-    }
+    
+    
+    
+        
+    //    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    //        let paymentsAction = UIContextualAction(style: .normal, title: "Payments") { (action, view, actionPerformed) in
+    //            print("Making Payment?")
+    //        }
+    //        paymentsAction.backgroundColor = .gray
+    //        return UISwipeActionsConfiguration(actions: [paymentsAction])
+    //    }
+    //
+    //
+    //
+    
 }
