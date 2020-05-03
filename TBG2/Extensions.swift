@@ -17,6 +17,7 @@ class Colours {
     var primaryGrey = UIColor( red: 120/255, green: 120/255, blue:120/255, alpha: 1.0 )
     var white = UIColor( red: 255/255, green: 255/255, blue:255/255, alpha: 1.0 )
     var red = UIColor(red: 206/255, green: 50/255, blue: 50/255, alpha: 1.0)
+    var green = UIColor(red: 40/255, green: 191/255, blue: 38/255, alpha: 1.0)
 }
 
 class Circles {

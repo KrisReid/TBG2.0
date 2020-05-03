@@ -108,8 +108,9 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
                 vc.awayGoals = snapshot.awayGoals
                 vc.homeGoals = snapshot.homeGoals
                 vc.homeFixture = snapshot.homeFixture
-                vc.players = snapshot.players
                 vc.teamCrestURL = self.team?.crest
+                vc.teamId = self.team?.id ?? ""
+                vc.fixtureId = snapshot.fixtureId
             }
         }
     }

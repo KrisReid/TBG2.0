@@ -21,6 +21,8 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     
     @IBOutlet weak var tableview: UITableView!
     
+    var teamId: String = ""
+    var fixtureId: String = ""
     var teamCrestURL: URL?
     var homeGoals: String = ""
     var awayGoals: String = ""
@@ -28,8 +30,8 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     var fixtureDate: String = ""
     var fixtureTime: String = ""
     var fixturePostcode: String = ""
-    var players: Dictionary<String, Any> = [:]
-    var playersPersonalData: NSMutableArray = []
+    
+    var playerArray: NSMutableArray = []
     
     var colours = Colours()
     
@@ -51,53 +53,59 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         tableview.rowHeight = UITableView.automaticDimension
         tableview.register(UINib(nibName: "FixtureDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "FixtureDetailTableViewCell")
         
-        //Load Player Data
-        loadPlayerFixtureData()
-        
         //Display Crest
         if homeFixture {
             Helper.setImageView(imageView: ivHomeTeam, url: self.teamCrestURL!)
         } else {
             Helper.setImageView(imageView: ivAwayTeam, url: self.teamCrestURL!)
         }
+        
+        //Load Player Data
+        loadPlayerFixtureData()
+        
     }
     
     
     func loadPlayerFixtureData() {
         
-        for player in players {
-            
-            let spinner = UIViewController.displayLoading(withView: self.view)
-            
-            let playerRef = PlayerModel.collection.child(player.key)
-            let playerRefQuery = playerRef.queryOrderedByKey()
+        let fixtureRef = FixtureModel.collection.child(teamId).child(fixtureId).child("players")
+        let fixtureRefQuery = fixtureRef.queryOrderedByKey()
+        
+        fixtureRefQuery.observeSingleEvent(of: .value) { (snapshot) in
+            for item in snapshot.children {
+                guard let snapshot = item as? DataSnapshot else { continue }
+                guard let player = PlayerFixtureModel(snapshot) else { continue }
                 
-            playerRefQuery.observe(.value) { [weak self] (snapshot) in
-                
-                guard let strongSelf = self else { return }
-                guard let a = PlayerModel(snapshot) else { return }
-                strongSelf.playersPersonalData.insert(a, at: 0)
-                UIViewController.removeLoading(spinner: spinner)
-                
-                DispatchQueue.main.async {
-                    strongSelf.tableview.reloadData()
-                }
+                self.playerArray.insert(player, at: 0)
+            }
+            DispatchQueue.main.async {
+                self.tableview.reloadData()
             }
         }
     }
+
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        playersPersonalData.count
+        playerArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FixtureDetailTableViewCell") as! FixtureDetailTableViewCell
         
-        let player = playersPersonalData[indexPath.row] as! PlayerModel
-        cell.lblPlayerName.text = player.fullName
+        let player = playerArray[indexPath.row] as! PlayerFixtureModel
         
-        cell.ivPlayer.sd_cancelCurrentImageLoad()
-        cell.ivPlayer?.sd_setImage(with: player.profilePictureUrl, completed: nil)
+        cell.lblPlayerName.text = player.fullName
+        Helper.setImageView(imageView: cell.ivPlayer, url: player.profilePictureUrl!)
+        
+        switch player.availability {
+        case "Yes":
+            cell.ivPlayerAvailability.backgroundColor = colours.green
+        case "No":
+            cell.ivPlayerAvailability.backgroundColor = colours.red
+        default:
+            cell.ivPlayerAvailability.backgroundColor = colours.primaryGrey
+        }
         
         return cell
     }
