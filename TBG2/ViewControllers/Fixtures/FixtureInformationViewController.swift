@@ -82,7 +82,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
                 self.tableview.reloadData()
             }
         }
-        
     }
 
     
@@ -107,7 +106,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         default:
             cell.ivPlayerAvailability.backgroundColor = colours.primaryGrey
         }
-        
         
         return cell
     }

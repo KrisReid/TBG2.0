@@ -30,8 +30,6 @@ class TeamModel {
     var pin: Int = 000000
     var postcode: String = ""
     
-
-    //IN THE CODE PASS A SNAPSHOT INTO THE MODEL AND THEN GET BACK THE PARSED VALUES
     
     init?(_ snapshot: DataSnapshot) {
         guard let value = snapshot.value as? [String: Any] else { return nil }
@@ -101,38 +99,5 @@ class TeamModel {
 
          }
     }
-    
-    
-//    static func postNewTeam(userId: String, playerProfilePicture: UIImage, playerFullName: String,playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, assistantManager: Bool, playerManager: Bool, playerPosition: String, teamName: String, teamPIN: Int, teamPostcode: String, teamCrest: UIImage) {
-//
-//
-//        let imageFolder = Storage.storage().reference().child("crest_images")
-//        if let uploadData = teamCrest.jpegData(compressionQuality: 0.75) {
-//
-//            imageFolder.child("\(NSUUID().uuidString).jpeg").putData(uploadData, metadata: nil) { (metadata, error) in
-//                if let error = error {
-//                    print(error.localizedDescription)
-//                } else {
-//                    let teamRef = TeamModel.collection.childByAutoId()
-//                    let newKey = teamRef.key
-//                    let TeamDictionary : [String:Any] =
-//                        [
-//                            "crest": String((metadata?.path)!),
-//                            "name": teamName,
-//                            "pin": teamPIN,
-//                            "postcode":teamPostcode,
-//                            "id": newKey as Any
-//                        ]
-//                     teamRef.setValue(TeamDictionary)
-//
-//                     DispatchQueue.main.async {
-//
-//                        PlayerModel.postPlayerProfile(profilePicture: playerProfilePicture, userId: userId, playerFullName: playerFullName, playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: manager, assistantManager: assistantManager, playerManager: playerManager, playerPosition: playerPosition, teamId: newKey!, teamPIN: teamPIN)
-//
-//                     }
-//                }
-//            }
-//        }
-//    }
 
 }
