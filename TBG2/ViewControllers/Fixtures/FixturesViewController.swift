@@ -58,8 +58,6 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
             fixtureRefQuery.observeSingleEvent(of: .value) { (snapshot) in
                 guard let strongSelf = self else { return }
                 for item in snapshot.children {
-//                    print("7777777777")
-//                    print(item)
                     guard let snapshot = item as? DataSnapshot else { continue }
                     guard let fixture = FixtureModel(snapshot) else { continue }
                     strongSelf.fixtures.insert(fixture, at: 0)
@@ -110,8 +108,9 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
                 vc.awayGoals = snapshot.awayGoals
                 vc.homeGoals = snapshot.homeGoals
                 vc.homeFixture = snapshot.homeFixture
-                vc.players = snapshot.players
                 vc.teamCrestURL = self.team?.crest
+                vc.teamId = self.team?.id ?? ""
+                vc.fixtureId = snapshot.fixtureId
             }
         }
     }
