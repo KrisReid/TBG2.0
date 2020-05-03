@@ -13,6 +13,35 @@ import FirebaseAuth
 import FirebaseStorage
 
 
+class PlayerFixtureModel {
+    
+    //This is just a way to parse the snapshot
+    var fullName: String
+    var profilePictureUrl: URL?
+    var availability: String
+    var goals: Int
+    var motm: Bool
+    
+    //IN THE CODE PASS A SNAPSHOT INTO THE MODEL AND THEN GET BACK THE PARSED VALUES
+    init?(_ snapshot: DataSnapshot) {
+        guard let value = snapshot.value as? [String: Any] else { return nil }
+        
+        // CHANGE THESE TO GUARD STATEMENTS ONCE VALIDATION ADDED AT LOGIN
+        self.fullName = value["fullName"] as? String ?? ""
+        self.availability = value["availability"] as? String ?? ""
+        self.goals = value["goals"] as? Int ?? 0
+        self.motm = value["motm"] as? Bool ?? false
+        
+        if let profilePicture = value["profilePictureUrl"] as? String {
+           self.profilePictureUrl = URL(string: profilePicture)
+       }
+
+    }
+    
+    
+}
+
+
 class PlayerModel {
     
     static var authCollection: String {

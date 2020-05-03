@@ -26,6 +26,7 @@ class FixtureModel {
     var homeGoals: String
     var awayGoals: String
     var players: Dictionary<String, Any>
+//    var players: NSMutableArray
     
     //IN THE CODE PASS A SNAPSHOT INTO THE MODEL AND THEN GET BACK THE PARSED VALUES
     init?(_ snapshot: DataSnapshot) {
@@ -39,6 +40,7 @@ class FixtureModel {
         self.homeGoals = value["homeGoals"] as? String ?? "-"
         self.awayGoals = value["awayGoals"] as? String ?? "-"
         self.players = value["players"] as? Dictionary ?? ["":""]
+//        self.players = value["players"] as? NSMutableArray ?? []
     }
     
     
@@ -60,44 +62,65 @@ class FixtureModel {
         let fixtureId = String(fixtureRef.key ?? "")
         
         for playerId in playerIds {
+            
             guard let id = playerId as? String else { return }
             
-            //Set the base data regardless of who it is
-            let baseData : [String:Any] =
-            [
-                "availability": "Unknown",
-                "goals" : 0,
-                "motm" : false
-            ]
-            let playerData : [String:Any] = [id:baseData]
-            let playerRef = collection.child(teamId).child(fixtureId).child("players")
-            playerRef.updateChildValues(playerData)
-            
-            //Set with the manager or assistant as available
-            if id == managerId && managerAvailability == true || id == assistantManagerId && assistantManagerAvailability == true {
+            //get the player name and pictureURL to store in the object
+            let playerRef = PlayerModel.collection.child(playerId as! String)
+            let playerRefQuery = playerRef.queryOrderedByKey()
+            playerRefQuery.observe(.value) { (snapshot) in
+                guard let player = PlayerModel(snapshot) else { return }
                 
+                //Set the base data regardless of who it is
                 let baseData : [String:Any] =
                 [
-                    "availability": "Yes",
+                    "availability": "Unknown",
                     "goals" : 0,
-                    "motm" : false
+                    "motm" : false,
+                    "id" : player.id,
+                    "fullName": player.fullName,
+                    "profilePictureUrl": player.profilePictureUrl?.absoluteString ?? ""
                 ]
-                let managerData : [String:Any] = [id:baseData]
-                let managerRef = collection.child(teamId).child(fixtureId).child("players")
-                managerRef.updateChildValues(managerData)
-            }
-            //Set with the manager or assistant as not available
-            else if id == managerId && managerAvailability == false || id == assistantManagerId && assistantManagerAvailability == false {
+                let playerData : [String:Any] = [id:baseData]
+                let playerRef = collection.child(teamId).child(fixtureId).child("players")
+                playerRef.updateChildValues(playerData)
                 
-                let baseData : [String:Any] =
-                [
-                    "availability": "No",
-                    "goals" : 0,
-                    "motm" : false
-                ]
-                let managerData : [String:Any] = [id:baseData]
-                let managerRef = collection.child(teamId).child(fixtureId).child("players")
-                managerRef.updateChildValues(managerData)
+                
+                //Set with the manager or assistant as available
+                if id == managerId && managerAvailability == true || id == assistantManagerId && assistantManagerAvailability == true {
+                    
+                    let baseData : [String:Any] =
+                    [
+                        "availability": "Yes",
+                        "goals" : 0,
+                        "motm" : false,
+                        "id" : player.id,
+                        "fullName": player.fullName,
+                        "profilePictureUrl": player.profilePictureUrl?.absoluteString ?? ""
+                    ]
+                    let managerData : [String:Any] = [id:baseData]
+                    let managerRef = collection.child(teamId).child(fixtureId).child("players")
+                    managerRef.updateChildValues(managerData)
+                }
+                
+                    
+                //Set with the manager or assistant as not available
+                else if id == managerId && managerAvailability == false || id == assistantManagerId && assistantManagerAvailability == false {
+                    
+                    let baseData : [String:Any] =
+                    [
+                        "availability": "No",
+                        "goals" : 0,
+                        "motm" : false,
+                        "id" : player.id,
+                        "fullName": player.fullName,
+                        "profilePictureUrl": player.profilePictureUrl?.absoluteString ?? ""
+                    ]
+                    let managerData : [String:Any] = [id:baseData]
+                    let managerRef = collection.child(teamId).child(fixtureId).child("players")
+                    managerRef.updateChildValues(managerData)
+                }
+                
             }
   
         }

@@ -28,8 +28,8 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     var fixtureDate: String = ""
     var fixtureTime: String = ""
     var fixturePostcode: String = ""
+    var playersArray: NSMutableArray = []
     var players: Dictionary<String, Any> = [:]
-    var playersPersonalData: NSMutableArray = []
     
     var colours = Colours()
     
@@ -51,8 +51,8 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         tableview.rowHeight = UITableView.automaticDimension
         tableview.register(UINib(nibName: "FixtureDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "FixtureDetailTableViewCell")
         
-        //Load Player Data
-        loadPlayerFixtureData()
+//        //Load Player Data
+//        loadPlayerFixtureData()
         
         //Display Crest
         if homeFixture {
@@ -60,44 +60,64 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         } else {
             Helper.setImageView(imageView: ivAwayTeam, url: self.teamCrestURL!)
         }
+        
+        //test
+        convertData()
+        
     }
     
-    
-    func loadPlayerFixtureData() {
-        
+    func convertData() {
         for player in players {
-            
-            let spinner = UIViewController.displayLoading(withView: self.view)
-            
-            let playerRef = PlayerModel.collection.child(player.key)
-            let playerRefQuery = playerRef.queryOrderedByKey()
-                
-            playerRefQuery.observe(.value) { [weak self] (snapshot) in
-                
-                guard let strongSelf = self else { return }
-                guard let a = PlayerModel(snapshot) else { return }
-                strongSelf.playersPersonalData.insert(a, at: 0)
-                UIViewController.removeLoading(spinner: spinner)
-                
-                DispatchQueue.main.async {
-                    strongSelf.tableview.reloadData()
-                }
+            playersArray.insert(player.value, at: 0)
+            DispatchQueue.main.async {
+                self.tableview.reloadData()
             }
         }
     }
     
+    
+//    func loadPlayerFixtureData() {
+//
+//        for player in players {
+//
+//            let spinner = UIViewController.displayLoading(withView: self.view)
+//
+//            let playerRef = PlayerModel.collection.child(player.key)
+//            let playerRefQuery = playerRef.queryOrderedByKey()
+//
+//            playerRefQuery.observe(.value) { [weak self] (snapshot) in
+//
+//                guard let strongSelf = self else { return }
+//                guard let a = PlayerModel(snapshot) else { return }
+//                strongSelf.playersPersonalData.insert(a, at: 0)
+//                UIViewController.removeLoading(spinner: spinner)
+//
+//                DispatchQueue.main.async {
+//                    strongSelf.tableview.reloadData()
+//                }
+//            }
+//        }
+//    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        playersPersonalData.count
+//        playersPersonalData.count
+        players.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FixtureDetailTableViewCell") as! FixtureDetailTableViewCell
         
-        let player = playersPersonalData[indexPath.row] as! PlayerModel
-        cell.lblPlayerName.text = player.fullName
+        let player = playersArray[indexPath.row] as? PlayerFixtureModel
+
+        cell.lblPlayerName.text = player?.fullName
         
-        cell.ivPlayer.sd_cancelCurrentImageLoad()
-        cell.ivPlayer?.sd_setImage(with: player.profilePictureUrl, completed: nil)
+        
+//        let player = playersPersonalData[indexPath.row] as! PlayerModel
+        
+//        cell.lblPlayerName.text = player?.fullName
+//        Helper.setImageView(imageView: cell.ivPlayer, url: (player?.profilePictureUrl!)!)
+        
+//        cell.ivPlayerAvailability.backgroundColor = colours.red
         
         return cell
     }

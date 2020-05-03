@@ -58,6 +58,8 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
             fixtureRefQuery.observeSingleEvent(of: .value) { (snapshot) in
                 guard let strongSelf = self else { return }
                 for item in snapshot.children {
+//                    print("7777777777")
+//                    print(item)
                     guard let snapshot = item as? DataSnapshot else { continue }
                     guard let fixture = FixtureModel(snapshot) else { continue }
                     strongSelf.fixtures.insert(fixture, at: 0)
