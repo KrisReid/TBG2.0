@@ -15,8 +15,8 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
     
     var colours = Colours()
     var player: PlayerModel?
+    var team: TeamModel?
     var fixtures: NSMutableArray = []
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,29 +30,36 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
         rightBarItemImage = rightBarItemImage?.withRenderingMode(.alwaysOriginal)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: rightBarItemImage, style: .plain, target: self, action: #selector(addFixtureTapped))
         
-        //Load Fixture Data
-        loadFixtureData()
+        //Load Data
+        loadData()
     }
     
     
-    func loadFixtureData() {
-
+    func loadData() {
+        
+        //Get the user & player data
         let userRef = PlayerModel.getUser()
         userRef.observe(.value) { [weak self] (snapshot) in
             guard let strongSelf = self else { return }
             guard let player = PlayerModel(snapshot) else {return}
             strongSelf.player = player
             
+            //Get the team data
+            let teamRef = TeamModel.collection.child(strongSelf.player?.teamId ?? "")
+            teamRef.observe(.value) { (snapshot) in
+                guard let team = TeamModel (snapshot) else { return }
+                strongSelf.team = team
+            }
+            
+            //Get the fixture data
             let fixtureRef = FixtureModel.collection.child(strongSelf.player?.teamId ?? "")
             let fixtureRefQuery = fixtureRef.queryOrderedByKey()
 
             fixtureRefQuery.observeSingleEvent(of: .value) { (snapshot) in
-                
                 guard let strongSelf = self else { return }
                 for item in snapshot.children {
                     guard let snapshot = item as? DataSnapshot else { continue }
                     guard let fixture = FixtureModel(snapshot) else { continue }
-                    
                     strongSelf.fixtures.insert(fixture, at: 0)
                 }
                 DispatchQueue.main.async {
@@ -100,7 +107,9 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
                 vc.fixturePostcode = snapshot.postcode
                 vc.awayGoals = snapshot.awayGoals
                 vc.homeGoals = snapshot.homeGoals
+                vc.homeFixture = snapshot.homeFixture
                 vc.players = snapshot.players
+                vc.teamCrestURL = self.team?.crest
             }
         }
     }

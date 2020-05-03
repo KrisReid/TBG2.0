@@ -21,8 +21,10 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     
     @IBOutlet weak var tableview: UITableView!
     
+    var teamCrestURL: URL?
     var homeGoals: String = ""
     var awayGoals: String = ""
+    var homeFixture: Bool = true
     var fixtureDate: String = ""
     var fixtureTime: String = ""
     var fixturePostcode: String = ""
@@ -51,6 +53,13 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         
         //Load Player Data
         loadPlayerFixtureData()
+        
+        //Display Crest
+        if homeFixture {
+            Helper.setImageView(imageView: ivHomeTeam, url: self.teamCrestURL!)
+        } else {
+            Helper.setImageView(imageView: ivAwayTeam, url: self.teamCrestURL!)
+        }
     }
     
     
