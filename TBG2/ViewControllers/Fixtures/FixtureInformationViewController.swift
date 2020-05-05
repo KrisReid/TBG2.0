@@ -18,7 +18,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet weak var lblFixtureDate: UILabel!
     @IBOutlet weak var lblFixtureTime: UILabel!
     @IBOutlet weak var lblFixturePostcode: UILabel!
-    
     @IBOutlet weak var tableview: UITableView!
     
     var teamId: String = ""
@@ -30,9 +29,8 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     var fixtureDate: String = ""
     var fixtureTime: String = ""
     var fixturePostcode: String = ""
-    
     var playerArray: NSMutableArray = []
-    
+
     var colours = Colours()
     
     override func viewDidLoad() {
@@ -53,7 +51,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         tableview.rowHeight = UITableView.automaticDimension
         tableview.register(UINib(nibName: "FixtureDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "FixtureDetailTableViewCell")
         
-        
         //Load Player Data
         loadPlayerFixtureData()
         
@@ -63,13 +60,9 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         } else {
             Helper.setImageView(imageView: ivAwayTeam, url: self.teamCrestURL!)
         }
-        
-        
     }
     
-    
     func loadPlayerFixtureData() {
-        
         let fixtureRef = FixtureModel.collection.child(teamId).child(fixtureId).child("players")
         let fixtureRefQuery = fixtureRef.queryOrderedByKey()
         
@@ -107,8 +100,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         }
     }
 
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         playerArray.count
     }
@@ -130,7 +121,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             cell.ivPlayerAvailability.backgroundColor = colours.primaryGrey
         }
         
-
         if player.motm {
             cell.ivMotmAward.isHidden = false
         } else {
@@ -145,33 +135,23 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     }
     
     @IBAction func btnFixturePostcodeTapped(_ sender: Any) {
-        print("FAKE TABLE RELOAD HAPPENING")
         self.tableview.reloadData()
     }
-    
-    
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let motmAction = UIContextualAction(style: .normal, title: "MOTM") { (action, view, actionPerformed) in
             
             let player = self.playerArray[indexPath.row] as! PlayerFixtureModel
             
-            //Update the Fixture with MOM (Move this out)
-            let fixtureRef = FixtureModel.collection.child(self.teamId).child(self.fixtureId).child("players").child(player.playerId).child("motm")
-            fixtureRef.setValue(true)
+            //Update the Fixture with MOM
+            FixtureModel.postMotm(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId)
             
-            //Update the players MOM (Move this out)
-            let playerRef = PlayerModel.collection.child(player.playerId).child("motmTotal")
-            playerRef.observeSingleEvent(of: .value) { (snapshot) in
-                var updatedMotmValue = snapshot.value as! Int
-                updatedMotmValue += 1
-                playerRef.setValue(updatedMotmValue)
-            }
+            //Update the players MOM
+            PlayerModel.postMotm(playerId: player.playerId)
             
             //Action has been performed
             actionPerformed(true)
@@ -189,8 +169,5 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     //        paymentsAction.backgroundColor = .gray
     //        return UISwipeActionsConfiguration(actions: [paymentsAction])
     //    }
-    //
-    //
-    //
     
 }
