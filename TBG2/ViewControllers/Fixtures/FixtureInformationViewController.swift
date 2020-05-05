@@ -157,7 +157,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
                 actionPerformed(true)
             }
         }
-        motmAction.backgroundColor = colours.yellow
+        motmAction.backgroundColor = player.motm ? colours.primaryGrey : colours.yellow
         motmAction.title = player.motm ? "Remove MOTM" : "MOTM"
         return UISwipeActionsConfiguration(actions: [motmAction])
     }
