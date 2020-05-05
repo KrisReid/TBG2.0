@@ -16,6 +16,7 @@ import FirebaseStorage
 
 class PlayerFixtureModel {
 
+    var playerId: String
     var fullName: String
     var profilePictureUrl: URL?
     var availability: String
@@ -26,6 +27,7 @@ class PlayerFixtureModel {
     init?(_ snapshot: DataSnapshot) {
         guard let value = snapshot.value as? [String: Any] else { return nil }
 
+        self.playerId = value["playerId"] as? String ?? ""
         self.fullName = value["fullName"] as? String ?? ""
         self.availability = value["availability"] as? String ?? ""
         self.goals = value["goals"] as? Int ?? 0
@@ -144,6 +146,19 @@ class PlayerModel {
         
         collection.child(userId).updateChildValues(playerDictionary)
         TeamModel.collection.child(teamId).child("players").child(userId).updateChildValues(playerDictionary)
+    }
+    
+    class func postMotm(playerId: String, motm: Bool) {
+        let playerRef = collection.child(playerId).child("motmTotal")
+        playerRef.observeSingleEvent(of: .value) { (snapshot) in
+            var updatedMotmValue = snapshot.value as! Int
+            if motm {
+                updatedMotmValue += 1
+            } else {
+                updatedMotmValue -= 1
+            }
+            playerRef.setValue(updatedMotmValue)
+        }
     }
     
 }

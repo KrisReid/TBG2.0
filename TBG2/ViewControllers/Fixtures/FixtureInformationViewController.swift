@@ -18,7 +18,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet weak var lblFixtureDate: UILabel!
     @IBOutlet weak var lblFixtureTime: UILabel!
     @IBOutlet weak var lblFixturePostcode: UILabel!
-    
     @IBOutlet weak var tableview: UITableView!
     
     var teamId: String = ""
@@ -30,9 +29,8 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     var fixtureDate: String = ""
     var fixtureTime: String = ""
     var fixturePostcode: String = ""
-    
     var playerArray: NSMutableArray = []
-    
+
     var colours = Colours()
     
     override func viewDidLoad() {
@@ -53,30 +51,48 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         tableview.rowHeight = UITableView.automaticDimension
         tableview.register(UINib(nibName: "FixtureDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "FixtureDetailTableViewCell")
         
+        //Load Player Data
+        loadPlayerFixtureData()
+        
         //Display Crest
         if homeFixture {
             Helper.setImageView(imageView: ivHomeTeam, url: self.teamCrestURL!)
         } else {
             Helper.setImageView(imageView: ivAwayTeam, url: self.teamCrestURL!)
         }
-        
-        //Load Player Data
-        loadPlayerFixtureData()
-        
     }
     
-    
     func loadPlayerFixtureData() {
-        
         let fixtureRef = FixtureModel.collection.child(teamId).child(fixtureId).child("players")
         let fixtureRefQuery = fixtureRef.queryOrderedByKey()
         
-        fixtureRefQuery.observeSingleEvent(of: .value) { (snapshot) in
-            for item in snapshot.children {
-                guard let snapshot = item as? DataSnapshot else { continue }
-                guard let player = PlayerFixtureModel(snapshot) else { continue }
-                
-                self.playerArray.insert(player, at: 0)
+        //Initial load of the array
+        if self.playerArray == [] {
+            fixtureRefQuery.observeSingleEvent(of: .value) { (snapshot) in
+                for item in snapshot.children {
+                   guard let snapshot = item as? DataSnapshot else { continue }
+                   guard let player = PlayerFixtureModel(snapshot) else { continue }
+
+                   self.playerArray.insert(player, at: 0)
+               }
+               DispatchQueue.main.async {
+                   self.tableview.reloadData()
+               }
+            }
+        }
+        
+        //Keeping the DB connection open for observing child changes that can reflect in the Array
+        fixtureRefQuery.observe(.childChanged) { (snapshot) in
+            var arrayIndex = 0
+            for playerObject in self.playerArray {
+                let player = playerObject as! PlayerFixtureModel
+                if snapshot.key == player.playerId {
+                    //Convert the snapshot
+                    guard let c = PlayerFixtureModel(snapshot) else { continue }
+                    //Insert the snapshot
+                    self.playerArray.replaceObject(at: arrayIndex, with: c)
+                }
+                arrayIndex += 1
             }
             DispatchQueue.main.async {
                 self.tableview.reloadData()
@@ -84,8 +100,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         }
     }
 
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         playerArray.count
     }
@@ -107,6 +121,12 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             cell.ivPlayerAvailability.backgroundColor = colours.primaryGrey
         }
         
+        if player.motm {
+            cell.ivMotmAward.isHidden = false
+        } else {
+            cell.ivMotmAward.isHidden = true
+        }
+        
         return cell
     }
     
@@ -115,78 +135,40 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     }
     
     @IBAction func btnFixturePostcodeTapped(_ sender: Any) {
+        self.tableview.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
+        let player = self.playerArray[indexPath.row] as! PlayerFixtureModel
+        
+        let motmAction = UIContextualAction(style: .normal, title: "MOTM") { (action, view, actionPerformed) in
+            if player.motm {
+                FixtureModel.postMotm(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, motm: false)
+                PlayerModel.postMotm(playerId: player.playerId, motm: false)
+                actionPerformed(true)
+            } else {
+                FixtureModel.postMotm(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, motm: true)
+                PlayerModel.postMotm(playerId: player.playerId, motm: true)
+                actionPerformed(true)
+            }
+        }
+        motmAction.backgroundColor = player.motm ? colours.primaryGrey : colours.yellow
+        motmAction.title = player.motm ? "Remove MOTM" : "MOTM"
+        return UISwipeActionsConfiguration(actions: [motmAction])
     }
     
-//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        let motmAction = UIContextualAction(style: .normal, title: "MOTM") { (action, view, actionPerformed) in
-//
-//            // INSIDE THE CLICK
-//
-//            actionPerformed(true)
-//        }
-//        motmAction.backgroundColor = .yellow
-//
-//        return UISwipeActionsConfiguration(actions: [motmAction])
-//    }
+        
+    //    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    //        let paymentsAction = UIContextualAction(style: .normal, title: "Payments") { (action, view, actionPerformed) in
+    //            print("Making Payment?")
+    //        }
+    //        paymentsAction.backgroundColor = .gray
+    //        return UISwipeActionsConfiguration(actions: [paymentsAction])
+    //    }
     
-    
-    
-    
-    
-    
-//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        let flagAction = self.contextualToggleFlagAction(forRowAtIndexPath: indexPath)
-//        let swipeConfig = UISwipeActionsConfiguration(actions: [flagAction])
-//        return swipeConfig
-//    }
-    
-    
-//    func contextualToggleFlagAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
-//        // 1
-//        var data = data[indexPath.row]
-//        // 2
-//        let action = UIContextualAction(style: .normal,
-//                                        title: "Flag") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-//            // 3
-//            if email.toggleFlaggedFlag() {
-//                // 4
-//                self.data[indexPath.row] = email
-//                self.tableview.reloadRows(at: [indexPath], with: .none)
-//                // 5
-//                completionHandler(true)
-//            } else {
-//                // 6
-//                completionHandler(false)
-//            }
-//        }
-//        // 7
-//        action.title = "Flag"
-////        action.image = UIImage(named: "flag")
-//        action.backgroundColor = email.isFlagged ? UIColor.gray : UIColor.orange
-//        return action
-//    }
-    
-    
-//    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        let paymentsAction = UIContextualAction(style: .normal, title: "Payments") { (action, view, actionPerformed) in
-//            print("Making Payment?")
-//        }
-//        motmAction.backgroundColor = .yellow
-//        return UISwipeActionsConfiguration(actions: [paymentsAction])
-//    }
-    
-    
-    
-    
-    func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
-        print("did end editing")
-        guard let indexPath = indexPath else {return}
-        tableView.reloadRows(at: [indexPath], with: .none)
-    }
-    
-    func setCell(color:UIColor, at indexPath: IndexPath){
-        let cell = tableview.cellForRow(at: indexPath )
-        cell?.backgroundColor = color
-    }
 }
