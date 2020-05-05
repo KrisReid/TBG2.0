@@ -146,7 +146,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         
         let player = self.playerArray[indexPath.row] as! PlayerFixtureModel
         
-        let motmAction = UIContextualAction(style: .normal, title: "Award MOTM") { (action, view, actionPerformed) in
+        let motmAction = UIContextualAction(style: .normal, title: "MOTM") { (action, view, actionPerformed) in
             if player.motm {
                 FixtureModel.postMotm(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, motm: false)
                 PlayerModel.postMotm(playerId: player.playerId, motm: false)
@@ -157,8 +157,8 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
                 actionPerformed(true)
             }
         }
-        motmAction.backgroundColor = .black
-        motmAction.title = player.motm ? "Remove MOTM" : "Award MOTM"
+        motmAction.backgroundColor = colours.yellow
+        motmAction.title = player.motm ? "Remove MOTM" : "MOTM"
         return UISwipeActionsConfiguration(actions: [motmAction])
     }
     
