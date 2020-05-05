@@ -148,11 +148,15 @@ class PlayerModel {
         TeamModel.collection.child(teamId).child("players").child(userId).updateChildValues(playerDictionary)
     }
     
-    class func postMotm(playerId: String) {
+    class func postMotm(playerId: String, motm: Bool) {
         let playerRef = collection.child(playerId).child("motmTotal")
         playerRef.observeSingleEvent(of: .value) { (snapshot) in
             var updatedMotmValue = snapshot.value as! Int
-            updatedMotmValue += 1
+            if motm {
+                updatedMotmValue += 1
+            } else {
+                updatedMotmValue -= 1
+            }
             playerRef.setValue(updatedMotmValue)
         }
     }

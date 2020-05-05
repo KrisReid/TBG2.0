@@ -143,21 +143,22 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let motmAction = UIContextualAction(style: .normal, title: "MOTM") { (action, view, actionPerformed) in
-            
-            let player = self.playerArray[indexPath.row] as! PlayerFixtureModel
-            
-            //Update the Fixture with MOM
-            FixtureModel.postMotm(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId)
-            
-            //Update the players MOM
-            PlayerModel.postMotm(playerId: player.playerId)
-            
-            //Action has been performed
-            actionPerformed(true)
-            
+        
+        let player = self.playerArray[indexPath.row] as! PlayerFixtureModel
+        
+        let motmAction = UIContextualAction(style: .normal, title: "Award MOTM") { (action, view, actionPerformed) in
+            if player.motm {
+                FixtureModel.postMotm(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, motm: false)
+                PlayerModel.postMotm(playerId: player.playerId, motm: false)
+                actionPerformed(true)
+            } else {
+                FixtureModel.postMotm(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, motm: true)
+                PlayerModel.postMotm(playerId: player.playerId, motm: true)
+                actionPerformed(true)
+            }
         }
         motmAction.backgroundColor = .black
+        motmAction.title = player.motm ? "Remove MOTM" : "Award MOTM"
         return UISwipeActionsConfiguration(actions: [motmAction])
     }
     

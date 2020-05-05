@@ -131,9 +131,9 @@ class FixtureModel {
         
     }
     
-    class func postMotm(teamId: String, fixtureId: String, playerId: String) {
+    class func postMotm(teamId: String, fixtureId: String, playerId: String, motm: Bool) {
         let fixtureRef = collection.child(teamId).child(fixtureId).child("players").child(playerId).child("motm")
-        fixtureRef.setValue(true)
+        fixtureRef.setValue(motm)
     }
 
 }
