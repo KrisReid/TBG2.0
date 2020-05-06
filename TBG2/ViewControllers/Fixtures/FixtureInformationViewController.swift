@@ -127,6 +127,16 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             cell.ivMotmAward.isHidden = true
         }
         
+        if player.goals > 0 {
+            cell.lblGoalScoredCount.isHidden = false
+            cell.ivGoalScored.isHidden = false
+            cell.lblGoalScoredCount.text = String(player.goals)
+        } else {
+            cell.lblGoalScoredCount.isHidden = true
+            cell.ivGoalScored.isHidden = true
+        }
+        
+        
         return cell
     }
     
@@ -170,18 +180,17 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         addGoalAction.backgroundColor = colours.primaryBlue
         
         //Minus Goal
-        let minusGoalAction = UIContextualAction(style: .normal, title: "Add Goal") { (action, view, actionPerformed) in
-            FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, goal: true)
-            PlayerModel.postPlayerGoals(playerId: player.playerId, goal: true)
+        let minusGoalAction = UIContextualAction(style: .normal, title: "Minus Goal") { (action, view, actionPerformed) in
+            FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, goal: false)
+            PlayerModel.postPlayerGoals(playerId: player.playerId, goal: false)
             actionPerformed(true)
         }
         minusGoalAction.backgroundColor = colours.secondaryBlue
         
-        return UISwipeActionsConfiguration(actions: [motmAction, addGoalAction, minusGoalAction])
+        return UISwipeActionsConfiguration(actions: [minusGoalAction, addGoalAction, motmAction])
     }
     
     
-        
     //    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
     //        let paymentsAction = UIContextualAction(style: .normal, title: "Payments") { (action, view, actionPerformed) in
     //            print("Making Payment?")
