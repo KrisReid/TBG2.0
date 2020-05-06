@@ -141,7 +141,9 @@ class PlayerModel {
             "assistantManager" : assistantManager,
             "playerManager" : playerManager,
             "position" : playerPosition,
-            "teamId" : teamId
+            "teamId" : teamId,
+            "goalTotal" : 0,
+            "motmTotal" : 0
         ]
         
         collection.child(userId).updateChildValues(playerDictionary)
@@ -158,6 +160,19 @@ class PlayerModel {
                 updatedMotmValue -= 1
             }
             playerRef.setValue(updatedMotmValue)
+        }
+    }
+    
+    class func postPlayerGoals(playerId: String, goal: Bool) {
+        let playerRef = collection.child(playerId).child("goalTotal")
+        playerRef.observeSingleEvent(of: .value) { (snapshot) in
+            var updatedGoalValue = snapshot.value as! Int
+            if goal {
+                updatedGoalValue += 1
+            } else {
+                updatedGoalValue -= 1
+            }
+            playerRef.setValue(updatedGoalValue)
         }
     }
     

@@ -146,6 +146,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         
         let player = self.playerArray[indexPath.row] as! PlayerFixtureModel
         
+        //MOTM
         let motmAction = UIContextualAction(style: .normal, title: "MOTM") { (action, view, actionPerformed) in
             if player.motm {
                 FixtureModel.postMotm(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, motm: false)
@@ -159,8 +160,26 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         }
         motmAction.backgroundColor = player.motm ? colours.primaryGrey : colours.yellow
         motmAction.title = player.motm ? "Remove MOTM" : "MOTM"
-        return UISwipeActionsConfiguration(actions: [motmAction])
+        
+        //Add Goal
+        let addGoalAction = UIContextualAction(style: .normal, title: "Add Goal") { (action, view, actionPerformed) in
+            FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, goal: true)
+            PlayerModel.postPlayerGoals(playerId: player.playerId, goal: true)
+            actionPerformed(true)
+        }
+        addGoalAction.backgroundColor = colours.primaryBlue
+        
+        //Minus Goal
+        let minusGoalAction = UIContextualAction(style: .normal, title: "Add Goal") { (action, view, actionPerformed) in
+            FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, goal: true)
+            PlayerModel.postPlayerGoals(playerId: player.playerId, goal: true)
+            actionPerformed(true)
+        }
+        minusGoalAction.backgroundColor = colours.secondaryBlue
+        
+        return UISwipeActionsConfiguration(actions: [motmAction, addGoalAction, minusGoalAction])
     }
+    
     
         
     //    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
