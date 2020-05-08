@@ -111,6 +111,8 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
         guard let teamPostcode = tfTeamPostcode.text else { return }
         guard let playerProfilePicture = playerProfilePicture?.image else { return }
         
+        let formattedTeamPostcode = teamPostcode.replacingOccurrences(of: " ", with: "")
+        
         if (tfTeamName.text == "" || tfTeamPIN.text == "" || tfTeamPostcode.text == "" || btnTeamCrest.currentTitle == nil) {
             
             let alert = Helper.errorAlert(title: "Ooops", message: "All fields must be populated and picutre added. This will save you signing on each season 🥳")
@@ -136,7 +138,7 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
                         }
                         if error == nil {
                             
-                            TeamModel.postTeamCrest(userId: userId, playerProfilePicture: playerProfilePicture, playerFullName: self!.playerFullName, playerEmailAddress: self!.playerEmailAddress, playerDateOfBirth: self!.playerDateOfBirth, playerHouseNumber: self!.playerHouseNumber, playerPostcode: self!.playerPostcode, manager: true, assistantManager: false, playerManager: self!.playerManager, playerPosition: self!.playerPosition, teamName: teamName, teamPIN: teamPIN, teamPostcode: teamPostcode, teamCrest: teamCrest)
+                            TeamModel.postTeamCrest(userId: userId, playerProfilePicture: playerProfilePicture, playerFullName: self!.playerFullName, playerEmailAddress: self!.playerEmailAddress, playerDateOfBirth: self!.playerDateOfBirth, playerHouseNumber: self!.playerHouseNumber, playerPostcode: self!.playerPostcode, manager: true, assistantManager: false, playerManager: self!.playerManager, playerPosition: self!.playerPosition, teamName: teamName, teamPIN: teamPIN, teamPostcode: formattedTeamPostcode, teamCrest: teamCrest)
                             
                             DispatchQueue.main.async {
                                 Helper.login()

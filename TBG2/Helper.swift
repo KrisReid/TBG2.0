@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MapKit
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
@@ -154,5 +155,50 @@ class Helper {
         imageView.sd_cancelCurrentImageLoad()
         imageView.sd_setImage(with: url, completed: nil)
     }
+
+    
+    class func getLongLat(postcode: String, opposition: String) -> Void {
+        var request = URLRequest(url: URL(string: "https://api.postcodes.io/postcodes/\(postcode)")!)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let session = URLSession.shared
+        let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
+                for (key, value) in json {
+                    if key == "result" {
+                        guard let latitude = value["latitude"] else { return }
+                        guard let longitude = value["longitude"] else { return }
+                        
+                        openMapForPlace(longitude: longitude as! Double, latitude: latitude as! Double, opposition: opposition)
+                    }
+                }
+            } catch {
+                print("error")
+            }
+        })
+        task.resume()
+    }
+    
+    
+    private class func openMapForPlace(longitude: Double, latitude: Double, opposition: String) {
+        let latitude: CLLocationDegrees = latitude
+        let longitude: CLLocationDegrees = longitude
+
+        let regionDistance:CLLocationDistance = 10000
+        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+        let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+        ]
+        
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = opposition
+        mapItem.openInMaps(launchOptions: options)
+    }
+    
 
 }
