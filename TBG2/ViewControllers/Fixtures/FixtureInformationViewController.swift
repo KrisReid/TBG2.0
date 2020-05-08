@@ -127,6 +127,16 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             cell.ivMotmAward.isHidden = true
         }
         
+        if player.goals > 0 {
+            cell.lblGoalScoredCount.isHidden = false
+            cell.ivGoalScored.isHidden = false
+            cell.lblGoalScoredCount.text = String(player.goals)
+        } else {
+            cell.lblGoalScoredCount.isHidden = true
+            cell.ivGoalScored.isHidden = true
+        }
+        
+        
         return cell
     }
     
@@ -146,6 +156,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         
         let player = self.playerArray[indexPath.row] as! PlayerFixtureModel
         
+        //MOTM
         let motmAction = UIContextualAction(style: .normal, title: "MOTM") { (action, view, actionPerformed) in
             if player.motm {
                 FixtureModel.postMotm(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, motm: false)
@@ -159,10 +170,27 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         }
         motmAction.backgroundColor = player.motm ? colours.primaryGrey : colours.yellow
         motmAction.title = player.motm ? "Remove MOTM" : "MOTM"
-        return UISwipeActionsConfiguration(actions: [motmAction])
+        
+        //Add Goal
+        let addGoalAction = UIContextualAction(style: .normal, title: "Add Goal") { (action, view, actionPerformed) in
+            FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, goal: true)
+            PlayerModel.postPlayerGoals(playerId: player.playerId, goal: true)
+            actionPerformed(true)
+        }
+        addGoalAction.backgroundColor = colours.primaryBlue
+        
+        //Minus Goal
+        let minusGoalAction = UIContextualAction(style: .normal, title: "Minus Goal") { (action, view, actionPerformed) in
+            FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, goal: false)
+            PlayerModel.postPlayerGoals(playerId: player.playerId, goal: false)
+            actionPerformed(true)
+        }
+        minusGoalAction.backgroundColor = colours.secondaryBlue
+        
+        return UISwipeActionsConfiguration(actions: [minusGoalAction, addGoalAction, motmAction])
     }
     
-        
+    
     //    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
     //        let paymentsAction = UIContextualAction(style: .normal, title: "Payments") { (action, view, actionPerformed) in
     //            print("Making Payment?")

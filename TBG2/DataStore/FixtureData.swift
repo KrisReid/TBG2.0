@@ -135,5 +135,20 @@ class FixtureModel {
         let fixtureRef = collection.child(teamId).child(fixtureId).child("players").child(playerId).child("motm")
         fixtureRef.setValue(motm)
     }
+    
+    
+    class func postPlayerGoals(teamId: String, fixtureId: String, playerId: String, goal: Bool) {
+        let fixtureRef = collection.child(teamId).child(fixtureId).child("players").child(playerId).child("goals")
+        
+        fixtureRef.observeSingleEvent(of: .value) { (snapshot) in
+            var updatedGoalValue = snapshot.value as! Int
+            if goal {
+                updatedGoalValue += 1
+            } else {
+                updatedGoalValue -= 1
+            }
+            fixtureRef.setValue(updatedGoalValue)
+        }
+    }
 
 }
