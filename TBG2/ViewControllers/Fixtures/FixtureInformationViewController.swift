@@ -135,8 +135,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             cell.lblGoalScoredCount.isHidden = true
             cell.ivGoalScored.isHidden = true
         }
-        
-        
         return cell
     }
     
@@ -196,7 +194,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         return swipeAction
         
     }
-    
     
     //    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
     //        let paymentsAction = UIContextualAction(style: .normal, title: "Payments") { (action, view, actionPerformed) in
