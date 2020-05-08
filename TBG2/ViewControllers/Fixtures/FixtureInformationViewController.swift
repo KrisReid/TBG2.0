@@ -70,17 +70,17 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         if self.playerArray == [] {
             fixtureRefQuery.observeSingleEvent(of: .value) { (snapshot) in
                 for item in snapshot.children {
-                   guard let snapshot = item as? DataSnapshot else { continue }
-                   guard let player = PlayerFixtureModel(snapshot) else { continue }
+                    guard let snapshot = item as? DataSnapshot else { continue }
+                    guard let player = PlayerFixtureModel(snapshot) else { continue }
 
-                   self.playerArray.insert(player, at: 0)
-               }
-               DispatchQueue.main.async {
-                   self.tableview.reloadData()
-               }
+                    self.playerArray.insert(player, at: 0)
+                }
+                DispatchQueue.main.async {
+                    self.tableview.reloadData()
+                }
             }
         }
-        
+
         //Keeping the DB connection open for observing child changes that can reflect in the Array
         fixtureRefQuery.observe(.childChanged) { (snapshot) in
             var arrayIndex = 0
@@ -181,13 +181,20 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         
         //Minus Goal
         let minusGoalAction = UIContextualAction(style: .normal, title: "Minus Goal") { (action, view, actionPerformed) in
-            FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, goal: false)
-            PlayerModel.postPlayerGoals(playerId: player.playerId, goal: false)
-            actionPerformed(true)
+            if player.goals >= 1 {
+                FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, goal: false)
+                PlayerModel.postPlayerGoals(playerId: player.playerId, goal: false)
+                actionPerformed(true)
+            } else {
+                actionPerformed(false)
+            }
         }
         minusGoalAction.backgroundColor = colours.secondaryBlue
         
-        return UISwipeActionsConfiguration(actions: [minusGoalAction, addGoalAction, motmAction])
+        let swipeAction = UISwipeActionsConfiguration(actions: [minusGoalAction, addGoalAction, motmAction])
+        swipeAction.performsFirstActionWithFullSwipe = false
+        return swipeAction
+        
     }
     
     
