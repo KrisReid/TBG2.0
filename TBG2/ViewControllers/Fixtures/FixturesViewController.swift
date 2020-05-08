@@ -112,6 +112,7 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
                 vc.teamCrestURL = self.team?.crest
                 vc.teamId = self.team?.id ?? ""
                 vc.fixtureId = snapshot.fixtureId
+                vc.opposition = snapshot.opposition
             }
         }
     }

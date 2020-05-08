@@ -22,6 +22,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     
     var teamId: String = ""
     var fixtureId: String = ""
+    var opposition: String = ""
     var teamCrestURL: URL?
     var homeGoals: String = ""
     var awayGoals: String = ""
@@ -143,8 +144,9 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     }
     
     @IBAction func btnFixturePostcodeTapped(_ sender: Any) {
-        self.tableview.reloadData()
+        Helper.getLongLat(postcode: fixturePostcode, opposition: opposition)
     }
+
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
