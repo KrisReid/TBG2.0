@@ -43,6 +43,7 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
             guard let strongSelf = self else { return }
             guard let player = PlayerModel(snapshot) else {return}
             strongSelf.player = player
+            userRef.removeAllObservers()
             
             //Get the team data
             let teamRef = TeamModel.collection.child(strongSelf.player?.teamId ?? "")

@@ -57,6 +57,8 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
             guard let player = PlayerModel(snapshot) else {return}
             strongSelf.player = player
             
+            userRef.removeAllObservers()
+            
             let playersRef = TeamModel.collection.child(strongSelf.player?.teamId ?? "").child("players")
             let playerRefQuery = playersRef.queryOrderedByKey()
             playerRefQuery.observeSingleEvent(of: .value) { [weak self] (snapshot) in
