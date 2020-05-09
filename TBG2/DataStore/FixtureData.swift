@@ -24,8 +24,8 @@ class FixtureModel {
     var date: String
     var time: String
     var postcode: String
-    var homeGoals: String
-    var awayGoals: String
+    var teamGoals: Int
+    var oppositionGoals: Int
     var players: Dictionary<String, Any>
     
     
@@ -39,8 +39,8 @@ class FixtureModel {
         self.date = value["date"] as? String ?? ""
         self.time = value["time"] as? String ?? ""
         self.postcode = value["postcode"] as? String ?? ""
-        self.homeGoals = value["homeGoals"] as? String ?? "-"
-        self.awayGoals = value["awayGoals"] as? String ?? "-"
+        self.teamGoals = value["teamGoals"] as? Int ?? 9999
+        self.oppositionGoals = value["oppositionGoals"] as? Int ?? 9999
         self.players = value["players"] as? Dictionary ?? ["":""]
     }
     
@@ -58,8 +58,8 @@ class FixtureModel {
             "date": date,
             "time": time,
             "postcode": postcode,
-            "homeGoals": "-",
-            "awayGoals": "-",
+            "teamGoals": 0,
+            "oppositionGoals": 0
         ]
         
         fixtureRef.setValue(fixtureDictionary)
@@ -138,17 +138,29 @@ class FixtureModel {
     
     
     class func postPlayerGoals(teamId: String, fixtureId: String, playerId: String, goal: Bool) {
-        let fixtureRef = collection.child(teamId).child(fixtureId).child("players").child(playerId).child("goals")
+        let fixtureRef = collection.child(teamId).child(fixtureId)
         
-        fixtureRef.observeSingleEvent(of: .value) { (snapshot) in
+        fixtureRef.child("players").child(playerId).child("goals").observeSingleEvent(of: .value) { (snapshot) in
             var updatedGoalValue = snapshot.value as! Int
             if goal {
                 updatedGoalValue += 1
             } else {
                 updatedGoalValue -= 1
             }
-            fixtureRef.setValue(updatedGoalValue)
+            fixtureRef.child("players").child(playerId).child("goals").setValue(updatedGoalValue)
         }
+        
+        fixtureRef.child("teamGoals").observeSingleEvent(of: .value) { (snapshot) in
+
+            var updatedTeamGoalValue = snapshot.value as! Int
+            if goal {
+                updatedTeamGoalValue += 1
+            } else {
+                updatedTeamGoalValue -= 1
+            }
+            fixtureRef.child("teamGoals").setValue(updatedTeamGoalValue)
+        }
+        
     }
 
 }

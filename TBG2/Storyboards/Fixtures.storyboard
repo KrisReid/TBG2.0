@@ -220,27 +220,26 @@
                                     <outlet property="delegate" destination="tKu-m3-TTt" id="TM4-PS-gAL"/>
                                 </connections>
                             </tableView>
-                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zmy-e1-mJU">
-                                <rect key="frame" x="0.0" y="626" width="414" height="250"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yqY-64-ob0">
+                                <rect key="frame" x="0.0" y="666" width="414" height="230"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="250" id="4PB-kC-A9c"/>
+                                    <constraint firstAttribute="height" constant="230" id="yD7-ne-6ky"/>
                                 </constraints>
                             </pickerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="zmn-Tf-HVb" firstAttribute="top" secondItem="gIg-6e-asD" secondAttribute="bottom" constant="8" symbolic="YES" id="0Ms-uR-hfo"/>
-                            <constraint firstItem="zmy-e1-mJU" firstAttribute="trailing" secondItem="ZDW-wf-5jV" secondAttribute="trailing" id="3Ab-PN-Tpc"/>
                             <constraint firstItem="b4p-GU-uE9" firstAttribute="leading" secondItem="ZDW-wf-5jV" secondAttribute="leading" id="3Tq-Ux-MTP"/>
+                            <constraint firstItem="yqY-64-ob0" firstAttribute="trailing" secondItem="ZDW-wf-5jV" secondAttribute="trailing" id="3nF-Jg-H1L"/>
                             <constraint firstItem="b4p-GU-uE9" firstAttribute="top" secondItem="ZDW-wf-5jV" secondAttribute="top" constant="20" id="5Vh-6t-xvV"/>
+                            <constraint firstAttribute="bottom" secondItem="yqY-64-ob0" secondAttribute="bottom" id="PDs-Hu-pwY"/>
                             <constraint firstItem="b4p-GU-uE9" firstAttribute="trailing" secondItem="ZDW-wf-5jV" secondAttribute="trailing" id="Rax-o7-o7B"/>
-                            <constraint firstItem="zmy-e1-mJU" firstAttribute="leading" secondItem="ZDW-wf-5jV" secondAttribute="leading" id="TOx-vI-42a"/>
                             <constraint firstItem="gIg-6e-asD" firstAttribute="leading" secondItem="ZDW-wf-5jV" secondAttribute="leading" id="Uw0-HH-fgz"/>
                             <constraint firstItem="zmn-Tf-HVb" firstAttribute="leading" secondItem="ZDW-wf-5jV" secondAttribute="leading" id="Y5N-cW-naR"/>
                             <constraint firstItem="zmn-Tf-HVb" firstAttribute="trailing" secondItem="ZDW-wf-5jV" secondAttribute="trailing" id="mMM-gj-g8w"/>
-                            <constraint firstAttribute="bottom" secondItem="zmy-e1-mJU" secondAttribute="bottom" constant="20" symbolic="YES" id="n35-t8-Tbx"/>
                             <constraint firstAttribute="bottom" secondItem="zmn-Tf-HVb" secondAttribute="bottom" id="nVi-yh-y1d"/>
+                            <constraint firstItem="yqY-64-ob0" firstAttribute="leading" secondItem="ZDW-wf-5jV" secondAttribute="leading" id="sBp-Zq-eXC"/>
                             <constraint firstItem="gIg-6e-asD" firstAttribute="top" secondItem="b4p-GU-uE9" secondAttribute="bottom" constant="10" id="sIt-A8-vIU"/>
                             <constraint firstItem="gIg-6e-asD" firstAttribute="trailing" secondItem="ZDW-wf-5jV" secondAttribute="trailing" id="zXr-UL-xeR"/>
                         </constraints>
@@ -248,6 +247,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="PJf-Z2-V0g"/>
                     <connections>
+                        <outlet property="btnScoreline" destination="g95-kR-Zsy" id="Qdd-Dd-EgO"/>
                         <outlet property="ivAwayTeam" destination="c3v-Da-g4W" id="27O-61-ssH"/>
                         <outlet property="ivHomeTeam" destination="lTE-dL-Emw" id="fTA-wr-BgQ"/>
                         <outlet property="lblAwayGoals" destination="F4O-OW-zTy" id="pe5-b1-7Vm"/>
@@ -255,7 +255,7 @@
                         <outlet property="lblFixturePostcode" destination="amH-BR-Qeq" id="fsk-dO-4Kf"/>
                         <outlet property="lblFixtureTime" destination="kne-th-RSx" id="8E1-MF-IYK"/>
                         <outlet property="lblHomeGoals" destination="vJg-DR-e0i" id="NQN-Dx-BwF"/>
-                        <outlet property="pvScore" destination="zmy-e1-mJU" id="vA1-bF-yqc"/>
+                        <outlet property="pvScore" destination="yqY-64-ob0" id="OTp-9t-gD3"/>
                         <outlet property="tableview" destination="zmn-Tf-HVb" id="WVf-VL-jTt"/>
                     </connections>
                 </viewController>

@@ -20,14 +20,15 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet weak var lblFixturePostcode: UILabel!
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var pvScore: UIPickerView!
+    @IBOutlet weak var btnScoreline: UIButton!
     
     
     var teamId: String = ""
     var fixtureId: String = ""
     var opposition: String = ""
     var teamCrestURL: URL?
-    var homeGoals: String = ""
-    var awayGoals: String = ""
+    var teamGoals = Int()
+    var oppositionGoals = Int()
     var homeFixture: Bool = true
     var fixtureDate: String = ""
     var fixtureTime: String = ""
@@ -36,14 +37,27 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
 
     var colours = Colours()
     
+    
+    fileprivate let pickerView = ToolbarPickerView()
+    fileprivate let titles = ["0", "1", "2", "3"]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         lblFixtureDate.text = fixtureDate
         lblFixtureTime.text = fixtureTime
         lblFixturePostcode.text = fixturePostcode
-        lblHomeGoals.text = homeGoals
-        lblAwayGoals.text = awayGoals
+        
+        if homeFixture {
+            lblHomeGoals.text = String(teamGoals)
+            lblAwayGoals.text = String(oppositionGoals)
+        } else {
+            lblHomeGoals.text = String(oppositionGoals)
+            lblAwayGoals.text = String(teamGoals)
+        }
+        
+        //Maybe do something with the date - if its before today the nshow - instead of 0?
         
         //Styling
         ivHomeTeam.circle(colour: colours.primaryBlue.cgColor)
@@ -67,15 +81,18 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         //Picker
         pvScore.dataSource = self
         pvScore.delegate = self
+        
+        
     }
     
     func loadPlayerFixtureData() {
-        let fixtureRef = FixtureModel.collection.child(teamId).child(fixtureId).child("players")
-        let fixtureRefQuery = fixtureRef.queryOrderedByKey()
+        
+        let playerFixtureRef = FixtureModel.collection.child(teamId).child(fixtureId).child("players")
+        let playerFixtureRefQuery = playerFixtureRef.queryOrderedByKey()
         
         //Initial load of the array
         if self.playerArray == [] {
-            fixtureRefQuery.observeSingleEvent(of: .value) { (snapshot) in
+            playerFixtureRefQuery.observeSingleEvent(of: .value) { (snapshot) in
                 for item in snapshot.children {
                     guard let snapshot = item as? DataSnapshot else { continue }
                     guard let player = PlayerFixtureModel(snapshot) else { continue }
@@ -89,7 +106,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         }
 
         //Keeping the DB connection open for observing child changes that can reflect in the Array
-        fixtureRefQuery.observe(.childChanged) { (snapshot) in
+        playerFixtureRefQuery.observe(.childChanged) { (snapshot) in
             var arrayIndex = 0
             for playerObject in self.playerArray {
                 let player = playerObject as! PlayerFixtureModel
@@ -182,6 +199,11 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         let addGoalAction = UIContextualAction(style: .normal, title: "Add Goal") { (action, view, actionPerformed) in
             FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, goal: true)
             PlayerModel.postPlayerGoals(playerId: player.playerId, goal: true)
+//            if self.homeFixture {
+//                self.lblHomeGoals.text = String(self.lblHomeGoals += 1)
+//            } else {
+//                self.lblAwayGoals.text = String(self.teamGoals)
+//            }
             actionPerformed(true)
         }
         addGoalAction.backgroundColor = colours.primaryBlue
@@ -191,6 +213,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             if player.goals >= 1 {
                 FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, goal: false)
                 PlayerModel.postPlayerGoals(playerId: player.playerId, goal: false)
+                
                 actionPerformed(true)
             } else {
                 actionPerformed(false)
@@ -222,29 +245,36 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         ["-"],
         ["-","0","1","2","3","4","5","6","7"]
     ]
-    
+
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return pickerData.count
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pickerData[component].count
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickerData[component][row]
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         updateLabel()
     }
-    
+
     func updateLabel(){
         let home = pickerData[0][pvScore.selectedRow(inComponent: 0)]
         let away = pickerData[2][pvScore.selectedRow(inComponent: 2)]
         lblHomeGoals.text = home
         lblAwayGoals.text = away
     }
+
+
+    
+    
+    
+    
+    
     
     
 }
