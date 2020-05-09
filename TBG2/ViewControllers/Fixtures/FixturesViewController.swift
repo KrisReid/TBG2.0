@@ -117,7 +117,7 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
             cell.ivHomeAway.image = UIImage(named: "away_icon")
             cell.lblAwayGoals.text = String(fixture.teamGoals)
             cell.lblHomeGoals.text = String(fixture.oppositionGoals)
-        }
+        } 
         
         return cell
     }

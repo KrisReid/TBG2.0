@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseDatabase
 
-class FixtureInformationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
+class FixtureInformationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var ivHomeTeam: UIImageView!
     @IBOutlet weak var ivAwayTeam: UIImageView!
@@ -19,9 +19,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet weak var lblFixtureTime: UILabel!
     @IBOutlet weak var lblFixturePostcode: UILabel!
     @IBOutlet weak var tableview: UITableView!
-    @IBOutlet weak var pvScore: UIPickerView!
-    @IBOutlet weak var btnScoreline: UIButton!
-    
     
     var teamId: String = ""
     var fixtureId: String = ""
@@ -37,14 +34,17 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
 
     var colours = Colours()
     
-    
-    fileprivate let pickerView = ToolbarPickerView()
-    fileprivate let titles = ["0", "1", "2", "3"]
-    
+    var tempTeamGoalCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Local team goals
+        tempTeamGoalCount = teamGoals
         
+        //Maybe do something with the date - if its before today the nshow - instead of 0?
+        
+        
+        //Display Data
         lblFixtureDate.text = fixtureDate
         lblFixtureTime.text = fixtureTime
         lblFixturePostcode.text = fixturePostcode
@@ -56,8 +56,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             lblHomeGoals.text = String(oppositionGoals)
             lblAwayGoals.text = String(teamGoals)
         }
-        
-        //Maybe do something with the date - if its before today the nshow - instead of 0?
         
         //Styling
         ivHomeTeam.circle(colour: colours.primaryBlue.cgColor)
@@ -77,11 +75,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         } else {
             Helper.setImageView(imageView: ivAwayTeam, url: self.teamCrestURL!)
         }
-        
-        //Picker
-        pvScore.dataSource = self
-        pvScore.delegate = self
-        
         
     }
     
@@ -159,12 +152,8 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             cell.lblGoalScoredCount.isHidden = true
             cell.ivGoalScored.isHidden = true
         }
+        
         return cell
-    }
-    
-    @IBAction func btnScorelineTapped(_ sender: Any) {
-        print("Hello")
-        pvScore.isHidden = false
     }
     
     @IBAction func btnFixturePostcodeTapped(_ sender: Any) {
@@ -199,11 +188,13 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         let addGoalAction = UIContextualAction(style: .normal, title: "Add Goal") { (action, view, actionPerformed) in
             FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, goal: true)
             PlayerModel.postPlayerGoals(playerId: player.playerId, goal: true)
-//            if self.homeFixture {
-//                self.lblHomeGoals.text = String(self.lblHomeGoals += 1)
-//            } else {
-//                self.lblAwayGoals.text = String(self.teamGoals)
-//            }
+            
+            self.tempTeamGoalCount += 1
+            if self.homeFixture {
+                self.lblHomeGoals.text = String(self.tempTeamGoalCount)
+            } else {
+                self.lblAwayGoals.text = String(self.tempTeamGoalCount)
+            }
             actionPerformed(true)
         }
         addGoalAction.backgroundColor = colours.primaryBlue
@@ -213,7 +204,12 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             if player.goals >= 1 {
                 FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, goal: false)
                 PlayerModel.postPlayerGoals(playerId: player.playerId, goal: false)
-                
+                self.tempTeamGoalCount -= 1
+                if self.homeFixture {
+                    self.lblHomeGoals.text = String(self.tempTeamGoalCount)
+                } else {
+                    self.lblAwayGoals.text = String(self.tempTeamGoalCount)
+                }
                 actionPerformed(true)
             } else {
                 actionPerformed(false)
@@ -227,54 +223,13 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         
     }
     
-    //    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-    //        let paymentsAction = UIContextualAction(style: .normal, title: "Payments") { (action, view, actionPerformed) in
-    //            print("Making Payment?")
-    //        }
-    //        paymentsAction.backgroundColor = .gray
-    //        return UISwipeActionsConfiguration(actions: [paymentsAction])
-    //    }
-    
-    
-    
-    
-    
-    //PickerView Code
-    let pickerData = [
-        ["-","0","1","2","3","4","5","6","7"],
-        ["-"],
-        ["-","0","1","2","3","4","5","6","7"]
-    ]
-
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return pickerData.count
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let paymentsAction = UIContextualAction(style: .normal, title: "Payments") { (action, view, actionPerformed) in
+            print("Making Payment?")
+        }
+        paymentsAction.backgroundColor = .gray
+        return UISwipeActionsConfiguration(actions: [paymentsAction])
     }
-
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData[component].count
-    }
-
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[component][row]
-    }
-
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        updateLabel()
-    }
-
-    func updateLabel(){
-        let home = pickerData[0][pvScore.selectedRow(inComponent: 0)]
-        let away = pickerData[2][pvScore.selectedRow(inComponent: 2)]
-        lblHomeGoals.text = home
-        lblAwayGoals.text = away
-    }
-
-
-    
-    
-    
-    
-    
     
     
 }
