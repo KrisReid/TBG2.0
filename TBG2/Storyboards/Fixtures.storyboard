@@ -87,10 +87,34 @@
                                                 <color key="textColor" red="0.59215686270000001" green="0.59215686270000001" blue="0.59215686270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D9f-4q-ubS">
+                                                <rect key="frame" x="71" y="42" width="67" height="58"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="67" id="u30-4q-O9m"/>
+                                                </constraints>
+                                                <color key="textColor" red="0.59215686270000001" green="0.59215686270000001" blue="0.59215686270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="48"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m1T-HL-shG">
+                                                <rect key="frame" x="0.0" y="42" width="67" height="58"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="67" id="r8b-k4-bvI"/>
+                                                </constraints>
+                                                <color key="textColor" red="0.59215686270000001" green="0.59215686270000001" blue="0.59215686270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="48"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="D9f-4q-ubS" secondAttribute="trailing" id="3ka-BM-aXc"/>
+                                            <constraint firstAttribute="bottom" secondItem="D9f-4q-ubS" secondAttribute="bottom" id="6ow-j7-yHT"/>
+                                            <constraint firstItem="m1T-HL-shG" firstAttribute="leading" secondItem="gxn-dH-CeH" secondAttribute="leading" id="D3s-pe-ngx"/>
                                             <constraint firstAttribute="trailing" secondItem="F4O-OW-zTy" secondAttribute="trailing" id="DQe-ZZ-g0s"/>
+                                            <constraint firstAttribute="bottom" secondItem="m1T-HL-shG" secondAttribute="bottom" id="XYY-Dc-2Bp"/>
                                             <constraint firstItem="F4O-OW-zTy" firstAttribute="centerY" secondItem="gxn-dH-CeH" secondAttribute="centerY" id="ap9-Rv-WgU"/>
                                             <constraint firstItem="vJg-DR-e0i" firstAttribute="leading" secondItem="gxn-dH-CeH" secondAttribute="leading" id="dQc-RR-09E"/>
                                             <constraint firstItem="vJg-DR-e0i" firstAttribute="centerY" secondItem="gxn-dH-CeH" secondAttribute="centerY" id="ngI-FB-z9u"/>
@@ -236,6 +260,8 @@
                         <outlet property="lblFixtureTime" destination="kne-th-RSx" id="8E1-MF-IYK"/>
                         <outlet property="lblHomeGoals" destination="vJg-DR-e0i" id="NQN-Dx-BwF"/>
                         <outlet property="tableview" destination="zmn-Tf-HVb" id="WVf-VL-jTt"/>
+                        <outlet property="tfAwayGoals" destination="D9f-4q-ubS" id="5VC-jA-dPB"/>
+                        <outlet property="tfHomeGoals" destination="m1T-HL-shG" id="M1b-VQ-Ibm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YZC-S3-l3j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

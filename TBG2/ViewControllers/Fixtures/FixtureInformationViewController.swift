@@ -9,8 +9,9 @@
 import UIKit
 import FirebaseDatabase
 
-class FixtureInformationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+class FixtureInformationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+    
+    
     @IBOutlet weak var ivHomeTeam: UIImageView!
     @IBOutlet weak var ivAwayTeam: UIImageView!
     @IBOutlet weak var lblHomeGoals: UILabel!
@@ -19,6 +20,8 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet weak var lblFixtureTime: UILabel!
     @IBOutlet weak var lblFixturePostcode: UILabel!
     @IBOutlet weak var tableview: UITableView!
+    @IBOutlet weak var tfHomeGoals: UITextField!
+    @IBOutlet weak var tfAwayGoals: UITextField!
     
     var teamId: String = ""
     var fixtureId: String = ""
@@ -33,6 +36,9 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     var playerArray: NSMutableArray = []
 
     var colours = Colours()
+    
+    var selectedGoals: String?
+    let pickerData = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     
     var tempTeamGoalCount = 0
     
@@ -52,9 +58,17 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         if homeFixture {
             lblHomeGoals.text = String(teamGoals)
             lblAwayGoals.text = String(oppositionGoals)
+            tfHomeGoals.text = String(teamGoals)
+            tfAwayGoals.text = String(oppositionGoals)
+            tfHomeGoals.isEnabled = false
+            tfAwayGoals.isEnabled = true
         } else {
             lblHomeGoals.text = String(oppositionGoals)
             lblAwayGoals.text = String(teamGoals)
+            tfHomeGoals.text = String(oppositionGoals)
+            tfAwayGoals.text = String(teamGoals)
+            tfHomeGoals.isEnabled = true
+            tfAwayGoals.isEnabled = false
         }
         
         //Styling
@@ -75,6 +89,9 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         } else {
             Helper.setImageView(imageView: ivAwayTeam, url: self.teamCrestURL!)
         }
+        
+        createPickerView()
+        dismissPickerView()
         
     }
     
@@ -192,8 +209,10 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             self.tempTeamGoalCount += 1
             if self.homeFixture {
                 self.lblHomeGoals.text = String(self.tempTeamGoalCount)
+                self.tfHomeGoals.text = String(self.tempTeamGoalCount)
             } else {
                 self.lblAwayGoals.text = String(self.tempTeamGoalCount)
+                self.tfAwayGoals.text = String(self.tempTeamGoalCount)
             }
             actionPerformed(true)
         }
@@ -207,8 +226,10 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
                 self.tempTeamGoalCount -= 1
                 if self.homeFixture {
                     self.lblHomeGoals.text = String(self.tempTeamGoalCount)
+                    self.tfHomeGoals.text = String(self.tempTeamGoalCount)
                 } else {
                     self.lblAwayGoals.text = String(self.tempTeamGoalCount)
+                    self.tfAwayGoals.text = String(self.tempTeamGoalCount)
                 }
                 actionPerformed(true)
             } else {
@@ -230,6 +251,55 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         paymentsAction.backgroundColor = .gray
         return UISwipeActionsConfiguration(actions: [paymentsAction])
     }
+    
+    
+    
+    
+    
+    func createPickerView() {
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        pickerView.backgroundColor = UIColor.white
+        tfHomeGoals.inputView = pickerView
+    }
+    
+    func dismissPickerView() {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let button = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(action))
+        toolBar.tintColor = colours.primaryBlue
+        toolBar.backgroundColor = colours.primaryGrey
+        toolBar.setItems([button], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        tfHomeGoals.inputAccessoryView = toolBar
+    }
+    
+    @objc func action() {
+        view.endEditing(true)
+    }
+    
+    //MARK:- PickerView Delegate & DataSource
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerData.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerData[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedGoals = pickerData[row]
+        tfHomeGoals.text = selectedGoals
+    }
+    
+
+    
     
     
 }
