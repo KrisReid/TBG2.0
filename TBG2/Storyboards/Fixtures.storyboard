@@ -220,16 +220,26 @@
                                     <outlet property="delegate" destination="tKu-m3-TTt" id="TM4-PS-gAL"/>
                                 </connections>
                             </tableView>
+                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zmy-e1-mJU">
+                                <rect key="frame" x="0.0" y="626" width="414" height="250"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="4PB-kC-A9c"/>
+                                </constraints>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="zmn-Tf-HVb" firstAttribute="top" secondItem="gIg-6e-asD" secondAttribute="bottom" constant="8" symbolic="YES" id="0Ms-uR-hfo"/>
+                            <constraint firstItem="zmy-e1-mJU" firstAttribute="trailing" secondItem="ZDW-wf-5jV" secondAttribute="trailing" id="3Ab-PN-Tpc"/>
                             <constraint firstItem="b4p-GU-uE9" firstAttribute="leading" secondItem="ZDW-wf-5jV" secondAttribute="leading" id="3Tq-Ux-MTP"/>
                             <constraint firstItem="b4p-GU-uE9" firstAttribute="top" secondItem="ZDW-wf-5jV" secondAttribute="top" constant="20" id="5Vh-6t-xvV"/>
                             <constraint firstItem="b4p-GU-uE9" firstAttribute="trailing" secondItem="ZDW-wf-5jV" secondAttribute="trailing" id="Rax-o7-o7B"/>
+                            <constraint firstItem="zmy-e1-mJU" firstAttribute="leading" secondItem="ZDW-wf-5jV" secondAttribute="leading" id="TOx-vI-42a"/>
                             <constraint firstItem="gIg-6e-asD" firstAttribute="leading" secondItem="ZDW-wf-5jV" secondAttribute="leading" id="Uw0-HH-fgz"/>
                             <constraint firstItem="zmn-Tf-HVb" firstAttribute="leading" secondItem="ZDW-wf-5jV" secondAttribute="leading" id="Y5N-cW-naR"/>
                             <constraint firstItem="zmn-Tf-HVb" firstAttribute="trailing" secondItem="ZDW-wf-5jV" secondAttribute="trailing" id="mMM-gj-g8w"/>
+                            <constraint firstAttribute="bottom" secondItem="zmy-e1-mJU" secondAttribute="bottom" constant="20" symbolic="YES" id="n35-t8-Tbx"/>
                             <constraint firstAttribute="bottom" secondItem="zmn-Tf-HVb" secondAttribute="bottom" id="nVi-yh-y1d"/>
                             <constraint firstItem="gIg-6e-asD" firstAttribute="top" secondItem="b4p-GU-uE9" secondAttribute="bottom" constant="10" id="sIt-A8-vIU"/>
                             <constraint firstItem="gIg-6e-asD" firstAttribute="trailing" secondItem="ZDW-wf-5jV" secondAttribute="trailing" id="zXr-UL-xeR"/>
@@ -245,12 +255,13 @@
                         <outlet property="lblFixturePostcode" destination="amH-BR-Qeq" id="fsk-dO-4Kf"/>
                         <outlet property="lblFixtureTime" destination="kne-th-RSx" id="8E1-MF-IYK"/>
                         <outlet property="lblHomeGoals" destination="vJg-DR-e0i" id="NQN-Dx-BwF"/>
+                        <outlet property="pvScore" destination="zmy-e1-mJU" id="vA1-bF-yqc"/>
                         <outlet property="tableview" destination="zmn-Tf-HVb" id="WVf-VL-jTt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YZC-S3-l3j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="875" y="19"/>
+            <point key="canvasLocation" x="873.91304347826099" y="18.75"/>
         </scene>
         <!--Add Fixture View Controller-->
         <scene sceneID="tUd-iI-9Wg">
@@ -486,7 +497,7 @@
     </scenes>
     <resources>
         <image name="location_icon" width="18" height="31"/>
-        <image name="opposition_crest" width="57" height="68"/>
+        <image name="opposition_crest" width="82" height="84"/>
         <image name="toggle_icon" width="115" height="8"/>
     </resources>
 </document>

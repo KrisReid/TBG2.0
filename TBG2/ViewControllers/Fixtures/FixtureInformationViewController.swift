@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseDatabase
 
-class FixtureInformationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FixtureInformationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var ivHomeTeam: UIImageView!
     @IBOutlet weak var ivAwayTeam: UIImageView!
@@ -19,6 +19,8 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet weak var lblFixtureTime: UILabel!
     @IBOutlet weak var lblFixturePostcode: UILabel!
     @IBOutlet weak var tableview: UITableView!
+    @IBOutlet weak var pvScore: UIPickerView!
+    
     
     var teamId: String = ""
     var fixtureId: String = ""
@@ -61,6 +63,10 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         } else {
             Helper.setImageView(imageView: ivAwayTeam, url: self.teamCrestURL!)
         }
+        
+        //Picker
+        pvScore.dataSource = self
+        pvScore.delegate = self
     }
     
     func loadPlayerFixtureData() {
@@ -140,7 +146,8 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     }
     
     @IBAction func btnScorelineTapped(_ sender: Any) {
-        
+        print("Hello")
+        pvScore.isHidden = false
     }
     
     @IBAction func btnFixturePostcodeTapped(_ sender: Any) {
@@ -204,5 +211,40 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     //        paymentsAction.backgroundColor = .gray
     //        return UISwipeActionsConfiguration(actions: [paymentsAction])
     //    }
+    
+    
+    
+    
+    
+    //PickerView Code
+    let pickerData = [
+        ["-","0","1","2","3","4","5","6","7"],
+        ["-"],
+        ["-","0","1","2","3","4","5","6","7"]
+    ]
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return pickerData.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerData[component].count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerData[component][row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        updateLabel()
+    }
+    
+    func updateLabel(){
+        let home = pickerData[0][pvScore.selectedRow(inComponent: 0)]
+        let away = pickerData[2][pvScore.selectedRow(inComponent: 2)]
+        lblHomeGoals.text = home
+        lblAwayGoals.text = away
+    }
+    
     
 }
