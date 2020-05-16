@@ -9,23 +9,24 @@
 import UIKit
 import FirebaseDatabase
 
-class FixtureInformationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+class FixtureInformationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+    
+    
     @IBOutlet weak var ivHomeTeam: UIImageView!
     @IBOutlet weak var ivAwayTeam: UIImageView!
-    @IBOutlet weak var lblHomeGoals: UILabel!
-    @IBOutlet weak var lblAwayGoals: UILabel!
     @IBOutlet weak var lblFixtureDate: UILabel!
     @IBOutlet weak var lblFixtureTime: UILabel!
     @IBOutlet weak var lblFixturePostcode: UILabel!
     @IBOutlet weak var tableview: UITableView!
+    @IBOutlet weak var tfHomeGoals: UITextField!
+    @IBOutlet weak var tfAwayGoals: UITextField!
     
     var teamId: String = ""
     var fixtureId: String = ""
     var opposition: String = ""
     var teamCrestURL: URL?
-    var homeGoals: String = ""
-    var awayGoals: String = ""
+    var teamGoals = Int()
+    var oppositionGoals = Int()
     var homeFixture: Bool = true
     var fixtureDate: String = ""
     var fixtureTime: String = ""
@@ -34,14 +35,34 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
 
     var colours = Colours()
     
+    var selectedGoals: String?
+    let pickerData = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    
+    var tempTeamGoalCount = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Local team goals
+        tempTeamGoalCount = teamGoals
         
+        //Maybe do something with the date - if its before today then show - instead of 0?
+        
+        //Display Data
         lblFixtureDate.text = fixtureDate
         lblFixtureTime.text = fixtureTime
         lblFixturePostcode.text = fixturePostcode
-        lblHomeGoals.text = homeGoals
-        lblAwayGoals.text = awayGoals
+        
+        if homeFixture {
+            tfHomeGoals.text = String(teamGoals)
+            tfAwayGoals.text = String(oppositionGoals)
+            tfHomeGoals.isEnabled = false
+            tfAwayGoals.isEnabled = true
+        } else {
+            tfHomeGoals.text = String(oppositionGoals)
+            tfAwayGoals.text = String(teamGoals)
+            tfHomeGoals.isEnabled = true
+            tfAwayGoals.isEnabled = false
+        }
         
         //Styling
         ivHomeTeam.circle(colour: colours.primaryBlue.cgColor)
@@ -61,15 +82,20 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         } else {
             Helper.setImageView(imageView: ivAwayTeam, url: self.teamCrestURL!)
         }
+        
+        createPickerView()
+        dismissPickerView()
+        
     }
     
     func loadPlayerFixtureData() {
-        let fixtureRef = FixtureModel.collection.child(teamId).child(fixtureId).child("players")
-        let fixtureRefQuery = fixtureRef.queryOrderedByKey()
+        
+        let playerFixtureRef = FixtureModel.collection.child(teamId).child(fixtureId).child("players")
+        let playerFixtureRefQuery = playerFixtureRef.queryOrderedByKey()
         
         //Initial load of the array
         if self.playerArray == [] {
-            fixtureRefQuery.observeSingleEvent(of: .value) { (snapshot) in
+            playerFixtureRefQuery.observeSingleEvent(of: .value) { (snapshot) in
                 for item in snapshot.children {
                     guard let snapshot = item as? DataSnapshot else { continue }
                     guard let player = PlayerFixtureModel(snapshot) else { continue }
@@ -83,7 +109,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         }
 
         //Keeping the DB connection open for observing child changes that can reflect in the Array
-        fixtureRefQuery.observe(.childChanged) { (snapshot) in
+        playerFixtureRefQuery.observe(.childChanged) { (snapshot) in
             var arrayIndex = 0
             for playerObject in self.playerArray {
                 let player = playerObject as! PlayerFixtureModel
@@ -136,11 +162,8 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             cell.lblGoalScoredCount.isHidden = true
             cell.ivGoalScored.isHidden = true
         }
-        return cell
-    }
-    
-    @IBAction func btnScorelineTapped(_ sender: Any) {
         
+        return cell
     }
     
     @IBAction func btnFixturePostcodeTapped(_ sender: Any) {
@@ -175,15 +198,28 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         let addGoalAction = UIContextualAction(style: .normal, title: "Add Goal") { (action, view, actionPerformed) in
             FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, goal: true)
             PlayerModel.postPlayerGoals(playerId: player.playerId, goal: true)
+            
+            self.tempTeamGoalCount += 1
+            if self.homeFixture {
+                self.tfHomeGoals.text = String(self.tempTeamGoalCount)
+            } else {
+                self.tfAwayGoals.text = String(self.tempTeamGoalCount)
+            }
             actionPerformed(true)
         }
         addGoalAction.backgroundColor = colours.primaryBlue
         
         //Minus Goal
         let minusGoalAction = UIContextualAction(style: .normal, title: "Minus Goal") { (action, view, actionPerformed) in
-            if player.goals >= 1 {
+            if player.goals > 0 {
                 FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, goal: false)
                 PlayerModel.postPlayerGoals(playerId: player.playerId, goal: false)
+                self.tempTeamGoalCount -= 1
+                if self.homeFixture {
+                    self.tfHomeGoals.text = String(self.tempTeamGoalCount)
+                } else {
+                    self.tfAwayGoals.text = String(self.tempTeamGoalCount)
+                }
                 actionPerformed(true)
             } else {
                 actionPerformed(false)
@@ -197,12 +233,64 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         
     }
     
-    //    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-    //        let paymentsAction = UIContextualAction(style: .normal, title: "Payments") { (action, view, actionPerformed) in
-    //            print("Making Payment?")
-    //        }
-    //        paymentsAction.backgroundColor = .gray
-    //        return UISwipeActionsConfiguration(actions: [paymentsAction])
-    //    }
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let paymentsAction = UIContextualAction(style: .normal, title: "Payments") { (action, view, actionPerformed) in
+            print("Making Payment?")
+        }
+        paymentsAction.backgroundColor = .gray
+        return UISwipeActionsConfiguration(actions: [paymentsAction])
+    }
+    
+
+    
+    
+    
+    func createPickerView() {
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        pickerView.backgroundColor = UIColor.white
+        tfHomeGoals.inputView = pickerView
+    }
+    
+    func dismissPickerView() {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let button = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(action))
+        toolBar.tintColor = colours.primaryBlue
+        toolBar.backgroundColor = colours.primaryGrey
+        toolBar.setItems([button], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        tfHomeGoals.inputAccessoryView = toolBar
+    }
+    
+    @objc func action() {
+        FixtureModel.postOppositionGoals(teamId: self.teamId, fixtureId: self.fixtureId, goals: Int(self.oppositionGoals))
+        view.endEditing(true)
+    }
+    
+    //MARK:- PickerView Delegate & DataSource
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerData.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerData[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedGoals = pickerData[row]
+        tfHomeGoals.text = selectedGoals
+        oppositionGoals = Int(selectedGoals!)!
+    }
+    
+
+    
+    
     
 }
