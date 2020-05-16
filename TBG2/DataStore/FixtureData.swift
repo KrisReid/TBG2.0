@@ -136,6 +136,11 @@ class FixtureModel {
         fixtureRef.setValue(motm)
     }
     
+    class func postOppositionGoals(teamId: String, fixtureId: String, goals: Int) {
+        let fixtureRef = collection.child(teamId).child(fixtureId).child("oppositionGoals")
+        fixtureRef.setValue(goals)
+    }
+    
     
     class func postPlayerGoals(teamId: String, fixtureId: String, playerId: String, goal: Bool) {
         let fixtureRef = collection.child(teamId).child(fixtureId)

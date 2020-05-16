@@ -14,8 +14,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     
     @IBOutlet weak var ivHomeTeam: UIImageView!
     @IBOutlet weak var ivAwayTeam: UIImageView!
-    @IBOutlet weak var lblHomeGoals: UILabel!
-    @IBOutlet weak var lblAwayGoals: UILabel!
     @IBOutlet weak var lblFixtureDate: UILabel!
     @IBOutlet weak var lblFixtureTime: UILabel!
     @IBOutlet weak var lblFixturePostcode: UILabel!
@@ -47,8 +45,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         //Local team goals
         tempTeamGoalCount = teamGoals
         
-        //Maybe do something with the date - if its before today the nshow - instead of 0?
-        
+        //Maybe do something with the date - if its before today then show - instead of 0?
         
         //Display Data
         lblFixtureDate.text = fixtureDate
@@ -56,15 +53,11 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         lblFixturePostcode.text = fixturePostcode
         
         if homeFixture {
-            lblHomeGoals.text = String(teamGoals)
-            lblAwayGoals.text = String(oppositionGoals)
             tfHomeGoals.text = String(teamGoals)
             tfAwayGoals.text = String(oppositionGoals)
             tfHomeGoals.isEnabled = false
             tfAwayGoals.isEnabled = true
         } else {
-            lblHomeGoals.text = String(oppositionGoals)
-            lblAwayGoals.text = String(teamGoals)
             tfHomeGoals.text = String(oppositionGoals)
             tfAwayGoals.text = String(teamGoals)
             tfHomeGoals.isEnabled = true
@@ -208,10 +201,8 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             
             self.tempTeamGoalCount += 1
             if self.homeFixture {
-                self.lblHomeGoals.text = String(self.tempTeamGoalCount)
                 self.tfHomeGoals.text = String(self.tempTeamGoalCount)
             } else {
-                self.lblAwayGoals.text = String(self.tempTeamGoalCount)
                 self.tfAwayGoals.text = String(self.tempTeamGoalCount)
             }
             actionPerformed(true)
@@ -220,15 +211,13 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         
         //Minus Goal
         let minusGoalAction = UIContextualAction(style: .normal, title: "Minus Goal") { (action, view, actionPerformed) in
-            if player.goals >= 1 {
+            if player.goals > 0 {
                 FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, goal: false)
                 PlayerModel.postPlayerGoals(playerId: player.playerId, goal: false)
                 self.tempTeamGoalCount -= 1
                 if self.homeFixture {
-                    self.lblHomeGoals.text = String(self.tempTeamGoalCount)
                     self.tfHomeGoals.text = String(self.tempTeamGoalCount)
                 } else {
-                    self.lblAwayGoals.text = String(self.tempTeamGoalCount)
                     self.tfAwayGoals.text = String(self.tempTeamGoalCount)
                 }
                 actionPerformed(true)
@@ -252,7 +241,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         return UISwipeActionsConfiguration(actions: [paymentsAction])
     }
     
-    
+
     
     
     
@@ -276,6 +265,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     }
     
     @objc func action() {
+        FixtureModel.postOppositionGoals(teamId: self.teamId, fixtureId: self.fixtureId, goals: Int(self.oppositionGoals))
         view.endEditing(true)
     }
     
@@ -296,6 +286,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedGoals = pickerData[row]
         tfHomeGoals.text = selectedGoals
+        oppositionGoals = Int(selectedGoals!)!
     }
     
 

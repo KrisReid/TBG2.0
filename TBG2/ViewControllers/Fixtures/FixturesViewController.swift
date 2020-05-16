@@ -34,11 +34,42 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
         loadData()
     }
     
+//    func loadData() {
+//
+//        //Get the team data
+//        let teamRef = TeamModel.collection.child("-M4AvvqqhDcTvPnIH9Ns")
+//        teamRef.observe(.value) { (snapshot) in
+//            guard let team = TeamModel (snapshot) else { return }
+//            self.team = team
+//        }
+//
+//
+//        let fixtureRef = FixtureModel.collection.child("-M4AvvqqhDcTvPnIH9Ns")
+//        let fixtureRefQuery = fixtureRef.queryOrderedByKey()
+//
+//        fixtureRefQuery.observe(.value) { (snapshot) in
+//            var arrayIndex = 0
+//            for fixtureObject in self.fixtures {
+//                let fixture = fixtureObject as! FixtureModel
+//                if snapshot.key == fixture.fixtureId {
+//                    //Convert the snapshot
+//                    guard let f = FixtureModel(snapshot) else { continue }
+//                    //Insert the snapshot
+//                    self.fixtures.replaceObject(at: arrayIndex, with: f)
+//                }
+//                arrayIndex += 1
+//            }
+//            DispatchQueue.main.async {
+//                self.tableview.reloadData()
+//            }
+//        }
+//
+//    }
+    
     
     func loadData() {
-        
         // OBSERVE ANY FIXTURE CHANGES (ESPECIALLY TO GOAL SCORING)
-        
+
         //Get the user & player data
         let userRef = PlayerModel.getUser()
         userRef.observe(.value) { [weak self] (snapshot) in
@@ -46,24 +77,21 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
             guard let player = PlayerModel(snapshot) else {return}
             strongSelf.player = player
 //            userRef.removeAllObservers()
-            
+
             //Get the team data
             let teamRef = TeamModel.collection.child(strongSelf.player?.teamId ?? "")
             teamRef.observe(.value) { (snapshot) in
-                print("4444444444")
                 guard let team = TeamModel (snapshot) else { return }
                 strongSelf.team = team
-                strongSelf.team = team
             }
-            
+
             //Get the fixture data
             let fixtureRef = FixtureModel.collection.child(strongSelf.player?.teamId ?? "")
             let fixtureRefQuery = fixtureRef.queryOrderedByKey()
-
-            if strongSelf.fixtures == [] {
-                fixtureRefQuery.observeSingleEvent(of: .value) { (snapshot) in
-                    print("555555555555")
-                    guard let strongSelf = self else { return }
+            
+            fixtureRefQuery.observe(.value) { (snapshot) in
+                guard let strongSelf = self else { return }
+                if strongSelf.fixtures == [] {
                     for item in snapshot.children {
                         guard let snapshot = item as? DataSnapshot else { continue }
                         guard let fixture = FixtureModel(snapshot) else { continue }
@@ -72,18 +100,13 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
                     DispatchQueue.main.async {
                         strongSelf.tableview.reloadData()
                     }
-                }
-            } else {
-                fixtureRefQuery.observeSingleEvent(of: .childAdded) { (snapshot) in
-//                    guard let strongSelf = self else { return }
+                } else {
                     var arrayIndex = 0
-                    for fixtureObject in strongSelf.fixtures {
-                        let fixture = fixtureObject as! FixtureModel
+                    for item in snapshot.children {
+                        guard let snapshot = item as? DataSnapshot else { continue }
+                        guard let fixture = FixtureModel(snapshot) else { continue }
                         if snapshot.key == fixture.fixtureId {
-                            //Convert the snapshot
-                            guard let f = FixtureModel(snapshot) else { continue }
-                            //Insert the snapshot
-                            self?.fixtures.replaceObject(at: arrayIndex, with: f)
+                            strongSelf.fixtures.replaceObject(at: arrayIndex, with: fixture)
                         }
                         arrayIndex += 1
                     }
