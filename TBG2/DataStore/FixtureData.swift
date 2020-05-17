@@ -81,48 +81,32 @@ class FixtureModel {
             playerRefQuery.observe(.value) { (snapshot) in
                 guard let player = PlayerModel(snapshot) else { return }
                 
-//                //Internal function to add a player
-//                func playerFixtureData (availability: String) -> Dictionary<String, Any> {
-//                    let playerFixtureData : [String:Any] =
-//                    [
-//                        "availability": availability,
-//                        "goals" : 0,
-//                        "motm" : false,
-//                        "id" : player.id,
-//                        "fullName": player.fullName,
-//                        "profilePictureUrl": player.profilePictureUrl?.absoluteString ?? ""
-//                    ]
-//                    return playerFixtureData
-//                }
-                
-                //Set the base data regardless of who it is
-                let baseData : [String:Any] =
-                [
-                    "availability": "Unknown",
-                    "goals" : 0,
-                    "motm" : false,
-                    "id" : player.id,
-                    "fullName": player.fullName,
-                    "profilePictureUrl": player.profilePictureUrl?.absoluteString ?? ""
-                ]
-                let playerData : [String:Any] = [id:baseData]
-                let playerRef = collection.child(teamId).child(fixtureId).child("players")
-                playerRef.updateChildValues(playerData)
-                
-                
-                //Set with the manager or assistant as available
-                if id == managerId && managerAvailability == true || id == assistantManagerId && assistantManagerAvailability == true {
-                    
-                    let baseData : [String:Any] =
+                //Internal function to add a player
+                func playerFixtureData (availability: String) -> Dictionary<String, Any> {
+                    let playerFixtureData : [String:Any] =
                     [
-                        "availability": "Yes",
+                        "availability": availability,
                         "goals" : 0,
                         "motm" : false,
                         "id" : player.id,
                         "fullName": player.fullName,
                         "profilePictureUrl": player.profilePictureUrl?.absoluteString ?? ""
                     ]
-                    let managerData : [String:Any] = [id:baseData]
+                    return playerFixtureData
+                }
+                
+                //Default value of setting the players data
+                let data = playerFixtureData(availability: "Unknown")
+                let playerData : [String:Any] = [id:data]
+                let playerRef = collection.child(teamId).child(fixtureId).child("players")
+                playerRef.updateChildValues(playerData)
+                
+                
+                //Set with the manager or assistant as available
+                if id == managerId && managerAvailability == true || id == assistantManagerId && assistantManagerAvailability == true {
+
+                    let data = playerFixtureData(availability: "Yes")
+                    let managerData : [String:Any] = [id:data]
                     let managerRef = collection.child(teamId).child(fixtureId).child("players")
                     managerRef.updateChildValues(managerData)
                 }
@@ -131,23 +115,13 @@ class FixtureModel {
                 //Set with the manager or assistant as not available
                 else if id == managerId && managerAvailability == false || id == assistantManagerId && assistantManagerAvailability == false {
                     
-                    let baseData : [String:Any] =
-                    [
-                        "availability": "No",
-                        "goals" : 0,
-                        "motm" : false,
-                        "id" : player.id,
-                        "fullName": player.fullName,
-                        "profilePictureUrl": player.profilePictureUrl?.absoluteString ?? ""
-                    ]
-                    let managerData : [String:Any] = [id:baseData]
+                    let data = playerFixtureData(availability: "No")
+                    let managerData : [String:Any] = [id:data]
                     let managerRef = collection.child(teamId).child(fixtureId).child("players")
                     managerRef.updateChildValues(managerData)
                 }
-                
             }
         }
-        
     }
     
     class func postMotm(teamId: String, fixtureId: String, playerId: String, motm: Bool) {
@@ -162,26 +136,41 @@ class FixtureModel {
     
     
     class func postPlayerGoals(teamId: String, fixtureId: String, playerId: String, goal: Bool) {
+        
         let fixtureRef = collection.child(teamId).child(fixtureId)
         
-        fixtureRef.child("players").child(playerId).child("goals").observeSingleEvent(of: .value) { (snapshot) in
-            var updatedGoalValue = snapshot.value as! Int
+        func goalCalculation (currentGoalCount: Int) -> Int {
+            var count = currentGoalCount
             if goal {
-                updatedGoalValue += 1
+                count += 1
             } else {
-                updatedGoalValue -= 1
+                count -= 1
             }
+            return count
+        }
+        
+        fixtureRef.child("players").child(playerId).child("goals").observeSingleEvent(of: .value) { (snapshot) in
+//            var updatedGoalValue = snapshot.value as! Int
+//            if goal {
+//                updatedGoalValue += 1
+//            } else {
+//                updatedGoalValue -= 1
+//            }
+//            fixtureRef.child("players").child(playerId).child("goals").setValue(updatedGoalValue)
+            
+            let updatedGoalValue = goalCalculation(currentGoalCount: snapshot.value as! Int)
             fixtureRef.child("players").child(playerId).child("goals").setValue(updatedGoalValue)
         }
         
         fixtureRef.child("teamGoals").observeSingleEvent(of: .value) { (snapshot) in
-
-            var updatedTeamGoalValue = snapshot.value as! Int
-            if goal {
-                updatedTeamGoalValue += 1
-            } else {
-                updatedTeamGoalValue -= 1
-            }
+//            var updatedTeamGoalValue = snapshot.value as! Int
+//            if goal {
+//                updatedTeamGoalValue += 1
+//            } else {
+//                updatedTeamGoalValue -= 1
+//            }
+//            fixtureRef.child("teamGoals").setValue(updatedTeamGoalValue)
+            let updatedTeamGoalValue = goalCalculation(currentGoalCount: snapshot.value as! Int)
             fixtureRef.child("teamGoals").setValue(updatedTeamGoalValue)
         }
     }
