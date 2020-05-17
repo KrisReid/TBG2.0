@@ -44,6 +44,10 @@ class FixtureModel {
         self.players = value["players"] as? Dictionary ?? ["":""]
     }
     
+//    class func playerFixtureData() -> Dictionary<String, Any> {
+//
+//    }
+    
     
     class func postFixture (teamId: String, homeFixture: Bool, opposition: String, date: String, time: String, postcode: String, playerIds: NSMutableArray, managerAvailability: Bool, managerId: String, assistantManagerAvailability: Bool, assistantManagerId: String) {
         
@@ -63,17 +67,33 @@ class FixtureModel {
         ]
         
         fixtureRef.setValue(fixtureDictionary)
-        let fixtureId = String(fixtureRef.key ?? "")
         
+        fixtureRef.setValue(fixtureDictionary)
+        let fixtureId = String(fixtureRef.key ?? "")
+
         for playerId in playerIds {
             
             guard let id = playerId as? String else { return }
             
             //get the player name and pictureURL to store in the object
-            let playerRef = PlayerModel.collection.child(playerId as! String)
+            let playerRef = PlayerModel.collection.child(id)
             let playerRefQuery = playerRef.queryOrderedByKey()
             playerRefQuery.observe(.value) { (snapshot) in
                 guard let player = PlayerModel(snapshot) else { return }
+                
+//                //Internal function to add a player
+//                func playerFixtureData (availability: String) -> Dictionary<String, Any> {
+//                    let playerFixtureData : [String:Any] =
+//                    [
+//                        "availability": availability,
+//                        "goals" : 0,
+//                        "motm" : false,
+//                        "id" : player.id,
+//                        "fullName": player.fullName,
+//                        "profilePictureUrl": player.profilePictureUrl?.absoluteString ?? ""
+//                    ]
+//                    return playerFixtureData
+//                }
                 
                 //Set the base data regardless of who it is
                 let baseData : [String:Any] =
@@ -126,7 +146,6 @@ class FixtureModel {
                 }
                 
             }
-  
         }
         
     }
@@ -165,7 +184,12 @@ class FixtureModel {
             }
             fixtureRef.child("teamGoals").setValue(updatedTeamGoalValue)
         }
-        
+    }
+    
+    class func deleteFixture(teamId: String, fixtureId: String) {
+        collection.child(teamId).child(fixtureId).observe(.value) { (snapshot) in
+            snapshot.ref.removeValue()
+        }
     }
 
 }

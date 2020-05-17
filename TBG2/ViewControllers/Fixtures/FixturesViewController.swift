@@ -34,49 +34,14 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
         loadData()
     }
     
-//    func loadData() {
-//
-//        //Get the team data
-//        let teamRef = TeamModel.collection.child("-M4AvvqqhDcTvPnIH9Ns")
-//        teamRef.observe(.value) { (snapshot) in
-//            guard let team = TeamModel (snapshot) else { return }
-//            self.team = team
-//        }
-//
-//
-//        let fixtureRef = FixtureModel.collection.child("-M4AvvqqhDcTvPnIH9Ns")
-//        let fixtureRefQuery = fixtureRef.queryOrderedByKey()
-//
-//        fixtureRefQuery.observe(.value) { (snapshot) in
-//            var arrayIndex = 0
-//            for fixtureObject in self.fixtures {
-//                let fixture = fixtureObject as! FixtureModel
-//                if snapshot.key == fixture.fixtureId {
-//                    //Convert the snapshot
-//                    guard let f = FixtureModel(snapshot) else { continue }
-//                    //Insert the snapshot
-//                    self.fixtures.replaceObject(at: arrayIndex, with: f)
-//                }
-//                arrayIndex += 1
-//            }
-//            DispatchQueue.main.async {
-//                self.tableview.reloadData()
-//            }
-//        }
-//
-//    }
-    
     
     func loadData() {
-        // OBSERVE ANY FIXTURE CHANGES (ESPECIALLY TO GOAL SCORING)
-
         //Get the user & player data
         let userRef = PlayerModel.getUser()
         userRef.observe(.value) { [weak self] (snapshot) in
             guard let strongSelf = self else { return }
             guard let player = PlayerModel(snapshot) else {return}
             strongSelf.player = player
-//            userRef.removeAllObservers()
 
             //Get the team data
             let teamRef = TeamModel.collection.child(strongSelf.player?.teamId ?? "")
@@ -90,29 +55,18 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
             let fixtureRefQuery = fixtureRef.queryOrderedByKey()
             
             fixtureRefQuery.observe(.value) { (snapshot) in
+                
+                //clear the Array !!!!!!!!! - This feels un-Optimal :(
+                strongSelf.fixtures = []
+                
                 guard let strongSelf = self else { return }
-                if strongSelf.fixtures == [] {
-                    for item in snapshot.children {
-                        guard let snapshot = item as? DataSnapshot else { continue }
-                        guard let fixture = FixtureModel(snapshot) else { continue }
-                        strongSelf.fixtures.insert(fixture, at: 0)
-                    }
-                    DispatchQueue.main.async {
-                        strongSelf.tableview.reloadData()
-                    }
-                } else {
-                    var arrayIndex = 0
-                    for item in snapshot.children {
-                        guard let snapshot = item as? DataSnapshot else { continue }
-                        guard let fixture = FixtureModel(snapshot) else { continue }
-                        if snapshot.key == fixture.fixtureId {
-                            strongSelf.fixtures.replaceObject(at: arrayIndex, with: fixture)
-                        }
-                        arrayIndex += 1
-                    }
-                    DispatchQueue.main.async {
-                        strongSelf.tableview.reloadData()
-                    }
+                for item in snapshot.children {
+                    guard let snapshot = item as? DataSnapshot else { continue }
+                    guard let fixture = FixtureModel(snapshot) else { continue }
+                    strongSelf.fixtures.insert(fixture, at: 0)
+                }
+                DispatchQueue.main.async {
+                    strongSelf.tableview.reloadData()
                 }
             }
         }
@@ -169,7 +123,13 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
-            print(indexPath.row)
+            let user = player!
+            let teamId = user.teamId
+            
+            let fixture = fixtures[indexPath.row] as! FixtureModel
+            let fixtureId = fixture.fixtureId
+
+            FixtureModel.deleteFixture(teamId: teamId, fixtureId: fixtureId)
         }
     }
     
