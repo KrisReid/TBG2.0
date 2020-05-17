@@ -39,14 +39,10 @@ class FixtureModel {
         self.date = value["date"] as? String ?? ""
         self.time = value["time"] as? String ?? ""
         self.postcode = value["postcode"] as? String ?? ""
-        self.teamGoals = value["teamGoals"] as? Int ?? 9999
-        self.oppositionGoals = value["oppositionGoals"] as? Int ?? 9999
+        self.teamGoals = value["teamGoals"] as? Int ?? 0
+        self.oppositionGoals = value["oppositionGoals"] as? Int ?? 0
         self.players = value["players"] as? Dictionary ?? ["":""]
     }
-    
-//    class func playerFixtureData() -> Dictionary<String, Any> {
-//
-//    }
     
     
     class func postFixture (teamId: String, homeFixture: Bool, opposition: String, date: String, time: String, postcode: String, playerIds: NSMutableArray, managerAvailability: Bool, managerId: String, assistantManagerAvailability: Bool, assistantManagerId: String) {
@@ -101,7 +97,6 @@ class FixtureModel {
                 let playerRef = collection.child(teamId).child(fixtureId).child("players")
                 playerRef.updateChildValues(playerData)
                 
-                
                 //Set with the manager or assistant as available
                 if id == managerId && managerAvailability == true || id == assistantManagerId && assistantManagerAvailability == true {
 
@@ -111,7 +106,6 @@ class FixtureModel {
                     managerRef.updateChildValues(managerData)
                 }
                 
-                    
                 //Set with the manager or assistant as not available
                 else if id == managerId && managerAvailability == false || id == assistantManagerId && assistantManagerAvailability == false {
                     
@@ -124,10 +118,12 @@ class FixtureModel {
         }
     }
     
+    
     class func postMotm(teamId: String, fixtureId: String, playerId: String, motm: Bool) {
         let fixtureRef = collection.child(teamId).child(fixtureId).child("players").child(playerId).child("motm")
         fixtureRef.setValue(motm)
     }
+    
     
     class func postOppositionGoals(teamId: String, fixtureId: String, goals: Int) {
         let fixtureRef = collection.child(teamId).child(fixtureId).child("oppositionGoals")
@@ -136,8 +132,6 @@ class FixtureModel {
     
     
     class func postPlayerGoals(teamId: String, fixtureId: String, playerId: String, goal: Bool) {
-        
-        let fixtureRef = collection.child(teamId).child(fixtureId)
         
         func goalCalculation (currentGoalCount: Int) -> Int {
             var count = currentGoalCount
@@ -149,31 +143,19 @@ class FixtureModel {
             return count
         }
         
+        let fixtureRef = collection.child(teamId).child(fixtureId)
+        
         fixtureRef.child("players").child(playerId).child("goals").observeSingleEvent(of: .value) { (snapshot) in
-//            var updatedGoalValue = snapshot.value as! Int
-//            if goal {
-//                updatedGoalValue += 1
-//            } else {
-//                updatedGoalValue -= 1
-//            }
-//            fixtureRef.child("players").child(playerId).child("goals").setValue(updatedGoalValue)
-            
             let updatedGoalValue = goalCalculation(currentGoalCount: snapshot.value as! Int)
             fixtureRef.child("players").child(playerId).child("goals").setValue(updatedGoalValue)
         }
         
         fixtureRef.child("teamGoals").observeSingleEvent(of: .value) { (snapshot) in
-//            var updatedTeamGoalValue = snapshot.value as! Int
-//            if goal {
-//                updatedTeamGoalValue += 1
-//            } else {
-//                updatedTeamGoalValue -= 1
-//            }
-//            fixtureRef.child("teamGoals").setValue(updatedTeamGoalValue)
             let updatedTeamGoalValue = goalCalculation(currentGoalCount: snapshot.value as! Int)
             fixtureRef.child("teamGoals").setValue(updatedTeamGoalValue)
         }
     }
+    
     
     class func deleteFixture(teamId: String, fixtureId: String) {
         collection.child(teamId).child(fixtureId).observe(.value) { (snapshot) in
