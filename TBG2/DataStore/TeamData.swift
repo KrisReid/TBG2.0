@@ -45,7 +45,6 @@ class TeamModel {
         if let crest = value["crest"] as? String {
             self.crest = URL(string: crest)
         }
-        
     }
     
     
@@ -96,7 +95,6 @@ class TeamModel {
          DispatchQueue.main.async {
 
             PlayerModel.postPlayerProfile(profilePicture: playerProfilePicture, userId: userId, playerFullName: playerFullName, playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: manager, assistantManager: assistantManager, playerManager: playerManager, playerPosition: playerPosition, teamId: newKey!, teamPIN: teamPIN)
-
          }
     }
 
