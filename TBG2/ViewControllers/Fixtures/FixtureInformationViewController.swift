@@ -45,8 +45,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         //Local team goals
         tempTeamGoalCount = teamGoals
         
-        //Maybe do something with the date - if its before today then show - instead of 0?
-        
         //Display Data
         lblFixtureDate.text = fixtureDate
         lblFixtureTime.text = fixtureTime
@@ -63,6 +61,10 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             tfHomeGoals.isEnabled = true
             tfAwayGoals.isEnabled = false
         }
+        
+        //Date Piss about
+        let today = Date()
+        print(today)
         
         //Styling
         ivHomeTeam.circle(colour: colours.primaryBlue.cgColor)
@@ -167,7 +169,37 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     }
     
     @IBAction func btnFixturePostcodeTapped(_ sender: Any) {
-        Helper.getLongLat(postcode: fixturePostcode, opposition: opposition)
+        var request = URLRequest(url: URL(string: "https://api.postcodes.io/postcodes/\(fixturePostcode)")!)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let session = URLSession.shared
+        let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
+                for (key, value) in json {
+                    if key == "error" {
+                        let postcodeAlert = Helper.errorAlert(title: "Postcode Error", message: value as! String)
+                        DispatchQueue.main.async {
+                            self.present(postcodeAlert, animated: true, completion: nil)
+                        }
+                    }
+                    if key == "result" {
+                        guard let latitude = value["latitude"] else { return }
+                        guard let longitude = value["longitude"] else { return }
+                        
+                        Helper.openMapForPlace(longitude: longitude as! Double, latitude: latitude as! Double, opposition: self.opposition)
+                    }
+                }
+            } catch {
+                //Generic Catch Error
+                let postcodeAlert = Helper.errorAlert(title: "Postcode Error", message: "There has been an error")
+                DispatchQueue.main.async {
+                    self.present(postcodeAlert, animated: true, completion: nil)
+                }
+            }
+        })
+        task.resume()
     }
 
     
@@ -240,10 +272,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         paymentsAction.backgroundColor = .gray
         return UISwipeActionsConfiguration(actions: [paymentsAction])
     }
-    
 
-    
-    
     
     func createPickerView() {
         let pickerView = UIPickerView()
@@ -288,9 +317,5 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         tfHomeGoals.text = selectedGoals
         oppositionGoals = Int(selectedGoals!)!
     }
-    
 
-    
-    
-    
 }
