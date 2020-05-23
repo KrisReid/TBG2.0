@@ -94,7 +94,18 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
             cell.ivHomeAway.image = UIImage(named: "away_icon")
             cell.lblAwayGoals.text = String(fixture.teamGoals)
             cell.lblHomeGoals.text = String(fixture.oppositionGoals)
-        } 
+        }
+
+        // Show - - - if the date is in the future
+        let today = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MMM/yyyy"
+        let fixtureDate = dateFormatter.date(from: fixture.date)!
+        
+        if today < fixtureDate {
+            cell.lblAwayGoals.text = "-"
+            cell.lblHomeGoals.text = "-"
+        }
         
         return cell
     }

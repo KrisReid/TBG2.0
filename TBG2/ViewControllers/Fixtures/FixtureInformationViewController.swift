@@ -62,10 +62,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             tfAwayGoals.isEnabled = false
         }
         
-        //Date Piss about
-        let today = Date()
-        print(today)
-        
         //Styling
         ivHomeTeam.circle(colour: colours.primaryBlue.cgColor)
         ivAwayTeam.circle(colour: colours.primaryBlue.cgColor)
