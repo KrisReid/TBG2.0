@@ -38,6 +38,26 @@
                ReferencedContainer = "container:TBG2.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "021BDD63247B248A0026A839"
+               BuildableName = "TBG2UITests.xctest"
+               BlueprintName = "TBG2UITests"
+               ReferencedContainer = "container:TBG2.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "021BDD72247B25160026A839"
+               BuildableName = "TBG2UITesting.xctest"
+               BlueprintName = "TBG2UITesting"
+               ReferencedContainer = "container:TBG2.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
