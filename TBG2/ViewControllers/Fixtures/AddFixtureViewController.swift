@@ -179,8 +179,9 @@ class AddFixtureViewController: UIViewController {
             }
             
         } else {
+            let spacelessPostcode = Helper.removeSpaces(text: postcode)
             
-            FixtureModel.postFixture(teamId: teamId, homeFixture: self.HomeFixture, opposition: opposition, date: date, time: time, postcode: postcode, playerIds: players, managerAvailability: self.ManagerAvailability, managerId: self.managerId, assistantManagerAvailability: self.AssistantAvailability, assistantManagerId: self.assistantManagerId)
+            FixtureModel.postFixture(teamId: teamId, homeFixture: self.HomeFixture, opposition: opposition, date: date, time: time, postcode: spacelessPostcode, playerIds: players, managerAvailability: self.ManagerAvailability, managerId: self.managerId, assistantManagerAvailability: self.AssistantAvailability, assistantManagerId: self.assistantManagerId)
 
             self.dismiss(animated: true, completion: nil)
         }

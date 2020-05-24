@@ -34,18 +34,18 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     var playerArray: NSMutableArray = []
 
     var colours = Colours()
+    let today = Date()
+    var futureFixture: Bool = false
     
     var selectedGoals: String?
     let pickerData = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-    
+
     var tempTeamGoalCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //Local team goals
         tempTeamGoalCount = teamGoals
-        
-        //Maybe do something with the date - if its before today then show - instead of 0?
         
         //Display Data
         lblFixtureDate.text = fixtureDate
@@ -62,6 +62,18 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             tfAwayGoals.text = String(teamGoals)
             tfHomeGoals.isEnabled = true
             tfAwayGoals.isEnabled = false
+        }
+        
+        //ScoreLine Logic
+        let date = Helper.stringToDate(date: self.fixtureDate)
+        if today < date {
+            tfAwayGoals.text = "-"
+            tfHomeGoals.text = "-"
+            tfHomeGoals.isEnabled = false
+            futureFixture = true
+        } else {
+            createPickerView()
+            dismissPickerView()
         }
         
         //Styling
@@ -82,9 +94,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         } else {
             Helper.setImageView(imageView: ivAwayTeam, url: self.teamCrestURL!)
         }
-        
-        createPickerView()
-        dismissPickerView()
         
     }
     
@@ -167,7 +176,37 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     }
     
     @IBAction func btnFixturePostcodeTapped(_ sender: Any) {
-        Helper.getLongLat(postcode: fixturePostcode, opposition: opposition)
+        var request = URLRequest(url: URL(string: "https://api.postcodes.io/postcodes/\(fixturePostcode)")!)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let session = URLSession.shared
+        let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
+                for (key, value) in json {
+                    if key == "error" {
+                        let postcodeAlert = Helper.errorAlert(title: "Postcode Error", message: value as! String)
+                        DispatchQueue.main.async {
+                            self.present(postcodeAlert, animated: true, completion: nil)
+                        }
+                    }
+                    if key == "result" {
+                        guard let latitude = value["latitude"] else { return }
+                        guard let longitude = value["longitude"] else { return }
+                        
+                        Helper.openMapForPlace(longitude: longitude as! Double, latitude: latitude as! Double, opposition: self.opposition)
+                    }
+                }
+            } catch {
+                //Generic Catch Error
+                let postcodeAlert = Helper.errorAlert(title: "Postcode Error", message: "There has been an error")
+                DispatchQueue.main.async {
+                    self.present(postcodeAlert, animated: true, completion: nil)
+                }
+            }
+        })
+        task.resume()
     }
 
     
@@ -227,7 +266,12 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         }
         minusGoalAction.backgroundColor = colours.secondaryBlue
         
-        let swipeAction = UISwipeActionsConfiguration(actions: [minusGoalAction, addGoalAction, motmAction])
+        
+        //Future Fixture Logic
+        var swipeAction = UISwipeActionsConfiguration(actions: [minusGoalAction, addGoalAction, motmAction])
+        if futureFixture {
+            swipeAction = UISwipeActionsConfiguration(actions: [])
+        }
         swipeAction.performsFirstActionWithFullSwipe = false
         return swipeAction
         
@@ -240,10 +284,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         paymentsAction.backgroundColor = .gray
         return UISwipeActionsConfiguration(actions: [paymentsAction])
     }
-    
 
-    
-    
     
     func createPickerView() {
         let pickerView = UIPickerView()
@@ -288,9 +329,5 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         tfHomeGoals.text = selectedGoals
         oppositionGoals = Int(selectedGoals!)!
     }
-    
 
-    
-    
-    
 }

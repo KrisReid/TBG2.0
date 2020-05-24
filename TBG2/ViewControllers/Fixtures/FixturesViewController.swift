@@ -17,6 +17,7 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
     var player: PlayerModel?
     var team: TeamModel?
     var fixtures: NSMutableArray = []
+    let today = Date()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +95,14 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
             cell.ivHomeAway.image = UIImage(named: "away_icon")
             cell.lblAwayGoals.text = String(fixture.teamGoals)
             cell.lblHomeGoals.text = String(fixture.oppositionGoals)
-        } 
+        }
+
+        //ScoreLine Logic
+        let date = Helper.stringToDate(date: fixture.date)
+        if today < date {
+            cell.lblAwayGoals.text = "-"
+            cell.lblHomeGoals.text = "-"
+        }
         
         return cell
     }

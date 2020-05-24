@@ -155,34 +155,9 @@ class Helper {
         imageView.sd_cancelCurrentImageLoad()
         imageView.sd_setImage(with: url, completed: nil)
     }
-
-    
-    class func getLongLat(postcode: String, opposition: String) -> Void {
-        var request = URLRequest(url: URL(string: "https://api.postcodes.io/postcodes/\(postcode)")!)
-        request.httpMethod = "GET"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
-        let session = URLSession.shared
-        let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
-            do {
-                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
-                for (key, value) in json {
-                    if key == "result" {
-                        guard let latitude = value["latitude"] else { return }
-                        guard let longitude = value["longitude"] else { return }
-                        
-                        openMapForPlace(longitude: longitude as! Double, latitude: latitude as! Double, opposition: opposition)
-                    }
-                }
-            } catch {
-                print("error")
-            }
-        })
-        task.resume()
-    }
     
     
-    private class func openMapForPlace(longitude: Double, latitude: Double, opposition: String) {
+    class func openMapForPlace(longitude: Double, latitude: Double, opposition: String) {
         let latitude: CLLocationDegrees = latitude
         let longitude: CLLocationDegrees = longitude
 
@@ -201,4 +176,15 @@ class Helper {
     }
     
 
+    class func removeSpaces(text: String) -> String {
+        return text.replacingOccurrences(of: " ", with: "")
+    }
+    
+    
+    class func stringToDate(date: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MMM/yyyy"
+        let fixtureDate = dateFormatter.date(from: date)!
+        return fixtureDate
+    }
 }
