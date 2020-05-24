@@ -34,10 +34,12 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     var playerArray: NSMutableArray = []
 
     var colours = Colours()
+    let today = Date()
+    var futureFixture: Bool = false
     
     var selectedGoals: String?
     let pickerData = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-    
+
     var tempTeamGoalCount = 0
     
     override func viewDidLoad() {
@@ -62,6 +64,18 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             tfAwayGoals.isEnabled = false
         }
         
+        //ScoreLine Logic
+        let date = Helper.stringToDate(date: self.fixtureDate)
+        if today < date {
+            tfAwayGoals.text = "-"
+            tfHomeGoals.text = "-"
+            tfHomeGoals.isEnabled = false
+            futureFixture = true
+        } else {
+            createPickerView()
+            dismissPickerView()
+        }
+        
         //Styling
         ivHomeTeam.circle(colour: colours.primaryBlue.cgColor)
         ivAwayTeam.circle(colour: colours.primaryBlue.cgColor)
@@ -80,9 +94,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         } else {
             Helper.setImageView(imageView: ivAwayTeam, url: self.teamCrestURL!)
         }
-        
-        createPickerView()
-        dismissPickerView()
         
     }
     
@@ -255,7 +266,12 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         }
         minusGoalAction.backgroundColor = colours.secondaryBlue
         
-        let swipeAction = UISwipeActionsConfiguration(actions: [minusGoalAction, addGoalAction, motmAction])
+        
+        //Future Fixture Logic
+        var swipeAction = UISwipeActionsConfiguration(actions: [minusGoalAction, addGoalAction, motmAction])
+        if futureFixture {
+            swipeAction = UISwipeActionsConfiguration(actions: [])
+        }
         swipeAction.performsFirstActionWithFullSwipe = false
         return swipeAction
         

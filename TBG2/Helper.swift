@@ -179,4 +179,12 @@ class Helper {
     class func removeSpaces(text: String) -> String {
         return text.replacingOccurrences(of: " ", with: "")
     }
+    
+    
+    class func stringToDate(date: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MMM/yyyy"
+        let fixtureDate = dateFormatter.date(from: date)!
+        return fixtureDate
+    }
 }

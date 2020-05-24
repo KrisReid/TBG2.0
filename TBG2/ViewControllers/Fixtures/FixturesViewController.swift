@@ -17,6 +17,7 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
     var player: PlayerModel?
     var team: TeamModel?
     var fixtures: NSMutableArray = []
+    let today = Date()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,13 +97,9 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
             cell.lblHomeGoals.text = String(fixture.oppositionGoals)
         }
 
-        // Show - - - if the date is in the future
-        let today = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MMM/yyyy"
-        let fixtureDate = dateFormatter.date(from: fixture.date)!
-        
-        if today < fixtureDate {
+        //ScoreLine Logic
+        let date = Helper.stringToDate(date: fixture.date)
+        if today < date {
             cell.lblAwayGoals.text = "-"
             cell.lblHomeGoals.text = "-"
         }
