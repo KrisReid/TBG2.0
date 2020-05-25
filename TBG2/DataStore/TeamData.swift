@@ -97,5 +97,13 @@ class TeamModel {
             PlayerModel.postPlayerProfile(profilePicture: playerProfilePicture, userId: userId, playerFullName: playerFullName, playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: manager, assistantManager: assistantManager, playerManager: playerManager, playerPosition: playerPosition, teamId: newKey!, teamPIN: teamPIN)
          }
     }
+    
+    class func postTeamPIN(teamId: String, teamPIN: Int) {
+        print("444444444444")
+        print(teamId)
+        print(teamPIN)
+        let pinRef = collection.child(teamId).child("pin")
+        pinRef.setValue(teamPIN)
+    }
 
 }

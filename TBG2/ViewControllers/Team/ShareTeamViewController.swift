@@ -80,8 +80,7 @@ class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.lblTitle.text = titleArray[indexPath.row]
 
         if (indexPath.row == 0) {cell.lblAnswer.text = team?.id}
-        let pin = team?.pin
-        if (indexPath.row == 1) {cell.lblAnswer.text = pin?.description}
+        if (indexPath.row == 1) {cell.lblAnswer.text = team?.pin.description}
         if (indexPath.row == 2) {cell.ivAnswer.image = UIImage(named: "share_icon")}
         
         return cell
@@ -90,11 +89,8 @@ class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let pin = team?.pin
-        
         if indexPath.row == 1 {
-            let snapshot = pin?.description
-            performSegue(withIdentifier: "teamPINSegue", sender: snapshot)
+            performSegue(withIdentifier: "teamPINSegue", sender: team!)
         }
         if indexPath.row == 2 {
             let firstActivityItem = "ID: \(String(team!.id)), PIN: \(String(team!.pin))"
@@ -120,8 +116,9 @@ class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableVie
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? TeamPinViewController {
-            if let snapshot = sender as? String {
-                vc.teamPIN = snapshot
+            if let snapshot = sender as? TeamModel {
+                vc.teamPIN = snapshot.pin
+                vc.teamId = snapshot.id
             }
         }
     }
