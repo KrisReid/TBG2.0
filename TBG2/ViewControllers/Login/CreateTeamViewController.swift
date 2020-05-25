@@ -109,9 +109,12 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
         guard let teamCrest = buttonTeamCrest.image else { return }
         guard let teamPIN = Int(tfTeamPIN.text!) else { return }
         guard let teamPostcode = tfTeamPostcode.text else { return }
+        let formattedTeamPostcode = Helper.removeSpaces(text: teamPostcode)
         guard let playerProfilePicture = playerProfilePicture?.image else { return }
         
-        let formattedTeamPostcode = teamPostcode.replacingOccurrences(of: " ", with: "")
+        //ADD VALIDATION TO ONLY ALLOW 6 DIGIT PINS UPON CREATION
+        // UTILISE A HELPER WHERE POSIBLE (CURRENTLY CODE SITS WITHIN TEAM-PIN-VIEW-CONTROLLER
+        
         
         if (tfTeamName.text == "" || tfTeamPIN.text == "" || tfTeamPostcode.text == "" || btnTeamCrest.currentTitle == nil) {
             
