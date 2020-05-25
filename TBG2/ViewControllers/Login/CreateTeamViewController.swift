@@ -145,7 +145,6 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
                             }
                             
                         } else if let error = error  {
-                            print(error.localizedDescription)
                             let alert = Helper.signupError(error: error)
                             DispatchQueue.main.async {
                                 strongSelf.present(alert, animated: true, completion: nil)
@@ -154,7 +153,6 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
                     }
                     
                 } else if let error = error {
-                    print(error.localizedDescription)
                     let alert = Helper.loginError(error: error)
                     DispatchQueue.main.async {
                         strongSelf.present(alert, animated: true, completion: nil)

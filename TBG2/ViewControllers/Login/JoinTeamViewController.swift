@@ -133,8 +133,6 @@ class JoinTeamViewController: UIViewController {
                                     Helper.login()
                                 }
                             } else if let error = error  {
-                                // Signup Error
-                                print(error.localizedDescription)
                                 let alert = Helper.signupError(error: error)
                                 DispatchQueue.main.async {
                                     strongSelf.present(alert, animated: true, completion: nil)
@@ -143,8 +141,6 @@ class JoinTeamViewController: UIViewController {
                             }
                         }
                     } else if let error = error {
-                        // Login Error
-                        print(error.localizedDescription)
                         let alert = Helper.loginError(error: error)
                         DispatchQueue.main.async {
                             strongSelf.present(alert, animated: true, completion: nil)
