@@ -55,6 +55,7 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
         
     }
     
+    
     @IBAction func btnTeamCrestTapped(_ sender: Any) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
@@ -114,6 +115,7 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
         
         //ADD VALIDATION TO ONLY ALLOW 6 DIGIT PINS UPON CREATION
         // UTILISE A HELPER WHERE POSIBLE (CURRENTLY CODE SITS WITHIN TEAM-PIN-VIEW-CONTROLLER
+        
         
         
         if (tfTeamName.text == "" || tfTeamPIN.text == "" || tfTeamPostcode.text == "" || btnTeamCrest.currentTitle == nil) {

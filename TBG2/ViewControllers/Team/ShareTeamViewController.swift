@@ -39,6 +39,8 @@ class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func loadTeamData() {
         
+        let spinner = UIViewController.displayLoading(withView: self.view)
+        
         let userRef = PlayerModel.getUser()
         userRef.observe(.value) { [weak self] (snapshot) in
             guard let strongSelf = self else { return }
@@ -50,15 +52,23 @@ class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableVie
                 guard let strongSelf = self else { return }
                 guard let team = TeamModel(snapshot) else {return}
                 strongSelf.team = team
+
                 
-                let image = Helper.ImageUrlConverter(url: team.crest!)
-                strongSelf.ivTeamBadge.image = image.image
+                Helper.setImageView(imageView: strongSelf.ivTeamBadge, url: team.crest!)
+                
+//                //Manual delay code
+//                let seconds = 0.3
+//                DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+//                    // Put your code which should be executed with a delay here
+//                    strongSelf.ivTeamBadge.image = image.image
+//                }
                 
                 strongSelf.lblTeamName.text = team.name
                 strongSelf.lblTeamPostcode.text = team.postcode
                 
                 DispatchQueue.main.async {
                     strongSelf.tableview.reloadData()
+                    UIViewController.removeLoading(spinner: spinner)
                 }
             }
         }
