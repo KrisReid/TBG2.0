@@ -30,7 +30,7 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
     var playerManager: Bool = false
     var playerPosition: String = ""
 
-    var colour = Colours()
+    var colours = Colours()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,12 +39,13 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
         self.setupHideKeyboardOnTap()
         
         //Buttons
-        btnTeamCrest.circle(colour: colour.white.cgColor)
+        btnTeamCrest.circle(colour: colours.white.cgColor)
+        btnSubmit.backgroundColor = colours.tertiaryBlue
         
         //TextFields
-        tfTeamName.underlined(colour: colour.white.cgColor)
-        tfTeamPIN.underlined(colour: colour.white.cgColor)
-        tfTeamPostcode.underlined(colour: colour.white.cgColor)
+        tfTeamName.underlined(colour: colours.white.cgColor)
+        tfTeamPIN.underlined(colour: colours.white.cgColor)
+        tfTeamPostcode.underlined(colour: colours.white.cgColor)
         tfTeamName.whitePlaceholderText(text: "Team Name")
         tfTeamPIN.whitePlaceholderText(text: "Team PIN")
         tfTeamPostcode.whitePlaceholderText(text: "Team Postcode")
@@ -54,6 +55,11 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
         scPlayerPosition.defaultSegmentedControlFormat(backgroundColour: UIColor.clear)
         
     }
+    
+    @IBAction func tfTeamPINEditingChanged(_ sender: Any) {
+        Helper.pinValidation(textField: tfTeamPIN, button: btnSubmit, enabledUnderlineColour: colours.white.cgColor, enabledeBtnColour: colours.tertiaryBlue, disableRequired: false)
+    }
+    
     
     
     @IBAction func btnTeamCrestTapped(_ sender: Any) {
@@ -114,9 +120,9 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
         
         let formattedTeamPostcode = Helper.removeSpaces(text: teamPostcode)
         
-        if (tfTeamName.text == "" || tfTeamPIN.text == "" || tfTeamPostcode.text == "" || btnTeamCrest.currentTitle == nil) {
+        if (tfTeamName.text == "" || tfTeamPIN.text?.count != 6 || tfTeamPostcode.text == "" || btnTeamCrest.currentTitle == nil) {
             
-            let alert = Helper.errorAlert(title: "Ooops", message: "All fields must be populated and picutre added.")
+            let alert = Helper.errorAlert(title: "Ooops", message: "All fields must be populated (PIN must be 6 characters long) and picutre added.")
             DispatchQueue.main.async {
                 self.present(alert, animated: true, completion: nil)
             }

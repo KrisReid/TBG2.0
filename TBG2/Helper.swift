@@ -189,18 +189,21 @@ class Helper {
     }
     
     
-    class func pinValidation(textField: UITextField, button: UIButton) {
+    class func pinValidation(textField: UITextField, button: UIButton, enabledUnderlineColour: CGColor, enabledeBtnColour: UIColor, disableRequired: Bool) {
         let colours = Colours()
         
         if textField.text?.count == 6 {
             button.isEnabled = true
-            button.backgroundColor = colours.secondaryBlue
-            textField.underlined(colour: colours.secondaryBlue.cgColor)
+            button.backgroundColor = enabledeBtnColour
+            textField.underlined(colour: enabledUnderlineColour)
         } else {
-            button.isEnabled = false
-            button.backgroundColor = colours.primaryGrey
+            if disableRequired {
+                button.isEnabled = false
+                button.backgroundColor = colours.primaryGrey
+            }
             textField.underlined(colour: colours.primaryGrey.cgColor)
         }
+
     }
     
 }

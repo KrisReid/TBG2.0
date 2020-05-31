@@ -26,11 +26,11 @@ class TeamPinViewController: UIViewController {
         tfTeamPIN.text = teamPIN?.description
         
         //PIN Validation
-        Helper.pinValidation(textField: tfTeamPIN, button: btnDone)
+        Helper.pinValidation(textField: tfTeamPIN, button: btnDone, enabledUnderlineColour: colours.secondaryBlue.cgColor, enabledeBtnColour: colours.secondaryBlue, disableRequired: true)
     }
     
     @IBAction func tfTeamPINValueChanged(_ sender: Any) {
-        Helper.pinValidation(textField: tfTeamPIN, button: btnDone)
+        Helper.pinValidation(textField: tfTeamPIN, button: btnDone, enabledUnderlineColour: colours.secondaryBlue.cgColor, enabledeBtnColour: colours.secondaryBlue, disableRequired: true)
     }
     
     
