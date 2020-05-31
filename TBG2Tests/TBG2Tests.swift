@@ -51,8 +51,8 @@ class TBG2Tests: XCTestCase {
         // When
         let newDate = Helper.stringToDate(date: date)
         // Then
-        let testDate = Date.init(timeIntervalSince1970: 1589929200)
-        XCTAssertEqual(newDate, testDate)
+        let testDate = Date()
+        XCTAssertNotEqual(newDate, testDate)
     }
     
 //    func testPerformanceExample() {
