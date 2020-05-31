@@ -108,25 +108,20 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
         guard let teamName = tfTeamName.text else { return }
         guard let buttonTeamCrest = btnTeamCrest.imageView else { return }
         guard let teamCrest = buttonTeamCrest.image else { return }
-        guard let teamPIN = Int(tfTeamPIN.text!) else { return }
+        guard let teamPIN = tfTeamPIN.text else { return }
         guard let teamPostcode = tfTeamPostcode.text else { return }
-        let formattedTeamPostcode = Helper.removeSpaces(text: teamPostcode)
         guard let playerProfilePicture = playerProfilePicture?.image else { return }
         
-        //ADD VALIDATION TO ONLY ALLOW 6 DIGIT PINS UPON CREATION
-        // UTILISE A HELPER WHERE POSIBLE (CURRENTLY CODE SITS WITHIN TEAM-PIN-VIEW-CONTROLLER
-        
-        
+        let formattedTeamPostcode = Helper.removeSpaces(text: teamPostcode)
         
         if (tfTeamName.text == "" || tfTeamPIN.text == "" || tfTeamPostcode.text == "" || btnTeamCrest.currentTitle == nil) {
             
-            let alert = Helper.errorAlert(title: "Ooops", message: "All fields must be populated and picutre added. This will save you signing on each season 🥳")
+            let alert = Helper.errorAlert(title: "Ooops", message: "All fields must be populated and picutre added.")
             DispatchQueue.main.async {
                 self.present(alert, animated: true, completion: nil)
             }
             
         } else {
-            
             let spinner = UIViewController.displayLoading(withView: self.view)
             
             Auth.auth().createUser(withEmail: playerEmailAddress, password: playerPassword) { [weak self] (user, error) in
@@ -143,7 +138,7 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
                         }
                         if error == nil {
                             
-                            TeamModel.postTeamCrest(userId: userId, playerProfilePicture: playerProfilePicture, playerFullName: self!.playerFullName, playerEmailAddress: self!.playerEmailAddress, playerDateOfBirth: self!.playerDateOfBirth, playerHouseNumber: self!.playerHouseNumber, playerPostcode: self!.playerPostcode, manager: true, assistantManager: false, playerManager: self!.playerManager, playerPosition: self!.playerPosition, teamName: teamName, teamPIN: teamPIN, teamPostcode: formattedTeamPostcode, teamCrest: teamCrest)
+                            TeamModel.postTeamCrest(userId: userId, playerProfilePicture: playerProfilePicture, playerFullName: self!.playerFullName, playerEmailAddress: self!.playerEmailAddress, playerDateOfBirth: self!.playerDateOfBirth, playerHouseNumber: self!.playerHouseNumber, playerPostcode: self!.playerPostcode, manager: true, assistantManager: false, playerManager: self!.playerManager, playerPosition: self!.playerPosition, teamName: teamName, teamPIN: Int(teamPIN)!, teamPostcode: formattedTeamPostcode, teamCrest: teamCrest)
                             
                             DispatchQueue.main.async {
                                 Helper.login()
@@ -152,6 +147,7 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
                         } else if let error = error  {
                             let alert = Helper.signupError(error: error)
                             DispatchQueue.main.async {
+                                UIViewController.removeLoading(spinner: spinner)
                                 strongSelf.present(alert, animated: true, completion: nil)
                             }
                         }
@@ -160,6 +156,7 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
                 } else if let error = error {
                     let alert = Helper.loginError(error: error)
                     DispatchQueue.main.async {
+                        UIViewController.removeLoading(spinner: spinner)
                         strongSelf.present(alert, animated: true, completion: nil)
                     }
                 }
