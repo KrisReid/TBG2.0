@@ -30,7 +30,7 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
     var playerManager: Bool = false
     var playerPosition: String = ""
 
-    var colour = Colours()
+    var colours = Colours()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,12 +39,13 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
         self.setupHideKeyboardOnTap()
         
         //Buttons
-        btnTeamCrest.circle(colour: colour.white.cgColor)
+        btnTeamCrest.circle(colour: colours.white.cgColor)
+        btnSubmit.backgroundColor = colours.tertiaryBlue
         
         //TextFields
-        tfTeamName.underlined(colour: colour.white.cgColor)
-        tfTeamPIN.underlined(colour: colour.white.cgColor)
-        tfTeamPostcode.underlined(colour: colour.white.cgColor)
+        tfTeamName.underlined(colour: colours.white.cgColor)
+        tfTeamPIN.underlined(colour: colours.white.cgColor)
+        tfTeamPostcode.underlined(colour: colours.white.cgColor)
         tfTeamName.whitePlaceholderText(text: "Team Name")
         tfTeamPIN.whitePlaceholderText(text: "Team PIN")
         tfTeamPostcode.whitePlaceholderText(text: "Team Postcode")
@@ -54,6 +55,12 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
         scPlayerPosition.defaultSegmentedControlFormat(backgroundColour: UIColor.clear)
         
     }
+    
+    @IBAction func tfTeamPINEditingChanged(_ sender: Any) {
+        Helper.pinValidation(textField: tfTeamPIN, button: btnSubmit, enabledUnderlineColour: colours.white.cgColor, enabledeBtnColour: colours.tertiaryBlue, disableRequired: false)
+    }
+    
+    
     
     @IBAction func btnTeamCrestTapped(_ sender: Any) {
         let imagePickerController = UIImagePickerController()
@@ -107,21 +114,20 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
         guard let teamName = tfTeamName.text else { return }
         guard let buttonTeamCrest = btnTeamCrest.imageView else { return }
         guard let teamCrest = buttonTeamCrest.image else { return }
-        guard let teamPIN = Int(tfTeamPIN.text!) else { return }
+        guard let teamPIN = tfTeamPIN.text else { return }
         guard let teamPostcode = tfTeamPostcode.text else { return }
         guard let playerProfilePicture = playerProfilePicture?.image else { return }
         
-        let formattedTeamPostcode = teamPostcode.replacingOccurrences(of: " ", with: "")
+        let formattedTeamPostcode = Helper.removeSpaces(text: teamPostcode)
         
-        if (tfTeamName.text == "" || tfTeamPIN.text == "" || tfTeamPostcode.text == "" || btnTeamCrest.currentTitle == nil) {
+        if (tfTeamName.text == "" || tfTeamPIN.text?.count != 6 || tfTeamPostcode.text == "" || btnTeamCrest.currentTitle == nil) {
             
-            let alert = Helper.errorAlert(title: "Ooops", message: "All fields must be populated and picutre added. This will save you signing on each season 🥳")
+            let alert = Helper.errorAlert(title: "Ooops", message: "All fields must be populated (PIN must be 6 characters long) and picutre added.")
             DispatchQueue.main.async {
                 self.present(alert, animated: true, completion: nil)
             }
             
         } else {
-            
             let spinner = UIViewController.displayLoading(withView: self.view)
             
             Auth.auth().createUser(withEmail: playerEmailAddress, password: playerPassword) { [weak self] (user, error) in
@@ -138,7 +144,7 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
                         }
                         if error == nil {
                             
-                            TeamModel.postTeamCrest(userId: userId, playerProfilePicture: playerProfilePicture, playerFullName: self!.playerFullName, playerEmailAddress: self!.playerEmailAddress, playerDateOfBirth: self!.playerDateOfBirth, playerHouseNumber: self!.playerHouseNumber, playerPostcode: self!.playerPostcode, manager: true, assistantManager: false, playerManager: self!.playerManager, playerPosition: self!.playerPosition, teamName: teamName, teamPIN: teamPIN, teamPostcode: formattedTeamPostcode, teamCrest: teamCrest)
+                            TeamModel.postTeamCrest(userId: userId, playerProfilePicture: playerProfilePicture, playerFullName: self!.playerFullName, playerEmailAddress: self!.playerEmailAddress, playerDateOfBirth: self!.playerDateOfBirth, playerHouseNumber: self!.playerHouseNumber, playerPostcode: self!.playerPostcode, manager: true, assistantManager: false, playerManager: self!.playerManager, playerPosition: self!.playerPosition, teamName: teamName, teamPIN: Int(teamPIN)!, teamPostcode: formattedTeamPostcode, teamCrest: teamCrest)
                             
                             DispatchQueue.main.async {
                                 Helper.login()
@@ -147,6 +153,7 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
                         } else if let error = error  {
                             let alert = Helper.signupError(error: error)
                             DispatchQueue.main.async {
+                                UIViewController.removeLoading(spinner: spinner)
                                 strongSelf.present(alert, animated: true, completion: nil)
                             }
                         }
@@ -155,6 +162,7 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
                 } else if let error = error {
                     let alert = Helper.loginError(error: error)
                     DispatchQueue.main.async {
+                        UIViewController.removeLoading(spinner: spinner)
                         strongSelf.present(alert, animated: true, completion: nil)
                     }
                 }

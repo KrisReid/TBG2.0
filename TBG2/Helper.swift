@@ -187,4 +187,23 @@ class Helper {
         let fixtureDate = dateFormatter.date(from: date)!
         return fixtureDate
     }
+    
+    
+    class func pinValidation(textField: UITextField, button: UIButton, enabledUnderlineColour: CGColor, enabledeBtnColour: UIColor, disableRequired: Bool) {
+        let colours = Colours()
+        
+        if textField.text?.count == 6 {
+            button.isEnabled = true
+            button.backgroundColor = enabledeBtnColour
+            textField.underlined(colour: enabledUnderlineColour)
+        } else {
+            if disableRequired {
+                button.isEnabled = false
+                button.backgroundColor = colours.primaryGrey
+            }
+            textField.underlined(colour: colours.primaryGrey.cgColor)
+        }
+
+    }
+    
 }
