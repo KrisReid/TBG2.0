@@ -23,21 +23,97 @@ class TBG2UITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+//    func testLaunchPerformance() throws {
+//        if #available(iOS 13.0, *) {
+//            // This measures how long it takes to launch your application.
+//            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
+//                XCUIApplication().launch()
+//            }
+//        }
+//    }
+    
+    func testIncorrectPassword() {
+        let email = "test@tbg.com"
+        
         let app = XCUIApplication()
         app.launch()
-
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let emailAddressTextField = app.textFields["Email Address"]
+        XCTAssertTrue(emailAddressTextField.exists)
+        emailAddressTextField.tap()
+        emailAddressTextField.typeText(email)
+        app.buttons["Login"].tap()
+        
+        addUIInterruptionMonitor(withDescription: "Incorrect Password", handler: { alert in
+          alert.buttons["OK"].tap()
+          return true
+        })
+        app.tap()
+        testLoginError()
     }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
-                XCUIApplication().launch()
-            }
-        }
+    
+    func testLoginError() {
+        
+        let password = "123456"
+        
+        let app = XCUIApplication()
+        
+        let passwordSecureTextField = app.secureTextFields["Password"]
+        XCTAssertTrue(passwordSecureTextField.exists)
+        passwordSecureTextField.tap()
+        passwordSecureTextField.typeText(password)
+        
+        app.buttons["Login"].tap()
+        
+        let alertDialog = app.alerts["Login Error"]
+        XCTAssertTrue(alertDialog.exists)
+        alertDialog.buttons["OK"].tap()
+        
+//        addUIInterruptionMonitor(withDescription: "Login Error", handler: { alert in
+//          alert.buttons["OK"].tap()
+//          return true
+//        })
+//        app.tap()
     }
+    
+    func testSuccessfulLogin() {
+        let email = "automated_tester@tbg.com"
+        let password = "123456789"
+        
+        let app = XCUIApplication()
+        app.launch()
+        
+        let emailAddressTextField = app.textFields["Email Address"]
+        XCTAssertTrue(emailAddressTextField.exists)
+        emailAddressTextField.tap()
+        emailAddressTextField.typeText(email)
+        
+        let passwordSecureTextField = app.secureTextFields["Password"]
+        XCTAssertTrue(passwordSecureTextField.exists)
+        passwordSecureTextField.tap()
+        passwordSecureTextField.typeText(password)
+        
+        app.buttons["Login"].tap()
+        
+        let tabBarsQuery = app.tabBars
+        let teamTab = tabBarsQuery.children(matching: .button).element(boundBy: 0)
+        
+        expectation(for: NSPredicate(format: "exists == 1"), evaluatedWith: teamTab, handler: nil)
+        waitForExpectations(timeout: 4, handler: nil)
+        
+    }
+    
+    func testLogout() {
+        
+        let app = XCUIApplication()
+        app.launch()
+        
+        let tabBarsQuery = XCUIApplication().tabBars
+        let button = tabBarsQuery.children(matching: .button).element(boundBy: 2)
+        button.tap()
+        app.tables.staticTexts["Sign Out"].tap()
+                
+    }
+    
+    
 }
