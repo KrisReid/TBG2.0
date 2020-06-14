@@ -162,7 +162,6 @@ class PlayerModel {
     }
     
     class func postPlayerGoals(playerId: String, goal: Bool) {
-        print("55555555555555")
         let playerRef = collection.child(playerId).child("goalTotal")
         playerRef.observeSingleEvent(of: .value) { (snapshot) in
             var updatedGoalValue = snapshot.value as! Int

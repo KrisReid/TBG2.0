@@ -104,10 +104,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         
         playerFixtureRefQuery.observe(.value) { (snapshot) in
             self.playerArray = []
-            print("1111111111")
-            print(snapshot)
             for item in snapshot.children {
-                print(item)
                 guard let snapshot = item as? DataSnapshot else { continue }
                 guard let player = PlayerFixtureModel(snapshot) else { continue }
 
@@ -200,13 +197,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let player = self.playerArray[indexPath.row] as! PlayerFixtureModel
-        
-        print("777777777777")
-        print(player.id)
-        print(player.fullName)
-        
-        print("888888888")
-        print(self.playerArray[indexPath.row])
         
         //MOTM
         let motmAction = UIContextualAction(style: .normal, title: "MOTM") { (action, view, actionPerformed) in

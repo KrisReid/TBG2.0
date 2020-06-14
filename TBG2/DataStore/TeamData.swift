@@ -99,9 +99,6 @@ class TeamModel {
     }
     
     class func postTeamPIN(teamId: String, teamPIN: Int) {
-        print("444444444444")
-        print(teamId)
-        print(teamPIN)
         let pinRef = collection.child(teamId).child("pin")
         pinRef.setValue(teamPIN)
     }

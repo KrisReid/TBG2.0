@@ -133,13 +133,6 @@ class FixtureModel {
     
     class func postPlayerGoals(teamId: String, fixtureId: String, playerId: String, goal: Bool) {
         
-        print("444444444444444")
-        print(teamId)
-        print(fixtureId)
-        print(playerId)
-        print(goal)
-        print("66666666666666")
-        
         func goalCalculation (currentGoalCount: Int) -> Int {
             var count = currentGoalCount
             if goal {
