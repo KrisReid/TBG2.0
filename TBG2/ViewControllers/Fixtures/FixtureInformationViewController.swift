@@ -289,10 +289,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     }
     
     @objc func action() {
-        print(self.teamId)
-        print(self.fixtureId)
-        print(self.oppositionGoals)
-        
         FixtureModel.postOppositionGoals(teamId: self.teamId, fixtureId: self.fixtureId, goals: Int(self.oppositionGoals))
         view.endEditing(true)
     }
