@@ -118,6 +118,10 @@ class TBG2UITests: XCTestCase {
         expectation(for: NSPredicate(format: "exists == 1"), evaluatedWith: teamTab, handler: nil)
         waitForExpectations(timeout: 4, handler: nil)
         
+        //Sign out
+        let button = tabBarsQuery.children(matching: .button).element(boundBy: 2)
+        button.tap()
+        app.tables.staticTexts["Sign Out"].tap()
     }
     
 //    func testLogout() {
