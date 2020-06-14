@@ -44,6 +44,10 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Load Player Data
+        loadPlayerFixtureData()
+        
         //Local team goals
         tempTeamGoalCount = teamGoals
         
@@ -85,16 +89,12 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         tableview.rowHeight = UITableView.automaticDimension
         tableview.register(UINib(nibName: "FixtureDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "FixtureDetailTableViewCell")
         
-        //Load Player Data
-        loadPlayerFixtureData()
-        
         //Display Crest
         if homeFixture {
             Helper.setImageView(imageView: ivHomeTeam, url: self.teamCrestURL!)
         } else {
             Helper.setImageView(imageView: ivAwayTeam, url: self.teamCrestURL!)
         }
-        
     }
     
     func loadPlayerFixtureData() {
@@ -102,33 +102,16 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         let playerFixtureRef = FixtureModel.collection.child(teamId).child(fixtureId).child("players")
         let playerFixtureRefQuery = playerFixtureRef.queryOrderedByKey()
         
-        //Initial load of the array
-        if self.playerArray == [] {
-            playerFixtureRefQuery.observeSingleEvent(of: .value) { (snapshot) in
-                for item in snapshot.children {
-                    guard let snapshot = item as? DataSnapshot else { continue }
-                    guard let player = PlayerFixtureModel(snapshot) else { continue }
+        playerFixtureRefQuery.observe(.value) { (snapshot) in
+            self.playerArray = []
+            print("1111111111")
+            print(snapshot)
+            for item in snapshot.children {
+                print(item)
+                guard let snapshot = item as? DataSnapshot else { continue }
+                guard let player = PlayerFixtureModel(snapshot) else { continue }
 
-                    self.playerArray.insert(player, at: 0)
-                }
-                DispatchQueue.main.async {
-                    self.tableview.reloadData()
-                }
-            }
-        }
-
-        //Keeping the DB connection open for observing child changes that can reflect in the Array
-        playerFixtureRefQuery.observe(.childChanged) { (snapshot) in
-            var arrayIndex = 0
-            for playerObject in self.playerArray {
-                let player = playerObject as! PlayerFixtureModel
-                if snapshot.key == player.playerId {
-                    //Convert the snapshot
-                    guard let c = PlayerFixtureModel(snapshot) else { continue }
-                    //Insert the snapshot
-                    self.playerArray.replaceObject(at: arrayIndex, with: c)
-                }
-                arrayIndex += 1
+                self.playerArray.insert(player, at: 0)
             }
             DispatchQueue.main.async {
                 self.tableview.reloadData()
@@ -218,15 +201,22 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         
         let player = self.playerArray[indexPath.row] as! PlayerFixtureModel
         
+        print("777777777777")
+        print(player.id)
+        print(player.fullName)
+        
+        print("888888888")
+        print(self.playerArray[indexPath.row])
+        
         //MOTM
         let motmAction = UIContextualAction(style: .normal, title: "MOTM") { (action, view, actionPerformed) in
             if player.motm {
-                FixtureModel.postMotm(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, motm: false)
-                PlayerModel.postMotm(playerId: player.playerId, motm: false)
+                FixtureModel.postMotm(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.id, motm: false)
+                PlayerModel.postMotm(playerId: player.id, motm: false)
                 actionPerformed(true)
             } else {
-                FixtureModel.postMotm(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, motm: true)
-                PlayerModel.postMotm(playerId: player.playerId, motm: true)
+                FixtureModel.postMotm(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.id, motm: true)
+                PlayerModel.postMotm(playerId: player.id, motm: true)
                 actionPerformed(true)
             }
         }
@@ -235,8 +225,8 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         
         //Add Goal
         let addGoalAction = UIContextualAction(style: .normal, title: "Add Goal") { (action, view, actionPerformed) in
-            FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, goal: true)
-            PlayerModel.postPlayerGoals(playerId: player.playerId, goal: true)
+            FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.id, goal: true)
+            PlayerModel.postPlayerGoals(playerId: player.id, goal: true)
             
             self.tempTeamGoalCount += 1
             if self.homeFixture {
@@ -251,8 +241,8 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         //Minus Goal
         let minusGoalAction = UIContextualAction(style: .normal, title: "Minus Goal") { (action, view, actionPerformed) in
             if player.goals > 0 {
-                FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, goal: false)
-                PlayerModel.postPlayerGoals(playerId: player.playerId, goal: false)
+                FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.id, goal: false)
+                PlayerModel.postPlayerGoals(playerId: player.id, goal: false)
                 self.tempTeamGoalCount -= 1
                 if self.homeFixture {
                     self.tfHomeGoals.text = String(self.tempTeamGoalCount)
@@ -326,7 +316,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedGoals = pickerData[row]
-        tfHomeGoals.text = selectedGoals
+        tfHomeGoals.text = selectedGoals 
         oppositionGoals = Int(selectedGoals!)!
     }
 

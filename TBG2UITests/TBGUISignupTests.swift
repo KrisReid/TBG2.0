@@ -34,6 +34,8 @@ class TBGUISignupTests: XCTestCase {
         XCTAssertTrue(app.buttons["Join Team"].exists)
     }
     
+    
+    
 //    func testCameraImage() {
 //
 //        let app = XCUIApplication()
