@@ -12,6 +12,7 @@ class TBG2UITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        XCUIApplication().launch()
 
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
@@ -22,21 +23,21 @@ class TBG2UITests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-//    func testLaunchPerformance() throws {
-//        if #available(iOS 13.0, *) {
-//            // This measures how long it takes to launch your application.
-//            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
-//                XCUIApplication().launch()
-//            }
-//        }
-//    }
+    
+    func testLoginComponentsExist() {
+        let app = XCUIApplication()
+        XCTAssertTrue(app.textFields["Email Address"].exists)
+        XCTAssertTrue(app.secureTextFields["Password"].exists)
+        XCTAssertTrue(app.secureTextFields["Password"].exists)
+        XCTAssertTrue(app.buttons["Login"].exists)
+        XCTAssertTrue(app.staticTexts["Don't have an account? Sign up instead"].exists)
+    }
+    
     
     func testIncorrectPassword() {
         let email = "test@tbg.com"
         
         let app = XCUIApplication()
-        app.launch()
         
         let emailAddressTextField = app.textFields["Email Address"]
         XCTAssertTrue(emailAddressTextField.exists)
@@ -49,10 +50,9 @@ class TBG2UITests: XCTestCase {
           return true
         })
         app.tap()
-        testLoginError()
     }
     
-    func testLoginError() {
+    func testInvalidEmail() {
         
         let password = "123456"
         
@@ -65,23 +65,40 @@ class TBG2UITests: XCTestCase {
         
         app.buttons["Login"].tap()
         
+        let alertDialog = app.alerts["Invalid Email"]
+        XCTAssertTrue(alertDialog.exists)
+        alertDialog.buttons["OK"].tap()
+    }
+    
+    func testLoginError() {
+        let email = "test@tbg.com"
+        let password = "123456"
+        
+        let app = XCUIApplication()
+        
+        let emailAddressTextField = app.textFields["Email Address"]
+        XCTAssertTrue(emailAddressTextField.exists)
+        emailAddressTextField.tap()
+        emailAddressTextField.typeText(email)
+        
+        let passwordSecureTextField = app.secureTextFields["Password"]
+        XCTAssertTrue(passwordSecureTextField.exists)
+        passwordSecureTextField.tap()
+        passwordSecureTextField.typeText(password)
+        
+        app.buttons["Login"].tap()
+        
         let alertDialog = app.alerts["Login Error"]
         XCTAssertTrue(alertDialog.exists)
         alertDialog.buttons["OK"].tap()
-        
-//        addUIInterruptionMonitor(withDescription: "Login Error", handler: { alert in
-//          alert.buttons["OK"].tap()
-//          return true
-//        })
-//        app.tap()
     }
+    
     
     func testSuccessfulLogin() {
         let email = "automated_tester@tbg.com"
         let password = "123456789"
         
         let app = XCUIApplication()
-        app.launch()
         
         let emailAddressTextField = app.textFields["Email Address"]
         XCTAssertTrue(emailAddressTextField.exists)
@@ -103,17 +120,15 @@ class TBG2UITests: XCTestCase {
         
     }
     
-    func testLogout() {
-        
-        let app = XCUIApplication()
-        app.launch()
-        
-        let tabBarsQuery = XCUIApplication().tabBars
-        let button = tabBarsQuery.children(matching: .button).element(boundBy: 2)
-        button.tap()
-        app.tables.staticTexts["Sign Out"].tap()
-                
-    }
+//    func testLogout() {
+//
+//        let app = XCUIApplication()
+//        let tabBarsQuery = XCUIApplication().tabBars
+//        let button = tabBarsQuery.children(matching: .button).element(boundBy: 2)
+//        button.tap()
+//        app.tables.staticTexts["Sign Out"].tap()
+//
+//    }
     
     
 }
