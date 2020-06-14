@@ -74,6 +74,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             tfAwayGoals.text = "-"
             tfHomeGoals.text = "-"
             tfHomeGoals.isEnabled = false
+            tfAwayGoals.isEnabled = false
             futureFixture = true
         } else {
             createPickerView()
@@ -272,6 +273,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         pickerView.dataSource = self
         pickerView.backgroundColor = UIColor.white
         tfHomeGoals.inputView = pickerView
+        tfAwayGoals.inputView = pickerView
     }
     
     func dismissPickerView() {
@@ -283,9 +285,14 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         toolBar.setItems([button], animated: true)
         toolBar.isUserInteractionEnabled = true
         tfHomeGoals.inputAccessoryView = toolBar
+        tfAwayGoals.inputAccessoryView = toolBar
     }
     
     @objc func action() {
+        print(self.teamId)
+        print(self.fixtureId)
+        print(self.oppositionGoals)
+        
         FixtureModel.postOppositionGoals(teamId: self.teamId, fixtureId: self.fixtureId, goals: Int(self.oppositionGoals))
         view.endEditing(true)
     }
@@ -306,7 +313,11 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedGoals = pickerData[row]
-        tfHomeGoals.text = selectedGoals 
+        if homeFixture {
+            tfAwayGoals.text = selectedGoals
+        } else {
+            tfHomeGoals.text = selectedGoals
+        }
         oppositionGoals = Int(selectedGoals!)!
     }
 
