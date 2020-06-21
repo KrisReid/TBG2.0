@@ -34,11 +34,18 @@ class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableVie
         
         //Load Team Data
         loadTeamData()
+        
+        //Accessability Identifiers
+        setupAccessibilityAndLocalisation()
+    }
+    
+    private func setupAccessibilityAndLocalisation() {
+        lblTeamName.accessibilityIdentifier = AccessabilityIdentifier.TeamName.rawValue
+        lblTeamPostcode.accessibilityIdentifier = AccessabilityIdentifier.TeamPostcode.rawValue
     }
     
     
     func loadTeamData() {
-        
         let spinner = UIViewController.displayLoading(withView: self.view)
         
         let userRef = PlayerModel.getUser()

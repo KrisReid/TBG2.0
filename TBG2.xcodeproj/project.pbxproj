@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		021098892496AC7B00A55478 /* TBGUITeamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021098882496AC7B00A55478 /* TBGUITeamTests.swift */; };
+		0210988C249FF6D800A55478 /* AccessabilityIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210988B249FF6D800A55478 /* AccessabilityIdentifier.swift */; };
+		0210988D249FF8E700A55478 /* AccessabilityIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210988B249FF6D800A55478 /* AccessabilityIdentifier.swift */; };
 		021A59D723D4F1C1005DE007 /* FixtureDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021A59D523D4F1C1005DE007 /* FixtureDetailTableViewCell.swift */; };
 		021A59D823D4F1C1005DE007 /* FixtureDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021A59D623D4F1C1005DE007 /* FixtureDetailTableViewCell.xib */; };
 		021BDDB224842F2B0026A839 /* TBG2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BDDB124842F2B0026A839 /* TBG2UITests.swift */; };
@@ -75,6 +77,7 @@
 
 /* Begin PBXFileReference section */
 		021098882496AC7B00A55478 /* TBGUITeamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBGUITeamTests.swift; sourceTree = "<group>"; };
+		0210988B249FF6D800A55478 /* AccessabilityIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessabilityIdentifier.swift; sourceTree = "<group>"; };
 		021A59D523D4F1C1005DE007 /* FixtureDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureDetailTableViewCell.swift; sourceTree = "<group>"; };
 		021A59D623D4F1C1005DE007 /* FixtureDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FixtureDetailTableViewCell.xib; sourceTree = "<group>"; };
 		021BDDAF24842F2B0026A839 /* TBG2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TBG2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,12 +161,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0210988A249FF67900A55478 /* DeStringers */ = {
+			isa = PBXGroup;
+			children = (
+				0210988B249FF6D800A55478 /* AccessabilityIdentifier.swift */,
+			);
+			path = DeStringers;
+			sourceTree = "<group>";
+		};
 		021BDDB024842F2B0026A839 /* TBG2UITests */ = {
 			isa = PBXGroup;
 			children = (
-				021098882496AC7B00A55478 /* TBGUITeamTests.swift */,
 				021BDDB124842F2B0026A839 /* TBG2UITests.swift */,
 				021BDDBA24966EB30026A839 /* TBGUISignupTests.swift */,
+				021098882496AC7B00A55478 /* TBGUITeamTests.swift */,
 				021BDDB324842F2B0026A839 /* Info.plist */,
 			);
 			path = TBG2UITests;
@@ -208,6 +219,7 @@
 				027A08C32318248300B0DF59 /* SceneDelegate.swift */,
 				0231525423F0426300AAFB0B /* Helper.swift */,
 				02821A14239A811A0090E400 /* Extensions.swift */,
+				0210988A249FF67900A55478 /* DeStringers */,
 				0288B22223683AD70014DA4E /* Views */,
 				0288B22123683AC80014DA4E /* ViewControllers */,
 				026F1E6E2381CA5600682063 /* DataStore */,
@@ -546,6 +558,7 @@
 				021BDDB224842F2B0026A839 /* TBG2UITests.swift in Sources */,
 				021098892496AC7B00A55478 /* TBGUITeamTests.swift in Sources */,
 				021BDDBB24966EB30026A839 /* TBGUISignupTests.swift in Sources */,
+				0210988D249FF8E700A55478 /* AccessabilityIdentifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,6 +581,7 @@
 				0231525923F0A8F600AAFB0B /* LoginViewController.swift in Sources */,
 				025280EA24032E18002DB761 /* CreateTeamViewController.swift in Sources */,
 				02F7BF6323B6400200DE70BB /* ShareTableViewCell.swift in Sources */,
+				0210988C249FF6D800A55478 /* AccessabilityIdentifier.swift in Sources */,
 				027A08C42318248300B0DF59 /* SceneDelegate.swift in Sources */,
 				02821A15239A811A0090E400 /* Extensions.swift in Sources */,
 				0282C804240863FC00259BEF /* SeasonSettingsViewController.swift in Sources */,
