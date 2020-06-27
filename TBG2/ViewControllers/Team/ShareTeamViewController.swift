@@ -96,8 +96,14 @@ class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableVie
 
         cell.lblTitle.text = titleArray[indexPath.row]
 
-        if (indexPath.row == 0) {cell.lblAnswer.text = team?.id}
-        if (indexPath.row == 1) {cell.lblAnswer.text = team?.pin.description}
+        if (indexPath.row == 0) {
+            cell.lblAnswer.text = team?.id
+            cell.lblAnswer.accessibilityIdentifier = AccessabilityIdentifier.TeamID.rawValue
+        }
+        if (indexPath.row == 1) {
+            cell.lblAnswer.text = team?.pin.description
+            cell.lblAnswer.accessibilityIdentifier = AccessabilityIdentifier.ShareTeamPIN.rawValue
+        }
         if (indexPath.row == 2) {cell.ivAnswer.image = UIImage(named: "share_icon")}
         
         return cell

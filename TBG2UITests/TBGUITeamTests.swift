@@ -86,13 +86,20 @@ class TBGUITeamTests: XCTestCase {
         XCTAssertTrue(app.staticTexts[AccessabilityIdentifier.TeamName.rawValue].exists)
         XCTAssertTrue(app.staticTexts[AccessabilityIdentifier.TeamPostcode.rawValue].exists)
         XCTAssertTrue(app.tables.cells.staticTexts["-M9oHEGA47y9ZsDrpp59"].exists)
+        
+        //Artificial Swipe down
+        let c = app.staticTexts[AccessabilityIdentifier.TeamName.rawValue]
+        let start = c.coordinate(withNormalizedOffset:  CGVector(dx: 0.0, dy: 0.0))
+        let finish = c.coordinate(withNormalizedOffset: CGVector(dx: 0.0, dy: 100.0))
+        start.press(forDuration: 0, thenDragTo: finish)
+        
     }
     
     func testChangingTeamPINEnabledAndDisabled() {
         let app = XCUIApplication()
         app.navigationBars["TBG2.TeamView"].buttons["plus icon"].tap()
     
-        app.tables.cells.staticTexts["999888"].tap()
+        app.tables.cells.staticTexts[AccessabilityIdentifier.ShareTeamPIN.rawValue].tap()
         app.textFields[AccessabilityIdentifier.TeamPIN.rawValue].tap()
         app.textFields[AccessabilityIdentifier.TeamPIN.rawValue].buttons["Clear text"].tap()
         
@@ -106,6 +113,17 @@ class TBGUITeamTests: XCTestCase {
         
         app.keys["7"].tap()
         XCTAssertFalse(app.buttons["Done"].isEnabled)
+        
+        app.keys["Delete"].tap()
+        app.staticTexts["Done"].tap()
+        
+        XCTAssertEqual(app.staticTexts.element(matching:.any, identifier: "Share Team PIN").label, "123456")
+        
+        //Artificial Swipe down
+        let c = app.staticTexts[AccessabilityIdentifier.TeamName.rawValue]
+        let start = c.coordinate(withNormalizedOffset:  CGVector(dx: 0.0, dy: 0.0))
+        let finish = c.coordinate(withNormalizedOffset: CGVector(dx: 0.0, dy: 100.0))
+        start.press(forDuration: 0, thenDragTo: finish)
         
     }
     

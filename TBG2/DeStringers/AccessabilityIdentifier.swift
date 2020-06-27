@@ -12,5 +12,7 @@ enum AccessabilityIdentifier: String {
     case
     TeamName = "Team Name",
     TeamPostcode = "Team Postcode",
-    TeamPIN = "Team PIN"
+    TeamPIN = "Team PIN",
+    TeamID = "Team ID",
+    ShareTeamPIN = "Share Team PIN"
 }
