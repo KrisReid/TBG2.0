@@ -51,8 +51,6 @@ class TBGUIFixtureTests: XCTestCase {
         XCTAssertTrue(app.tables[AccessabilityIdentifier.FixturesTable.rawValue].exists)
         XCTAssertTrue(app.navigationBars["TBG2.FixturesView"].buttons["plus icon"].exists)
         
-//        //Code for deleting a fixture
-//        XCUIApplication().tables/*@START_MENU_TOKEN@*/.cells.containing(.staticText, identifier:"Test Opposition 2").element/*[[".cells.containing(.button, identifier:\"Delete\").element",".cells.containing(.button, identifier:\"trailing0\").element",".cells.containing(.staticText, identifier:\"15 Oct 2031 (14:30)\").element",".cells.containing(.staticText, identifier:\"Test Opposition 2\").element"],[[[-1,3],[-1,2],[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeLeft()
     }
     
     func testbtnCreateGameTapped() {
@@ -164,6 +162,12 @@ class TBGUIFixtureTests: XCTestCase {
         XCTAssertEqual(tablesQuery.cells.images["GoalIcon"].exists, true)
         XCTAssertEqual(tablesQuery.cells.staticTexts["FixturePlayerGoalCount"].exists, true)
         //Check the numbers says 2
+    }
+    
+    func testDeleteFixture() {
+        XCUIApplication().tabBars.children(matching: .button).element(boundBy: 1).tap()
+        XCUIApplication().tables.cells.containing(.staticText, identifier:"Test Opposition 4").element.swipeLeft()
+        XCUIApplication().tables.buttons["Delete"].tap()
     }
 
 
