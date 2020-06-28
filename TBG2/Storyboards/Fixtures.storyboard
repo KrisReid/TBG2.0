@@ -239,6 +239,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="PJf-Z2-V0g"/>
                     <connections>
+                        <outlet property="btnFixturePostcode" destination="qOb-2Y-pGK" id="Wk6-iI-EHd"/>
                         <outlet property="ivAwayTeam" destination="c3v-Da-g4W" id="27O-61-ssH"/>
                         <outlet property="ivHomeTeam" destination="lTE-dL-Emw" id="fTA-wr-BgQ"/>
                         <outlet property="lblFixtureDate" destination="s4v-fz-RjF" id="hQF-lm-frI"/>

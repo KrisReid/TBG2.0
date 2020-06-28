@@ -103,7 +103,15 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
             cell.lblAwayGoals.text = String(fixture.teamGoals)
             cell.lblHomeGoals.text = String(fixture.oppositionGoals)
         }
+        
+        //Accessability Identifiers
+        cell.ivHomeAway.accessibilityIdentifier = AccessabilityIdentifier.FixtureHomeAway.rawValue
+        cell.lblOpposition.accessibilityIdentifier = AccessabilityIdentifier.FixtureOpposition.rawValue
+        cell.lblDateTime.accessibilityIdentifier = AccessabilityIdentifier.FixtureDateTime.rawValue
+        cell.lblHomeGoals.accessibilityIdentifier = AccessabilityIdentifier.HomeTeamGoals.rawValue
+        cell.lblAwayGoals.accessibilityIdentifier = AccessabilityIdentifier.AwayTeamGoals.rawValue
 
+        
         //ScoreLine Logic
         let date = Helper.stringToDate(date: fixture.date)
         if today < date {

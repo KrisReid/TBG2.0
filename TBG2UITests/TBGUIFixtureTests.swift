@@ -55,7 +55,7 @@ class TBGUIFixtureTests: XCTestCase {
 //        XCUIApplication().tables/*@START_MENU_TOKEN@*/.cells.containing(.staticText, identifier:"Test Opposition 2").element/*[[".cells.containing(.button, identifier:\"Delete\").element",".cells.containing(.button, identifier:\"trailing0\").element",".cells.containing(.staticText, identifier:\"15 Oct 2031 (14:30)\").element",".cells.containing(.staticText, identifier:\"Test Opposition 2\").element"],[[[-1,3],[-1,2],[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeLeft()
     }
     
-    func testCreateHistoricFixture() {
+    func testbtnCreateGameTapped() {
         let app = XCUIApplication()
         
         app.tabBars.children(matching: .button).element(boundBy: 1).tap()
@@ -74,97 +74,97 @@ class TBGUIFixtureTests: XCTestCase {
         app.textFields["Venue's Postcode"].typeText("BS11 0BT")
         app.buttons["Create Game"].tap()
     }
-    
-    
-    
-    // test feture detail exists
-    // test opposition goals
-    // test player motm
-    // test goal additon and subtraction
+
     
     func testFixtureDetailExists() {
         let app = XCUIApplication()
         app.tabBars.children(matching: .button).element(boundBy: 1).tap()
         app.tables[AccessabilityIdentifier.FixturesTable.rawValue].staticTexts["Test Opposition 4"].tap()
         
-//        XCTAssertTrue(app.staticTexts["12 Mar 1992"].exists)
-        
+        XCTAssert(app.images["Home Team Crest"].exists)
+        XCTAssert(app.images["Away Team Crest"].exists)
+        XCTAssert(app.textFields["Detail Home Team Goals"].exists)
+        XCTAssert(app.textFields["Detail Away Team Goals"].exists)
+        XCTAssert(app.staticTexts["Fixture Detail Date"].exists)
+        XCTAssert(app.staticTexts["Fixture Detail Time"].exists)
+        XCTAssert(app.staticTexts["Fixture Detail Postcode"].exists)
+        XCTAssert(app.staticTexts["Automated Tester 1"].exists)
+        XCTAssert(app.staticTexts["Automated Tester 2"].exists)
     }
     
-    
-    func testHistoricFeatureDetail() {
-        
+    func testFixtureNineOppositionGoals() {
         let app = XCUIApplication()
         app.tabBars.children(matching: .button).element(boundBy: 1).tap()
         app.tables[AccessabilityIdentifier.FixturesTable.rawValue].staticTexts["Test Opposition 4"].tap()
         
+        app.textFields["Detail Home Team Goals"].tap()
+        XCTAssert(app.pickerWheels["0"].exists)
+        app.pickerWheels["0"].swipeUp()
+        app.toolbars["Toolbar"].buttons["Done"].tap()
+
+        app.navigationBars["TBG2.FixtureInformationView"].buttons["Back"].tap()
         
-        
-        
-        
-        
-//        let element3 = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
-//        let element = element3.children(matching: .other).element(boundBy: 0)
-//        element.children(matching: .other).element(boundBy: 0).tap()
-//
-//        let element2 = element.children(matching: .other).element(boundBy: 1)
-//        element2.children(matching: .textField).element(boundBy: 0).tap()
-//        app/*@START_MENU_TOKEN@*/.pickerWheels["0"]/*[[".pickers.pickerWheels[\"0\"]",".pickerWheels[\"0\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeUp()
-//        app.toolbars["Toolbar"].buttons["Done"].tap()
-//        element2.children(matching: .textField).element(boundBy: 1).tap()
-//        element.children(matching: .other).element(boundBy: 2).tap()
-//        app.staticTexts["29 May 2020"].tap()
-//        app.staticTexts["3:30 PM"].tap()
-//        element3.children(matching: .other).element(boundBy: 1).children(matching: .other).element(boundBy: 2).children(matching: .button).element.tap()
-//        app.statusBars/*@START_MENU_TOKEN@*/.buttons["breadcrumb"]/*[[".buttons[\"Return to TBG\"]",".buttons[\"breadcrumb\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-//        app.tables/*@START_MENU_TOKEN@*/.staticTexts["Automated Tester 1"]/*[[".cells.staticTexts[\"Automated Tester 1\"]",".staticTexts[\"Automated Tester 1\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-//
-//        let tablesQuery = XCUIApplication().tables
-//        let automatedTester2StaticText = tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Automated Tester 2"]/*[[".cells.staticTexts[\"Automated Tester 2\"]",".staticTexts[\"Automated Tester 2\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-//        automatedTester2StaticText.swipeLeft()
-//        tablesQuery/*@START_MENU_TOKEN@*/.buttons["trailing0"]/*[[".cells",".buttons[\"MOTM\"]",".buttons[\"trailing0\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
-//        automatedTester2StaticText.swipeLeft()
-//        tablesQuery/*@START_MENU_TOKEN@*/.buttons["trailing0"]/*[[".cells",".buttons[\"Remove MOTM\"]",".buttons[\"trailing0\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
-//        automatedTester2StaticText.swipeLeft()
-//        tablesQuery/*@START_MENU_TOKEN@*/.buttons["trailing1"]/*[[".cells",".buttons[\"Add Goal\"]",".buttons[\"trailing1\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
-//
-//        let tablesQuery = XCUIApplication().tables
-//        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Automated Tester 1"]/*[[".cells.staticTexts[\"Automated Tester 1\"]",".staticTexts[\"Automated Tester 1\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeLeft()
-//        tablesQuery/*@START_MENU_TOKEN@*/.buttons["trailing1"]/*[[".cells",".buttons[\"Add Goal\"]",".buttons[\"trailing1\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
-//
-//
-//        let tablesQuery = app.tables
-//        let trailing2Button = tablesQuery/*@START_MENU_TOKEN@*/.buttons["trailing2"]/*[[".cells",".buttons[\"Minus Goal\"]",".buttons[\"trailing2\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/
-//        trailing2Button.tap()
-//        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Automated Tester 1"]/*[[".cells.staticTexts[\"Automated Tester 1\"]",".staticTexts[\"Automated Tester 1\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeLeft()
-//        trailing2Button.tap()
-//
-//        let app2 = app
-//        let app = app2
-//        let backButton = app.navigationBars["TBG2.FixtureInformationView"].buttons["Back"]
-//        backButton.tap()
-//
-//        let fixturesTableTable = app2.tables["Fixtures Table"]
-//        fixturesTableTable/*@START_MENU_TOKEN@*/.staticTexts["2"]/*[[".cells.staticTexts[\"2\"]",".staticTexts[\"2\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-//        backButton.tap()
-//        fixturesTableTable/*@START_MENU_TOKEN@*/.staticTexts["1"]/*[[".cells.staticTexts[\"1\"]",".staticTexts[\"1\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-//        backButton.tap()
-//
-//        let app = XCUIApplication()
-//        let backButton = app.navigationBars["TBG2.FixtureInformationView"].buttons["Back"]
-//        backButton.tap()
-//
-//        let fixturesTableTable = app.tables["Fixtures Table"]
-//        fixturesTableTable/*@START_MENU_TOKEN@*/.staticTexts["Test Opposition 4"]/*[[".cells.staticTexts[\"Test Opposition 4\"]",".staticTexts[\"Test Opposition 4\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-//        backButton.tap()
-//
-//        let staticText = fixturesTableTable/*@START_MENU_TOKEN@*/.staticTexts["29 May 2020 (3:30 PM)"]/*[[".cells.staticTexts[\"29 May 2020 (3:30 PM)\"]",".staticTexts[\"29 May 2020 (3:30 PM)\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-//        staticText.tap()
-//        backButton.tap()
-//        staticText.tap()
-//        backButton.tap()
-                
-        
+        //Try and compare the 2 values that should match :(
     }
+    
+    func testFixtureMotm() {
+        let app = XCUIApplication()
+        app.tabBars.children(matching: .button).element(boundBy: 1).tap()
+        app.tables[AccessabilityIdentifier.FixturesTable.rawValue].staticTexts["Test Opposition 4"].tap()
+        
+        let tablesQuery = app.tables
+        XCTAssertEqual(tablesQuery.cells.images["Motm"].exists, false)
+        //ADD THE MOTM TO PLAYER 2
+        tablesQuery.staticTexts["Automated Tester 2"].swipeLeft()
+        tablesQuery.buttons["MOTM"].tap()
+        XCTAssertEqual(tablesQuery.cells.images["Motm"].exists, true)
+        //REMOVE THE MOTM FROM PLAYER 2
+        tablesQuery.staticTexts["Automated Tester 2"].swipeLeft()
+        tablesQuery.buttons["Remove MOTM"].tap()
+        XCTAssertEqual(tablesQuery.cells.images["Motm"].exists, false)
+        //ADD THE MOTM TO PLAYER 1
+        tablesQuery.staticTexts["Automated Tester 1"].swipeLeft()
+        tablesQuery.buttons["MOTM"].tap()
+        XCTAssertEqual(tablesQuery.cells.images["Motm"].exists, true)
+    }
+    
+    func testFixtureTeamGoals() {
+        let app = XCUIApplication()
+        app.tabBars.children(matching: .button).element(boundBy: 1).tap()
+        app.tables[AccessabilityIdentifier.FixturesTable.rawValue].staticTexts["Test Opposition 4"].tap()
+        
+        let tablesQuery = app.tables
+        XCTAssertEqual(tablesQuery.cells.images["GoalIcon"].exists, false)
+        XCTAssertEqual(tablesQuery.cells.staticTexts["FixturePlayerGoalCount"].exists, false)
+        //ADD 1 GOAL TO PLAYER 2 (1 Goal)
+        tablesQuery.staticTexts["Automated Tester 2"].swipeLeft()
+        tablesQuery.buttons["Add Goal"].tap()
+        XCTAssertEqual(tablesQuery.cells.images["GoalIcon"].exists, true)
+        XCTAssertEqual(tablesQuery.cells.staticTexts["FixturePlayerGoalCount"].exists, true)
+        //REMOVE 1 GOAL FROM PLAYER 2 (0 Goals)
+        tablesQuery.staticTexts["Automated Tester 2"].swipeLeft()
+        tablesQuery.buttons["Minus Goal"].tap()
+        XCTAssertEqual(tablesQuery.cells.images["GoalIcon"].exists, false)
+        XCTAssertEqual(tablesQuery.cells.staticTexts["FixturePlayerGoalCount"].exists, false)
+        //REMOVE 1 GOAL FROM PLAYER 2 (0 Goals)
+        tablesQuery.staticTexts["Automated Tester 2"].swipeLeft()
+        tablesQuery.buttons["Minus Goal"].tap()
+        XCTAssertEqual(tablesQuery.cells.images["GoalIcon"].exists, false)
+        XCTAssertEqual(tablesQuery.cells.staticTexts["FixturePlayerGoalCount"].exists, false)
+        //Check this still is equal to 0?
+        
+        //ADD 1 GOAL TO PLAYER 1 (1 Goal)
+        tablesQuery.staticTexts["Automated Tester 1"].swipeLeft()
+        tablesQuery.buttons["Add Goal"].tap()
+        XCTAssertEqual(tablesQuery.cells.images["GoalIcon"].exists, true)
+        XCTAssertEqual(tablesQuery.cells.staticTexts["FixturePlayerGoalCount"].exists, true)
+        //ADD 1 GOAL TO PLAYER 1 (2 Goals)
+        tablesQuery.staticTexts["Automated Tester 1"].swipeLeft()
+        tablesQuery.buttons["Add Goal"].tap()
+        XCTAssertEqual(tablesQuery.cells.images["GoalIcon"].exists, true)
+        XCTAssertEqual(tablesQuery.cells.staticTexts["FixturePlayerGoalCount"].exists, true)
+        //Check the numbers says 2
+    }
+
 
 }

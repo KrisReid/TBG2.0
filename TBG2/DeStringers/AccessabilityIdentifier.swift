@@ -15,5 +15,21 @@ enum AccessabilityIdentifier: String {
     TeamPIN = "Team PIN",
     TeamID = "Team ID",
     ShareTeamPIN = "Share Team PIN",
-    FixturesTable = "Fixtures Table"
+    FixturesTable = "Fixtures Table",
+    //Fixture Information (Detail)
+    HomeTeamCrest = "Home Team Crest",
+    AwayTeamCrest = "Away Team Crest",
+    DetailHomeTeamGoals = "Detail Home Team Goals",
+    DetailAwayTeamGoals = "Detail Away Team Goals Detail",
+    FixtureDetailDate = "Fixture Detail Date",
+    FixtureDetailTime = "Fixture Detail Time",
+    FixtureDetailPostcode = "Fixture Detail Postcode",
+    GoalIcon = "GoalIcon",
+    Motm = "MOTM",
+    //Fixture Information
+    FixtureOpposition = "Opposition",
+    FixtureHomeAway = "Home or Away",
+    FixtureDateTime = "Fixture Date and Time",
+    HomeTeamGoals = "Home Team Goals",
+    AwayTeamGoals = "Away Team Goals"
 }

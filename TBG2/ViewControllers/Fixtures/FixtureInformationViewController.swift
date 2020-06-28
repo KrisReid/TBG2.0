@@ -20,6 +20,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var tfHomeGoals: UITextField!
     @IBOutlet weak var tfAwayGoals: UITextField!
+    @IBOutlet weak var btnFixturePostcode: UIButton!
     
     var teamId: String = ""
     var fixtureId: String = ""
@@ -96,10 +97,23 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         } else {
             Helper.setImageView(imageView: ivAwayTeam, url: self.teamCrestURL!)
         }
+        
+        //Accessability Identifiers
+        setupAccessibilityAndLocalisation()
+    }
+    
+    private func setupAccessibilityAndLocalisation() {
+        ivHomeTeam.accessibilityIdentifier = AccessabilityIdentifier.HomeTeamCrest.rawValue
+        ivAwayTeam.accessibilityIdentifier = AccessabilityIdentifier.AwayTeamCrest.rawValue
+        tfHomeGoals.accessibilityIdentifier = AccessabilityIdentifier.DetailHomeTeamGoals.rawValue
+        tfAwayGoals.accessibilityIdentifier = AccessabilityIdentifier.DetailAwayTeamGoals.rawValue
+        lblFixtureDate.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailDate.rawValue
+        lblFixtureTime.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailTime.rawValue
+        lblFixturePostcode.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailPostcode.rawValue
     }
     
     func loadPlayerFixtureData() {
-        
+
         let playerFixtureRef = FixtureModel.collection.child(teamId).child(fixtureId).child("players")
         let playerFixtureRefQuery = playerFixtureRef.queryOrderedByKey()
         
@@ -108,7 +122,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             for item in snapshot.children {
                 guard let snapshot = item as? DataSnapshot else { continue }
                 guard let player = PlayerFixtureModel(snapshot) else { continue }
-
                 self.playerArray.insert(player, at: 0)
             }
             DispatchQueue.main.async {
@@ -123,6 +136,11 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FixtureDetailTableViewCell") as! FixtureDetailTableViewCell
+        
+        //Accessability Identifiers
+        cell.ivMotmAward.accessibilityIdentifier = AccessabilityIdentifier.Motm.rawValue
+        cell.ivGoalScored.accessibilityIdentifier = AccessabilityIdentifier.GoalIcon.rawValue
+        
         
         let player = playerArray[indexPath.row] as! PlayerFixtureModel
         
@@ -152,7 +170,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             cell.lblGoalScoredCount.isHidden = true
             cell.ivGoalScored.isHidden = true
         }
-        
         return cell
     }
     
@@ -189,7 +206,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         })
         task.resume()
     }
-
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -247,7 +263,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         }
         minusGoalAction.backgroundColor = colours.secondaryBlue
         
-        
         //Future Fixture Logic
         var swipeAction = UISwipeActionsConfiguration(actions: [minusGoalAction, addGoalAction, motmAction])
         if futureFixture {
@@ -266,7 +281,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         return UISwipeActionsConfiguration(actions: [paymentsAction])
     }
 
-    
     func createPickerView() {
         let pickerView = UIPickerView()
         pickerView.delegate = self
@@ -294,7 +308,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     }
     
     //MARK:- PickerView Delegate & DataSource
-    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -316,5 +329,5 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         }
         oppositionGoals = Int(selectedGoals!)!
     }
-
+    
 }
