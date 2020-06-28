@@ -33,6 +33,13 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
         
         //Load Data
         loadData()
+        
+        //Accessability Identifiers
+        setupAccessibilityAndLocalisation()
+    }
+    
+    private func setupAccessibilityAndLocalisation() {
+        tableview.accessibilityIdentifier = AccessabilityIdentifier.FixturesTable.rawValue
     }
     
     

@@ -14,5 +14,6 @@ enum AccessabilityIdentifier: String {
     TeamPostcode = "Team Postcode",
     TeamPIN = "Team PIN",
     TeamID = "Team ID",
-    ShareTeamPIN = "Share Team PIN"
+    ShareTeamPIN = "Share Team PIN",
+    FixturesTable = "Fixtures Table"
 }

@@ -35,7 +35,7 @@ class TBG2UITests: XCTestCase {
     
     
     func testIncorrectPassword() {
-        let email = "test@tbg.com"
+        let email = "automated_tester_1@tbg.com"
         
         let app = XCUIApplication()
         
@@ -71,7 +71,7 @@ class TBG2UITests: XCTestCase {
     }
     
     func testLoginError() {
-        let email = "test@tbg.com"
+        let email = "automated_tester_1@tbg.com"
         let password = "123456"
         
         let app = XCUIApplication()
@@ -95,7 +95,7 @@ class TBG2UITests: XCTestCase {
     
     
     func testSuccessfulLogin() {
-        let email = "automated_tester@tbg.com"
+        let email = "automated_tester_1@tbg.com"
         let password = "123456789"
         
         let app = XCUIApplication()
@@ -119,20 +119,9 @@ class TBG2UITests: XCTestCase {
         waitForExpectations(timeout: 4, handler: nil)
         
         //Sign out
-        let button = tabBarsQuery.children(matching: .button).element(boundBy: 2)
-        button.tap()
-        app.tables.staticTexts["Sign Out"].tap()
-    }
-    
-//    func testLogout() {
-//
-//        let app = XCUIApplication()
-//        let tabBarsQuery = XCUIApplication().tabBars
 //        let button = tabBarsQuery.children(matching: .button).element(boundBy: 2)
 //        button.tap()
 //        app.tables.staticTexts["Sign Out"].tap()
-//
-//    }
-    
+    }
     
 }
