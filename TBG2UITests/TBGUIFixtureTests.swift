@@ -44,7 +44,7 @@ class TBGUIFixtureTests: XCTestCase {
         app.tables.staticTexts["Sign Out"].tap()
     }
     
-    func testFixtureTableExists() {
+    func test01FixtureTableExists() {
         let app = XCUIApplication()
         XCUIApplication().tabBars.children(matching: .button).element(boundBy: 1).tap()
     
@@ -53,7 +53,7 @@ class TBGUIFixtureTests: XCTestCase {
         
     }
     
-    func testbtnCreateGameTapped() {
+    func test02btnCreateGameTapped() {
         let app = XCUIApplication()
         
         app.tabBars.children(matching: .button).element(boundBy: 1).tap()
@@ -74,7 +74,7 @@ class TBGUIFixtureTests: XCTestCase {
     }
 
     
-    func testFixtureDetailExists() {
+    func test03FixtureDetailExists() {
         let app = XCUIApplication()
         app.tabBars.children(matching: .button).element(boundBy: 1).tap()
         app.tables[AccessabilityIdentifier.FixturesTable.rawValue].staticTexts["Test Opposition 4"].tap()
@@ -90,7 +90,7 @@ class TBGUIFixtureTests: XCTestCase {
         XCTAssert(app.staticTexts["Automated Tester 2"].exists)
     }
     
-    func testFixtureNineOppositionGoals() {
+    func test04FixtureNineOppositionGoals() {
         let app = XCUIApplication()
         app.tabBars.children(matching: .button).element(boundBy: 1).tap()
         app.tables[AccessabilityIdentifier.FixturesTable.rawValue].staticTexts["Test Opposition 4"].tap()
@@ -105,7 +105,7 @@ class TBGUIFixtureTests: XCTestCase {
         //Try and compare the 2 values that should match :(
     }
     
-    func testFixtureMotm() {
+    func test05FixtureMotm() {
         let app = XCUIApplication()
         app.tabBars.children(matching: .button).element(boundBy: 1).tap()
         app.tables[AccessabilityIdentifier.FixturesTable.rawValue].staticTexts["Test Opposition 4"].tap()
@@ -115,18 +115,21 @@ class TBGUIFixtureTests: XCTestCase {
         //ADD THE MOTM TO PLAYER 2
         tablesQuery.staticTexts["Automated Tester 2"].swipeLeft()
         tablesQuery.buttons["MOTM"].tap()
+        sleep(1)
         XCTAssertEqual(tablesQuery.cells.images["Motm"].exists, true)
         //REMOVE THE MOTM FROM PLAYER 2
         tablesQuery.staticTexts["Automated Tester 2"].swipeLeft()
         tablesQuery.buttons["Remove MOTM"].tap()
+        sleep(1)
         XCTAssertEqual(tablesQuery.cells.images["Motm"].exists, false)
         //ADD THE MOTM TO PLAYER 1
         tablesQuery.staticTexts["Automated Tester 1"].swipeLeft()
         tablesQuery.buttons["MOTM"].tap()
+        sleep(1)
         XCTAssertEqual(tablesQuery.cells.images["Motm"].exists, true)
     }
     
-    func testFixtureTeamGoals() {
+    func test06FixtureTeamGoals() {
         let app = XCUIApplication()
         app.tabBars.children(matching: .button).element(boundBy: 1).tap()
         app.tables[AccessabilityIdentifier.FixturesTable.rawValue].staticTexts["Test Opposition 4"].tap()
@@ -164,7 +167,7 @@ class TBGUIFixtureTests: XCTestCase {
         //Check the numbers says 2
     }
     
-    func testDeleteFixture() {
+    func test07DeleteFixture() {
         XCUIApplication().tabBars.children(matching: .button).element(boundBy: 1).tap()
         XCUIApplication().tables.cells.containing(.staticText, identifier:"Test Opposition 4").element.swipeLeft()
         XCUIApplication().tables.buttons["Delete"].tap()

@@ -24,7 +24,7 @@ class TBG2UITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func testLoginComponentsExist() {
+    func test01LoginComponentsExist() {
         let app = XCUIApplication()
         XCTAssertTrue(app.textFields["Email Address"].exists)
         XCTAssertTrue(app.secureTextFields["Password"].exists)
@@ -34,7 +34,7 @@ class TBG2UITests: XCTestCase {
     }
     
     
-    func testIncorrectPassword() {
+    func test02IncorrectPassword() {
         let email = "automated_tester_1@tbg.com"
         
         let app = XCUIApplication()
@@ -52,7 +52,7 @@ class TBG2UITests: XCTestCase {
         app.tap()
     }
     
-    func testInvalidEmail() {
+    func test03InvalidEmail() {
         
         let password = "123456"
         
@@ -70,8 +70,8 @@ class TBG2UITests: XCTestCase {
         alertDialog.buttons["OK"].tap()
     }
     
-    func testLoginError() {
-        let email = "automated_tester_1@tbg.com"
+    func test04LoginError() {
+        let email = "automated@tbg.com"
         let password = "123456"
         
         let app = XCUIApplication()
@@ -94,7 +94,7 @@ class TBG2UITests: XCTestCase {
     }
     
     
-    func testSuccessfulLogin() {
+    func test05SuccessfulLogin() {
         let email = "automated_tester_1@tbg.com"
         let password = "123456789"
         
@@ -119,9 +119,9 @@ class TBG2UITests: XCTestCase {
         waitForExpectations(timeout: 4, handler: nil)
         
         //Sign out
-//        let button = tabBarsQuery.children(matching: .button).element(boundBy: 2)
-//        button.tap()
-//        app.tables.staticTexts["Sign Out"].tap()
+        let button = tabBarsQuery.children(matching: .button).element(boundBy: 2)
+        button.tap()
+        app.tables.staticTexts["Sign Out"].tap()
     }
     
 }

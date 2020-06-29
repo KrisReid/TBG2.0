@@ -20,7 +20,7 @@ enum AccessabilityIdentifier: String {
     HomeTeamCrest = "Home Team Crest",
     AwayTeamCrest = "Away Team Crest",
     DetailHomeTeamGoals = "Detail Home Team Goals",
-    DetailAwayTeamGoals = "Detail Away Team Goals Detail",
+    DetailAwayTeamGoals = "Detail Away Team Goals",
     FixtureDetailDate = "Fixture Detail Date",
     FixtureDetailTime = "Fixture Detail Time",
     FixtureDetailPostcode = "Fixture Detail Postcode",

@@ -19,7 +19,7 @@ class TBGUISignupTests: XCTestCase {
        
     }
     
-    func testSignupPersonalDetailsExist() {
+    func test01SignupPersonalDetailsExist() {
         let app = XCUIApplication()
         app/*@START_MENU_TOKEN@*/.staticTexts["Don't have an account? Sign up instead"]/*[[".buttons[\"Don't have an account? Sign up instead\"].staticTexts[\"Don't have an account? Sign up instead\"]",".staticTexts[\"Don't have an account? Sign up instead\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         

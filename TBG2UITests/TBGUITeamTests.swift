@@ -46,7 +46,7 @@ class TBGUITeamTests: XCTestCase {
         app.tables.staticTexts["Sign Out"].tap()
     }
 
-    func testTableExists() {
+    func test01TableExists() {
         
         let app = XCUIApplication()
         let emptyListTablesQuery = app.tables["Empty list, Goalkeepers, Defenders, Midfielders, Strikers, Empty list"].tables.matching(identifier: "Empty list")
@@ -57,7 +57,7 @@ class TBGUITeamTests: XCTestCase {
         XCTAssertTrue(emptyListTablesQuery.staticTexts["Strikers"].exists)
     }
     
-    func testplayerDetail() {
+    func test02playerDetail() {
         let app = XCUIApplication()
         
         app.tables["Empty list, Goalkeepers, Defenders, Midfielders, Strikers, Empty list"].tables.matching(identifier: "Empty list").staticTexts["Automated Tester 2"].tap()
@@ -79,7 +79,7 @@ class TBGUITeamTests: XCTestCase {
         
     }
     
-    func testShareTeamExists() {
+    func test03ShareTeamExists() {
         let app = XCUIApplication()
         app.navigationBars["TBG2.TeamView"].buttons["plus icon"].tap()
         
@@ -95,7 +95,7 @@ class TBGUITeamTests: XCTestCase {
         
     }
     
-    func testChangingTeamPINEnabledAndDisabled() {
+    func test04ChangingTeamPINEnabledAndDisabled() {
         let app = XCUIApplication()
         app.navigationBars["TBG2.TeamView"].buttons["plus icon"].tap()
     
