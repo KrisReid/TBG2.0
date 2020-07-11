@@ -47,7 +47,7 @@ class TBGUIFixtureTests: XCTestCase {
     func testCreatingFixtureFour() {
         let app = XCUIApplication()
             XCUIApplication().tabBars.children(matching: .button).element(boundBy: 1).tap()
-            
+
             //Check the Fixture table and add fixture exists
             XCTAssertTrue(app.tables[AccessabilityIdentifier.FixturesTable.rawValue].exists)
             XCTAssertTrue(app.navigationBars["TBG2.FixturesView"].buttons["plus icon"].exists)
