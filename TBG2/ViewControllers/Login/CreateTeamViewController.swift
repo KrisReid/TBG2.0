@@ -38,11 +38,11 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
         //Keyboard Dismissal
         self.setupHideKeyboardOnTap()
         
-        //Buttons
+        //Button Styling
         btnTeamCrest.circle(colour: colours.white.cgColor)
         btnSubmit.backgroundColor = colours.tertiaryBlue
         
-        //TextFields
+        //TextField Styling
         tfTeamName.underlined(colour: colours.white.cgColor)
         tfTeamPIN.underlined(colour: colours.white.cgColor)
         tfTeamPostcode.underlined(colour: colours.white.cgColor)
@@ -50,17 +50,25 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
         tfTeamPIN.whitePlaceholderText(text: "Team PIN")
         tfTeamPostcode.whitePlaceholderText(text: "Team Postcode")
         
-        //Segmented Control
+        //Segmented Control Styling
         scPlayerManager.defaultSegmentedControlFormat(backgroundColour: UIColor.clear)
         scPlayerPosition.defaultSegmentedControlFormat(backgroundColour: UIColor.clear)
         
+        //Accessability Identifiers
+        setupAccessibilityAndLocalisation()
+    }
+    
+    private func setupAccessibilityAndLocalisation() {
+        btnTeamCrest.accessibilityIdentifier = AccessabilityIdentifier.CreateTeamCrestButton.rawValue
+        tfTeamName.accessibilityIdentifier = AccessabilityIdentifier.CreateTeamName.rawValue
+        tfTeamPIN.accessibilityIdentifier = AccessabilityIdentifier.CreateTeamPIN.rawValue
+        tfTeamPostcode.accessibilityIdentifier = AccessabilityIdentifier.CreateTeamPostcode.rawValue
+        btnSubmit.accessibilityIdentifier = AccessabilityIdentifier.CreateTeamSubmitButton.rawValue
     }
     
     @IBAction func tfTeamPINEditingChanged(_ sender: Any) {
         Helper.pinValidation(textField: tfTeamPIN, button: btnSubmit, enabledUnderlineColour: colours.white.cgColor, enabledeBtnColour: colours.tertiaryBlue, disableRequired: false)
     }
-    
-    
     
     @IBAction func btnTeamCrestTapped(_ sender: Any) {
         let imagePickerController = UIImagePickerController()
@@ -81,7 +89,6 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
         btnTeamCrest.setImage(image , for: UIControl.State.normal)
         btnTeamCrest.setTitle("team_crest",for: .normal)
     }
-    
     
     @IBAction func scPlayerManagerTapped(_ sender: Any) {
         if scPlayerManager.selectedSegmentIndex == 1 {
@@ -106,7 +113,6 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
         default:
             playerPosition = ""
         }
-        
     }
     
     @IBAction func btnSubmitTapped(_ sender: Any) {
@@ -167,9 +173,7 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
                     }
                 }
             }
-            
         }
-        
     }
     
 }
