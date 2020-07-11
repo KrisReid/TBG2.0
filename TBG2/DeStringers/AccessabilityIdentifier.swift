@@ -25,7 +25,7 @@ enum AccessabilityIdentifier: String {
     FixtureDetailTime = "Fixture Detail Time",
     FixtureDetailPostcode = "Fixture Detail Postcode",
     GoalIcon = "GoalIcon",
-    Motm = "MOTM",
+    Motm = "Motm",
     //Fixture Information
     FixtureOpposition = "Opposition",
     FixtureHomeAway = "Home or Away",

@@ -18,6 +18,7 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
     var team: TeamModel?
     var fixtures: NSMutableArray = []
     let today = Date()
+    var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,11 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
         //Load Data
         loadData()
         
+        //Refresh Controller
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        tableview.addSubview(refreshControl) //
+        
         //Accessability Identifiers
         setupAccessibilityAndLocalisation()
     }
@@ -42,18 +48,21 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
         tableview.accessibilityIdentifier = AccessabilityIdentifier.FixturesTable.rawValue
     }
     
+    @objc func refresh(_ sender: AnyObject) {
+        loadData()
+    }
     
     func loadData() {
         //Get the user & player data
         let userRef = PlayerModel.getUser()
-        userRef.observe(.value) { [weak self] (snapshot) in
+        userRef.observeSingleEvent(of: .value) { [weak self] (snapshot) in
             guard let strongSelf = self else { return }
             guard let player = PlayerModel(snapshot) else {return}
             strongSelf.player = player
 
             //Get the team data
             let teamRef = TeamModel.collection.child(strongSelf.player?.teamId ?? "")
-            teamRef.observe(.value) { (snapshot) in
+            teamRef.observeSingleEvent(of: .value) { (snapshot) in
                 guard let team = TeamModel (snapshot) else { return }
                 strongSelf.team = team
             }
@@ -61,13 +70,14 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
             //Get the fixture data
             let fixtureRef = FixtureModel.collection.child(strongSelf.player?.teamId ?? "")
             let fixtureRefQuery = fixtureRef.queryOrderedByKey()
-            
+
             fixtureRefQuery.observe(.value) { (snapshot) in
-                
+            
                 //clear the Array !!!!!!!!! - This feels un-Optimal :(
-                strongSelf.fixtures = []
-                
+                strongSelf.fixtures.removeAllObjects()
+
                 guard let strongSelf = self else { return }
+
                 for item in snapshot.children {
                     guard let snapshot = item as? DataSnapshot else { continue }
                     guard let fixture = FixtureModel(snapshot) else { continue }
@@ -75,6 +85,7 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
                 }
                 DispatchQueue.main.async {
                     strongSelf.tableview.reloadData()
+                    strongSelf.refreshControl.endRefreshing()
                 }
             }
         }
@@ -100,6 +111,7 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
             cell.lblHomeGoals.text = String(fixture.teamGoals)
         } else {
             cell.ivHomeAway.image = UIImage(named: "away_icon")
+            cell.lblOpposition.textColor = colours.primaryBlue
             cell.lblAwayGoals.text = String(fixture.teamGoals)
             cell.lblHomeGoals.text = String(fixture.oppositionGoals)
         }
@@ -111,14 +123,12 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
         cell.lblHomeGoals.accessibilityIdentifier = AccessabilityIdentifier.HomeTeamGoals.rawValue
         cell.lblAwayGoals.accessibilityIdentifier = AccessabilityIdentifier.AwayTeamGoals.rawValue
 
-        
         //ScoreLine Logic
         let date = Helper.stringToDate(date: fixture.date)
         if today < date {
             cell.lblAwayGoals.text = "-"
             cell.lblHomeGoals.text = "-"
         }
-        
         return cell
     }
     

@@ -11,7 +11,6 @@ import FirebaseDatabase
 
 class FixtureInformationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
-    
     @IBOutlet weak var ivHomeTeam: UIImageView!
     @IBOutlet weak var ivAwayTeam: UIImageView!
     @IBOutlet weak var lblFixtureDate: UILabel!
@@ -45,8 +44,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //Load Player Data
+        //Load Fixture Data Trial
         loadPlayerFixtureData()
         
         //Local team goals
@@ -62,11 +60,13 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             tfAwayGoals.text = String(oppositionGoals)
             tfHomeGoals.isEnabled = false
             tfAwayGoals.isEnabled = true
+            Helper.setImageView(imageView: ivHomeTeam, url: self.teamCrestURL!)
         } else {
             tfHomeGoals.text = String(oppositionGoals)
             tfAwayGoals.text = String(teamGoals)
             tfHomeGoals.isEnabled = true
             tfAwayGoals.isEnabled = false
+            Helper.setImageView(imageView: ivAwayTeam, url: self.teamCrestURL!)
         }
         
         //ScoreLine Logic
@@ -91,15 +91,10 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         tableview.rowHeight = UITableView.automaticDimension
         tableview.register(UINib(nibName: "FixtureDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "FixtureDetailTableViewCell")
         
-        //Display Crest
-        if homeFixture {
-            Helper.setImageView(imageView: ivHomeTeam, url: self.teamCrestURL!)
-        } else {
-            Helper.setImageView(imageView: ivAwayTeam, url: self.teamCrestURL!)
-        }
         
         //Accessability Identifiers
         setupAccessibilityAndLocalisation()
+        
     }
     
     private func setupAccessibilityAndLocalisation() {
@@ -113,10 +108,9 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     }
     
     func loadPlayerFixtureData() {
-
         let playerFixtureRef = FixtureModel.collection.child(teamId).child(fixtureId).child("players")
         let playerFixtureRefQuery = playerFixtureRef.queryOrderedByKey()
-        
+
         playerFixtureRefQuery.observe(.value) { (snapshot) in
             self.playerArray = []
             for item in snapshot.children {
@@ -211,6 +205,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         return true
     }
     
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let player = self.playerArray[indexPath.row] as! PlayerFixtureModel
@@ -227,6 +222,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
                 actionPerformed(true)
             }
         }
+
         motmAction.backgroundColor = player.motm ? colours.primaryGrey : colours.yellow
         motmAction.title = player.motm ? "Remove MOTM" : "MOTM"
         
