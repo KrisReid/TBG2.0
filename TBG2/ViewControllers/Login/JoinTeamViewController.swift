@@ -16,6 +16,7 @@ class JoinTeamViewController: UIViewController {
     @IBOutlet weak var tfTeamID: UITextField!
     @IBOutlet weak var tfTeamPIN: UITextField!
     @IBOutlet weak var scPlayerPosition: UISegmentedControl!
+    @IBOutlet weak var btnSubmit: UIButton!
     
     var playerProfilePicture: UIImageView? = nil
     var playerFullName: String = ""
@@ -33,6 +34,9 @@ class JoinTeamViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Accessability Identifiers
+        setupAccessibilityAndLocalisation()
 
         //Keyboard Dismissal
         self.setupHideKeyboardOnTap()
@@ -49,6 +53,12 @@ class JoinTeamViewController: UIViewController {
         //Load Data
         getTeams()
     }
+
+    private func setupAccessibilityAndLocalisation() {
+        tfTeamID.accessibilityIdentifier = AccessabilityIdentifier.JoinTeamId.rawValue
+        tfTeamPIN.accessibilityIdentifier = AccessabilityIdentifier.joinTeamPIN.rawValue
+        btnSubmit.accessibilityIdentifier = AccessabilityIdentifier.joinTeamSubmitButton.rawValue
+    }
     
     func getTeams() {
         let teamRef = TeamModel.collection
@@ -60,7 +70,6 @@ class JoinTeamViewController: UIViewController {
             strongSelf.teams = teams
         }
     }
-    
     
     @IBAction func scPlayerPositionTapped(_ sender: Any) {
         switch scPlayerPosition.selectedSegmentIndex {
@@ -111,22 +120,19 @@ class JoinTeamViewController: UIViewController {
                 guard let profilePicture = playerProfilePicture?.image else { return }
 
                 let spinner = UIViewController.displayLoading(withView: self.view)
-
+                
                 // Create the Account in Firebase
                 Auth.auth().createUser(withEmail: playerEmailAddress, password: playerPassword) { [weak self] (user, error) in
-
+                    
                     guard let strongSelf = self else { return }
-
                     if error == nil {
                         guard let userId = user?.user.uid else { return }
-
                         // Sign in with Firebase
                         Auth.auth().signIn(withEmail: self!.playerEmailAddress, password: self!.playerPassword) { (user, error) in
                             DispatchQueue.main.async {
                                 UIViewController.removeLoading(spinner: spinner)
                             }
                             if error == nil {
-                                
                                 PlayerModel.postPlayerProfile(profilePicture: profilePicture, userId: userId, playerFullName: self!.playerFullName, playerEmailAddress: self!.playerEmailAddress, playerDateOfBirth: self!.playerDateOfBirth, playerHouseNumber: self!.playerHouseNumber, playerPostcode: self!.playerPostcode, manager: false, assistantManager: false, playerManager: false, playerPosition: self!.playerPosition, teamId: teamId, teamPIN: teamPIN)
                                 
                                 DispatchQueue.main.async {
@@ -148,7 +154,6 @@ class JoinTeamViewController: UIViewController {
                         }
                     }
                 }
-                
             } else {
                 let alert = Helper.errorAlert(title: "Team ID/PIN Error", message: "There has been an issue with either the PIN or ID ... Please try again")
                 DispatchQueue.main.async {

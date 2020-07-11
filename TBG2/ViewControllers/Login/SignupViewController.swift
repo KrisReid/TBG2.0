@@ -28,6 +28,8 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Accessability Identifiers
+        setupAccessibilityAndLocalisation()
         
         //Keyboard Dismissal
         self.setupHideKeyboardOnTap()
@@ -54,9 +56,6 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
         datePicker?.standardDatePicker(datePicker: datePicker!)
         datePicker?.addTarget(self, action: #selector(SignupViewController.dateChanged(datePicker:)), for: .valueChanged)
         tfDateOfBirth.inputView = datePicker
-        
-        //Accessability Identifiers
-        setupAccessibilityAndLocalisation()
     }
     
     private func setupAccessibilityAndLocalisation() {

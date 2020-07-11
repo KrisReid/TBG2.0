@@ -24,6 +24,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Accessability Identifiers
+        setupAccessibilityAndLocalisation()
         
         //Styling
         tfEmailAddress.underlined(colour: colour.white.cgColor)
@@ -32,9 +34,6 @@ class LoginViewController: UIViewController {
         tfPassword.textColor = .white
         tfEmailAddress.whitePlaceholderText(text: "Email Address")
         tfPassword.whitePlaceholderText(text: "Password")
-        
-        //Accessability Identifiers
-        setupAccessibilityAndLocalisation()
     }
     
     private func setupAccessibilityAndLocalisation() {

@@ -34,6 +34,8 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Accessability Identifiers
+        setupAccessibilityAndLocalisation()
         
         //Keyboard Dismissal
         self.setupHideKeyboardOnTap()
@@ -53,9 +55,6 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
         //Segmented Control Styling
         scPlayerManager.defaultSegmentedControlFormat(backgroundColour: UIColor.clear)
         scPlayerPosition.defaultSegmentedControlFormat(backgroundColour: UIColor.clear)
-        
-        //Accessability Identifiers
-        setupAccessibilityAndLocalisation()
     }
     
     private func setupAccessibilityAndLocalisation() {

@@ -394,6 +394,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Kr4-6O-hF7"/>
                     <connections>
+                        <outlet property="btnSubmit" destination="4C0-d8-yf1" id="nTw-La-AzJ"/>
                         <outlet property="scPlayerPosition" destination="0es-XK-9Sx" id="KXw-YH-94z"/>
                         <outlet property="tfTeamID" destination="ZMr-S8-Uev" id="ghX-cX-Jos"/>
                         <outlet property="tfTeamPIN" destination="c6D-QY-lor" id="hwI-gY-2SI"/>
