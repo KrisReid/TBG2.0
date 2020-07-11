@@ -54,6 +54,21 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate, U
         datePicker?.standardDatePicker(datePicker: datePicker!)
         datePicker?.addTarget(self, action: #selector(SignupViewController.dateChanged(datePicker:)), for: .valueChanged)
         tfDateOfBirth.inputView = datePicker
+        
+        //Accessability Identifiers
+        setupAccessibilityAndLocalisation()
+    }
+    
+    private func setupAccessibilityAndLocalisation() {
+        btnProfilePicture.accessibilityIdentifier = AccessabilityIdentifier.SignupProfileButton.rawValue
+        tfFullName.accessibilityIdentifier = AccessabilityIdentifier.SignupFullName.rawValue
+        tfEmailAddress.accessibilityIdentifier = AccessabilityIdentifier.SignupEmailAddress.rawValue
+        tfPassword.accessibilityIdentifier = AccessabilityIdentifier.SignupPassword.rawValue
+        tfDateOfBirth.accessibilityIdentifier = AccessabilityIdentifier.SignupDOB.rawValue
+        tfHouseNumber.accessibilityIdentifier = AccessabilityIdentifier.SignupHouseNumber.rawValue
+        tfPostcode.accessibilityIdentifier = AccessabilityIdentifier.SignupPostcode.rawValue
+        btnCreateTeam.accessibilityIdentifier = AccessabilityIdentifier.SignupCreateTeamButton.rawValue
+        btnJoinTeam.accessibilityIdentifier = AccessabilityIdentifier.SignupJoinTeamButton.rawValue
     }
     
     override func viewDidAppear(_ animated: Bool) {

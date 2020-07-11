@@ -10,6 +10,33 @@ import Foundation
 
 enum AccessabilityIdentifier: String {
     case
+    //Login
+    LoginEmail = "LoginEmail",
+    LoginPassword = "LoginPassword",
+    LoginButton = "LoginButton",
+    LogininSignupButton = "LogininSignupButton",
+    //Signup
+    SignupProfileButton = "SignupProfileButton",
+    SignupFullName = "SignupFullName",
+    SignupEmailAddress = "SignupEmailAddress",
+    SignupPassword = "SignupPassword",
+    SignupDOB = "SignupDOB",
+    SignupHouseNumber = "SignupHouseNumber",
+    SignupPostcode = "SignupPostcode",
+    SignupCreateTeamButton = "SignupCreateTeamButton",
+    SignupJoinTeamButton = "SignupJoinTeamButton",
+    //CreateTeam
+    CreateTeamCrestButton = "CreateTeamCrestButton",
+    CreateTeamName = "CreateTeamName",
+    CreateTeamPIN = "CreateTeamPIN",
+    CreateTeamPostcode = "CreateTeamPostcode",
+    CreateTeamSubmitButton = "CreateTeamSubmitButton",
+    //Join Team
+    JoinTeamId = "JoinTeamId",
+    joinTeamPIN = "joinTeamPIN",
+    joinTeamSubmitButton = "joinTeamSubmitButton",
+        
+    //Not Sure
     TeamName = "Team Name",
     TeamPostcode = "Team Postcode",
     TeamPIN = "Team PIN",

@@ -19,10 +19,14 @@ class TBGUISignupTests: XCTestCase {
        
     }
     
-    func test01SignupPersonalDetailsExist() {
+    func test01SignupToTeam() {
         let app = XCUIApplication()
-        app/*@START_MENU_TOKEN@*/.staticTexts["Don't have an account? Sign up instead"]/*[[".buttons[\"Don't have an account? Sign up instead\"].staticTexts[\"Don't have an account? Sign up instead\"]",".staticTexts[\"Don't have an account? Sign up instead\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         
+        
+        app.buttons["Don't have an account? Sign up instead"].staticTexts["Don't have an account? Sign up instead"].tap()
+        
+        app.textFields[AccessabilityIdentifier.TeamPIN.rawValue].tap()
+
         
         XCTAssertTrue(app.scrollViews.otherElements.buttons["camera icon"].exists)
         XCTAssertTrue(app.scrollViews.otherElements.textFields["Full Name"].exists)
