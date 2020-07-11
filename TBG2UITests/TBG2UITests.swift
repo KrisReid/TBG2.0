@@ -11,13 +11,8 @@ import XCTest
 class TBG2UITests: XCTestCase {
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
         XCUIApplication().launch()
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
 
     override func tearDownWithError() throws {
@@ -26,24 +21,20 @@ class TBG2UITests: XCTestCase {
     
     func test01LoginComponentsExist() {
         let app = XCUIApplication()
-        XCTAssertTrue(app.textFields["Email Address"].exists)
-        XCTAssertTrue(app.secureTextFields["Password"].exists)
-        XCTAssertTrue(app.secureTextFields["Password"].exists)
-        XCTAssertTrue(app.buttons["Login"].exists)
-        XCTAssertTrue(app.staticTexts["Don't have an account? Sign up instead"].exists)
+        
+        XCTAssertTrue(app.textFields[AccessabilityIdentifier.LoginEmail.rawValue].exists)
+        XCTAssertTrue(app.secureTextFields[AccessabilityIdentifier.LoginPassword.rawValue].exists)
+        XCTAssertTrue(app.buttons[AccessabilityIdentifier.LogininSignupButton.rawValue].exists)
+        XCTAssertTrue(app.buttons[AccessabilityIdentifier.LoginButton.rawValue].exists)
     }
     
-    
     func test02IncorrectPassword() {
-        let email = "automated_tester_1@tbg.com"
-        
         let app = XCUIApplication()
         
-        let emailAddressTextField = app.textFields["Email Address"]
-        XCTAssertTrue(emailAddressTextField.exists)
+        let emailAddressTextField = app.textFields[AccessabilityIdentifier.LoginEmail.rawValue]
         emailAddressTextField.tap()
-        emailAddressTextField.typeText(email)
-        app.buttons["Login"].tap()
+        emailAddressTextField.typeText("automated_tester_1@tbg.com")
+        app.buttons[AccessabilityIdentifier.LoginButton.rawValue].tap()
         
         addUIInterruptionMonitor(withDescription: "Incorrect Password", handler: { alert in
           alert.buttons["OK"].tap()
@@ -53,17 +44,12 @@ class TBG2UITests: XCTestCase {
     }
     
     func test03InvalidEmail() {
-        
-        let password = "123456"
-        
         let app = XCUIApplication()
         
-        let passwordSecureTextField = app.secureTextFields["Password"]
-        XCTAssertTrue(passwordSecureTextField.exists)
+        let passwordSecureTextField = app.secureTextFields[AccessabilityIdentifier.LoginPassword.rawValue]
         passwordSecureTextField.tap()
-        passwordSecureTextField.typeText(password)
-        
-        app.buttons["Login"].tap()
+        passwordSecureTextField.typeText("123456")
+        app.buttons[AccessabilityIdentifier.LoginButton.rawValue].tap()
         
         let alertDialog = app.alerts["Invalid Email"]
         XCTAssertTrue(alertDialog.exists)
@@ -71,22 +57,17 @@ class TBG2UITests: XCTestCase {
     }
     
     func test04LoginError() {
-        let email = "automated@tbg.com"
-        let password = "123456"
-        
         let app = XCUIApplication()
         
-        let emailAddressTextField = app.textFields["Email Address"]
-        XCTAssertTrue(emailAddressTextField.exists)
+        let emailAddressTextField = app.textFields[AccessabilityIdentifier.LoginEmail.rawValue]
         emailAddressTextField.tap()
-        emailAddressTextField.typeText(email)
+        emailAddressTextField.typeText("automated@tbg.com")
         
-        let passwordSecureTextField = app.secureTextFields["Password"]
-        XCTAssertTrue(passwordSecureTextField.exists)
+        let passwordSecureTextField = app.secureTextFields[AccessabilityIdentifier.LoginPassword.rawValue]
         passwordSecureTextField.tap()
-        passwordSecureTextField.typeText(password)
+        passwordSecureTextField.typeText("123456")
         
-        app.buttons["Login"].tap()
+        app.buttons[AccessabilityIdentifier.LoginButton.rawValue].tap()
         
         let alertDialog = app.alerts["Login Error"]
         XCTAssertTrue(alertDialog.exists)
@@ -95,22 +76,17 @@ class TBG2UITests: XCTestCase {
     
     
     func test05SuccessfulLogin() {
-        let email = "automated_tester_1@tbg.com"
-        let password = "123456789"
-        
         let app = XCUIApplication()
         
-        let emailAddressTextField = app.textFields["Email Address"]
-        XCTAssertTrue(emailAddressTextField.exists)
+        let emailAddressTextField = app.textFields[AccessabilityIdentifier.LoginEmail.rawValue]
         emailAddressTextField.tap()
-        emailAddressTextField.typeText(email)
+        emailAddressTextField.typeText("automated_tester_1@tbg.com")
         
-        let passwordSecureTextField = app.secureTextFields["Password"]
-        XCTAssertTrue(passwordSecureTextField.exists)
+        let passwordSecureTextField = app.secureTextFields[AccessabilityIdentifier.LoginPassword.rawValue]
         passwordSecureTextField.tap()
-        passwordSecureTextField.typeText(password)
+        passwordSecureTextField.typeText("123456789")
         
-        app.buttons["Login"].tap()
+        app.buttons[AccessabilityIdentifier.LoginButton.rawValue].tap()
         
         let tabBarsQuery = app.tabBars
         let teamTab = tabBarsQuery.children(matching: .button).element(boundBy: 0)

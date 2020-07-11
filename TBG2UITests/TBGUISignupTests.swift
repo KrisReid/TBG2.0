@@ -22,22 +22,17 @@ class TBGUISignupTests: XCTestCase {
     func test01SignupToTeam() {
         let app = XCUIApplication()
         
-        
-        app.buttons["Don't have an account? Sign up instead"].staticTexts["Don't have an account? Sign up instead"].tap()
-        
-        app.textFields[AccessabilityIdentifier.TeamPIN.rawValue].tap()
+        app.buttons[AccessabilityIdentifier.LogininSignupButton.rawValue].tap()
 
-        
-        XCTAssertTrue(app.scrollViews.otherElements.buttons["camera icon"].exists)
-        XCTAssertTrue(app.scrollViews.otherElements.textFields["Full Name"].exists)
-        XCTAssertTrue(app.textFields["Email Address"].exists)
-        XCTAssertTrue(app.secureTextFields["Password"].exists)
-        XCTAssertTrue(app.scrollViews.otherElements.textFields["Date of birth"].exists)
-        XCTAssertTrue(app.textFields["House Number"].exists)
-        XCTAssertTrue(app.textFields["Postcode"].exists)
-        XCTAssertTrue(app.buttons["Create Team"].exists)
-        XCTAssertTrue(app.buttons["Join Team"].exists)
-        
+        XCTAssertTrue(app.scrollViews.otherElements.buttons[AccessabilityIdentifier.SignupProfileButton.rawValue].exists)
+        XCTAssertTrue(app.textFields[AccessabilityIdentifier.SignupFullName.rawValue].exists)
+        XCTAssertTrue(app.textFields[AccessabilityIdentifier.SignupEmailAddress.rawValue].exists)
+        XCTAssertTrue(app.secureTextFields[AccessabilityIdentifier.SignupPassword.rawValue].exists)
+        XCTAssertTrue(app.textFields[AccessabilityIdentifier.SignupDOB.rawValue].exists)
+        XCTAssertTrue(app.textFields[AccessabilityIdentifier.SignupHouseNumber.rawValue].exists)
+        XCTAssertTrue(app.textFields[AccessabilityIdentifier.SignupPostcode.rawValue].exists)
+        XCTAssertTrue(app.buttons[AccessabilityIdentifier.SignupCreateTeamButton.rawValue].exists)
+        XCTAssertTrue(app.buttons[AccessabilityIdentifier.SignupJoinTeamButton.rawValue].exists)
     }
     
     
