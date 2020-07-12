@@ -36,7 +36,6 @@ class TBGUISignupTests: XCTestCase {
     }
     
     
-    
 //    func testCameraImage() {
 //
 //        let app = XCUIApplication()

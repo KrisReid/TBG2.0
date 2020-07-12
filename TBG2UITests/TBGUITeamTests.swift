@@ -14,21 +14,18 @@ class TBGUITeamTests: XCTestCase {
         
         continueAfterFailure = false
 
-        let email = "automated_tester_1@tbg.com"
-        let password = "123456789"
-
         let app = XCUIApplication()
         app.launch()
 
-        let emailAddressTextField = app.textFields["Email Address"]
+        let emailAddressTextField = app.textFields[AccessabilityIdentifier.LoginEmail.rawValue]
         emailAddressTextField.tap()
-        emailAddressTextField.typeText(email)
-
-        let passwordSecureTextField = app.secureTextFields["Password"]
+        emailAddressTextField.typeText("automated_tester_1@tbg.com")
+        
+        let passwordSecureTextField = app.secureTextFields[AccessabilityIdentifier.LoginPassword.rawValue]
         passwordSecureTextField.tap()
-        passwordSecureTextField.typeText(password)
-
-        app.buttons["Login"].tap()
+        passwordSecureTextField.typeText("123456789")
+        
+        app.buttons[AccessabilityIdentifier.LoginButton.rawValue].tap()
 
         let tabBarsQuery = app.tabBars
         let teamTab = tabBarsQuery.children(matching: .button).element(boundBy: 0)
@@ -126,7 +123,5 @@ class TBGUITeamTests: XCTestCase {
         start.press(forDuration: 0, thenDragTo: finish)
         
     }
-    
-    
     
 }
