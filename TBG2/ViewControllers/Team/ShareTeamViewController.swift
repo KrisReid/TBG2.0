@@ -40,8 +40,8 @@ class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     private func setupAccessibilityAndLocalisation() {
-        lblTeamName.accessibilityIdentifier = AccessabilityIdentifier.TeamName.rawValue
-        lblTeamPostcode.accessibilityIdentifier = AccessabilityIdentifier.TeamPostcode.rawValue
+        lblTeamName.accessibilityIdentifier = AccessabilityIdentifier.ShareTeamName.rawValue
+        lblTeamPostcode.accessibilityIdentifier = AccessabilityIdentifier.ShareTeamPostcode.rawValue
     }
     
     
@@ -98,7 +98,7 @@ class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableVie
 
         if (indexPath.row == 0) {
             cell.lblAnswer.text = team?.id
-            cell.lblAnswer.accessibilityIdentifier = AccessabilityIdentifier.TeamID.rawValue
+            cell.lblAnswer.accessibilityIdentifier = AccessabilityIdentifier.ShareTeamID.rawValue
         }
         if (indexPath.row == 1) {
             cell.lblAnswer.text = team?.pin.description

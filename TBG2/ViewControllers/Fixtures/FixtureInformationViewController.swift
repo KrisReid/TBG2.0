@@ -44,7 +44,10 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Load Fixture Data Trial
+        //Accessability Identifiers
+        setupAccessibilityAndLocalisation()
+        
+        //Load Player Fixture Data
         loadPlayerFixtureData()
         
         //Local team goals
@@ -90,18 +93,13 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         tableview.estimatedRowHeight = CGFloat(50.0)
         tableview.rowHeight = UITableView.automaticDimension
         tableview.register(UINib(nibName: "FixtureDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "FixtureDetailTableViewCell")
-        
-        
-        //Accessability Identifiers
-        setupAccessibilityAndLocalisation()
-        
     }
     
     private func setupAccessibilityAndLocalisation() {
-        ivHomeTeam.accessibilityIdentifier = AccessabilityIdentifier.HomeTeamCrest.rawValue
-        ivAwayTeam.accessibilityIdentifier = AccessabilityIdentifier.AwayTeamCrest.rawValue
-        tfHomeGoals.accessibilityIdentifier = AccessabilityIdentifier.DetailHomeTeamGoals.rawValue
-        tfAwayGoals.accessibilityIdentifier = AccessabilityIdentifier.DetailAwayTeamGoals.rawValue
+        ivHomeTeam.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailHomeTeamCrest.rawValue
+        ivAwayTeam.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailAwayTeamCrest.rawValue
+        tfHomeGoals.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailHomeTeamGoals.rawValue
+        tfAwayGoals.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailAwayTeamGoals.rawValue
         lblFixtureDate.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailDate.rawValue
         lblFixtureTime.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailTime.rawValue
         lblFixturePostcode.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailPostcode.rawValue
@@ -132,8 +130,8 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         let cell = tableView.dequeueReusableCell(withIdentifier: "FixtureDetailTableViewCell") as! FixtureDetailTableViewCell
         
         //Accessability Identifiers
-        cell.ivMotmAward.accessibilityIdentifier = AccessabilityIdentifier.Motm.rawValue
-        cell.ivGoalScored.accessibilityIdentifier = AccessabilityIdentifier.GoalIcon.rawValue
+        cell.ivMotmAward.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailMotmIcon.rawValue
+        cell.ivGoalScored.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailGoalIcon.rawValue
         
         
         let player = playerArray[indexPath.row] as! PlayerFixtureModel

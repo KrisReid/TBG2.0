@@ -35,28 +35,36 @@ enum AccessabilityIdentifier: String {
     JoinTeamId = "JoinTeamId",
     joinTeamPIN = "joinTeamPIN",
     joinTeamSubmitButton = "joinTeamSubmitButton",
-        
-    //Not Sure
-    TeamName = "Team Name",
-    TeamPostcode = "Team Postcode",
-    TeamPIN = "Team PIN",
-    TeamID = "Team ID",
-    ShareTeamPIN = "Share Team PIN",
-    FixturesTable = "Fixtures Table",
+    //Share Team
+    ShareTeamName = "ShareTeamName",
+    ShareTeamPostcode = "ShareTeamPostcode",
+    ShareTeamPIN = "ShareTeamPIN",
+    ShareTeamID = "ShareTeamID",
+    //Change Team PIN
+    TeamPINTeamPIN = "TeamPINTeamPIN",
+    TeamPINDone = "TeamPINDone",
+    //Fixture
+    FixturesTable = "FixturesTable",
+    FixtureOpposition = "FixtureOpposition",
+    FixtureHomeAway = "FixtureHomeAway",
+    FixtureDateTime = "FixtureDateTime",
+    FixtureHomeTeamGoals = "FixtureHomeTeamGoals",
+    FixtureAwayTeamGoals = "FixtureAwayTeamGoals",
     //Fixture Information (Detail)
-    HomeTeamCrest = "Home Team Crest",
-    AwayTeamCrest = "Away Team Crest",
-    DetailHomeTeamGoals = "Detail Home Team Goals",
-    DetailAwayTeamGoals = "Detail Away Team Goals",
-    FixtureDetailDate = "Fixture Detail Date",
-    FixtureDetailTime = "Fixture Detail Time",
-    FixtureDetailPostcode = "Fixture Detail Postcode",
-    GoalIcon = "GoalIcon",
-    Motm = "Motm",
-    //Fixture Information
-    FixtureOpposition = "Opposition",
-    FixtureHomeAway = "Home or Away",
-    FixtureDateTime = "Fixture Date and Time",
-    HomeTeamGoals = "Home Team Goals",
-    AwayTeamGoals = "Away Team Goals"
+    FixtureDetailHomeTeamCrest = "FixtureDetailHomeTeamCrest",
+    FixtureDetailAwayTeamCrest = "FixtureDetailAwayTeamCrest",
+    FixtureDetailHomeTeamGoals = "FixtureDetailHomeTeamGoals",
+    FixtureDetailAwayTeamGoals = "FixtureDetailAwayTeamGoals",
+    FixtureDetailDate = "FixtureDetailDate",
+    FixtureDetailTime = "FixtureDetailTime",
+    FixtureDetailPostcode = "FixtureDetailPostcode",
+    FixtureDetailGoalIcon = "FixtureDetailGoalIcon",
+    FixtureDetailMotmIcon = "FixtureDetailMotmIcon",
+    //Create Fixture
+    CreateFixtureHomeOrAway = "CreateFixtureHomeOrAway",
+    CreateFixtureOpposition = "CreateFixtureOpposition",
+    CreateFixtureDate = "CreateFixtureDate",
+    CreateFixtureTime = "CreateFixtureTime",
+    CreateFixturePostcode = "CreateFixturePostcode",
+    CreateFixtureCreateGame = "CreateFixtureCreateGame"
 }

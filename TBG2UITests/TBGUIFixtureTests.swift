@@ -41,7 +41,7 @@ class TBGUIFixtureTests: XCTestCase {
         app.tables.staticTexts["Sign Out"].tap()
     }
     
-    func testCreatingFixtureFour() {
+    func testCreatingFixtureThree() {
         let app = XCUIApplication()
             XCUIApplication().tabBars.children(matching: .button).element(boundBy: 1).tap()
 
@@ -52,20 +52,18 @@ class TBGUIFixtureTests: XCTestCase {
             //Create a fixture to play with
             app.navigationBars["TBG2.FixturesView"].buttons["plus icon"].tap()
             app.buttons["Away"].tap()
-            app.textFields["Opposition"].tap()
-            app.textFields["Opposition"].typeText("Test Opposition 4")
-            let dateTextField = app.textFields["Date"]
-            dateTextField.tap()
-            dateTextField.typeText("29 May 2020")
-            let timeTextField = app.textFields["Time"]
-            timeTextField.tap()
-            timeTextField.typeText("3:30 PM")
-            app.textFields["Venue's Postcode"].tap()
-            app.textFields["Venue's Postcode"].typeText("BS11 0BT")
-            app.buttons["Create Game"].tap()
+            app.textFields[AccessabilityIdentifier.CreateFixtureOpposition.rawValue].tap()
+            app.textFields[AccessabilityIdentifier.CreateFixtureOpposition.rawValue].typeText("Test Opposition 3")
+            app.textFields[AccessabilityIdentifier.CreateFixtureDate.rawValue].tap()
+            app.textFields[AccessabilityIdentifier.CreateFixtureDate.rawValue].typeText("29 May 2020")
+            app.textFields[AccessabilityIdentifier.CreateFixtureTime.rawValue].tap()
+            app.textFields[AccessabilityIdentifier.CreateFixtureTime.rawValue].typeText("3:30 PM")
+            app.textFields[AccessabilityIdentifier.CreateFixturePostcode.rawValue].tap()
+            app.textFields[AccessabilityIdentifier.CreateFixturePostcode.rawValue].typeText("BS11 0BT")
+            app.buttons[AccessabilityIdentifier.CreateFixtureCreateGame.rawValue].tap()
             
             //Check the fields in the fixture detail exist
-            app.tables[AccessabilityIdentifier.FixturesTable.rawValue].staticTexts["Test Opposition 4"].tap()
+            app.tables[AccessabilityIdentifier.FixturesTable.rawValue].staticTexts["Test Opposition 3"].tap()
             XCTAssert(app.images["Home Team Crest"].exists)
             XCTAssert(app.images["Away Team Crest"].exists)
             XCTAssert(app.textFields["Detail Home Team Goals"].exists)

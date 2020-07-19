@@ -13,7 +13,7 @@
 		0210988F24A7C5E300A55478 /* TBGUIFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210988E24A7C5E300A55478 /* TBGUIFixtureTests.swift */; };
 		021A59D723D4F1C1005DE007 /* FixtureDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021A59D523D4F1C1005DE007 /* FixtureDetailTableViewCell.swift */; };
 		021A59D823D4F1C1005DE007 /* FixtureDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021A59D623D4F1C1005DE007 /* FixtureDetailTableViewCell.xib */; };
-		021BDDB224842F2B0026A839 /* TBG2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BDDB124842F2B0026A839 /* TBG2UITests.swift */; };
+		021BDDB224842F2B0026A839 /* TBG2UILoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BDDB124842F2B0026A839 /* TBG2UILoginTests.swift */; };
 		021BDDBB24966EB30026A839 /* TBGUISignupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BDDBA24966EB30026A839 /* TBGUISignupTests.swift */; };
 		0231525323F03A2100AAFB0B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0231525223F03A2000AAFB0B /* GoogleService-Info.plist */; };
 		0231525523F0426300AAFB0B /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231525423F0426300AAFB0B /* Helper.swift */; };
@@ -83,7 +83,7 @@
 		021A59D523D4F1C1005DE007 /* FixtureDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureDetailTableViewCell.swift; sourceTree = "<group>"; };
 		021A59D623D4F1C1005DE007 /* FixtureDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FixtureDetailTableViewCell.xib; sourceTree = "<group>"; };
 		021BDDAF24842F2B0026A839 /* TBG2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TBG2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		021BDDB124842F2B0026A839 /* TBG2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBG2UITests.swift; sourceTree = "<group>"; };
+		021BDDB124842F2B0026A839 /* TBG2UILoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBG2UILoginTests.swift; sourceTree = "<group>"; };
 		021BDDB324842F2B0026A839 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		021BDDBA24966EB30026A839 /* TBGUISignupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBGUISignupTests.swift; sourceTree = "<group>"; };
 		0231525223F03A2000AAFB0B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -174,9 +174,9 @@
 		021BDDB024842F2B0026A839 /* TBG2UITests */ = {
 			isa = PBXGroup;
 			children = (
-				0210988E24A7C5E300A55478 /* TBGUIFixtureTests.swift */,
-				021BDDB124842F2B0026A839 /* TBG2UITests.swift */,
+				021BDDB124842F2B0026A839 /* TBG2UILoginTests.swift */,
 				021BDDBA24966EB30026A839 /* TBGUISignupTests.swift */,
+				0210988E24A7C5E300A55478 /* TBGUIFixtureTests.swift */,
 				021098882496AC7B00A55478 /* TBGUITeamTests.swift */,
 				021BDDB324842F2B0026A839 /* Info.plist */,
 			);
@@ -558,7 +558,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				021BDDB224842F2B0026A839 /* TBG2UITests.swift in Sources */,
+				021BDDB224842F2B0026A839 /* TBG2UILoginTests.swift in Sources */,
 				021098892496AC7B00A55478 /* TBGUITeamTests.swift in Sources */,
 				0210988F24A7C5E300A55478 /* TBGUIFixtureTests.swift in Sources */,
 				021BDDBB24966EB30026A839 /* TBGUISignupTests.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import XCTest
 
-class TBG2UITests: XCTestCase {
+class TBG2UILoginTests: XCTestCase {
 
     override func setUpWithError() throws {
         XCUIApplication().launch()
@@ -51,6 +51,7 @@ class TBG2UITests: XCTestCase {
         passwordSecureTextField.typeText("123456")
         app.buttons[AccessabilityIdentifier.LoginButton.rawValue].tap()
         
+        //Fails in Bitrise - Why?
         let alertDialog = app.alerts["Invalid Email"]
         XCTAssertTrue(alertDialog.exists)
         alertDialog.buttons["OK"].tap()
@@ -69,6 +70,7 @@ class TBG2UITests: XCTestCase {
         
         app.buttons[AccessabilityIdentifier.LoginButton.rawValue].tap()
         
+        //Fails in Bitrise - Why?
         let alertDialog = app.alerts["Login Error"]
         XCTAssertTrue(alertDialog.exists)
         alertDialog.buttons["OK"].tap()

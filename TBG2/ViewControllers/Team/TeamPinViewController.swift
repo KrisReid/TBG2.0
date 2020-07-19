@@ -33,7 +33,8 @@ class TeamPinViewController: UIViewController {
     }
     
     private func setupAccessibilityAndLocalisation() {
-        tfTeamPIN.accessibilityIdentifier = AccessabilityIdentifier.TeamPIN.rawValue
+        tfTeamPIN.accessibilityIdentifier = AccessabilityIdentifier.TeamPINTeamPIN.rawValue
+        btnDone.accessibilityIdentifier = AccessabilityIdentifier.TeamPINDone.rawValue
     }
     
     @IBAction func tfTeamPINValueChanged(_ sender: Any) {
