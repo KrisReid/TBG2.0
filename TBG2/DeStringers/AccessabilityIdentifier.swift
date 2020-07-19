@@ -14,7 +14,7 @@ enum AccessabilityIdentifier: String {
     LoginEmail = "LoginEmail",
     LoginPassword = "LoginPassword",
     LoginButton = "LoginButton",
-    LogininSignupButton = "LogininSignupButton",
+    LoginSignupButton = "LoginSignupButton",
     //Signup
     SignupProfileButton = "SignupProfileButton",
     SignupFullName = "SignupFullName",

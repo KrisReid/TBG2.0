@@ -80,12 +80,12 @@ class TBGUITeamTests: XCTestCase {
         let app = XCUIApplication()
         app.navigationBars["TBG2.TeamView"].buttons["plus icon"].tap()
         
-        XCTAssertTrue(app.staticTexts[AccessabilityIdentifier.TeamName.rawValue].exists)
-        XCTAssertTrue(app.staticTexts[AccessabilityIdentifier.TeamPostcode.rawValue].exists)
+        XCTAssertTrue(app.staticTexts[AccessabilityIdentifier.ShareTeamName.rawValue].exists)
+        XCTAssertTrue(app.staticTexts[AccessabilityIdentifier.ShareTeamPostcode.rawValue].exists)
         XCTAssertTrue(app.tables.cells.staticTexts["-M9oHEGA47y9ZsDrpp59"].exists)
         
         //Artificial Swipe down
-        let c = app.staticTexts[AccessabilityIdentifier.TeamName.rawValue]
+        let c = app.staticTexts[AccessabilityIdentifier.ShareTeamName.rawValue]
         let start = c.coordinate(withNormalizedOffset:  CGVector(dx: 0.0, dy: 0.0))
         let finish = c.coordinate(withNormalizedOffset: CGVector(dx: 0.0, dy: 100.0))
         start.press(forDuration: 0, thenDragTo: finish)
@@ -97,8 +97,8 @@ class TBGUITeamTests: XCTestCase {
         app.navigationBars["TBG2.TeamView"].buttons["plus icon"].tap()
     
         app.tables.cells.staticTexts[AccessabilityIdentifier.ShareTeamPIN.rawValue].tap()
-        app.textFields[AccessabilityIdentifier.TeamPIN.rawValue].tap()
-        app.textFields[AccessabilityIdentifier.TeamPIN.rawValue].buttons["Clear text"].tap()
+        app.textFields[AccessabilityIdentifier.TeamPINTeamPIN.rawValue].tap()
+        app.textFields[AccessabilityIdentifier.TeamPINTeamPIN.rawValue].buttons["Clear text"].tap()
         
         app.keys["1"].tap()
         app.keys["2"].tap()
@@ -117,7 +117,7 @@ class TBGUITeamTests: XCTestCase {
         XCTAssertEqual(app.staticTexts.element(matching:.any, identifier: "Share Team PIN").label, "123456")
         
         //Artificial Swipe down
-        let c = app.staticTexts[AccessabilityIdentifier.TeamName.rawValue]
+        let c = app.staticTexts[AccessabilityIdentifier.ShareTeamName.rawValue]
         let start = c.coordinate(withNormalizedOffset:  CGVector(dx: 0.0, dy: 0.0))
         let finish = c.coordinate(withNormalizedOffset: CGVector(dx: 0.0, dy: 100.0))
         start.press(forDuration: 0, thenDragTo: finish)

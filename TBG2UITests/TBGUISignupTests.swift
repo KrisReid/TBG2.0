@@ -22,7 +22,7 @@ class TBGUISignupTests: XCTestCase {
     func test01SignupToTeam() {
         let app = XCUIApplication()
         
-        app.buttons[AccessabilityIdentifier.LogininSignupButton.rawValue].tap()
+        app.buttons[AccessabilityIdentifier.LoginSignupButton.rawValue].tap()
 
         XCTAssertTrue(app.scrollViews.otherElements.buttons[AccessabilityIdentifier.SignupProfileButton.rawValue].exists)
         XCTAssertTrue(app.textFields[AccessabilityIdentifier.SignupFullName.rawValue].exists)

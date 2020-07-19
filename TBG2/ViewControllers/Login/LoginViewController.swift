@@ -40,7 +40,7 @@ class LoginViewController: UIViewController {
         tfEmailAddress.accessibilityIdentifier = AccessabilityIdentifier.LoginEmail.rawValue
         tfPassword.accessibilityIdentifier = AccessabilityIdentifier.LoginPassword.rawValue
         btnLogin.accessibilityIdentifier = AccessabilityIdentifier.LoginButton.rawValue
-        btnSignUp.accessibilityIdentifier = AccessabilityIdentifier.LogininSignupButton.rawValue
+        btnSignUp.accessibilityIdentifier = AccessabilityIdentifier.LoginSignupButton.rawValue
     }
     
     override func viewDidAppear(_ animated: Bool) {

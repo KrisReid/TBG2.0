@@ -16,21 +16,19 @@ class TBGUIFixtureTests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
 
-        let emailAddressTextField = app.textFields[AccessabilityIdentifier.LoginEmail.rawValue]
-        emailAddressTextField.tap()
-        emailAddressTextField.typeText("automated_tester_1@tbg.com")
+        app.textFields[AccessabilityIdentifier.LoginEmail.rawValue].tap()
+        app.textFields[AccessabilityIdentifier.LoginEmail.rawValue].typeText("automated_tester_1@tbg.com")
         
-        let passwordSecureTextField = app.secureTextFields[AccessabilityIdentifier.LoginPassword.rawValue]
-        passwordSecureTextField.tap()
-        passwordSecureTextField.typeText("123456789")
+        app.secureTextFields[AccessabilityIdentifier.LoginPassword.rawValue].tap()
+        app.secureTextFields[AccessabilityIdentifier.LoginPassword.rawValue].typeText("123456789")
         
         app.buttons[AccessabilityIdentifier.LoginButton.rawValue].tap()
-
+        
         let tabBarsQuery = app.tabBars
         let teamTab = tabBarsQuery.children(matching: .button).element(boundBy: 0)
-
+        
         expectation(for: NSPredicate(format: "exists == 1"), evaluatedWith: teamTab, handler: nil)
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 4, handler: nil)
     }
 
     override func tearDownWithError() throws {
@@ -41,7 +39,7 @@ class TBGUIFixtureTests: XCTestCase {
         app.tables.staticTexts["Sign Out"].tap()
     }
     
-    func testCreatingFixtureThree() {
+    func testCreatingFixtureFour() {
         let app = XCUIApplication()
             XCUIApplication().tabBars.children(matching: .button).element(boundBy: 1).tap()
 
@@ -51,31 +49,32 @@ class TBGUIFixtureTests: XCTestCase {
         
             //Create a fixture to play with
             app.navigationBars["TBG2.FixturesView"].buttons["plus icon"].tap()
-            app.buttons["Away"].tap()
+            app.segmentedControls[AccessabilityIdentifier.CreateFixtureHomeOrAway.rawValue].buttons["Away"].tap()
             app.textFields[AccessabilityIdentifier.CreateFixtureOpposition.rawValue].tap()
-            app.textFields[AccessabilityIdentifier.CreateFixtureOpposition.rawValue].typeText("Test Opposition 3")
+            app.textFields[AccessabilityIdentifier.CreateFixtureOpposition.rawValue].typeText("Test Opposition 4")
+            app.textFields[AccessabilityIdentifier.CreateFixturePostcode.rawValue].tap()
+            app.textFields[AccessabilityIdentifier.CreateFixturePostcode.rawValue].typeText("BS11 0BT")
             app.textFields[AccessabilityIdentifier.CreateFixtureDate.rawValue].tap()
             app.textFields[AccessabilityIdentifier.CreateFixtureDate.rawValue].typeText("29 May 2020")
             app.textFields[AccessabilityIdentifier.CreateFixtureTime.rawValue].tap()
             app.textFields[AccessabilityIdentifier.CreateFixtureTime.rawValue].typeText("3:30 PM")
-            app.textFields[AccessabilityIdentifier.CreateFixturePostcode.rawValue].tap()
-            app.textFields[AccessabilityIdentifier.CreateFixturePostcode.rawValue].typeText("BS11 0BT")
+        
             app.buttons[AccessabilityIdentifier.CreateFixtureCreateGame.rawValue].tap()
             
             //Check the fields in the fixture detail exist
-            app.tables[AccessabilityIdentifier.FixturesTable.rawValue].staticTexts["Test Opposition 3"].tap()
-            XCTAssert(app.images["Home Team Crest"].exists)
-            XCTAssert(app.images["Away Team Crest"].exists)
-            XCTAssert(app.textFields["Detail Home Team Goals"].exists)
-            XCTAssert(app.textFields["Detail Away Team Goals"].exists)
-            XCTAssert(app.staticTexts["Fixture Detail Date"].exists)
-            XCTAssert(app.staticTexts["Fixture Detail Time"].exists)
-            XCTAssert(app.staticTexts["Fixture Detail Postcode"].exists)
+            app.tables[AccessabilityIdentifier.FixturesTable.rawValue].staticTexts["Test Opposition 4"].tap()
+            XCTAssert(app.images[AccessabilityIdentifier.FixtureDetailHomeTeamCrest.rawValue].exists)
+            XCTAssert(app.images[AccessabilityIdentifier.FixtureDetailAwayTeamCrest.rawValue].exists)
+            XCTAssert(app.textFields[AccessabilityIdentifier.FixtureDetailHomeTeamGoals.rawValue].exists)
+            XCTAssert(app.textFields[AccessabilityIdentifier.FixtureDetailAwayTeamGoals.rawValue].exists)
+            XCTAssert(app.staticTexts[AccessabilityIdentifier.FixtureDetailDate.rawValue].exists)
+            XCTAssert(app.staticTexts[AccessabilityIdentifier.FixtureDetailTime.rawValue].exists)
+            XCTAssert(app.staticTexts[AccessabilityIdentifier.FixtureDetailPostcode.rawValue].exists)
             XCTAssert(app.staticTexts["Automated Tester 1"].exists)
             XCTAssert(app.staticTexts["Automated Tester 2"].exists)
         
             //Award 9 goals to the home team
-            app.textFields["Detail Home Team Goals"].tap()
+            app.textFields[AccessabilityIdentifier.FixtureDetailHomeTeamGoals.rawValue].tap()
             XCTAssert(app.pickerWheels["0"].exists)
             app.pickerWheels["0"].swipeUp()
             app.toolbars["Toolbar"].buttons["Done"].tap()
