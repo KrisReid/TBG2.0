@@ -132,7 +132,8 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         //Accessability Identifiers
         cell.ivMotmAward.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailMotmIcon.rawValue
         cell.ivGoalScored.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailGoalIcon.rawValue
-        
+        cell.lblGoalScoredCount.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailGoalCount.rawValue
+        cell.lblPlayerName.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailPlayerName.rawValue
         
         let player = playerArray[indexPath.row] as! PlayerFixtureModel
         

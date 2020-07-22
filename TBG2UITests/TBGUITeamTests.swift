@@ -114,7 +114,7 @@ class TBGUITeamTests: XCTestCase {
         app.keys["Delete"].tap()
         app.staticTexts["Done"].tap()
         
-        XCTAssertEqual(app.staticTexts.element(matching:.any, identifier: "Share Team PIN").label, "123456")
+        XCTAssertEqual(app.staticTexts.element(matching:.any, identifier: "ShareTeamPIN").label, "123456")
         
         //Artificial Swipe down
         let c = app.staticTexts[AccessabilityIdentifier.ShareTeamName.rawValue]
