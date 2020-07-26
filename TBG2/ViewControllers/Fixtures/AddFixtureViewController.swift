@@ -11,6 +11,7 @@ import FirebaseDatabase
 
 class AddFixtureViewController: UIViewController {
     
+    @IBOutlet weak var vToggle: UIView!
     @IBOutlet weak var scHomeAway: UISegmentedControl!
     @IBOutlet weak var tfOpposition: UITextField!
     @IBOutlet weak var tfDate: UITextField!
@@ -89,6 +90,7 @@ class AddFixtureViewController: UIViewController {
     
 
     private func setupAccessibilityAndLocalisation() {
+        vToggle.accessibilityIdentifier = AccessabilityIdentifier.CreateFixtureToggle.rawValue
         scHomeAway.accessibilityIdentifier = AccessabilityIdentifier.CreateFixtureHomeOrAway.rawValue
         tfOpposition.accessibilityIdentifier = AccessabilityIdentifier.CreateFixtureOpposition.rawValue
         tfDate.accessibilityIdentifier = AccessabilityIdentifier.CreateFixtureDate.rawValue

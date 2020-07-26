@@ -63,6 +63,7 @@ enum AccessabilityIdentifier: String {
     FixtureDetailMotmIcon = "FixtureDetailMotmIcon",
     FixtureDetailPlayerName = "FixtureDetailPlayerName",
     //Create Fixture
+    CreateFixtureToggle = "CreateFixtureToggle",
     CreateFixtureHomeOrAway = "CreateFixtureHomeOrAway",
     CreateFixtureOpposition = "CreateFixtureOpposition",
     CreateFixtureDate = "CreateFixtureDate",

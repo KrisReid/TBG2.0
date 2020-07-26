@@ -59,6 +59,10 @@ class TBGUIFixtureTests: XCTestCase {
             app.textFields[AccessabilityIdentifier.CreateFixtureTime.rawValue].tap()
             app.textFields[AccessabilityIdentifier.CreateFixtureTime.rawValue].typeText("3:30 PM")
         
+            app.otherElements[AccessabilityIdentifier.CreateFixtureToggle.rawValue].tap()
+//            app.otherElements["CreateFixtureToggle"].tap()
+            
+        
             app.buttons[AccessabilityIdentifier.CreateFixtureCreateGame.rawValue].tap()
             
             //Check the fields in the fixture detail exist
