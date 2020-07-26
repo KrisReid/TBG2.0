@@ -55,14 +55,15 @@ class TBGUITeamTests: XCTestCase {
     
     func test02playerDetail() {
         
-        // add a plaveholder in if there are no entries .....
+        // add a plaveholder in if there are no entries ....
+        //Figure out how to add images to the tests....
         
         let app = XCUIApplication()
+        app.tables.staticTexts["Automated Tester 2"].tap()
         
-        app.tables["Empty list, Goalkeepers, Defenders, Midfielders, Strikers, Empty list"].tables.matching(identifier: "Empty list").staticTexts["Automated Tester 2"].tap()
-        
-        XCTAssertTrue(app.staticTexts["Automated Tester 2"].exists)
-        XCTAssertTrue(app.staticTexts["12 Mar 1992"].exists)
+        XCTAssertTrue(app.images[AccessabilityIdentifier.PlayerDetailProfilePicture.rawValue].exists)
+        XCTAssertTrue(app.staticTexts[AccessabilityIdentifier.PlayerDetailPlayerName.rawValue].exists)
+        XCTAssertTrue(app.staticTexts[AccessabilityIdentifier.PlayerDetailDateOfBirth.rawValue].exists)
         
         let scrollViewsQuery = app.scrollViews
         let elementsQuery = scrollViewsQuery.otherElements

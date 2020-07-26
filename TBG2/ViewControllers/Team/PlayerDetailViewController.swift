@@ -30,8 +30,11 @@ class PlayerDetailViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ivPlayerIProfilePic.circle(colour: colours.primaryBlue.cgColor)
+        //Accessability Identifiers
+        setupAccessibilityAndLocalisation()
         
+        //Organsie it
+        ivPlayerIProfilePic.circle(colour: colours.primaryBlue.cgColor)
         ivPlayerIProfilePic.sd_setImage(with: playerProfilePicUrl, completed: nil)
         lblPlayerName.text = playerName
         
@@ -54,6 +57,12 @@ class PlayerDetailViewController: UIViewController, UIScrollViewDelegate {
         pageControl.pageIndicatorTintColor = UIColor.lightGray
         pageControl.currentPageIndicatorTintColor = colours.secondaryBlue
         
+    }
+    
+    private func setupAccessibilityAndLocalisation() {
+        ivPlayerIProfilePic.accessibilityIdentifier = AccessabilityIdentifier.PlayerDetailProfilePicture.rawValue
+        lblPlayerName.accessibilityIdentifier = AccessabilityIdentifier.PlayerDetailPlayerName.rawValue
+        lblPlayerAge.accessibilityIdentifier = AccessabilityIdentifier.PlayerDetailDateOfBirth.rawValue
     }
     
     func createSlides() -> [Slide] {

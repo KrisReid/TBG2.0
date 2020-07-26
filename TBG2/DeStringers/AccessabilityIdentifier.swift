@@ -69,5 +69,16 @@ enum AccessabilityIdentifier: String {
     CreateFixtureDate = "CreateFixtureDate",
     CreateFixtureTime = "CreateFixtureTime",
     CreateFixturePostcode = "CreateFixturePostcode",
-    CreateFixtureCreateGame = "CreateFixtureCreateGame"
+    CreateFixtureCreateGame = "CreateFixtureCreateGame",
+    //Player Details
+    PlayerDetailProfilePicture = "PlayerDetailProfilePicture",
+    PlayerDetailPlayerName = "PlayerDetailPlayerName",
+    PlayerDetailDateOfBirth = "PlayerDetailDateOfBirth",
+    PlayerDetailStatsTitle = "PlayerDetailStatsTitle",
+    PlayerDetailStatsGamesPlayedCount = "PlayerDetailStatsGamesPlayedCount",
+    PlayerDetailStatsGamesPlayedTitle = "PlayerDetailStatsGamesPlayedTitle",
+    PlayerDetailStatsGamesMOTMCount = "PlayerDetailStatsGamesMOTMCount",
+    PlayerDetailStatsGamesMOTMTitle = "PlayerDetailStatsGamesMOTMTitle",
+    PlayerDetailStatsGamesGoalsCount = "PlayerDetailStatsGamesGoalsCount",
+    PlayerDetailStatsGamesGoalsTitle = "PlayerDetailStatsGamesGoalsTitle"
 }
