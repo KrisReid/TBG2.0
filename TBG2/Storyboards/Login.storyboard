@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9RB-qa-kAc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17132" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9RB-qa-kAc">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17105"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,6 +22,7 @@
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TBG" translatesAutoresizingMaskIntoConstraints="NO" id="foz-22-6OJ">
                                 <rect key="frame" x="85" y="295" width="244" height="95"/>
+                                <accessibility key="accessibilityConfiguration" identifier="appIcon" label="TBG Icon"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="95" id="HqW-4h-WCd"/>
                                     <constraint firstAttribute="width" constant="244" id="bjD-a6-eP5"/>
@@ -28,8 +31,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q3E-9p-7jd">
                                 <rect key="frame" x="0.0" y="570" width="414" height="306"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="alison.m.bell@hotmail.com" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aqb-bw-gWX">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aqb-bw-gWX">
                                         <rect key="frame" x="20" y="37" width="374" height="34"/>
+                                        <accessibility key="accessibilityConfiguration" label="Email Address"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="fO5-cU-eKC"/>
                                         </constraints>
@@ -37,9 +41,10 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bqP-WX-8K5">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bqP-WX-8K5">
                                         <rect key="frame" x="20" y="145" width="374" height="34"/>
                                         <color key="backgroundColor" red="0.1450980392" green="0.2784313725" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <accessibility key="accessibilityConfiguration" label="Login Button"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="n49-7I-mK3"/>
                                         </constraints>
@@ -50,9 +55,10 @@
                                             <action selector="btnLoginTapped:" destination="9RB-qa-kAc" eventType="touchUpInside" id="PQ9-yR-lfY"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHF-b0-DiC">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHF-b0-DiC">
                                         <rect key="frame" x="20" y="259" width="374" height="34"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <accessibility key="accessibilityConfiguration" label=" Sign Up Button"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="9Vv-Tv-Cz2"/>
                                         </constraints>
@@ -64,8 +70,9 @@
                                             <segue destination="KPI-9K-CEV" kind="show" identifier="signupSegue" id="vlG-Qy-gop"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1234678" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="12t-b2-Gtk">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="12t-b2-Gtk">
                                         <rect key="frame" x="20" y="91" width="374" height="34"/>
+                                        <accessibility key="accessibilityConfiguration" label="Password"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="jpq-Jp-vhy"/>
                                         </constraints>
@@ -93,7 +100,8 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6w2-n2-Hwo"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Q3E-9p-7jd" firstAttribute="leading" secondItem="6w2-n2-Hwo" secondAttribute="leading" id="3uO-tv-p1l"/>
                             <constraint firstItem="TY7-lv-oKf" firstAttribute="top" secondItem="b3r-f3-ZML" secondAttribute="top" id="Ayv-g1-d9e"/>
@@ -105,9 +113,10 @@
                             <constraint firstAttribute="bottom" secondItem="Q3E-9p-7jd" secondAttribute="bottom" constant="20" symbolic="YES" id="hJl-j6-Gmv"/>
                             <constraint firstItem="Q3E-9p-7jd" firstAttribute="trailing" secondItem="6w2-n2-Hwo" secondAttribute="trailing" id="p8t-hz-2pf"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6w2-n2-Hwo"/>
                     </view>
                     <connections>
+                        <outlet property="btnLogin" destination="bqP-WX-8K5" id="Ibr-F0-I2o"/>
+                        <outlet property="btnSignUp" destination="iHF-b0-DiC" id="Kog-Fi-t7a"/>
                         <outlet property="ivTbgLogo" destination="foz-22-6OJ" id="n1J-NV-A3p"/>
                         <outlet property="tfEmailAddress" destination="aqb-bw-gWX" id="Dd5-t3-bVB"/>
                         <outlet property="tfPassword" destination="12t-b2-Gtk" id="QDT-oZ-7vc"/>
@@ -135,6 +144,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qNS-xn-Pv2">
                                                 <rect key="frame" x="127" y="70" width="160" height="160"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="signupProfileButton" label="Profile Image"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="160" id="XX5-Jg-KTw"/>
                                                     <constraint firstAttribute="height" constant="160" id="ulp-td-1lA"/>
@@ -145,8 +155,9 @@
                                                     <action selector="btnProfilePictureTapped:" destination="KPI-9K-CEV" eventType="touchUpInside" id="o67-TE-Es3"/>
                                                 </connections>
                                             </button>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Player 3" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uSu-xk-kbt">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uSu-xk-kbt">
                                                 <rect key="frame" x="20" y="280" width="374" height="34"/>
+                                                <accessibility key="accessibilityConfiguration" label="Full Name"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="kv9-Cv-if1"/>
                                                 </constraints>
@@ -154,8 +165,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" textContentType="name"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="29-09-1988" placeholder="Date of Birth" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WaS-yp-8Ls">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date of Birth" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WaS-yp-8Ls">
                                                 <rect key="frame" x="20" y="442" width="374" height="34"/>
+                                                <accessibility key="accessibilityConfiguration" label="Date of Birth"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="S2Y-DB-i8h"/>
                                                 </constraints>
@@ -163,8 +175,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123" placeholder="House Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FTN-y9-Str">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="House Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FTN-y9-Str">
                                                 <rect key="frame" x="20" y="496" width="374" height="34"/>
+                                                <accessibility key="accessibilityConfiguration" label="House Number"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="GOf-vb-Dnm"/>
                                                 </constraints>
@@ -172,8 +185,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" textContentType="address-line1"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1234678" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZIf-Uy-qdT">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZIf-Uy-qdT">
                                                 <rect key="frame" x="20" y="388" width="374" height="34"/>
+                                                <accessibility key="accessibilityConfiguration" label="Password"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="G1F-eY-fX4"/>
                                                 </constraints>
@@ -181,8 +195,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="player1@tbg.com" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bHZ-hM-2x6">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bHZ-hM-2x6">
                                                 <rect key="frame" x="20" y="334" width="374" height="34"/>
+                                                <accessibility key="accessibilityConfiguration" label="Email Address"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="d7c-zb-vRf"/>
                                                 </constraints>
@@ -190,8 +205,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" textContentType="email"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="AL8 7DD" placeholder="Postcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aRh-To-JMG">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Postcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aRh-To-JMG">
                                                 <rect key="frame" x="20" y="550" width="374" height="34"/>
+                                                <accessibility key="accessibilityConfiguration" label="Postcode"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="Zv3-BK-oxe"/>
                                                 </constraints>
@@ -199,9 +215,10 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" textContentType="postal-code"/>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAR-NE-8Os">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAR-NE-8Os">
                                                 <rect key="frame" x="20" y="664" width="374" height="34"/>
                                                 <color key="backgroundColor" red="0.1450980392" green="0.2784313725" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <accessibility key="accessibilityConfiguration" label="Create Team Button"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="F1I-Q1-ICV"/>
                                                 </constraints>
@@ -212,9 +229,10 @@
                                                     <action selector="btnCreateTeamTapped:" destination="KPI-9K-CEV" eventType="touchUpInside" id="GQa-f7-pS3"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dT8-oc-dpr">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dT8-oc-dpr">
                                                 <rect key="frame" x="20" y="718" width="374" height="34"/>
                                                 <color key="backgroundColor" red="0.1450980392" green="0.2784313725" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <accessibility key="accessibilityConfiguration" label="Join Team Button"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="A3R-w8-Sza"/>
                                                 </constraints>
@@ -269,6 +287,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Y8H-sc-HjH"/>
                         <color key="backgroundColor" red="0.26274509800000001" green="0.51372549020000002" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="h4F-KG-7tW" firstAttribute="top" secondItem="Y8H-sc-HjH" secondAttribute="top" id="Qxe-hN-G2v"/>
@@ -276,7 +295,6 @@
                             <constraint firstItem="h4F-KG-7tW" firstAttribute="leading" secondItem="Y8H-sc-HjH" secondAttribute="leading" id="URx-J1-7ps"/>
                             <constraint firstItem="h4F-KG-7tW" firstAttribute="bottom" secondItem="Y8H-sc-HjH" secondAttribute="bottom" id="bAv-5c-ja4"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Y8H-sc-HjH"/>
                     </view>
                     <connections>
                         <outlet property="btnCreateTeam" destination="gAR-NE-8Os" id="zed-bD-IJC"/>
@@ -305,8 +323,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-M4AvvqqhDcTvPnIH9Ns" placeholder="Team ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZMr-S8-Uev">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Team ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZMr-S8-Uev">
                                 <rect key="frame" x="20" y="250" width="374" height="34"/>
+                                <accessibility key="accessibilityConfiguration" label="Team ID"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="Y4Z-W6-X1g"/>
                                 </constraints>
@@ -314,8 +333,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" placeholder="Team PIN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c6D-QY-lor">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Team PIN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c6D-QY-lor">
                                 <rect key="frame" x="20" y="304" width="374" height="34"/>
+                                <accessibility key="accessibilityConfiguration" label="Team PIN"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="zbP-t8-W2D"/>
                                 </constraints>
@@ -339,9 +359,10 @@
                                     <action selector="scPlayerPositionTapped:" destination="1uF-vO-42f" eventType="valueChanged" id="Zlj-3a-fSY"/>
                                 </connections>
                             </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4C0-d8-yf1">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4C0-d8-yf1">
                                 <rect key="frame" x="20" y="479" width="374" height="34"/>
                                 <color key="backgroundColor" red="0.1450980392" green="0.2784313725" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration" label="Join Team Submit Button"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="qNP-MM-8KS"/>
                                 </constraints>
@@ -354,6 +375,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="QhR-rK-Y0y"/>
                         <color key="backgroundColor" red="0.26274509800000001" green="0.51372549020000002" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="QhR-rK-Y0y" firstAttribute="trailing" secondItem="4C0-d8-yf1" secondAttribute="trailing" constant="20" id="8I5-VG-hSW"/>
@@ -369,10 +391,10 @@
                             <constraint firstItem="c6D-QY-lor" firstAttribute="leading" secondItem="QhR-rK-Y0y" secondAttribute="leading" constant="20" id="xz4-yV-4jF"/>
                             <constraint firstItem="QhR-rK-Y0y" firstAttribute="trailing" secondItem="ZMr-S8-Uev" secondAttribute="trailing" constant="20" id="z1K-Ia-bhx"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="QhR-rK-Y0y"/>
                     </view>
                     <navigationItem key="navigationItem" id="Kr4-6O-hF7"/>
                     <connections>
+                        <outlet property="btnSubmit" destination="4C0-d8-yf1" id="nTw-La-AzJ"/>
                         <outlet property="scPlayerPosition" destination="0es-XK-9Sx" id="KXw-YH-94z"/>
                         <outlet property="tfTeamID" destination="ZMr-S8-Uev" id="ghX-cX-Jos"/>
                         <outlet property="tfTeamPIN" destination="c6D-QY-lor" id="hwI-gY-2SI"/>
@@ -398,6 +420,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Dl-NU-5ys">
                                                 <rect key="frame" x="127" y="70" width="160" height="160"/>
+                                                <accessibility key="accessibilityConfiguration" label="Team Crest"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="160" id="20y-ds-iLV"/>
                                                     <constraint firstAttribute="height" constant="160" id="9aC-On-YYu"/>
@@ -409,6 +432,7 @@
                                             </button>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Team Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BcT-On-cWS">
                                                 <rect key="frame" x="20" y="280" width="374" height="34"/>
+                                                <accessibility key="accessibilityConfiguration" label="Team Name"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="PTh-OX-wxn"/>
                                                 </constraints>
@@ -418,6 +442,7 @@
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Team PIN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wmh-6y-rH7">
                                                 <rect key="frame" x="20" y="334" width="374" height="34"/>
+                                                <accessibility key="accessibilityConfiguration" label="Team PIN"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="KZ9-mh-0e6"/>
                                                 </constraints>
@@ -430,6 +455,7 @@
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Team Postcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qsG-cA-PNo">
                                                 <rect key="frame" x="20" y="388" width="374" height="34"/>
+                                                <accessibility key="accessibilityConfiguration" label="Team Postcode"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="8Ub-5v-tHM"/>
                                                 </constraints>
@@ -468,9 +494,10 @@
                                                     <action selector="scPlayerPositionTapped:" destination="XaW-fd-jBW" eventType="valueChanged" id="28j-bP-BW6"/>
                                                 </connections>
                                             </segmentedControl>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFL-NU-x34">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFL-NU-x34">
                                                 <rect key="frame" x="20" y="624" width="374" height="34"/>
                                                 <color key="backgroundColor" red="0.14509803921568626" green="0.27843137254901962" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
+                                                <accessibility key="accessibilityConfiguration" label="Create Team Submit Button"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="9jR-qS-fv9"/>
                                                 </constraints>
@@ -517,6 +544,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="4dg-n3-0Ki"/>
                         <color key="backgroundColor" red="0.26274509800000001" green="0.51372549020000002" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="giI-Hp-VCs" firstAttribute="trailing" secondItem="4dg-n3-0Ki" secondAttribute="trailing" id="K2q-Uz-uk3"/>
@@ -524,7 +552,6 @@
                             <constraint firstItem="giI-Hp-VCs" firstAttribute="leading" secondItem="4dg-n3-0Ki" secondAttribute="leading" id="hxK-4H-sef"/>
                             <constraint firstAttribute="bottom" secondItem="giI-Hp-VCs" secondAttribute="bottom" id="rPV-w8-z4n"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="4dg-n3-0Ki"/>
                     </view>
                     <navigationItem key="navigationItem" id="1as-mK-TDu"/>
                     <connections>
@@ -546,5 +573,8 @@
         <image name="Auth_Background" width="375" height="812"/>
         <image name="TBG" width="224" height="95"/>
         <image name="camera_icon" width="60" height="45"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

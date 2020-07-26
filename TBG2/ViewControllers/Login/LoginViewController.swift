@@ -15,19 +15,32 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var vAuthentication: UIView!
     @IBOutlet weak var tfEmailAddress: UITextField!
     @IBOutlet weak var tfPassword: UITextField!
+    @IBOutlet weak var btnLogin: UIButton!
+    @IBOutlet weak var btnSignUp: UIButton!
+    
     
     var colour = Colours()
     var keyboardHeight : CGFloat = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Accessability Identifiers
+        setupAccessibilityAndLocalisation()
         
+        //Styling
         tfEmailAddress.underlined(colour: colour.white.cgColor)
         tfPassword.underlined(colour: colour.white.cgColor)
         tfEmailAddress.textColor = .white
         tfPassword.textColor = .white
         tfEmailAddress.whitePlaceholderText(text: "Email Address")
         tfPassword.whitePlaceholderText(text: "Password")
+    }
+    
+    private func setupAccessibilityAndLocalisation() {
+        tfEmailAddress.accessibilityIdentifier = AccessabilityIdentifier.LoginEmail.rawValue
+        tfPassword.accessibilityIdentifier = AccessabilityIdentifier.LoginPassword.rawValue
+        btnLogin.accessibilityIdentifier = AccessabilityIdentifier.LoginButton.rawValue
+        btnSignUp.accessibilityIdentifier = AccessabilityIdentifier.LoginSignupButton.rawValue
     }
     
     override func viewDidAppear(_ animated: Bool) {

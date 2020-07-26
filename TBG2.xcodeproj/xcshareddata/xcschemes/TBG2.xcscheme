@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1140"
+   LastUpgradeVersion = "1200"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -43,7 +43,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "021BDD90247B25640026A839"
+               BlueprintIdentifier = "021BDDAE24842F2B0026A839"
                BuildableName = "TBG2UITests.xctest"
                BlueprintName = "TBG2UITests"
                ReferencedContainer = "container:TBG2.xcodeproj">

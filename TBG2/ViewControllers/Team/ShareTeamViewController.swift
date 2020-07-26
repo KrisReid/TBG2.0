@@ -34,11 +34,18 @@ class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableVie
         
         //Load Team Data
         loadTeamData()
+        
+        //Accessability Identifiers
+        setupAccessibilityAndLocalisation()
+    }
+    
+    private func setupAccessibilityAndLocalisation() {
+        lblTeamName.accessibilityIdentifier = AccessabilityIdentifier.ShareTeamName.rawValue
+        lblTeamPostcode.accessibilityIdentifier = AccessabilityIdentifier.ShareTeamPostcode.rawValue
     }
     
     
     func loadTeamData() {
-        
         let spinner = UIViewController.displayLoading(withView: self.view)
         
         let userRef = PlayerModel.getUser()
@@ -89,8 +96,14 @@ class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableVie
 
         cell.lblTitle.text = titleArray[indexPath.row]
 
-        if (indexPath.row == 0) {cell.lblAnswer.text = team?.id}
-        if (indexPath.row == 1) {cell.lblAnswer.text = team?.pin.description}
+        if (indexPath.row == 0) {
+            cell.lblAnswer.text = team?.id
+            cell.lblAnswer.accessibilityIdentifier = AccessabilityIdentifier.ShareTeamID.rawValue
+        }
+        if (indexPath.row == 1) {
+            cell.lblAnswer.text = team?.pin.description
+            cell.lblAnswer.accessibilityIdentifier = AccessabilityIdentifier.ShareTeamPIN.rawValue
+        }
         if (indexPath.row == 2) {cell.ivAnswer.image = UIImage(named: "share_icon")}
         
         return cell

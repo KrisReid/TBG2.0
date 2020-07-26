@@ -19,14 +19,6 @@ class TBG2Tests: XCTestCase {
 //        // Put teardown code here. This method is called after the invocation of each test method in the class.
 //    }
     
-    
-//    class func ImageUrlConverter (url: URL) -> UIImageView {
-//        let image = UIImageView()
-//        image.sd_cancelCurrentImageLoad()
-//        image.sd_setImage(with: url, completed: nil)
-//        return image
-//    }
-    
     func testImageUrlConverter() {
         // Given
         let sampleUrl = URL(fileURLWithPath: "https://firebasestorage.googleapis.com/v0/b/tbg2-5a636.appspot.com/o/crest_images%2FCE57B779-AF07-4576-B6B7-B3ECDBF50081.jpeg?alt=media&token=2d2db8af-2ee0-4c42-aa59-0f71ce672a51")
@@ -54,12 +46,5 @@ class TBG2Tests: XCTestCase {
         let testDate = Date()
         XCTAssertNotEqual(newDate, testDate)
     }
-    
-//    func testPerformanceExample() {
-//        // This is an example of a performance test case.
-//        measure {
-//            // Put the code you want to measure the time of here.
-//        }
-//    }
 
 }

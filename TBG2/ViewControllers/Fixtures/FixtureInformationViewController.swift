@@ -11,7 +11,6 @@ import FirebaseDatabase
 
 class FixtureInformationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
-    
     @IBOutlet weak var ivHomeTeam: UIImageView!
     @IBOutlet weak var ivAwayTeam: UIImageView!
     @IBOutlet weak var lblFixtureDate: UILabel!
@@ -20,6 +19,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var tfHomeGoals: UITextField!
     @IBOutlet weak var tfAwayGoals: UITextField!
+    @IBOutlet weak var btnFixturePostcode: UIButton!
     
     var teamId: String = ""
     var fixtureId: String = ""
@@ -44,6 +44,12 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Accessability Identifiers
+        setupAccessibilityAndLocalisation()
+        
+        //Load Player Fixture Data
+        loadPlayerFixtureData()
+        
         //Local team goals
         tempTeamGoalCount = teamGoals
         
@@ -57,11 +63,13 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             tfAwayGoals.text = String(oppositionGoals)
             tfHomeGoals.isEnabled = false
             tfAwayGoals.isEnabled = true
+            Helper.setImageView(imageView: ivHomeTeam, url: self.teamCrestURL!)
         } else {
             tfHomeGoals.text = String(oppositionGoals)
             tfAwayGoals.text = String(teamGoals)
             tfHomeGoals.isEnabled = true
             tfAwayGoals.isEnabled = false
+            Helper.setImageView(imageView: ivAwayTeam, url: self.teamCrestURL!)
         }
         
         //ScoreLine Logic
@@ -70,6 +78,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             tfAwayGoals.text = "-"
             tfHomeGoals.text = "-"
             tfHomeGoals.isEnabled = false
+            tfAwayGoals.isEnabled = false
             futureFixture = true
         } else {
             createPickerView()
@@ -84,51 +93,28 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         tableview.estimatedRowHeight = CGFloat(50.0)
         tableview.rowHeight = UITableView.automaticDimension
         tableview.register(UINib(nibName: "FixtureDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "FixtureDetailTableViewCell")
-        
-        //Load Player Data
-        loadPlayerFixtureData()
-        
-        //Display Crest
-        if homeFixture {
-            Helper.setImageView(imageView: ivHomeTeam, url: self.teamCrestURL!)
-        } else {
-            Helper.setImageView(imageView: ivAwayTeam, url: self.teamCrestURL!)
-        }
-        
+    }
+    
+    private func setupAccessibilityAndLocalisation() {
+        ivHomeTeam.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailHomeTeamCrest.rawValue
+        ivAwayTeam.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailAwayTeamCrest.rawValue
+        tfHomeGoals.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailHomeTeamGoals.rawValue
+        tfAwayGoals.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailAwayTeamGoals.rawValue
+        lblFixtureDate.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailDate.rawValue
+        lblFixtureTime.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailTime.rawValue
+        lblFixturePostcode.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailPostcode.rawValue
     }
     
     func loadPlayerFixtureData() {
-        
         let playerFixtureRef = FixtureModel.collection.child(teamId).child(fixtureId).child("players")
         let playerFixtureRefQuery = playerFixtureRef.queryOrderedByKey()
-        
-        //Initial load of the array
-        if self.playerArray == [] {
-            playerFixtureRefQuery.observeSingleEvent(of: .value) { (snapshot) in
-                for item in snapshot.children {
-                    guard let snapshot = item as? DataSnapshot else { continue }
-                    guard let player = PlayerFixtureModel(snapshot) else { continue }
 
-                    self.playerArray.insert(player, at: 0)
-                }
-                DispatchQueue.main.async {
-                    self.tableview.reloadData()
-                }
-            }
-        }
-
-        //Keeping the DB connection open for observing child changes that can reflect in the Array
-        playerFixtureRefQuery.observe(.childChanged) { (snapshot) in
-            var arrayIndex = 0
-            for playerObject in self.playerArray {
-                let player = playerObject as! PlayerFixtureModel
-                if snapshot.key == player.playerId {
-                    //Convert the snapshot
-                    guard let c = PlayerFixtureModel(snapshot) else { continue }
-                    //Insert the snapshot
-                    self.playerArray.replaceObject(at: arrayIndex, with: c)
-                }
-                arrayIndex += 1
+        playerFixtureRefQuery.observe(.value) { (snapshot) in
+            self.playerArray = []
+            for item in snapshot.children {
+                guard let snapshot = item as? DataSnapshot else { continue }
+                guard let player = PlayerFixtureModel(snapshot) else { continue }
+                self.playerArray.insert(player, at: 0)
             }
             DispatchQueue.main.async {
                 self.tableview.reloadData()
@@ -142,6 +128,12 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FixtureDetailTableViewCell") as! FixtureDetailTableViewCell
+        
+        //Accessability Identifiers
+        cell.ivMotmAward.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailMotmIcon.rawValue
+        cell.ivGoalScored.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailGoalIcon.rawValue
+        cell.lblGoalScoredCount.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailGoalCount.rawValue
+        cell.lblPlayerName.accessibilityIdentifier = AccessabilityIdentifier.FixtureDetailPlayerName.rawValue
         
         let player = playerArray[indexPath.row] as! PlayerFixtureModel
         
@@ -171,7 +163,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             cell.lblGoalScoredCount.isHidden = true
             cell.ivGoalScored.isHidden = true
         }
-        
         return cell
     }
     
@@ -208,11 +199,11 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         })
         task.resume()
     }
-
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+    
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
@@ -221,22 +212,23 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         //MOTM
         let motmAction = UIContextualAction(style: .normal, title: "MOTM") { (action, view, actionPerformed) in
             if player.motm {
-                FixtureModel.postMotm(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, motm: false)
-                PlayerModel.postMotm(playerId: player.playerId, motm: false)
+                FixtureModel.postMotm(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.id, motm: false)
+                PlayerModel.postMotm(playerId: player.id, motm: false)
                 actionPerformed(true)
             } else {
-                FixtureModel.postMotm(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, motm: true)
-                PlayerModel.postMotm(playerId: player.playerId, motm: true)
+                FixtureModel.postMotm(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.id, motm: true)
+                PlayerModel.postMotm(playerId: player.id, motm: true)
                 actionPerformed(true)
             }
         }
+
         motmAction.backgroundColor = player.motm ? colours.primaryGrey : colours.yellow
         motmAction.title = player.motm ? "Remove MOTM" : "MOTM"
         
         //Add Goal
         let addGoalAction = UIContextualAction(style: .normal, title: "Add Goal") { (action, view, actionPerformed) in
-            FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, goal: true)
-            PlayerModel.postPlayerGoals(playerId: player.playerId, goal: true)
+            FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.id, goal: true)
+            PlayerModel.postPlayerGoals(playerId: player.id, goal: true)
             
             self.tempTeamGoalCount += 1
             if self.homeFixture {
@@ -251,8 +243,8 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         //Minus Goal
         let minusGoalAction = UIContextualAction(style: .normal, title: "Minus Goal") { (action, view, actionPerformed) in
             if player.goals > 0 {
-                FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.playerId, goal: false)
-                PlayerModel.postPlayerGoals(playerId: player.playerId, goal: false)
+                FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.id, goal: false)
+                PlayerModel.postPlayerGoals(playerId: player.id, goal: false)
                 self.tempTeamGoalCount -= 1
                 if self.homeFixture {
                     self.tfHomeGoals.text = String(self.tempTeamGoalCount)
@@ -265,7 +257,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             }
         }
         minusGoalAction.backgroundColor = colours.secondaryBlue
-        
         
         //Future Fixture Logic
         var swipeAction = UISwipeActionsConfiguration(actions: [minusGoalAction, addGoalAction, motmAction])
@@ -285,13 +276,13 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         return UISwipeActionsConfiguration(actions: [paymentsAction])
     }
 
-    
     func createPickerView() {
         let pickerView = UIPickerView()
         pickerView.delegate = self
         pickerView.dataSource = self
         pickerView.backgroundColor = UIColor.white
         tfHomeGoals.inputView = pickerView
+        tfAwayGoals.inputView = pickerView
     }
     
     func dismissPickerView() {
@@ -303,6 +294,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         toolBar.setItems([button], animated: true)
         toolBar.isUserInteractionEnabled = true
         tfHomeGoals.inputAccessoryView = toolBar
+        tfAwayGoals.inputAccessoryView = toolBar
     }
     
     @objc func action() {
@@ -311,7 +303,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     }
     
     //MARK:- PickerView Delegate & DataSource
-    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -326,8 +317,12 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedGoals = pickerData[row]
-        tfHomeGoals.text = selectedGoals
+        if homeFixture {
+            tfAwayGoals.text = selectedGoals
+        } else {
+            tfHomeGoals.text = selectedGoals
+        }
         oppositionGoals = Int(selectedGoals!)!
     }
-
+    
 }

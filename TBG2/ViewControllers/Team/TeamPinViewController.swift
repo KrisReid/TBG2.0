@@ -27,6 +27,14 @@ class TeamPinViewController: UIViewController {
         
         //PIN Validation
         Helper.pinValidation(textField: tfTeamPIN, button: btnDone, enabledUnderlineColour: colours.secondaryBlue.cgColor, enabledeBtnColour: colours.secondaryBlue, disableRequired: true)
+        
+        //Accessability Identifiers
+        setupAccessibilityAndLocalisation()
+    }
+    
+    private func setupAccessibilityAndLocalisation() {
+        tfTeamPIN.accessibilityIdentifier = AccessabilityIdentifier.TeamPINTeamPIN.rawValue
+        btnDone.accessibilityIdentifier = AccessabilityIdentifier.TeamPINDone.rawValue
     }
     
     @IBAction func tfTeamPINValueChanged(_ sender: Any) {

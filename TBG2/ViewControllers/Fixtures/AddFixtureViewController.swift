@@ -11,6 +11,7 @@ import FirebaseDatabase
 
 class AddFixtureViewController: UIViewController {
     
+    @IBOutlet weak var vToggle: UIView!
     @IBOutlet weak var scHomeAway: UISegmentedControl!
     @IBOutlet weak var tfOpposition: UITextField!
     @IBOutlet weak var tfDate: UITextField!
@@ -40,6 +41,8 @@ class AddFixtureViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Accessability Identifiers
+        setupAccessibilityAndLocalisation()
         
         //Hide Manager & Assistant
         vManager.isHidden = true
@@ -77,6 +80,23 @@ class AddFixtureViewController: UIViewController {
         //Load Players Data
         loadPlayersData()
         
+    }
+
+//    MISSING ACCESABILITY ????
+//    @IBOutlet weak var ivManagerAvailability: UIImageView!
+//    @IBOutlet weak var ivAssistantAvailability: UIImageView!
+//    @IBOutlet weak var btnManager: UIButton!
+//    @IBOutlet weak var btnAssistant: UIButton!
+    
+
+    private func setupAccessibilityAndLocalisation() {
+        vToggle.accessibilityIdentifier = AccessabilityIdentifier.CreateFixtureToggle.rawValue
+        scHomeAway.accessibilityIdentifier = AccessabilityIdentifier.CreateFixtureHomeOrAway.rawValue
+        tfOpposition.accessibilityIdentifier = AccessabilityIdentifier.CreateFixtureOpposition.rawValue
+        tfDate.accessibilityIdentifier = AccessabilityIdentifier.CreateFixtureDate.rawValue
+        tfTime.accessibilityIdentifier = AccessabilityIdentifier.CreateFixtureTime.rawValue
+        tfPostcode.accessibilityIdentifier = AccessabilityIdentifier.CreateFixturePostcode.rawValue
+        btnCreateGame.accessibilityIdentifier = AccessabilityIdentifier.CreateFixtureCreateGame.rawValue
     }
     
     @objc func dateChanged(datePicker: UIDatePicker) {

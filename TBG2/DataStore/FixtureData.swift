@@ -63,8 +63,6 @@ class FixtureModel {
         ]
         
         fixtureRef.setValue(fixtureDictionary)
-        
-        fixtureRef.setValue(fixtureDictionary)
         let fixtureId = String(fixtureRef.key ?? "")
 
         for playerId in playerIds {
@@ -74,7 +72,8 @@ class FixtureModel {
             //get the player name and pictureURL to store in the object
             let playerRef = PlayerModel.collection.child(id)
             let playerRefQuery = playerRef.queryOrderedByKey()
-            playerRefQuery.observe(.value) { (snapshot) in
+            playerRefQuery.observeSingleEvent(of: .value) { (snapshot) in
+//            playerRefQuery.observe(.value) { (snapshot) in
                 guard let player = PlayerModel(snapshot) else { return }
                 
                 //Internal function to add a player
@@ -120,8 +119,8 @@ class FixtureModel {
     
     
     class func postMotm(teamId: String, fixtureId: String, playerId: String, motm: Bool) {
-        let fixtureRef = collection.child(teamId).child(fixtureId).child("players").child(playerId).child("motm")
-        fixtureRef.setValue(motm)
+        let motmRef = collection.child(teamId).child(fixtureId).child("players").child(playerId).child("motm")
+        motmRef.setValue(motm)
     }
     
     
