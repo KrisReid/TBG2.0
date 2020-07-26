@@ -121,7 +121,6 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         let players = sectionData[indexPath.section]![indexPath.row] as! PlayerModel
         
         cell.lblPlayerName.text = players.fullName
-        
         cell.ivPlayerImage.sd_cancelCurrentImageLoad()
         cell.ivPlayerImage?.sd_setImage(with: players.profilePictureUrl, completed: nil)
         

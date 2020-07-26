@@ -46,15 +46,17 @@ class TBGUITeamTests: XCTestCase {
     func test01TableExists() {
         
         let app = XCUIApplication()
-        let emptyListTablesQuery = app.tables["Empty list, Goalkeepers, Defenders, Midfielders, Strikers, Empty list"].tables.matching(identifier: "Empty list")
         
-        XCTAssertTrue(emptyListTablesQuery.staticTexts["Goalkeepers"].exists)
-        XCTAssertTrue(emptyListTablesQuery.staticTexts["Defenders"].exists)
-        XCTAssertTrue(emptyListTablesQuery.staticTexts["Midfielders"].exists)
-        XCTAssertTrue(emptyListTablesQuery.staticTexts["Strikers"].exists)
+        XCTAssertTrue(app.tables.staticTexts["Goalkeepers"].exists)
+        XCTAssertTrue(app.tables.staticTexts["Defenders"].exists)
+        XCTAssertTrue(app.tables.staticTexts["Midfielders"].exists)
+        XCTAssertTrue(app.tables.staticTexts["Strikers"].exists)
     }
     
     func test02playerDetail() {
+        
+        // add a plaveholder in if there are no entries .....
+        
         let app = XCUIApplication()
         
         app.tables["Empty list, Goalkeepers, Defenders, Midfielders, Strikers, Empty list"].tables.matching(identifier: "Empty list").staticTexts["Automated Tester 2"].tap()
