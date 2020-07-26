@@ -26,9 +26,6 @@ class PlayerFixtureModel {
     init?(_ snapshot: DataSnapshot) {
         guard let value = snapshot.value as? [String: Any] else { return nil }
         
-        print("8888888888")
-        print(value)
-
         self.id = value["id"] as? String ?? ""
         self.fullName = value["fullName"] as? String ?? ""
         self.availability = value["availability"] as? String ?? ""

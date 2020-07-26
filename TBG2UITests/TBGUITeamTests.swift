@@ -56,7 +56,6 @@ class TBGUITeamTests: XCTestCase {
     func test02playerDetail() {
         
         // add a plaveholder in if there are no entries ....
-        //Figure out how to add images to the tests....
         
         let app = XCUIApplication()
         app.tables.staticTexts["Automated Tester 2"].tap()

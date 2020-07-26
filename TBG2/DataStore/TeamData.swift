@@ -102,5 +102,31 @@ class TeamModel {
         let pinRef = collection.child(teamId).child("pin")
         pinRef.setValue(teamPIN)
     }
+    
+    class func postMotm(teamId: String, playerId: String, motm: Bool) {
+        let playerRef = collection.child(teamId).child("players").child(playerId).child("motmTotal")
+        playerRef.observeSingleEvent(of: .value) { (snapshot) in
+            var updatedMotmValue = snapshot.value as! Int
+            if motm {
+                updatedMotmValue += 1
+            } else {
+                updatedMotmValue -= 1
+            }
+            playerRef.setValue(updatedMotmValue)
+        }
+    }
+    
+    class func postPlayerGoals(teamId: String, playerId: String, goal: Bool) {
+        let playerRef = collection.child(teamId).child("players").child(playerId).child("goalTotal")
+        playerRef.observeSingleEvent(of: .value) { (snapshot) in
+            var updatedGoalValue = snapshot.value as! Int
+            if goal {
+                updatedGoalValue += 1
+            } else {
+                updatedGoalValue -= 1
+            }
+            playerRef.setValue(updatedGoalValue)
+        }
+    }
 
 }
