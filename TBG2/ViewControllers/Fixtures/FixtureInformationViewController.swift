@@ -214,10 +214,12 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             if player.motm {
                 FixtureModel.postMotm(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.id, motm: false)
                 PlayerModel.postMotm(playerId: player.id, motm: false)
+                TeamModel.postMotm(teamId: self.teamId, playerId: player.id, motm: false)
                 actionPerformed(true)
             } else {
                 FixtureModel.postMotm(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.id, motm: true)
                 PlayerModel.postMotm(playerId: player.id, motm: true)
+                TeamModel.postMotm(teamId: self.teamId, playerId: player.id, motm: true)
                 actionPerformed(true)
             }
         }
@@ -229,7 +231,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         let addGoalAction = UIContextualAction(style: .normal, title: "Add Goal") { (action, view, actionPerformed) in
             FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.id, goal: true)
             PlayerModel.postPlayerGoals(playerId: player.id, goal: true)
-            
+            TeamModel.postPlayerGoals(teamId: self.teamId, playerId: player.id, goal: true)
             self.tempTeamGoalCount += 1
             if self.homeFixture {
                 self.tfHomeGoals.text = String(self.tempTeamGoalCount)
@@ -245,6 +247,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             if player.goals > 0 {
                 FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.id, goal: false)
                 PlayerModel.postPlayerGoals(playerId: player.id, goal: false)
+                TeamModel.postPlayerGoals(teamId: self.teamId, playerId: player.id, goal: false)
                 self.tempTeamGoalCount -= 1
                 if self.homeFixture {
                     self.tfHomeGoals.text = String(self.tempTeamGoalCount)
