@@ -91,6 +91,10 @@ class PlayerModel {
         
     }
     
+    static func getDefaultPlayer() -> DatabaseReference {
+       return PlayerModel.collection.child("DefaultPlayerToPull123456789")
+    }
+    
     
     static func getUser () -> DatabaseReference {
         let uuid = PlayerModel.authCollection

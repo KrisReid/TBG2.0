@@ -12,7 +12,9 @@ class TeamTableViewCell: UITableViewCell {
     
     @IBOutlet weak var ivPlayerImage: UIImageView!
     @IBOutlet weak var lblPlayerName: UILabel!
-
+    @IBOutlet weak var lblNoPlayer: UILabel!
+    @IBOutlet weak var ivNextIcon: UIImageView!
+    
     var colours = Colours()
     
     override func awakeFromNib() {

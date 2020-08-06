@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17140" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17115"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -36,12 +37,24 @@
                             <constraint firstAttribute="height" constant="10" id="d44-Qn-RBA"/>
                         </constraints>
                     </imageView>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YYn-Wq-BJF">
+                        <rect key="frame" x="12" y="19.5" width="351" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="6Ue-uI-Icj"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="YYn-Wq-BJF" secondAttribute="trailing" constant="12" id="8fP-Jp-WBz"/>
                     <constraint firstItem="l2Y-3r-icC" firstAttribute="leading" secondItem="nyt-S6-0jD" secondAttribute="trailing" constant="15" id="Enn-df-CQH"/>
                     <constraint firstItem="l2Y-3r-icC" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="IRU-UD-0eJ"/>
+                    <constraint firstItem="YYn-Wq-BJF" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="LRB-TB-LE5"/>
                     <constraint firstItem="nyt-S6-0jD" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="T8N-cW-746"/>
                     <constraint firstItem="nyt-S6-0jD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Zhp-ks-Y58"/>
+                    <constraint firstItem="YYn-Wq-BJF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="gDU-yx-Dby"/>
                     <constraint firstItem="bPp-Dw-lbb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="l2Y-3r-icC" secondAttribute="trailing" constant="10" id="isJ-7K-x3b"/>
                     <constraint firstAttribute="trailing" secondItem="bPp-Dw-lbb" secondAttribute="trailing" constant="20" id="k3W-PF-WgK"/>
                     <constraint firstItem="nyt-S6-0jD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="ojP-aE-8vq"/>
@@ -51,7 +64,9 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="ivNextIcon" destination="bPp-Dw-lbb" id="2he-CS-ci4"/>
                 <outlet property="ivPlayerImage" destination="nyt-S6-0jD" id="HUs-qB-iWB"/>
+                <outlet property="lblNoPlayer" destination="YYn-Wq-BJF" id="Z0D-3l-LPZ"/>
                 <outlet property="lblPlayerName" destination="l2Y-3r-icC" id="Adr-ws-TUn"/>
             </connections>
             <point key="canvasLocation" x="177.536231884058" y="125.22321428571428"/>
