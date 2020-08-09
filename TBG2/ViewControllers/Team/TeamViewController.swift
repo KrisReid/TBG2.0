@@ -45,24 +45,28 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: rightBarItemImage, style: .plain, target: self, action: #selector(shareTeamInformationTapped))
             
         //Load Data
-        loadPlayerData()
+        loadData()
     }
         
     
-    
-    func loadPlayerData() {
+    func loadData() {
         
+        //Get the user & player data
         let userRef = PlayerModel.getUser()
-        userRef.observe(.value) { [weak self] (snapshot) in
+        userRef.observeSingleEvent(of: .value) { [weak self] (snapshot) in
             guard let strongSelf = self else { return }
             guard let player = PlayerModel(snapshot) else {return}
             strongSelf.player = player
-            
-            userRef.removeAllObservers()
                 
             let playersRef = TeamModel.collection.child(strongSelf.player?.teamId ?? "").child("players")
             let playerRefQuery = playersRef.queryOrderedByKey()
-            playerRefQuery.observeSingleEvent(of: .value) { [weak self] (snapshot) in
+            
+            playerRefQuery.observe(.value) { [weak self] (snapshot) in
+                strongSelf.goalkeepers.removeAllObjects()
+                strongSelf.defenders.removeAllObjects()
+                strongSelf.midfielders.removeAllObjects()
+                strongSelf.strikers.removeAllObjects()
+                
                 guard let strongSelf = self else { return }
                 for item in snapshot.children {
                     guard let snapshot = item as? DataSnapshot else { continue }
@@ -90,19 +94,15 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
                     
                     //Load a default player into any empty array and reload
                     if self?.goalkeepers.count == 0 {
-                        print("No Goalkeepers")
                         strongSelf.goalkeepers.insert(defaultPlayer, at: 0)
                     }
                     if self?.defenders.count == 0 {
-                        print("No Defenders")
                         strongSelf.defenders.insert(defaultPlayer, at: 0)
                     }
                     if self?.midfielders.count == 0 {
-                        print("No Midfielders")
                         strongSelf.midfielders.insert(defaultPlayer, at: 0)
                     }
                     if self?.strikers.count == 0 {
-                        print("No Strikers")
                         strongSelf.strikers.insert(defaultPlayer, at: 0)
                     }
                     
@@ -186,6 +186,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
          if editingStyle == UITableViewCell.EditingStyle.delete {
              print(indexPath.row)
          }

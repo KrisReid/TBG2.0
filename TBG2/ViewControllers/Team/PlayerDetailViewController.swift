@@ -68,10 +68,7 @@ class PlayerDetailViewController: UIViewController, UIScrollViewDelegate {
         lblPlayerAge.accessibilityIdentifier = AccessabilityIdentifier.PlayerDetailDateOfBirth.rawValue
     }
     
-    
-    // Either make the root call to listen all the time .... or make a new call once loaded for listening to these fields
-    
-    
+
     func createSlides() -> [Slide] {
         let slide1:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
         slide1.lblTitle.text = "All Seasons"
@@ -79,19 +76,21 @@ class PlayerDetailViewController: UIViewController, UIScrollViewDelegate {
         slide1.lblMOTMResult.text = String(playerMotmTotal!)
         slide1.lblGoalsScoredResult.text = String(playerGoalTotal!)
         
-        let slide2:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
-        slide2.lblTitle.text = "2018 / 2019"
-        slide2.lblGamesPlayedResult.text = "25"
-        slide2.lblMOTMResult.text = "2"
-        slide2.lblGoalsScoredResult.text = "3"
+//        let slide2:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
+//        slide2.lblTitle.text = "2018 / 2019"
+//        slide2.lblGamesPlayedResult.text = "25"
+//        slide2.lblMOTMResult.text = "2"
+//        slide2.lblGoalsScoredResult.text = "3"
+//
+//        let slide3:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
+//        slide3.lblTitle.text = "2017 / 2018"
+//        slide3.lblGamesPlayedResult.text = "52"
+//        slide3.lblMOTMResult.text = "5"
+//        slide3.lblGoalsScoredResult.text = "11"
         
-        let slide3:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
-        slide3.lblTitle.text = "2017 / 2018"
-        slide3.lblGamesPlayedResult.text = "52"
-        slide3.lblMOTMResult.text = "5"
-        slide3.lblGoalsScoredResult.text = "11"
+//        return [slide1, slide2, slide3]
         
-        return [slide1, slide2, slide3]
+        return [slide1]
     }
     
     func setupSlideScrollView(slides : [Slide]) {

@@ -150,17 +150,20 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == UITableViewCell.EditingStyle.delete {
-            let user = player!
-            let teamId = user.teamId
-            
-            let fixture = fixtures[indexPath.row] as! FixtureModel
-            let fixtureId = fixture.fixtureId
-
-            FixtureModel.deleteFixture(teamId: teamId, fixtureId: fixtureId)
-        }
-    }
+    //DO NOT ALLOW DELETION UNTIL YOU FIGURE OUT HOW TO REMOVE GOALS, MOTM, AND GAMES PLAYED
+    
+    
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == UITableViewCell.EditingStyle.delete {
+//            let user = player!
+//            let teamId = user.teamId
+//
+//            let fixture = fixtures[indexPath.row] as! FixtureModel
+//            let fixtureId = fixture.fixtureId
+//
+//            FixtureModel.deleteFixture(teamId: teamId, fixtureId: fixtureId)
+//        }
+//    }
     
     @objc func addFixtureTapped () {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Fixtures", bundle:nil)
