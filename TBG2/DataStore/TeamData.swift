@@ -128,5 +128,18 @@ class TeamModel {
             playerRef.setValue(updatedGoalValue)
         }
     }
+    
+    class func postGamePlayed(teamId: String, playerId: String, game: Bool) {
+        let playerRef = collection.child(teamId).child("players").child(playerId).child("gamesTotal")
+        playerRef.observeSingleEvent(of: .value) { (snapshot) in
+            var updatedGameValue = snapshot.value as! Int
+            if game {
+                updatedGameValue += 1
+            } else {
+                updatedGameValue -= 1
+            }
+            playerRef.setValue(updatedGameValue)
+        }
+    }
 
 }

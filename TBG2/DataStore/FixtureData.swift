@@ -155,6 +155,16 @@ class FixtureModel {
         }
     }
     
+    class func postPlayerAvailability(teamId: String, fixtureId: String, playerId: String, availability: Bool) {
+        let availabilityRef = collection.child(teamId).child(fixtureId).child("players").child(playerId).child("availability")
+        
+        if availability {
+            availabilityRef.setValue("Yes")
+        } else {
+            availabilityRef.setValue("No")
+        }
+    }
+    
     
     class func deleteFixture(teamId: String, fixtureId: String) {
         collection.child(teamId).child(fixtureId).observe(.value) { (snapshot) in

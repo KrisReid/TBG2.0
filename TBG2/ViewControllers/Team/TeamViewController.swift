@@ -81,10 +81,11 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
                         break
                     }
                 }
-
-                //Get a default player
+                
+                //Get a default player (CHANGE THIS TO JUST BE LOCAL)
                 let DefaultPlayerRef = PlayerModel.getDefaultPlayer()
                 DefaultPlayerRef.observe(.value) { (snapshot) in
+                    
                     guard let defaultPlayer = PlayerModel(snapshot) else {return}
                     
                     //Load a default player into any empty array and reload
@@ -146,9 +147,6 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "TeamTableViewCell") as! TeamTableViewCell
         
         let players = sectionData[indexPath.section]![indexPath.row] as! PlayerModel
-        
-        print("111111111111")
-        print(players)
         
         if players.id == "DefaultPlayerToPull123456789" {
             cell.lblPlayerName.isHidden = true
