@@ -178,6 +178,9 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
                 vc.playerProfilePicUrl = snapshot.profilePictureUrl
                 vc.playerDateOfBirth = snapshot.dateOfBirth
                 vc.playerPosition = snapshot.position
+                vc.playerGamesTotal = snapshot.gamesTotal
+                vc.playerGoalTotal = snapshot.goalTotal
+                vc.playerMotmTotal = snapshot.motmTotal
             }
         }
     }
