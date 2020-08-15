@@ -223,7 +223,6 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
                 actionPerformed(true)
             }
         }
-
         motmAction.backgroundColor = player.motm ? colours.primaryGrey : colours.yellow
         motmAction.title = player.motm ? "Remove MOTM" : "MOTM"
         
@@ -271,12 +270,57 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         
     }
     
+    
+    
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let player = self.playerArray[indexPath.row] as! PlayerFixtureModel
+    
+        
+        let availabilityAction = UIContextualAction(style: .normal, title: "Availability") {  (action, view, actionPerformed) in
+
+            let availableMenu = UIAlertController(title: nil, message: "Availability", preferredStyle: .actionSheet)
+
+            
+            let AvailableAction = UIAlertAction(title: "Available", style: .default) { (action) in
+                FixtureModel.postPlayerAvailability(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.id, availability: true)
+                PlayerModel.postGamePlayed(playerId: player.id, game: true)
+                TeamModel.postGamePlayed(teamId: self.teamId, playerId: player.id, game: true)
+                actionPerformed(true)
+            }
+            let NotAvailableAction = UIAlertAction(title: "Not Available", style: .default) { (action) in
+                FixtureModel.postPlayerAvailability(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.id, availability: false)
+                PlayerModel.postGamePlayed(playerId: player.id, game: false)
+                TeamModel.postGamePlayed(teamId: self.teamId, playerId: player.id, game: false)
+                actionPerformed(true)
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+                actionPerformed(true)
+            }
+            
+            switch player.availability {
+            case "Yes":
+                availableMenu.addAction(NotAvailableAction)
+                availableMenu.addAction(cancelAction)
+            case "No":
+                availableMenu.addAction(AvailableAction)
+                availableMenu.addAction(cancelAction)
+            default:
+                availableMenu.addAction(AvailableAction)
+                availableMenu.addAction(NotAvailableAction)
+                availableMenu.addAction(cancelAction)
+            }
+        
+            self.present(availableMenu, animated: true, completion: nil)
+        }
+        availabilityAction.backgroundColor = colours.secondaryBlue
+        
         let paymentsAction = UIContextualAction(style: .normal, title: "Payments") { (action, view, actionPerformed) in
             print("Making Payment?")
         }
         paymentsAction.backgroundColor = .gray
-        return UISwipeActionsConfiguration(actions: [paymentsAction])
+        
+        return UISwipeActionsConfiguration(actions: [availabilityAction, paymentsAction])
     }
 
     func createPickerView() {

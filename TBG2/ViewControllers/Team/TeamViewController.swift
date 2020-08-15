@@ -17,7 +17,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var colours = Colours()
     var player: PlayerModel?
-    
+    var defaultPlayer: PlayerModel?
     
     var goalkeepers: NSMutableArray = []
     var defenders: NSMutableArray = []
@@ -43,30 +43,35 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         var rightBarItemImage = UIImage(named: "plus_icon")
         rightBarItemImage = rightBarItemImage?.withRenderingMode(.alwaysOriginal)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: rightBarItemImage, style: .plain, target: self, action: #selector(shareTeamInformationTapped))
-        
+            
         //Load Data
-        loadPlayerData()
-        
+        loadData()
     }
-    
-    func loadPlayerData() {
         
+    
+    func loadData() {
+        
+        //Get the user & player data
         let userRef = PlayerModel.getUser()
-        userRef.observe(.value) { [weak self] (snapshot) in
+        userRef.observeSingleEvent(of: .value) { [weak self] (snapshot) in
             guard let strongSelf = self else { return }
             guard let player = PlayerModel(snapshot) else {return}
             strongSelf.player = player
-            
-            userRef.removeAllObservers()
-            
+                
             let playersRef = TeamModel.collection.child(strongSelf.player?.teamId ?? "").child("players")
             let playerRefQuery = playersRef.queryOrderedByKey()
-            playerRefQuery.observeSingleEvent(of: .value) { [weak self] (snapshot) in
+            
+            playerRefQuery.observe(.value) { [weak self] (snapshot) in
+                strongSelf.goalkeepers.removeAllObjects()
+                strongSelf.defenders.removeAllObjects()
+                strongSelf.midfielders.removeAllObjects()
+                strongSelf.strikers.removeAllObjects()
+                
                 guard let strongSelf = self else { return }
                 for item in snapshot.children {
                     guard let snapshot = item as? DataSnapshot else { continue }
                     guard let player = PlayerModel(snapshot) else { continue }
-                    
+
                     switch player.position {
                     case "Goalkeeper":
                         strongSelf.goalkeepers.insert(player, at: 0)
@@ -80,8 +85,31 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
                         break
                     }
                 }
-                DispatchQueue.main.async {
-                    strongSelf.tableview.reloadData()
+                
+                //Get a default player (CHANGE THIS TO JUST BE LOCAL)
+                let DefaultPlayerRef = PlayerModel.getDefaultPlayer()
+                DefaultPlayerRef.observe(.value) { (snapshot) in
+                    
+                    guard let defaultPlayer = PlayerModel(snapshot) else {return}
+                    
+                    //Load a default player into any empty array and reload
+                    if self?.goalkeepers.count == 0 {
+                        strongSelf.goalkeepers.insert(defaultPlayer, at: 0)
+                    }
+                    if self?.defenders.count == 0 {
+                        strongSelf.defenders.insert(defaultPlayer, at: 0)
+                    }
+                    if self?.midfielders.count == 0 {
+                        strongSelf.midfielders.insert(defaultPlayer, at: 0)
+                    }
+                    if self?.strikers.count == 0 {
+                        strongSelf.strikers.insert(defaultPlayer, at: 0)
+                    }
+                    
+                    DispatchQueue.main.async {
+                        strongSelf.tableview.reloadData()
+                    }
+                    
                 }
             }
         }
@@ -89,7 +117,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     
      
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (sectionData[section]?.count)!
+        return(sectionData[section]?.count)!
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -120,16 +148,27 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let players = sectionData[indexPath.section]![indexPath.row] as! PlayerModel
         
-        cell.lblPlayerName.text = players.fullName
-        cell.ivPlayerImage.sd_cancelCurrentImageLoad()
-        cell.ivPlayerImage?.sd_setImage(with: players.profilePictureUrl, completed: nil)
+        if players.id == "DefaultPlayerToPull123456789" {
+            cell.lblPlayerName.isHidden = true
+            cell.ivNextIcon.isHidden = true
+            cell.ivPlayerImage.isHidden = true
+            cell.lblNoPlayer.isHidden = false
+            cell.lblNoPlayer.text = players.fullName
+        } else{
+            cell.lblPlayerName.text = players.fullName
+            cell.ivPlayerImage.sd_cancelCurrentImageLoad()
+            cell.ivPlayerImage?.sd_setImage(with: players.profilePictureUrl, completed: nil)
+        }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let snapshot = sectionData[indexPath.section]![indexPath.row] as! PlayerModel
-        performSegue(withIdentifier: "playerDetailSegue", sender: snapshot)
+        
+        if snapshot.id != "DefaultPlayerToPull123456789" {
+            performSegue(withIdentifier: "playerDetailSegue", sender: snapshot)
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -139,11 +178,15 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
                 vc.playerProfilePicUrl = snapshot.profilePictureUrl
                 vc.playerDateOfBirth = snapshot.dateOfBirth
                 vc.playerPosition = snapshot.position
+                vc.playerGamesTotal = snapshot.gamesTotal
+                vc.playerGoalTotal = snapshot.goalTotal
+                vc.playerMotmTotal = snapshot.motmTotal
             }
         }
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
          if editingStyle == UITableViewCell.EditingStyle.delete {
              print(indexPath.row)
          }

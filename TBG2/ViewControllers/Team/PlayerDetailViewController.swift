@@ -22,6 +22,9 @@ class PlayerDetailViewController: UIViewController, UIScrollViewDelegate {
     var playerName: String?
     var playerDateOfBirth: String?
     var playerPosition: String?
+    var playerGamesTotal: Int?
+    var playerMotmTotal: Int?
+    var playerGoalTotal: Int?
     
     var slides:[Slide] = [];
     
@@ -38,7 +41,7 @@ class PlayerDetailViewController: UIViewController, UIScrollViewDelegate {
         ivPlayerIProfilePic.sd_setImage(with: playerProfilePicUrl, completed: nil)
         lblPlayerName.text = playerName
         
-        //Change to be DOB not age
+        //Change to be age and not DOB
         lblPlayerAge.text = playerDateOfBirth
         
         slides = createSlides()
@@ -65,26 +68,29 @@ class PlayerDetailViewController: UIViewController, UIScrollViewDelegate {
         lblPlayerAge.accessibilityIdentifier = AccessabilityIdentifier.PlayerDetailDateOfBirth.rawValue
     }
     
+
     func createSlides() -> [Slide] {
         let slide1:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
         slide1.lblTitle.text = "All Seasons"
-        slide1.lblGamesPlayedResult.text = "77"
-        slide1.lblMOTMResult.text = "7"
-        slide1.lblGoalsScoredResult.text = "14"
+        slide1.lblGamesPlayedResult.text = String(playerGamesTotal!)
+        slide1.lblMOTMResult.text = String(playerMotmTotal!)
+        slide1.lblGoalsScoredResult.text = String(playerGoalTotal!)
         
-        let slide2:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
-        slide2.lblTitle.text = "2018 / 2019"
-        slide2.lblGamesPlayedResult.text = "25"
-        slide2.lblMOTMResult.text = "2"
-        slide2.lblGoalsScoredResult.text = "3"
+//        let slide2:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
+//        slide2.lblTitle.text = "2018 / 2019"
+//        slide2.lblGamesPlayedResult.text = "25"
+//        slide2.lblMOTMResult.text = "2"
+//        slide2.lblGoalsScoredResult.text = "3"
+//
+//        let slide3:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
+//        slide3.lblTitle.text = "2017 / 2018"
+//        slide3.lblGamesPlayedResult.text = "52"
+//        slide3.lblMOTMResult.text = "5"
+//        slide3.lblGoalsScoredResult.text = "11"
         
-        let slide3:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
-        slide3.lblTitle.text = "2017 / 2018"
-        slide3.lblGamesPlayedResult.text = "52"
-        slide3.lblMOTMResult.text = "5"
-        slide3.lblGoalsScoredResult.text = "11"
+//        return [slide1, slide2, slide3]
         
-        return [slide1, slide2, slide3]
+        return [slide1]
     }
     
     func setupSlideScrollView(slides : [Slide]) {

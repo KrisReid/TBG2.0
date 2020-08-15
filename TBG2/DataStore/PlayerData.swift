@@ -66,7 +66,10 @@ class PlayerModel {
     var playerManager: Bool
     var position: String
     var teamId: String
-
+    var gamesTotal: Int
+    var motmTotal: Int
+    var goalTotal: Int
+    
     
     //IN THE CODE PASS A SNAPSHOT INTO THE MODEL AND THEN GET BACK THE PARSED VALUES
     init?(_ snapshot: DataSnapshot) {
@@ -84,11 +87,18 @@ class PlayerModel {
         self.playerManager = value["playerManager"] as? Bool ?? false
         self.position = value["position"] as? String ?? ""
         self.teamId = value["teamId"] as? String ?? ""
+        self.gamesTotal = value["gamesTotal"] as? Int ?? 0
+        self.motmTotal = value["motmTotal"] as? Int ?? 0
+        self.goalTotal = value["goalTotal"] as? Int ?? 0
         
         if let profilePicture = value["profilePictureUrl"] as? String {
             self.profilePictureUrl = URL(string: profilePicture)
         }
         
+    }
+    
+    static func getDefaultPlayer() -> DatabaseReference {
+       return PlayerModel.collection.child("DefaultPlayerToPull123456789")
     }
     
     
@@ -141,7 +151,8 @@ class PlayerModel {
             "position" : playerPosition,
             "teamId" : teamId,
             "goalTotal" : 0,
-            "motmTotal" : 0
+            "motmTotal" : 0,
+            "gamesTotal": 0
         ]
         
         collection.child(userId).updateChildValues(playerDictionary)
@@ -171,6 +182,19 @@ class PlayerModel {
                 updatedGoalValue -= 1
             }
             playerRef.setValue(updatedGoalValue)
+        }
+    }
+    
+    class func postGamePlayed(playerId: String, game: Bool) {
+        let playerRef = collection.child(playerId).child("gamesTotal")
+        playerRef.observeSingleEvent(of: .value) { (snapshot) in
+            var updatedGamesValue = snapshot.value as! Int
+            if game {
+                updatedGamesValue += 1
+            } else {
+                updatedGamesValue -= 1
+            }
+            playerRef.setValue(updatedGamesValue)
         }
     }
     
