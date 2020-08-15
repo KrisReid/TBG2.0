@@ -25,19 +25,42 @@ class PlayerFixtureModel {
 
     init?(_ snapshot: DataSnapshot) {
         guard let value = snapshot.value as? [String: Any] else { return nil }
-        
+
         self.id = value["id"] as? String ?? ""
         self.fullName = value["fullName"] as? String ?? ""
         self.availability = value["availability"] as? String ?? ""
         self.goals = value["goals"] as? Int ?? 0
         self.motm = value["motm"] as? Bool ?? false
-        
+
         if let profilePicture = value["profilePictureUrl"] as? String {
            self.profilePictureUrl = URL(string: profilePicture)
         }
     }
 }
 
+class PlayerFixtureModelTwo {
+
+    var id: String
+    var fullName: String
+    var profilePictureUrl: URL?
+    var availability: String
+    var goals: Int
+    var motm: Bool
+
+    init?(_ snapshot: Dictionary<String, Any>) {
+        guard let value = snapshot as? [String: Any] else { return nil }
+
+        self.id = value["id"] as? String ?? ""
+        self.fullName = value["fullName"] as? String ?? ""
+        self.availability = value["availability"] as? String ?? ""
+        self.goals = value["goals"] as? Int ?? 0
+        self.motm = value["motm"] as? Bool ?? false
+
+        if let profilePicture = value["profilePictureUrl"] as? String {
+           self.profilePictureUrl = URL(string: profilePicture)
+        }
+    }
+}
 
 class PlayerModel {
     
@@ -172,15 +195,16 @@ class PlayerModel {
         }
     }
     
-    class func postPlayerGoals(playerId: String, goal: Bool) {
+    class func postPlayerGoals(playerId: String, goal: Int) {
+        func goalCalculation (currentGoalCount: Int) -> Int {
+            var count = currentGoalCount
+            count += goal
+            return count
+        }
+        
         let playerRef = collection.child(playerId).child("goalTotal")
         playerRef.observeSingleEvent(of: .value) { (snapshot) in
-            var updatedGoalValue = snapshot.value as! Int
-            if goal {
-                updatedGoalValue += 1
-            } else {
-                updatedGoalValue -= 1
-            }
+            let updatedGoalValue = goalCalculation(currentGoalCount: snapshot.value as! Int)
             playerRef.setValue(updatedGoalValue)
         }
     }

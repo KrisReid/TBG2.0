@@ -130,15 +130,11 @@ class FixtureModel {
     }
     
     
-    class func postPlayerGoals(teamId: String, fixtureId: String, playerId: String, goal: Bool) {
+    class func postPlayerGoals(teamId: String, fixtureId: String, playerId: String, goalCount: Int) {
         
         func goalCalculation (currentGoalCount: Int) -> Int {
             var count = currentGoalCount
-            if goal {
-                count += 1
-            } else {
-                count -= 1
-            }
+            count += goalCount
             return count
         }
         
@@ -167,7 +163,32 @@ class FixtureModel {
     
     
     class func deleteFixture(teamId: String, fixtureId: String) {
-        collection.child(teamId).child(fixtureId).observe(.value) { (snapshot) in
+        
+        collection.child(teamId).child(fixtureId).observeSingleEvent(of: .value) { (snapshot) in
+
+            guard let fixture = FixtureModel(snapshot) else { return }
+            
+            for player in fixture.players {
+                guard let playerFixture = PlayerFixtureModelTwo(player.value as! Dictionary<String, Any>) else { return }
+                
+                //Adjust all of the players Goals
+                if playerFixture.goals >= 1 {
+                    // turn the gaols negative
+                    let negativeGoals = playerFixture.goals - (playerFixture.goals * 2)
+                    PlayerModel.postPlayerGoals(playerId: playerFixture.id, goal: negativeGoals)
+                    TeamModel.postPlayerGoals(teamId: teamId, playerId: playerFixture.id, goal: negativeGoals)
+                }
+                //Adjust the MOTM awards
+                if playerFixture.motm {
+                    PlayerModel.postMotm(playerId: playerFixture.id, motm: false)
+                    TeamModel.postMotm(teamId: teamId, playerId: playerFixture.id, motm: false)
+                }
+                //Adjust the games played
+                if playerFixture.availability == "Yes" {
+                    PlayerModel.postGamePlayed(playerId: playerFixture.id, game: false)
+                    TeamModel.postGamePlayed(teamId: teamId, playerId: playerFixture.id, game: false)
+                }
+            }
             snapshot.ref.removeValue()
         }
     }

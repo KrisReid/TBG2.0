@@ -116,15 +116,16 @@ class TeamModel {
         }
     }
     
-    class func postPlayerGoals(teamId: String, playerId: String, goal: Bool) {
+    class func postPlayerGoals(teamId: String, playerId: String, goal: Int) {
+        func goalCalculation (currentGoalCount: Int) -> Int {
+            var count = currentGoalCount
+            count += goal
+            return count
+        }
+        
         let playerRef = collection.child(teamId).child("players").child(playerId).child("goalTotal")
         playerRef.observeSingleEvent(of: .value) { (snapshot) in
-            var updatedGoalValue = snapshot.value as! Int
-            if goal {
-                updatedGoalValue += 1
-            } else {
-                updatedGoalValue -= 1
-            }
+            let updatedGoalValue = goalCalculation(currentGoalCount: snapshot.value as! Int)
             playerRef.setValue(updatedGoalValue)
         }
     }

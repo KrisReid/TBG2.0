@@ -181,6 +181,8 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
                 vc.playerGamesTotal = snapshot.gamesTotal
                 vc.playerGoalTotal = snapshot.goalTotal
                 vc.playerMotmTotal = snapshot.motmTotal
+                vc.playerId = snapshot.id
+                vc.teamId = snapshot.teamId
             }
         }
     }
