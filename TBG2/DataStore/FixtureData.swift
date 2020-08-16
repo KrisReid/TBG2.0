@@ -130,23 +130,16 @@ class FixtureModel {
     }
     
     
-    class func postPlayerGoals(teamId: String, fixtureId: String, playerId: String, goalCount: Int) {
-        
-        func goalCalculation (currentGoalCount: Int) -> Int {
-            var count = currentGoalCount
-            count += goalCount
-            return count
-        }
-        
+    class func postPlayerGoals(teamId: String, fixtureId: String, playerId: String, goal: Int) {
         let fixtureRef = collection.child(teamId).child(fixtureId)
         
         fixtureRef.child("players").child(playerId).child("goals").observeSingleEvent(of: .value) { (snapshot) in
-            let updatedGoalValue = goalCalculation(currentGoalCount: snapshot.value as! Int)
+            let updatedGoalValue = Helper.goalCalculation(currentGoalCount: snapshot.value as! Int, goal: goal)
             fixtureRef.child("players").child(playerId).child("goals").setValue(updatedGoalValue)
         }
         
         fixtureRef.child("teamGoals").observeSingleEvent(of: .value) { (snapshot) in
-            let updatedTeamGoalValue = goalCalculation(currentGoalCount: snapshot.value as! Int)
+            let updatedTeamGoalValue = Helper.goalCalculation(currentGoalCount: snapshot.value as! Int, goal: goal)
             fixtureRef.child("teamGoals").setValue(updatedTeamGoalValue)
         }
     }

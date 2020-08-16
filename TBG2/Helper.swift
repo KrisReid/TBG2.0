@@ -203,7 +203,12 @@ class Helper {
             }
             textField.underlined(colour: colours.primaryGrey.cgColor)
         }
-
+    }
+    
+    class func goalCalculation (currentGoalCount: Int, goal: Int) -> Int {
+        var count = currentGoalCount
+        count += goal
+        return count
     }
     
 }
