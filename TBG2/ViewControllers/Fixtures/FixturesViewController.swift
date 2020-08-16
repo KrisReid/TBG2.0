@@ -150,9 +150,6 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    //DO NOT ALLOW DELETION UNTIL YOU FIGURE OUT HOW TO REMOVE GOALS, MOTM, AND GAMES PLAYED
-    
-    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
             let user = player!

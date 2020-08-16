@@ -25,6 +25,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     var strikers: NSMutableArray = []
     let sectionTitles: [String] = ["Goalkeepers","Defenders","Midfielders","Strikers"]
     var sectionData: [Int: NSMutableArray] = [:]
+    var refreshControl = UIRefreshControl()
     
     
     override func viewDidLoad() {
@@ -46,10 +47,23 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
             
         //Load Data
         loadData()
+        
+        //Refresh Controller
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        tableview.addSubview(refreshControl)
+    }
+    
+    @objc func refresh(_ sender: AnyObject) {
+        loadData()
     }
         
     
     func loadData() {
+        self.goalkeepers.removeAllObjects()
+        self.defenders.removeAllObjects()
+        self.midfielders.removeAllObjects()
+        self.strikers.removeAllObjects()
         
         //Get the user & player data
         let userRef = PlayerModel.getUser()
@@ -62,13 +76,10 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
             let playerRefQuery = playersRef.queryOrderedByKey()
             
             playerRefQuery.observe(.value) { [weak self] (snapshot) in
-                strongSelf.goalkeepers.removeAllObjects()
-                strongSelf.defenders.removeAllObjects()
-                strongSelf.midfielders.removeAllObjects()
-                strongSelf.strikers.removeAllObjects()
                 
                 guard let strongSelf = self else { return }
                 for item in snapshot.children {
+                    
                     guard let snapshot = item as? DataSnapshot else { continue }
                     guard let player = PlayerModel(snapshot) else { continue }
 
@@ -87,8 +98,9 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
                 
                 //Get a default player (CHANGE THIS TO JUST BE LOCAL)
+                
                 let DefaultPlayerRef = PlayerModel.getDefaultPlayer()
-                DefaultPlayerRef.observe(.value) { (snapshot) in
+                DefaultPlayerRef.observeSingleEvent(of: .value) { (snapshot) in
                     
                     guard let defaultPlayer = PlayerModel(snapshot) else {return}
                     
@@ -108,6 +120,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
                     
                     DispatchQueue.main.async {
                         strongSelf.tableview.reloadData()
+                        strongSelf.refreshControl.endRefreshing()
                     }
                     
                 }
