@@ -278,7 +278,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         
         let player = self.playerArray[indexPath.row] as! PlayerFixtureModel
     
-        
+        //Availability
         let availabilityAction = UIContextualAction(style: .normal, title: "Availability") {  (action, view, actionPerformed) in
 
             let availableMenu = UIAlertController(title: nil, message: "Availability", preferredStyle: .actionSheet)
@@ -317,9 +317,46 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         }
         availabilityAction.backgroundColor = colours.secondaryBlue
         
+        //Payments
         let paymentsAction = UIContextualAction(style: .normal, title: "Payments") { (action, view, actionPerformed) in
-            print("Making Payment?")
+            
+            let paymentsMenu = UIAlertController(title: nil, message: "Payments", preferredStyle: .actionSheet)
+            
+            let DebitAction = UIAlertAction(title: "Debit", style: .default) { (action) in
+                
+                //Another Alert with Text
+                let alert = UIAlertController(title: "How much do they owe?", message: nil, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+                alert.addTextField(configurationHandler: { textField in
+                    textField.placeholder = "3.50"
+                    textField.keyboardType = .decimalPad
+                })
+
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                    actionPerformed(true)
+                }))
+                self.present(alert, animated: true)
+                
+            }
+            let CreditAction = UIAlertAction(title: "Credit", style: .default) { (action) in
+                print("Making a Credit")
+                
+                actionPerformed(true)
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+                actionPerformed(true)
+            }
+            
+            paymentsMenu.addAction(DebitAction)
+            paymentsMenu.addAction(CreditAction)
+            paymentsMenu.addAction(cancelAction)
+            
+            self.present(paymentsMenu, animated: true, completion: nil)
+        
         }
+        
+        
         paymentsAction.backgroundColor = .gray
         
         return UISwipeActionsConfiguration(actions: [availabilityAction, paymentsAction])
