@@ -113,7 +113,9 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             self.playerArray = []
             for item in snapshot.children {
                 guard let snapshot = item as? DataSnapshot else { continue }
-                guard let player = PlayerFixtureModel(snapshot) else { continue }
+                guard let dictionary = snapshot.value as? Dictionary <String, Any> else { continue }
+
+                guard let player = PlayerFixtureModel(dictionary) else { continue }
                 self.playerArray.insert(player, at: 0)
             }
             DispatchQueue.main.async {
@@ -228,7 +230,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         
         //Add Goal
         let addGoalAction = UIContextualAction(style: .normal, title: "Add Goal") { (action, view, actionPerformed) in
-            FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.id, goalCount: 1)
+            FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.id, goal: 1)
             PlayerModel.postPlayerGoals(playerId: player.id, goal: 1)
             TeamModel.postPlayerGoals(teamId: self.teamId, playerId: player.id, goal: 1)
             self.tempTeamGoalCount += 1
@@ -244,7 +246,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         //Minus Goal
         let minusGoalAction = UIContextualAction(style: .normal, title: "Minus Goal") { (action, view, actionPerformed) in
             if player.goals > 0 {
-                FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.id, goalCount: -1)
+                FixtureModel.postPlayerGoals(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.id, goal: -1)
                 PlayerModel.postPlayerGoals(playerId: player.id, goal: -1)
                 TeamModel.postPlayerGoals(teamId: self.teamId, playerId: player.id, goal: -1)
                 self.tempTeamGoalCount -= 1

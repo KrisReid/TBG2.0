@@ -162,7 +162,7 @@ class FixtureModel {
             guard let fixture = FixtureModel(snapshot) else { return }
             
             for player in fixture.players {
-                guard let playerFixture = PlayerFixtureModelTwo(player.value as! Dictionary<String, Any>) else { return }
+                guard let playerFixture = PlayerFixtureModel(player.value as! Dictionary<String, Any>) else { return }
                 
                 //Adjust all of the players Goals
                 if playerFixture.goals >= 1 {
