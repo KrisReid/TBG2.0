@@ -142,6 +142,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         cell.lblPlayerName.text = player.fullName
         Helper.setImageView(imageView: cell.ivPlayer, url: player.profilePictureUrl!)
         
+        //Player Availability
         switch player.availability {
         case "Yes":
             cell.ivPlayerAvailability.backgroundColor = colours.green
@@ -151,18 +152,27 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             cell.ivPlayerAvailability.backgroundColor = colours.primaryGrey
         }
         
+        //Player motm
         if player.motm {
             cell.ivMotmAward.isHidden = false
         } else {
             cell.ivMotmAward.isHidden = true
         }
         
-        if player.availability == "Yes" {
-            cell.ivMoney.isHidden = false
-        } else {
+        //Player Financials
+        if player.availability != "Yes" {
             cell.ivMoney.isHidden = true
+        } else {
+            if player.debit > player.credit {
+                cell.ivMoney.isHidden = false
+                cell.ivMoney.image = UIImage(named: "money_negative_icon")
+            } else {
+                cell.ivMoney.isHidden = false
+                cell.ivMoney.image = UIImage(named: "money_positive_icon")
+            }
         }
         
+        //Player Goals
         if player.goals > 0 {
             cell.lblGoalScoredCount.isHidden = false
             cell.ivGoalScored.isHidden = false
