@@ -13,7 +13,6 @@ import FirebaseAuth
 import FirebaseStorage
 
 
-
 class PlayerFixtureModel {
 
     var id: String
@@ -23,21 +22,19 @@ class PlayerFixtureModel {
     var goals: Int
     var motm: Bool
 
-    init?(_ snapshot: DataSnapshot) {
-        guard let value = snapshot.value as? [String: Any] else { return nil }
+    init?(_ snapshot: Dictionary<String, Any>) {
         
-        self.id = value["id"] as? String ?? ""
-        self.fullName = value["fullName"] as? String ?? ""
-        self.availability = value["availability"] as? String ?? ""
-        self.goals = value["goals"] as? Int ?? 0
-        self.motm = value["motm"] as? Bool ?? false
-        
-        if let profilePicture = value["profilePictureUrl"] as? String {
+        self.id = snapshot["id"] as? String ?? ""
+        self.fullName = snapshot["fullName"] as? String ?? ""
+        self.availability = snapshot["availability"] as? String ?? ""
+        self.goals = snapshot["goals"] as? Int ?? 0
+        self.motm = snapshot["motm"] as? Bool ?? false
+
+        if let profilePicture = snapshot["profilePictureUrl"] as? String {
            self.profilePictureUrl = URL(string: profilePicture)
         }
     }
 }
-
 
 class PlayerModel {
     
@@ -172,15 +169,10 @@ class PlayerModel {
         }
     }
     
-    class func postPlayerGoals(playerId: String, goal: Bool) {
+    class func postPlayerGoals(playerId: String, goal: Int) {
         let playerRef = collection.child(playerId).child("goalTotal")
         playerRef.observeSingleEvent(of: .value) { (snapshot) in
-            var updatedGoalValue = snapshot.value as! Int
-            if goal {
-                updatedGoalValue += 1
-            } else {
-                updatedGoalValue -= 1
-            }
+            let updatedGoalValue = Helper.goalCalculation(currentGoalCount: snapshot.value as! Int, goal: goal)
             playerRef.setValue(updatedGoalValue)
         }
     }

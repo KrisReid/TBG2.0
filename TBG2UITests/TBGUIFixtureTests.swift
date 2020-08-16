@@ -132,9 +132,9 @@ class TBGUIFixtureTests: XCTestCase {
             XCTAssertEqual(tablesQuery.cells.staticTexts[AccessabilityIdentifier.FixtureDetailGoalCount.rawValue].exists, true)
             
             //Back out and delete the fixture
-//            app.navigationBars["TBG2.FixtureInformationView"].buttons["Back"].tap()
-//            XCUIApplication().tables.cells.containing(.staticText, identifier:"Test Opposition 4").element.swipeLeft()
-//            XCUIApplication().tables.buttons["Delete"].tap()
+            app.navigationBars["TBG2.FixtureInformationView"].buttons["Back"].tap()
+            XCUIApplication().tables.cells.containing(.staticText, identifier:"Test Opposition 4").element.swipeLeft()
+            XCUIApplication().tables.buttons["Delete"].tap()
     }
 
 }

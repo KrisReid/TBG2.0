@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class PlayerDetailViewController: UIViewController, UIScrollViewDelegate {
     
@@ -25,6 +26,8 @@ class PlayerDetailViewController: UIViewController, UIScrollViewDelegate {
     var playerGamesTotal: Int?
     var playerMotmTotal: Int?
     var playerGoalTotal: Int?
+    var playerId: String?
+    var teamId: String?
     
     var slides:[Slide] = [];
     
@@ -75,6 +78,8 @@ class PlayerDetailViewController: UIViewController, UIScrollViewDelegate {
         slide1.lblGamesPlayedResult.text = String(playerGamesTotal!)
         slide1.lblMOTMResult.text = String(playerMotmTotal!)
         slide1.lblGoalsScoredResult.text = String(playerGoalTotal!)
+        
+        
         
 //        let slide2:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
 //        slide2.lblTitle.text = "2018 / 2019"
