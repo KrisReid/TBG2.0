@@ -96,12 +96,10 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
                         break
                     }
                 }
-                
-                //Get a default player (CHANGE THIS TO JUST BE LOCAL)
-                
+
+                //Default player code
                 let DefaultPlayerRef = PlayerModel.getDefaultPlayer()
                 DefaultPlayerRef.observeSingleEvent(of: .value) { (snapshot) in
-                    
                     guard let defaultPlayer = PlayerModel(snapshot) else {return}
                     
                     //Load a default player into any empty array and reload

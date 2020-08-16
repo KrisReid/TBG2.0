@@ -13,31 +13,6 @@ import FirebaseAuth
 import FirebaseStorage
 
 
-
-//class PlayerFixtureModel {
-//
-//    var id: String
-//    var fullName: String
-//    var profilePictureUrl: URL?
-//    var availability: String
-//    var goals: Int
-//    var motm: Bool
-//
-//    init?(_ snapshot: DataSnapshot) {
-//        guard let value = snapshot.value as? [String: Any] else { return nil }
-//
-//        self.id = value["id"] as? String ?? ""
-//        self.fullName = value["fullName"] as? String ?? ""
-//        self.availability = value["availability"] as? String ?? ""
-//        self.goals = value["goals"] as? Int ?? 0
-//        self.motm = value["motm"] as? Bool ?? false
-//
-//        if let profilePicture = value["profilePictureUrl"] as? String {
-//           self.profilePictureUrl = URL(string: profilePicture)
-//        }
-//    }
-//}
-
 class PlayerFixtureModel {
 
     var id: String
