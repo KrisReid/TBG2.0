@@ -49,15 +49,13 @@ class PlayerFixtureModel {
 
     init?(_ snapshot: Dictionary<String, Any>) {
         
-        guard let value = snapshot as? [String: Any] else { return nil }
+        self.id = snapshot["id"] as? String ?? ""
+        self.fullName = snapshot["fullName"] as? String ?? ""
+        self.availability = snapshot["availability"] as? String ?? ""
+        self.goals = snapshot["goals"] as? Int ?? 0
+        self.motm = snapshot["motm"] as? Bool ?? false
 
-        self.id = value["id"] as? String ?? ""
-        self.fullName = value["fullName"] as? String ?? ""
-        self.availability = value["availability"] as? String ?? ""
-        self.goals = value["goals"] as? Int ?? 0
-        self.motm = value["motm"] as? Bool ?? false
-
-        if let profilePicture = value["profilePictureUrl"] as? String {
+        if let profilePicture = snapshot["profilePictureUrl"] as? String {
            self.profilePictureUrl = URL(string: profilePicture)
         }
     }
