@@ -157,6 +157,12 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             cell.ivMotmAward.isHidden = true
         }
         
+        if player.availability == "Yes" {
+            cell.ivMoney.isHidden = false
+        } else {
+            cell.ivMoney.isHidden = true
+        }
+        
         if player.goals > 0 {
             cell.lblGoalScoredCount.isHidden = false
             cell.ivGoalScored.isHidden = false

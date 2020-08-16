@@ -81,6 +81,8 @@ class FixtureModel {
                     let playerFixtureData : [String:Any] =
                     [
                         "availability": availability,
+                        "credit": 0,
+                        "debit": 0,
                         "goals" : 0,
                         "motm" : false,
                         "id" : player.id,
