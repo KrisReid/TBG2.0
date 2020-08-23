@@ -371,11 +371,15 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             self.present(paymentsMenu, animated: true, completion: nil)
         
         }
-        
-        
         paymentsAction.backgroundColor = .gray
         
-        return UISwipeActionsConfiguration(actions: [availabilityAction, paymentsAction])
+        //Don't display payment option if they aren't playing
+        var swipeAction = UISwipeActionsConfiguration(actions: [availabilityAction])
+        if player.availability == "Yes" {
+            swipeAction = UISwipeActionsConfiguration(actions: [availabilityAction, paymentsAction])
+        }
+        swipeAction.performsFirstActionWithFullSwipe = false
+        return swipeAction
     }
 
     func createPickerView() {

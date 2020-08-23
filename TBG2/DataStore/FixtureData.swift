@@ -147,13 +147,27 @@ class FixtureModel {
     }
     
     class func postPlayerAvailability(teamId: String, fixtureId: String, playerId: String, availability: Bool) {
-        let availabilityRef = collection.child(teamId).child(fixtureId).child("players").child(playerId).child("availability")
+        
+        let playerRef = collection.child(teamId).child(fixtureId).child("players").child(playerId)
         
         if availability {
-            availabilityRef.setValue("Yes")
+            playerRef.child("availability").setValue("Yes")
+            //Update the players debit for the game
+            postPlayerDebit(teamId: teamId, fixtureId: fixtureId, playerId: playerId, debitValue: 4)
         } else {
-            availabilityRef.setValue("No")
+            playerRef.child("availability").setValue("No")
+            playerRef.child("debit").observeSingleEvent(of: .value) { (snapshot) in
+                let debit = snapshot.value as! Int
+                if debit != 0 {
+                    //Update the players debit for the game
+                    postPlayerDebit(teamId: teamId, fixtureId: fixtureId, playerId: playerId, debitValue: 0)
+                }
+            }
         }
+    }
+    
+    class private func postPlayerDebit(teamId: String, fixtureId: String, playerId: String, debitValue: Int) {
+        collection.child(teamId).child(fixtureId).child("players").child(playerId).child("debit").setValue(debitValue)
     }
     
     
