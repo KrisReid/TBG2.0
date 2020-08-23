@@ -21,8 +21,8 @@ class PlayerFixtureModel {
     var availability: String
     var goals: Int
     var motm: Bool
-    var debit: Int
-    var credit: Int
+    var debit: Double
+    var credit: Double
 
     init?(_ snapshot: Dictionary<String, Any>) {
         
@@ -31,8 +31,8 @@ class PlayerFixtureModel {
         self.availability = snapshot["availability"] as? String ?? ""
         self.goals = snapshot["goals"] as? Int ?? 0
         self.motm = snapshot["motm"] as? Bool ?? false
-        self.debit = snapshot["debit"] as? Int ?? 0
-        self.credit = snapshot["credit"] as? Int ?? 0
+        self.debit = snapshot["debit"] as? Double ?? 0.0
+        self.credit = snapshot["credit"] as? Double ?? 0.0
 
         if let profilePicture = snapshot["profilePictureUrl"] as? String {
            self.profilePictureUrl = URL(string: profilePicture)

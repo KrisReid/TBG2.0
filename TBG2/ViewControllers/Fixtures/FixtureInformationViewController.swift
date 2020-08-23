@@ -163,6 +163,8 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         if player.availability != "Yes" {
             cell.ivMoney.isHidden = true
         } else {
+            print("9999999999")
+            print(player.debit)
             if player.debit > player.credit {
                 cell.ivMoney.isHidden = false
                 cell.ivMoney.image = UIImage(named: "money_negative_icon")
@@ -338,23 +340,32 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             
             let paymentsMenu = UIAlertController(title: nil, message: "Payments", preferredStyle: .actionSheet)
             
+            //Debit
             let DebitAction = UIAlertAction(title: "Debit", style: .default) { (action) in
                 
-                //Another Alert with Text
+                //Add Alert
                 let alert = UIAlertController(title: "How much do they owe?", message: nil, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
+                let storedDebitValue = Helper.currencyFormatter(DoubleValue: player.debit)
+                
                 alert.addTextField(configurationHandler: { textField in
-                    textField.placeholder = "3.50"
+                    textField.text = storedDebitValue
+                    textField.placeholder = "£\(storedDebitValue)"
                     textField.keyboardType = .decimalPad
                 })
-
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
                     actionPerformed(true)
+                    let debitValue = alert?.textFields![0]
+                    FixtureModel.postPlayerDebit(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.id, debitValue: Double(debitValue!.text ?? "0")!)
+                    
                 }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                
                 self.present(alert, animated: true)
                 
             }
+            //Credit
             let CreditAction = UIAlertAction(title: "Credit", style: .default) { (action) in
                 print("Making a Credit")
                 

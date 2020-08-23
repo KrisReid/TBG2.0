@@ -166,7 +166,8 @@ class FixtureModel {
         }
     }
     
-    class private func postPlayerDebit(teamId: String, fixtureId: String, playerId: String, debitValue: Int) {
+    class func postPlayerDebit(teamId: String, fixtureId: String, playerId: String, debitValue: Double) {
+        print("333333333333: \(debitValue)")
         collection.child(teamId).child(fixtureId).child("players").child(playerId).child("debit").setValue(debitValue)
     }
     
