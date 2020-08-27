@@ -162,15 +162,18 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         //Player Financials
         if player.availability != "Yes" {
             cell.ivMoney.isHidden = true
+            cell.lblMoney.isHidden = true
         } else {
-            print("9999999999")
-            print(player.debit)
+            cell.ivMoney.isHidden = false
+            cell.lblMoney.isHidden = false
             if player.debit > player.credit {
-                cell.ivMoney.isHidden = false
                 cell.ivMoney.image = UIImage(named: "money_negative_icon")
+                cell.lblMoney.text = Helper.currencyFormatter(DoubleValue: player.debit - player.credit)
+                cell.lblMoney.textColor = colours.red
             } else {
-                cell.ivMoney.isHidden = false
                 cell.ivMoney.image = UIImage(named: "money_positive_icon")
+                cell.lblMoney.text = Helper.currencyFormatter(DoubleValue: player.credit - player.debit)
+                cell.lblMoney.textColor = colours.secondaryBlue
             }
         }
         
@@ -367,10 +370,30 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             }
             //Credit
             let CreditAction = UIAlertAction(title: "Credit", style: .default) { (action) in
-                print("Making a Credit")
                 
-                actionPerformed(true)
+                //Add Alert
+                let alert = UIAlertController(title: "How much have they paid?", message: nil, preferredStyle: .alert)
+
+                let storedCreditValue = Helper.currencyFormatter(DoubleValue: player.credit)
+                
+                alert.addTextField(configurationHandler: { textField in
+                    textField.placeholder = "£\(storedCreditValue)"
+                    textField.keyboardType = .decimalPad
+                })
+                
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+                    actionPerformed(true)
+                    let creditValue = alert?.textFields![0]
+                    
+                    FixtureModel.postPlayerCredit(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.id, creditValue: Double(creditValue!.text ?? "0")!)
+                    
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                
+                self.present(alert, animated: true)
             }
+            
+            
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
                 actionPerformed(true)
             }

@@ -38,8 +38,39 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLM-rg-qQc">
+                        <rect key="frame" x="246" y="25" width="10" height="10"/>
+                        <accessibility key="accessibilityConfiguration" identifier="FixturePlayerGoalCount"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                        <color key="textColor" red="0.38431372549999998" green="0.74509803919999995" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="motm_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Sta-IY-G4I">
+                        <rect key="frame" x="261" y="15.5" width="12" height="19"/>
+                        <accessibility key="accessibilityConfiguration" identifier="Motm" label="Motm"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="12" id="4fK-3z-gTU"/>
+                            <constraint firstAttribute="height" constant="19" id="VZM-WV-d7N"/>
+                        </constraints>
+                    </imageView>
+                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="money_negative_icon" translatesAutoresizingMaskIntoConstraints="NO" id="UUV-Ca-JgU">
+                        <rect key="frame" x="284" y="15.5" width="12" height="19"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="12" id="0Ut-0x-F8h"/>
+                            <constraint firstAttribute="height" constant="19" id="iuW-1j-Mn2"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.44" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPl-qy-5ye">
+                        <rect key="frame" x="298" y="25" width="19" height="10"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="19" id="tMl-4w-Ib0"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                        <color key="textColor" red="0.73147351228738133" green="0.32794025276280658" blue="0.35717232619659811" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="football_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Zd4-ag-9d9">
-                        <rect key="frame" x="281" y="16.5" width="17" height="17"/>
+                        <rect key="frame" x="228" y="16.5" width="17" height="17"/>
                         <accessibility key="accessibilityConfiguration" identifier="GoalIcon" label="GoalIcon">
                             <bool key="isElement" value="NO"/>
                         </accessibility>
@@ -48,48 +79,29 @@
                             <constraint firstAttribute="width" constant="17" id="qca-3Y-rGX"/>
                         </constraints>
                     </imageView>
-                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLM-rg-qQc">
-                        <rect key="frame" x="300" y="25" width="10" height="10"/>
-                        <accessibility key="accessibilityConfiguration" identifier="FixturePlayerGoalCount"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="8"/>
-                        <color key="textColor" red="0.38431372549999998" green="0.74509803919999995" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="motm_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Sta-IY-G4I">
-                        <rect key="frame" x="260" y="15.5" width="12" height="19"/>
-                        <accessibility key="accessibilityConfiguration" identifier="Motm" label="Motm"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="12" id="4fK-3z-gTU"/>
-                            <constraint firstAttribute="height" constant="19" id="VZM-WV-d7N"/>
-                        </constraints>
-                    </imageView>
-                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="money_negative_icon" translatesAutoresizingMaskIntoConstraints="NO" id="UUV-Ca-JgU">
-                        <rect key="frame" x="240" y="15.5" width="12" height="19"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="12" id="0Ut-0x-F8h"/>
-                            <constraint firstAttribute="height" constant="19" id="iuW-1j-Mn2"/>
-                        </constraints>
-                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Sta-IY-G4I" firstAttribute="leading" secondItem="UUV-Ca-JgU" secondAttribute="trailing" constant="8" symbolic="YES" id="25i-p0-iYg"/>
                     <constraint firstItem="rOE-BW-Rn4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="17" id="B3n-4o-3EX"/>
                     <constraint firstItem="auW-Ij-KCv" firstAttribute="trailing" secondItem="uah-eb-9x1" secondAttribute="trailing" id="FOO-MY-L6p"/>
                     <constraint firstItem="uah-eb-9x1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="Hgo-RZ-PR9"/>
+                    <constraint firstItem="Zd4-ag-9d9" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="JNf-Yn-yYI"/>
                     <constraint firstAttribute="bottom" secondItem="rOE-BW-Rn4" secondAttribute="bottom" constant="16" id="NPv-QQ-q3l"/>
-                    <constraint firstItem="UUV-Ca-JgU" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="PNu-Fm-QKP"/>
-                    <constraint firstItem="Zd4-ag-9d9" firstAttribute="leading" secondItem="Sta-IY-G4I" secondAttribute="trailing" constant="9" id="QMk-dO-KlO"/>
-                    <constraint firstItem="wLM-rg-qQc" firstAttribute="leading" secondItem="Zd4-ag-9d9" secondAttribute="trailing" constant="2" id="VNo-Db-QcG"/>
+                    <constraint firstAttribute="trailing" secondItem="jPl-qy-5ye" secondAttribute="trailing" constant="3" id="ORz-Ld-fhG"/>
                     <constraint firstItem="uah-eb-9x1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="VUr-va-mam"/>
+                    <constraint firstItem="Sta-IY-G4I" firstAttribute="leading" secondItem="wLM-rg-qQc" secondAttribute="trailing" constant="5" id="d5d-0X-FMl"/>
+                    <constraint firstItem="Zd4-ag-9d9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rOE-BW-Rn4" secondAttribute="trailing" constant="25" id="eJj-cf-Qay"/>
                     <constraint firstItem="auW-Ij-KCv" firstAttribute="bottom" secondItem="uah-eb-9x1" secondAttribute="bottom" id="efE-8e-pm4"/>
-                    <constraint firstItem="Sta-IY-G4I" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fZN-QV-vCe"/>
-                    <constraint firstItem="Zd4-ag-9d9" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fd8-WA-M2x"/>
-                    <constraint firstItem="UUV-Ca-JgU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rOE-BW-Rn4" secondAttribute="trailing" constant="15" id="g7l-0L-lR1"/>
                     <constraint firstAttribute="bottom" secondItem="wLM-rg-qQc" secondAttribute="bottom" constant="15" id="k5V-Q8-zs5"/>
+                    <constraint firstItem="jPl-qy-5ye" firstAttribute="leading" secondItem="UUV-Ca-JgU" secondAttribute="trailing" constant="2" id="lha-sh-NI9"/>
+                    <constraint firstItem="jPl-qy-5ye" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="25" id="nww-HF-EuQ"/>
+                    <constraint firstItem="UUV-Ca-JgU" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ovA-Ig-yCD"/>
                     <constraint firstItem="wLM-rg-qQc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="25" id="pCS-CY-0sB"/>
+                    <constraint firstItem="wLM-rg-qQc" firstAttribute="leading" secondItem="Zd4-ag-9d9" secondAttribute="trailing" constant="1" id="r1k-OM-m7R"/>
                     <constraint firstAttribute="bottom" secondItem="uah-eb-9x1" secondAttribute="bottom" constant="7" id="r6r-dW-QhA"/>
+                    <constraint firstItem="Sta-IY-G4I" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="sQx-Jq-lM0"/>
+                    <constraint firstItem="UUV-Ca-JgU" firstAttribute="leading" secondItem="Sta-IY-G4I" secondAttribute="trailing" constant="11" id="u5H-Ka-s16"/>
+                    <constraint firstAttribute="bottom" secondItem="jPl-qy-5ye" secondAttribute="bottom" constant="15" id="uh2-kF-k3L"/>
                     <constraint firstItem="rOE-BW-Rn4" firstAttribute="leading" secondItem="uah-eb-9x1" secondAttribute="trailing" constant="8" id="yos-QR-DOH"/>
-                    <constraint firstAttribute="trailing" secondItem="wLM-rg-qQc" secondAttribute="trailing" constant="10" id="zsR-Mn-CrW"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -100,6 +112,7 @@
                 <outlet property="ivPlayer" destination="uah-eb-9x1" id="LL0-6G-joV"/>
                 <outlet property="ivPlayerAvailability" destination="auW-Ij-KCv" id="8Mo-ro-LFF"/>
                 <outlet property="lblGoalScoredCount" destination="wLM-rg-qQc" id="8Br-8d-dPq"/>
+                <outlet property="lblMoney" destination="jPl-qy-5ye" id="J5a-SQ-ATg"/>
                 <outlet property="lblPlayerName" destination="rOE-BW-Rn4" id="0dq-kK-3EU"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="81.696428571428569"/>

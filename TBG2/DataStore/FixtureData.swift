@@ -163,12 +163,23 @@ class FixtureModel {
                     postPlayerDebit(teamId: teamId, fixtureId: fixtureId, playerId: playerId, debitValue: 0)
                 }
             }
+            playerRef.child("credit").observeSingleEvent(of: .value) { (snapshot) in
+                let credit = snapshot.value as! Int
+                if credit != 0 {
+                    //Update the players credit for the game
+                    postPlayerCredit(teamId: teamId, fixtureId: fixtureId, playerId: playerId, creditValue: 0)
+                }
+            }
+
         }
     }
     
     class func postPlayerDebit(teamId: String, fixtureId: String, playerId: String, debitValue: Double) {
-        print("333333333333: \(debitValue)")
         collection.child(teamId).child(fixtureId).child("players").child(playerId).child("debit").setValue(debitValue)
+    }
+    
+    class func postPlayerCredit(teamId: String, fixtureId: String, playerId: String, creditValue: Double) {
+        collection.child(teamId).child(fixtureId).child("players").child(playerId).child("credit").setValue(creditValue)
     }
     
     
