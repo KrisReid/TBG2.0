@@ -77,12 +77,12 @@ class FixtureModel {
                 guard let player = PlayerModel(snapshot) else { return }
                 
                 //Internal function to add a player
-                func playerFixtureData (availability: String) -> Dictionary<String, Any> {
+                func playerFixtureData (availability: String, debit: Double) -> Dictionary<String, Any> {
                     let playerFixtureData : [String:Any] =
                     [
                         "availability": availability,
                         "credit": 0,
-                        "debit": 0,
+                        "debit": debit,
                         "goals" : 0,
                         "motm" : false,
                         "id" : player.id,
@@ -93,7 +93,7 @@ class FixtureModel {
                 }
                 
                 //Default value of setting the players data
-                let data = playerFixtureData(availability: "Unknown")
+                let data = playerFixtureData(availability: "Unknown", debit: 0.0)
                 let playerData : [String:Any] = [id:data]
                 let playerRef = collection.child(teamId).child(fixtureId).child("players")
                 playerRef.updateChildValues(playerData)
@@ -101,7 +101,7 @@ class FixtureModel {
                 //Set with the manager or assistant as available
                 if id == managerId && managerAvailability == true || id == assistantManagerId && assistantManagerAvailability == true {
 
-                    let data = playerFixtureData(availability: "Yes")
+                    let data = playerFixtureData(availability: "Yes", debit: 4.0)
                     let managerData : [String:Any] = [id:data]
                     let managerRef = collection.child(teamId).child(fixtureId).child("players")
                     managerRef.updateChildValues(managerData)
@@ -110,7 +110,7 @@ class FixtureModel {
                 //Set with the manager or assistant as not available
                 else if id == managerId && managerAvailability == false || id == assistantManagerId && assistantManagerAvailability == false {
                     
-                    let data = playerFixtureData(availability: "No")
+                    let data = playerFixtureData(availability: "No", debit: 0.0)
                     let managerData : [String:Any] = [id:data]
                     let managerRef = collection.child(teamId).child(fixtureId).child("players")
                     managerRef.updateChildValues(managerData)
