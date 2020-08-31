@@ -77,10 +77,12 @@ class FixtureModel {
                 guard let player = PlayerModel(snapshot) else { return }
                 
                 //Internal function to add a player
-                func playerFixtureData (availability: String) -> Dictionary<String, Any> {
+                func playerFixtureData (availability: String, debit: Double) -> Dictionary<String, Any> {
                     let playerFixtureData : [String:Any] =
                     [
                         "availability": availability,
+                        "credit": 0,
+                        "debit": debit,
                         "goals" : 0,
                         "motm" : false,
                         "id" : player.id,
@@ -91,7 +93,7 @@ class FixtureModel {
                 }
                 
                 //Default value of setting the players data
-                let data = playerFixtureData(availability: "Unknown")
+                let data = playerFixtureData(availability: "Unknown", debit: 0.0)
                 let playerData : [String:Any] = [id:data]
                 let playerRef = collection.child(teamId).child(fixtureId).child("players")
                 playerRef.updateChildValues(playerData)
@@ -99,7 +101,7 @@ class FixtureModel {
                 //Set with the manager or assistant as available
                 if id == managerId && managerAvailability == true || id == assistantManagerId && assistantManagerAvailability == true {
 
-                    let data = playerFixtureData(availability: "Yes")
+                    let data = playerFixtureData(availability: "Yes", debit: 4.0)
                     let managerData : [String:Any] = [id:data]
                     let managerRef = collection.child(teamId).child(fixtureId).child("players")
                     managerRef.updateChildValues(managerData)
@@ -108,7 +110,7 @@ class FixtureModel {
                 //Set with the manager or assistant as not available
                 else if id == managerId && managerAvailability == false || id == assistantManagerId && assistantManagerAvailability == false {
                     
-                    let data = playerFixtureData(availability: "No")
+                    let data = playerFixtureData(availability: "No", debit: 0.0)
                     let managerData : [String:Any] = [id:data]
                     let managerRef = collection.child(teamId).child(fixtureId).child("players")
                     managerRef.updateChildValues(managerData)
@@ -145,13 +147,39 @@ class FixtureModel {
     }
     
     class func postPlayerAvailability(teamId: String, fixtureId: String, playerId: String, availability: Bool) {
-        let availabilityRef = collection.child(teamId).child(fixtureId).child("players").child(playerId).child("availability")
+        
+        let playerRef = collection.child(teamId).child(fixtureId).child("players").child(playerId)
         
         if availability {
-            availabilityRef.setValue("Yes")
+            playerRef.child("availability").setValue("Yes")
+            //Update the players debit for the game
+            postPlayerDebit(teamId: teamId, fixtureId: fixtureId, playerId: playerId, debitValue: 4)
         } else {
-            availabilityRef.setValue("No")
+            playerRef.child("availability").setValue("No")
+            playerRef.child("debit").observeSingleEvent(of: .value) { (snapshot) in
+                let debit = snapshot.value as! Int
+                if debit != 0 {
+                    //Update the players debit for the game
+                    postPlayerDebit(teamId: teamId, fixtureId: fixtureId, playerId: playerId, debitValue: 0)
+                }
+            }
+            playerRef.child("credit").observeSingleEvent(of: .value) { (snapshot) in
+                let credit = snapshot.value as! Int
+                if credit != 0 {
+                    //Update the players credit for the game
+                    postPlayerCredit(teamId: teamId, fixtureId: fixtureId, playerId: playerId, creditValue: 0)
+                }
+            }
+
         }
+    }
+    
+    class func postPlayerDebit(teamId: String, fixtureId: String, playerId: String, debitValue: Double) {
+        collection.child(teamId).child(fixtureId).child("players").child(playerId).child("debit").setValue(debitValue)
+    }
+    
+    class func postPlayerCredit(teamId: String, fixtureId: String, playerId: String, creditValue: Double) {
+        collection.child(teamId).child(fixtureId).child("players").child(playerId).child("credit").setValue(creditValue)
     }
     
     

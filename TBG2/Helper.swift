@@ -188,6 +188,16 @@ class Helper {
         return fixtureDate
     }
     
+    class func currencyFormatter(DoubleValue: Double) -> String {
+        let currencyFormatter = NumberFormatter()
+//        currencyFormatter.usesGroupingSeparator = true
+//        currencyFormatter.numberStyle = .currency
+//        currencyFormatter.locale = Locale.current
+        currencyFormatter.minimumFractionDigits = 2
+        
+        guard let formattedCurrency = currencyFormatter.string(from: NSNumber(value: DoubleValue)) else { return "Failed to return currency" }
+        return formattedCurrency
+    }
     
     class func pinValidation(textField: UITextField, button: UIButton, enabledUnderlineColour: CGColor, enabledeBtnColour: UIColor, disableRequired: Bool) {
         let colours = Colours()

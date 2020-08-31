@@ -13,6 +13,8 @@ class FixtureDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var ivPlayer: UIImageView!
     @IBOutlet weak var ivPlayerAvailability: UIImageView!
     @IBOutlet weak var lblPlayerName: UILabel!
+    @IBOutlet weak var ivMoney: UIImageView!
+    @IBOutlet weak var lblMoney: UILabel!
     @IBOutlet weak var ivMotmAward: UIImageView!
     @IBOutlet weak var ivGoalScored: UIImageView!
     @IBOutlet weak var lblGoalScoredCount: UILabel!

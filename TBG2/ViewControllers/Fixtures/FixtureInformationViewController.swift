@@ -142,6 +142,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         cell.lblPlayerName.text = player.fullName
         Helper.setImageView(imageView: cell.ivPlayer, url: player.profilePictureUrl!)
         
+        //Player Availability
         switch player.availability {
         case "Yes":
             cell.ivPlayerAvailability.backgroundColor = colours.green
@@ -151,12 +152,32 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
             cell.ivPlayerAvailability.backgroundColor = colours.primaryGrey
         }
         
+        //Player motm
         if player.motm {
             cell.ivMotmAward.isHidden = false
         } else {
             cell.ivMotmAward.isHidden = true
         }
         
+        //Player Financials
+        if player.availability != "Yes" {
+            cell.ivMoney.isHidden = true
+            cell.lblMoney.isHidden = true
+        } else {
+            cell.ivMoney.isHidden = false
+            cell.lblMoney.isHidden = false
+            if player.debit > player.credit {
+                cell.ivMoney.image = UIImage(named: "money_negative_icon")
+                cell.lblMoney.text = Helper.currencyFormatter(DoubleValue: player.debit - player.credit)
+                cell.lblMoney.textColor = colours.red
+            } else {
+                cell.ivMoney.image = UIImage(named: "money_positive_icon")
+                cell.lblMoney.text = Helper.currencyFormatter(DoubleValue: player.credit - player.debit)
+                cell.lblMoney.textColor = colours.secondaryBlue
+            }
+        }
+        
+        //Player Goals
         if player.goals > 0 {
             cell.lblGoalScoredCount.isHidden = false
             cell.ivGoalScored.isHidden = false
@@ -278,7 +299,7 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         
         let player = self.playerArray[indexPath.row] as! PlayerFixtureModel
     
-        
+        //Availability
         let availabilityAction = UIContextualAction(style: .normal, title: "Availability") {  (action, view, actionPerformed) in
 
             let availableMenu = UIAlertController(title: nil, message: "Availability", preferredStyle: .actionSheet)
@@ -317,12 +338,82 @@ class FixtureInformationViewController: UIViewController, UITableViewDelegate, U
         }
         availabilityAction.backgroundColor = colours.secondaryBlue
         
+        //Payments
         let paymentsAction = UIContextualAction(style: .normal, title: "Payments") { (action, view, actionPerformed) in
-            print("Making Payment?")
+            
+            let paymentsMenu = UIAlertController(title: nil, message: "Payments", preferredStyle: .actionSheet)
+            
+            //Debit
+            let DebitAction = UIAlertAction(title: "Debit", style: .default) { (action) in
+                
+                //Add Alert
+                let alert = UIAlertController(title: "How much do they owe?", message: nil, preferredStyle: .alert)
+
+                let storedDebitValue = Helper.currencyFormatter(DoubleValue: player.debit)
+                
+                alert.addTextField(configurationHandler: { textField in
+                    textField.text = storedDebitValue
+                    textField.placeholder = "£\(storedDebitValue)"
+                    textField.keyboardType = .decimalPad
+                })
+                
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+                    actionPerformed(true)
+                    let debitValue = alert?.textFields![0]
+                    FixtureModel.postPlayerDebit(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.id, debitValue: Double(debitValue!.text ?? "0")!)
+                    
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                
+                self.present(alert, animated: true)
+                
+            }
+            //Credit
+            let CreditAction = UIAlertAction(title: "Credit", style: .default) { (action) in
+                
+                //Add Alert
+                let alert = UIAlertController(title: "How much have they paid?", message: nil, preferredStyle: .alert)
+
+                let storedCreditValue = Helper.currencyFormatter(DoubleValue: player.credit)
+                
+                alert.addTextField(configurationHandler: { textField in
+                    textField.placeholder = "£\(storedCreditValue)"
+                    textField.keyboardType = .decimalPad
+                })
+                
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+                    actionPerformed(true)
+                    let creditValue = alert?.textFields![0]
+                    
+                    FixtureModel.postPlayerCredit(teamId: self.teamId, fixtureId: self.fixtureId, playerId: player.id, creditValue: Double(creditValue!.text ?? "0")!)
+                    
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                
+                self.present(alert, animated: true)
+            }
+            
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+                actionPerformed(true)
+            }
+            
+            paymentsMenu.addAction(DebitAction)
+            paymentsMenu.addAction(CreditAction)
+            paymentsMenu.addAction(cancelAction)
+            
+            self.present(paymentsMenu, animated: true, completion: nil)
+        
         }
         paymentsAction.backgroundColor = .gray
         
-        return UISwipeActionsConfiguration(actions: [availabilityAction, paymentsAction])
+        //Don't display payment option if they aren't playing
+        var swipeAction = UISwipeActionsConfiguration(actions: [availabilityAction])
+        if player.availability == "Yes" {
+            swipeAction = UISwipeActionsConfiguration(actions: [availabilityAction, paymentsAction])
+        }
+        swipeAction.performsFirstActionWithFullSwipe = false
+        return swipeAction
     }
 
     func createPickerView() {
