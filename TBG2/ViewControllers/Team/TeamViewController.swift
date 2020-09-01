@@ -9,7 +9,6 @@
 import UIKit
 import FirebaseDatabase
 import SDWebImage
-import CoreData
 
 class TeamViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -19,11 +18,12 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     var player: PlayerModel?
     var defaultPlayer: PlayerModel?
     
+    var managers: NSMutableArray = []
     var goalkeepers: NSMutableArray = []
     var defenders: NSMutableArray = []
     var midfielders: NSMutableArray = []
     var strikers: NSMutableArray = []
-    let sectionTitles: [String] = ["Goalkeepers","Defenders","Midfielders","Strikers"]
+    let sectionTitles: [String] = ["Managers","Goalkeepers","Defenders","Midfielders","Strikers"]
     var sectionData: [Int: NSMutableArray] = [:]
     var refreshControl = UIRefreshControl()
     
@@ -31,7 +31,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sectionData = [0 : goalkeepers, 1 : defenders, 2 : midfielders, 3 : strikers]
+        sectionData = [0 : managers, 1 : goalkeepers, 2 : defenders, 3 : midfielders, 4 : strikers]
 
         tableview.estimatedRowHeight = CGFloat(60.0)
         tableview.rowHeight = UITableView.automaticDimension
@@ -60,6 +60,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     
     func loadData() {
+        self.managers.removeAllObjects()
         self.goalkeepers.removeAllObjects()
         self.defenders.removeAllObjects()
         self.midfielders.removeAllObjects()
@@ -82,18 +83,22 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
                     
                     guard let snapshot = item as? DataSnapshot else { continue }
                     guard let player = PlayerModel(snapshot) else { continue }
-
-                    switch player.position {
-                    case "Goalkeeper":
-                        strongSelf.goalkeepers.insert(player, at: 0)
-                    case "Defender":
-                        strongSelf.defenders.insert(player, at: 0)
-                    case "Midfielder":
-                        strongSelf.midfielders.insert(player, at: 0)
-                    case "Striker":
-                        strongSelf.strikers.insert(player, at: 0)
-                    default:
-                        break
+                    
+                    if player.manager || player.assistantManager {
+                        strongSelf.managers.insert(player, at: 0)
+                    } else {
+                        switch player.position {
+                        case "Goalkeeper":
+                            strongSelf.goalkeepers.insert(player, at: 0)
+                        case "Defender":
+                            strongSelf.defenders.insert(player, at: 0)
+                        case "Midfielder":
+                            strongSelf.midfielders.insert(player, at: 0)
+                        case "Striker":
+                            strongSelf.strikers.insert(player, at: 0)
+                        default:
+                            break
+                        }
                     }
                 }
 
