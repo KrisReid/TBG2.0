@@ -193,4 +193,11 @@ class PlayerModel {
         }
     }
     
+    class func postPlayersManagerialStatus (playerId: String, managerStatus: Bool, assistantStatus: Bool) {
+        let managerStatusRef = collection.child(playerId).child("manager")
+        managerStatusRef.setValue(managerStatus)
+        let assistantStatusRef = collection.child(playerId).child("assistantManager")
+        assistantStatusRef.setValue(assistantStatus)
+    }
+    
 }

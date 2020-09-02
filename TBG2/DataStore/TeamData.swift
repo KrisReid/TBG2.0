@@ -136,5 +136,12 @@ class TeamModel {
             playerRef.setValue(updatedGameValue)
         }
     }
+    
+    class func postPlayersManagerialStatus (teamId: String, playerId: String, managerStatus: Bool, assistantStatus: Bool) {
+        let managerStatusRef = collection.child(teamId).child("players").child(playerId).child("manager")
+        managerStatusRef.setValue(managerStatus)
+        let assistantStatusRef = collection.child(teamId).child("players").child(playerId).child("assistantManager")
+        assistantStatusRef.setValue(assistantStatus)
+    }
 
 }

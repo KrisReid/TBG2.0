@@ -116,17 +116,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Joo-sh-4uE">
-                                                    <rect key="frame" x="354" y="0.0" width="60" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="9gs-18-ibR"/>
-                                                        <constraint firstAttribute="width" constant="60" id="MbF-I2-63q"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Button" image="increment_icon"/>
-                                                    <connections>
-                                                        <action selector="btnAddRemoveTapped:" destination="xJk-7u-abf" eventType="touchUpInside" id="xko-fC-BJj"/>
-                                                    </connections>
-                                                </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8lt-h2-MNa">
                                                     <rect key="frame" x="20" y="5" width="40" height="40"/>
                                                     <constraints>
@@ -135,19 +124,16 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGM-hn-eP7">
-                                                    <rect key="frame" x="65" y="15" width="250" height="20"/>
+                                                    <rect key="frame" x="65" y="15" width="329" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="Joo-sh-4uE" secondAttribute="trailing" id="0ly-TH-wqc"/>
-                                                <constraint firstAttribute="bottom" secondItem="Joo-sh-4uE" secondAttribute="bottom" id="Cs3-4G-g6L"/>
                                                 <constraint firstItem="hGM-hn-eP7" firstAttribute="leading" secondItem="8lt-h2-MNa" secondAttribute="trailing" constant="5" id="DqI-gS-O8w"/>
                                                 <constraint firstItem="8lt-h2-MNa" firstAttribute="top" secondItem="44Y-tO-6Xe" secondAttribute="top" constant="5" id="GkN-WA-YNj"/>
-                                                <constraint firstItem="Joo-sh-4uE" firstAttribute="top" secondItem="44Y-tO-6Xe" secondAttribute="top" id="PLG-DA-OwU"/>
-                                                <constraint firstItem="Joo-sh-4uE" firstAttribute="leading" relation="lessThanOrEqual" secondItem="hGM-hn-eP7" secondAttribute="trailing" constant="39" id="QAT-eP-M0p"/>
+                                                <constraint firstItem="hGM-hn-eP7" firstAttribute="trailing" secondItem="44Y-tO-6Xe" secondAttribute="trailingMargin" id="Mmm-0s-GaK"/>
                                                 <constraint firstItem="hGM-hn-eP7" firstAttribute="top" secondItem="44Y-tO-6Xe" secondAttribute="topMargin" constant="4" id="S6W-f3-EFS"/>
                                                 <constraint firstAttribute="bottom" secondItem="8lt-h2-MNa" secondAttribute="bottom" constant="5" id="SI5-FV-RFy"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="hGM-hn-eP7" secondAttribute="bottom" constant="4" id="bXp-8E-csT"/>
@@ -155,7 +141,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="btnAddRemove" destination="Joo-sh-4uE" id="qRA-Cz-QBc"/>
                                             <outlet property="ivPlayerImage" destination="8lt-h2-MNa" id="a17-tY-GYI"/>
                                             <outlet property="lblPlayerName" destination="hGM-hn-eP7" id="UXt-ZQ-gMz"/>
                                         </connections>
@@ -211,7 +196,4 @@
             <point key="canvasLocation" x="1446.376811594203" y="350.89285714285711"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="increment_icon" width="22" height="22"/>
-    </resources>
 </document>

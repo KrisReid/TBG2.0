@@ -12,7 +12,6 @@ class ManagersTableViewCell: UITableViewCell {
     
     @IBOutlet weak var ivPlayerImage: UIImageView!
     @IBOutlet weak var lblPlayerName: UILabel!
-    @IBOutlet weak var btnAddRemove: UIButton!
     
     var colours = Colours()
 
