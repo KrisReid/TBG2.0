@@ -30,7 +30,6 @@ class AddFixtureViewController: UIViewController {
     private var timePicker: UIDatePicker?
     
     var colour = Colours()
-    var player: PlayerModel?
     var players: NSMutableArray = []
     var ManagerAvailability = false
     var AssistantAvailability = false
@@ -140,43 +139,35 @@ class AddFixtureViewController: UIViewController {
     }
     
     func loadPlayersData() {
-        let userRef = PlayerModel.getUser()
-        userRef.observe(.value) { [weak self] (snapshot) in
-            guard let strongSelf = self else { return }
-            guard let player = PlayerModel(snapshot) else {return}
-            strongSelf.player = player
             
-            let playerRef = TeamModel.getTeamPlayers(teamId: player.teamId)
-            let playerRefQuery = playerRef.queryOrderedByKey()
-
-            playerRefQuery.observeSingleEvent(of: .value) { (snapshot) in
+        let playerRef = TeamModel.getTeamPlayers(teamId: PlayerModel.user?.teamId ?? "")
+        let playerRefQuery = playerRef.queryOrderedByKey()
+        playerRefQuery.observeSingleEvent(of: .value) { (snapshot) in
+            
+            for item in snapshot.children {
+                guard let snapshot = item as? DataSnapshot else { continue }
+                guard let player = PlayerModel(snapshot) else { continue }
                 
-                guard let strongSelf = self else { return }
-                for item in snapshot.children {
-                    guard let snapshot = item as? DataSnapshot else { continue }
-                    guard let player = PlayerModel(snapshot) else { continue }
-                    
-                    //Load the players keys into an array
-                    strongSelf.players.insert(snapshot.key, at: 0)
-                    
-                    //Load the manager as an optional player for the game
-                    if player.manager {
-                        strongSelf.managerId = player.id
-                        if (player.playerManager) {
-                            strongSelf.vManager.isHidden = false
-                            let image = Helper.ImageUrlConverter(url: player.profilePictureUrl!)
-                            strongSelf.btnManager.setBackgroundImage(image.image, for: .normal)
-                        }
+                //Load the players keys into an array
+                self.players.insert(snapshot.key, at: 0)
+                
+                //Load the manager as an optional player for the game
+                if player.manager {
+                    self.managerId = player.id
+                    if (player.playerManager) {
+                        self.vManager.isHidden = false
+                        let image = Helper.ImageUrlConverter(url: player.profilePictureUrl!)
+                        self.btnManager.setBackgroundImage(image.image, for: .normal)
                     }
-                    
-                    //Load the assistant manager as an optional player for the game
-                    if player.assistantManager {
-                        strongSelf.assistantManagerId = player.id
-                        if (player.playerManager) {
-                            strongSelf.vAssistantManager.isHidden = false
-                            let image = Helper.ImageUrlConverter(url: player.profilePictureUrl!)
-                            strongSelf.btnAssistant.setBackgroundImage(image.image, for: .normal)
-                        }
+                }
+                
+                //Load the assistant manager as an optional player for the game
+                if player.assistantManager {
+                    self.assistantManagerId = player.id
+                    if (player.playerManager) {
+                        self.vAssistantManager.isHidden = false
+                        let image = Helper.ImageUrlConverter(url: player.profilePictureUrl!)
+                        self.btnAssistant.setBackgroundImage(image.image, for: .normal)
                     }
                 }
             }
@@ -189,7 +180,7 @@ class AddFixtureViewController: UIViewController {
         guard let date = tfDate.text else { return }
         guard let time = tfTime.text else { return }
         guard let postcode = tfPostcode.text else { return }
-        guard let teamId = player?.teamId else { return }
+        guard let teamId = PlayerModel.user?.teamId else { return }
         
         if (opposition == "" || date == "" || time == "" || postcode == "") {
             
@@ -205,7 +196,6 @@ class AddFixtureViewController: UIViewController {
 
             self.dismiss(animated: true, completion: nil)
         }
-
     }
     
     //closes the keyboard when you touch white space

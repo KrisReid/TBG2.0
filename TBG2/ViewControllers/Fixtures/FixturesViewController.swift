@@ -14,7 +14,6 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableview: UITableView!
     
     var colours = Colours()
-    var player: PlayerModel?
     var team: TeamModel?
     var fixtures: NSMutableArray = []
     let today = Date()
@@ -52,42 +51,32 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func loadData() {
-        //Get the user & player data
-        let userRef = PlayerModel.getUser()
-        userRef.observeSingleEvent(of: .value) { [weak self] (snapshot) in
-            guard let strongSelf = self else { return }
-            guard let player = PlayerModel(snapshot) else {return}
-            strongSelf.player = player
-            
-            //Get the team data
-            let teamRef = TeamModel.collection.child(strongSelf.player?.teamId ?? "")
-            teamRef.observeSingleEvent(of: .value) { (snapshot) in
-                guard let team = TeamModel (snapshot) else { return }
-                strongSelf.team = team
+        //Get the team data
+        let teamRef = TeamModel.collection.child(PlayerModel.user?.teamId ?? "")
+        teamRef.observeSingleEvent(of: .value) { (snapshot) in
+            guard let team = TeamModel (snapshot) else { return }
+            self.team = team
+        }
+        
+        //Get the fixture data
+        let fixtureRef = FixtureModel.collection.child(PlayerModel.user?.teamId ?? "")
+        let fixtureRefQuery = fixtureRef.queryOrderedByKey()
+
+        fixtureRefQuery.observe(.value) { (snapshot) in
+            self.fixtures.removeAllObjects()
+
+            for item in snapshot.children {
+                guard let snapshot = item as? DataSnapshot else { continue }
+                guard let fixture = FixtureModel(snapshot) else { continue }
+                self.fixtures.insert(fixture, at: 0)
             }
-            
-            //Get the fixture data
-            let fixtureRef = FixtureModel.collection.child(strongSelf.player?.teamId ?? "")
-            let fixtureRefQuery = fixtureRef.queryOrderedByKey()
-
-            fixtureRefQuery.observe(.value) { (snapshot) in
-                strongSelf.fixtures.removeAllObjects()
-                guard let strongSelf = self else { return }
-
-                for item in snapshot.children {
-                    guard let snapshot = item as? DataSnapshot else { continue }
-                    guard let fixture = FixtureModel(snapshot) else { continue }
-                    strongSelf.fixtures.insert(fixture, at: 0)
-                }
-                DispatchQueue.main.async {
-                    strongSelf.tableview.reloadData()
-                    strongSelf.refreshControl.endRefreshing()
-                }
+            DispatchQueue.main.async {
+                self.tableview.reloadData()
+                self.refreshControl.endRefreshing()
             }
         }
     }
 
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fixtures.count
     }
@@ -152,8 +141,7 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
-            let user = player!
-            let teamId = user.teamId
+            let teamId = PlayerModel.user?.teamId ?? ""
 
             let fixture = fixtures[indexPath.row] as! FixtureModel
             let fixtureId = fixture.fixtureId

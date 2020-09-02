@@ -35,20 +35,16 @@ class Helper {
 
         let teamVC = teamStoryboard.instantiateViewController(withIdentifier: "Team") as! TeamViewController
         let fixturesVC = fixturesStoryboard.instantiateViewController(withIdentifier: "Fixtures") as! FixturesViewController
-
         let settingsVC = settingsStoryboard.instantiateViewController(withIdentifier: "Settings") as! SettingsViewController
 
 
         let vcData: [(UIViewController, UIImage, UIImage)] = [
-
             (teamVC, UIImage(named: "team_tab_icon")!, UIImage(named: "team_selected_tab_icon")!),
             (fixturesVC, UIImage(named: "fixtures_tab_icon")!, UIImage(named: "fixtures_selected_tab_icon")!),
             (settingsVC, UIImage(named: "settings_tab_icon")!, UIImage(named: "settings_selected_tab_icon")!)
-
         ]
 
         let vcs = vcData.map { (vc, defaultImage, selectedImage) -> UINavigationController in
-
             let nav = UINavigationController(rootViewController: vc)
             nav.tabBarItem.image = defaultImage
             nav.tabBarItem.selectedImage = selectedImage

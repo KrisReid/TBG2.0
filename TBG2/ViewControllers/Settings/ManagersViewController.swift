@@ -34,31 +34,23 @@ class ManagersViewController: UIViewController, UITableViewDelegate, UITableView
         self.players.removeAllObjects()
         
         //Get the user & player data
-        let userRef = PlayerModel.getUser()
-        userRef.observeSingleEvent(of: .value) { [weak self] (snapshot) in
-            guard let strongSelf = self else { return }
-            guard let player = PlayerModel(snapshot) else {return}
-            strongSelf.player = player
-                
-            let playersRef = TeamModel.collection.child(strongSelf.player?.teamId ?? "").child("players")
-            let playerRefQuery = playersRef.queryOrderedByKey()
+        let playersRef = TeamModel.collection.child(PlayerModel.user!.teamId).child("players")
+        let playerRefQuery = playersRef.queryOrderedByKey()
+        playerRefQuery.observe(.value) { [weak self] (snapshot) in
             
-            playerRefQuery.observe(.value) { [weak self] (snapshot) in
+            guard let strongSelf = self else { return }
+            for item in snapshot.children {
                 
-                guard let strongSelf = self else { return }
-                for item in snapshot.children {
-                    
-                    guard let snapshot = item as? DataSnapshot else { continue }
-                    guard let player = PlayerModel(snapshot) else { continue }
-                    
-                    if player.manager || player.assistantManager {
-                        strongSelf.managers.insert(player, at: 0)
-                    } else {
-                        strongSelf.players.insert(player, at: 0)
-                    }
-                    DispatchQueue.main.async {
-                        strongSelf.tableview.reloadData()
-                    }
+                guard let snapshot = item as? DataSnapshot else { continue }
+                guard let player = PlayerModel(snapshot) else { continue }
+                
+                if player.manager || player.assistantManager {
+                    strongSelf.managers.insert(player, at: 0)
+                } else {
+                    strongSelf.players.insert(player, at: 0)
+                }
+                DispatchQueue.main.async {
+                    strongSelf.tableview.reloadData()
                 }
             }
         }
