@@ -69,8 +69,5 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 print("Invalid Response")
         }
     }
-    
-    //Some comments for testing.
-    
-    //Some more comments for testing
+
 }
