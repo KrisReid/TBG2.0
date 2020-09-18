@@ -18,7 +18,6 @@ class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var tableview: UITableView!
     
     var colours = Colours()
-    var player: PlayerModel?
     var team: TeamModel?
     
 
@@ -44,39 +43,31 @@ class ShareTeamViewController: UIViewController, UITableViewDelegate, UITableVie
         lblTeamPostcode.accessibilityIdentifier = AccessabilityIdentifier.ShareTeamPostcode.rawValue
     }
     
-    
     func loadTeamData() {
         let spinner = UIViewController.displayLoading(withView: self.view)
-        
-        let userRef = PlayerModel.getUser()
-        userRef.observe(.value) { [weak self] (snapshot) in
+         
+        let teamRef = TeamModel.collection.child(PlayerModel.user?.teamId ?? "")
+        teamRef.observe(.value) { [weak self] (snapshot) in
             guard let strongSelf = self else { return }
-            guard let player = PlayerModel(snapshot) else {return}
-            strongSelf.player = player
-            
-            let teamRef = TeamModel.collection.child(strongSelf.player?.teamId ?? "")
-            teamRef.observe(.value) { [weak self] (snapshot) in
-                guard let strongSelf = self else { return }
-                guard let team = TeamModel(snapshot) else {return}
-                strongSelf.team = team
+            guard let team = TeamModel(snapshot) else {return}
+            strongSelf.team = team
 
-                
-                Helper.setImageView(imageView: strongSelf.ivTeamBadge, url: team.crest!)
-                
+            
+            Helper.setImageView(imageView: strongSelf.ivTeamBadge, url: team.crest!)
+            
 //                //Manual delay code
 //                let seconds = 0.3
 //                DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
 //                    // Put your code which should be executed with a delay here
 //                    strongSelf.ivTeamBadge.image = image.image
 //                }
-                
-                strongSelf.lblTeamName.text = team.name
-                strongSelf.lblTeamPostcode.text = team.postcode
-                
-                DispatchQueue.main.async {
-                    strongSelf.tableview.reloadData()
-                    UIViewController.removeLoading(spinner: spinner)
-                }
+            
+            strongSelf.lblTeamName.text = team.name
+            strongSelf.lblTeamPostcode.text = team.postcode
+            
+            DispatchQueue.main.async {
+                strongSelf.tableview.reloadData()
+                UIViewController.removeLoading(spinner: spinner)
             }
         }
     }

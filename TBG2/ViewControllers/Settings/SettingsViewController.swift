@@ -70,4 +70,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    //Some comments for testing.
+    
+    //Some more comments for testing
 }

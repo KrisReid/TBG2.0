@@ -98,15 +98,14 @@ class PlayerModel {
         
     }
     
+    
+    //DATA STORE
+    static var user: PlayerModel?
+    
+    
+    
     static func getDefaultPlayer() -> DatabaseReference {
        return PlayerModel.collection.child("DefaultPlayerToPull123456789")
-    }
-    
-    
-    static func getUser () -> DatabaseReference {
-        let uuid = PlayerModel.authCollection
-        let user = PlayerModel.collection.child(uuid)
-        return user
     }
     
     
@@ -192,6 +191,13 @@ class PlayerModel {
             }
             playerRef.setValue(updatedGamesValue)
         }
+    }
+    
+    class func postPlayersManagerialStatus (playerId: String, managerStatus: Bool, assistantStatus: Bool) {
+        let managerStatusRef = collection.child(playerId).child("manager")
+        managerStatusRef.setValue(managerStatus)
+        let assistantStatusRef = collection.child(playerId).child("assistantManager")
+        assistantStatusRef.setValue(assistantStatus)
     }
     
 }

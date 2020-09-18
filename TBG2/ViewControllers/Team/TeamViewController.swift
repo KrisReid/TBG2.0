@@ -15,7 +15,6 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableview: UITableView!
     
     var colours = Colours()
-    var player: PlayerModel?
     var defaultPlayer: PlayerModel?
     
     var managers: NSMutableArray = []
@@ -60,23 +59,25 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     
     func loadData() {
-        self.managers.removeAllObjects()
-        self.goalkeepers.removeAllObjects()
-        self.defenders.removeAllObjects()
-        self.midfielders.removeAllObjects()
-        self.strikers.removeAllObjects()
-        
         //Get the user & player data
-        let userRef = PlayerModel.getUser()
-        userRef.observeSingleEvent(of: .value) { [weak self] (snapshot) in
-            guard let strongSelf = self else { return }
+        let uuid = PlayerModel.authCollection
+        let userRef = PlayerModel.collection.child(uuid)
+        userRef.observeSingleEvent(of: .value) { (snapshot) in
             guard let player = PlayerModel(snapshot) else {return}
-            strongSelf.player = player
+            
+            //LOAD THE ONLY USEr OBJECT ONCE
+            PlayerModel.user = player
                 
-            let playersRef = TeamModel.collection.child(strongSelf.player?.teamId ?? "").child("players")
+            let playersRef = TeamModel.collection.child(PlayerModel.user?.teamId ?? "").child("players")
             let playerRefQuery = playersRef.queryOrderedByKey()
             
-            playerRefQuery.observe(.value) { [weak self] (snapshot) in
+            playerRefQuery.observe( .value) { [weak self] (snapshot) in
+                
+                self!.managers.removeAllObjects()
+                self!.goalkeepers.removeAllObjects()
+                self!.defenders.removeAllObjects()
+                self!.midfielders.removeAllObjects()
+                self!.strikers.removeAllObjects()
                 
                 guard let strongSelf = self else { return }
                 for item in snapshot.children {

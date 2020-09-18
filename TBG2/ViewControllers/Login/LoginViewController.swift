@@ -18,7 +18,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var btnSignUp: UIButton!
     
-    
     var colour = Colours()
     var keyboardHeight : CGFloat = 0.0
     
