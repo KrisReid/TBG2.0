@@ -144,6 +144,8 @@ class AddFixtureViewController: UIViewController {
         let playerRefQuery = playerRef.queryOrderedByKey()
         playerRefQuery.observeSingleEvent(of: .value) { (snapshot) in
             
+            var count = 0
+            
             for item in snapshot.children {
                 guard let snapshot = item as? DataSnapshot else { continue }
                 guard let player = PlayerModel(snapshot) else { continue }
@@ -151,20 +153,19 @@ class AddFixtureViewController: UIViewController {
                 //Load the players keys into an array
                 self.players.insert(snapshot.key, at: 0)
                 
-                //Load the manager as an optional player for the game
-                if player.manager {
-                    self.managerId = player.id
-                    self.vManager.isHidden = false
-                    let image = Helper.ImageUrlConverter(url: player.profilePictureUrl!)
-                    self.btnManager.setBackgroundImage(image.image, for: .normal)
-                }
-                
-                //Load the assistant manager as an optional player for the game
-                if player.assistantManager {
-                    self.assistantManagerId = player.id
-                    self.vAssistantManager.isHidden = false
-                    let image = Helper.ImageUrlConverter(url: player.profilePictureUrl!)
-                    self.btnAssistant.setBackgroundImage(image.image, for: .normal)
+                if player.manager || player.assistantManager {
+                    count += 1
+                    if count == 1 {
+                        self.managerId = player.id
+                        self.vManager.isHidden = false
+                        let image = Helper.ImageUrlConverter(url: player.profilePictureUrl!)
+                        self.btnManager.setBackgroundImage(image.image, for: .normal)
+                    } else {
+                        self.assistantManagerId = player.id
+                        self.vAssistantManager.isHidden = false
+                        let image = Helper.ImageUrlConverter(url: player.profilePictureUrl!)
+                        self.btnAssistant.setBackgroundImage(image.image, for: .normal)
+                    }
                 }
             }
         }

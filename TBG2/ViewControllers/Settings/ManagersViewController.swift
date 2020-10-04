@@ -31,7 +31,6 @@ class ManagersViewController: UIViewController, UITableViewDelegate, UITableView
     
     func loadData() {
         
-        //Get the user & player data
         let playersRef = TeamModel.collection.child(PlayerModel.user!.teamId).child("players")
         let playerRefQuery = playersRef.queryOrderedByKey()
         playerRefQuery.observe(.value) { [weak self] (snapshot) in
