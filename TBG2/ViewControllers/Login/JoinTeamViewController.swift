@@ -133,7 +133,7 @@ class JoinTeamViewController: UIViewController {
                                 UIViewController.removeLoading(spinner: spinner)
                             }
                             if error == nil {
-                                PlayerModel.postPlayerProfile(profilePicture: profilePicture, userId: userId, playerFullName: self!.playerFullName, playerEmailAddress: self!.playerEmailAddress, playerDateOfBirth: self!.playerDateOfBirth, playerHouseNumber: self!.playerHouseNumber, playerPostcode: self!.playerPostcode, manager: false, assistantManager: false, playerManager: false, playerPosition: self!.playerPosition, teamId: teamId, teamPIN: teamPIN)
+                                PlayerModel.postPlayerProfile(profilePicture: profilePicture, userId: userId, playerFullName: self!.playerFullName, playerEmailAddress: self!.playerEmailAddress, playerDateOfBirth: self!.playerDateOfBirth, playerHouseNumber: self!.playerHouseNumber, playerPostcode: self!.playerPostcode, manager: false, assistantManager: false, playerPosition: self!.playerPosition, teamId: teamId, teamPIN: teamPIN)
                                 
                                 DispatchQueue.main.async {
                                     Helper.login()

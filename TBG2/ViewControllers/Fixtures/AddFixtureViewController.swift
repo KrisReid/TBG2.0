@@ -154,21 +154,17 @@ class AddFixtureViewController: UIViewController {
                 //Load the manager as an optional player for the game
                 if player.manager {
                     self.managerId = player.id
-                    if (player.playerManager) {
-                        self.vManager.isHidden = false
-                        let image = Helper.ImageUrlConverter(url: player.profilePictureUrl!)
-                        self.btnManager.setBackgroundImage(image.image, for: .normal)
-                    }
+                    self.vManager.isHidden = false
+                    let image = Helper.ImageUrlConverter(url: player.profilePictureUrl!)
+                    self.btnManager.setBackgroundImage(image.image, for: .normal)
                 }
                 
                 //Load the assistant manager as an optional player for the game
                 if player.assistantManager {
                     self.assistantManagerId = player.id
-                    if (player.playerManager) {
-                        self.vAssistantManager.isHidden = false
-                        let image = Helper.ImageUrlConverter(url: player.profilePictureUrl!)
-                        self.btnAssistant.setBackgroundImage(image.image, for: .normal)
-                    }
+                    self.vAssistantManager.isHidden = false
+                    let image = Helper.ImageUrlConverter(url: player.profilePictureUrl!)
+                    self.btnAssistant.setBackgroundImage(image.image, for: .normal)
                 }
             }
         }

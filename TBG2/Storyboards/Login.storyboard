@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17132" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9RB-qa-kAc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9RB-qa-kAc">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17105"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -463,23 +463,22 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bSK-L0-Ug4">
-                                                <rect key="frame" x="20" y="452" width="374" height="32"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFL-NU-x34">
+                                                <rect key="frame" x="20" y="573" width="374" height="34"/>
+                                                <color key="backgroundColor" red="0.14509803921568626" green="0.27843137254901962" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
+                                                <accessibility key="accessibilityConfiguration" label="Create Team Submit Button"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="31" id="3P1-He-a2Y"/>
+                                                    <constraint firstAttribute="height" constant="34" id="9jR-qS-fv9"/>
                                                 </constraints>
-                                                <segments>
-                                                    <segment title="Manager Only"/>
-                                                    <segment title="Player / Manager"/>
-                                                </segments>
-                                                <color key="selectedSegmentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Submit">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
                                                 <connections>
-                                                    <action selector="scPlayerManagerTapped:" destination="XaW-fd-jBW" eventType="valueChanged" id="zKe-jT-Woz"/>
+                                                    <action selector="btnSubmitTapped:" destination="XaW-fd-jBW" eventType="touchUpInside" id="efQ-LM-5PZ"/>
                                                 </connections>
-                                            </segmentedControl>
+                                            </button>
                                             <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bNK-sU-KVS">
-                                                <rect key="frame" x="20" y="513" width="374" height="32"/>
+                                                <rect key="frame" x="20" y="442" width="374" height="32"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="31" id="7lO-Wd-1Kt"/>
@@ -494,39 +493,22 @@
                                                     <action selector="scPlayerPositionTapped:" destination="XaW-fd-jBW" eventType="valueChanged" id="28j-bP-BW6"/>
                                                 </connections>
                                             </segmentedControl>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFL-NU-x34">
-                                                <rect key="frame" x="20" y="624" width="374" height="34"/>
-                                                <color key="backgroundColor" red="0.14509803921568626" green="0.27843137254901962" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
-                                                <accessibility key="accessibilityConfiguration" label="Create Team Submit Button"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="34" id="9jR-qS-fv9"/>
-                                                </constraints>
-                                                <state key="normal" title="Submit">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="btnSubmitTapped:" destination="XaW-fd-jBW" eventType="touchUpInside" id="efQ-LM-5PZ"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="wmh-6y-rH7" secondAttribute="trailing" constant="20" id="8df-42-9G2"/>
                                             <constraint firstItem="bNK-sU-KVS" firstAttribute="leading" secondItem="J4t-PY-d5m" secondAttribute="leading" constant="20" id="DT7-it-bOt"/>
                                             <constraint firstItem="wmh-6y-rH7" firstAttribute="top" secondItem="BcT-On-cWS" secondAttribute="bottom" constant="20" id="FEn-dr-0sN"/>
+                                            <constraint firstItem="bNK-sU-KVS" firstAttribute="top" secondItem="qsG-cA-PNo" secondAttribute="bottom" constant="20" id="K4M-Cy-EbC"/>
                                             <constraint firstItem="BcT-On-cWS" firstAttribute="leading" secondItem="J4t-PY-d5m" secondAttribute="leading" constant="20" id="NNb-M2-3Ja"/>
-                                            <constraint firstAttribute="trailing" secondItem="bSK-L0-Ug4" secondAttribute="trailing" constant="20" id="OBz-LI-Qoh"/>
-                                            <constraint firstItem="bSK-L0-Ug4" firstAttribute="top" secondItem="qsG-cA-PNo" secondAttribute="bottom" constant="30" id="QTC-bp-L6L"/>
                                             <constraint firstItem="vFL-NU-x34" firstAttribute="leading" secondItem="J4t-PY-d5m" secondAttribute="leading" constant="20" id="RsK-Dw-W51"/>
                                             <constraint firstItem="qsG-cA-PNo" firstAttribute="top" secondItem="wmh-6y-rH7" secondAttribute="bottom" constant="20" id="SsS-Tl-dsc"/>
                                             <constraint firstItem="qsG-cA-PNo" firstAttribute="leading" secondItem="J4t-PY-d5m" secondAttribute="leading" constant="20" id="XBZ-dc-wCQ"/>
-                                            <constraint firstItem="vFL-NU-x34" firstAttribute="top" secondItem="bNK-sU-KVS" secondAttribute="bottom" constant="80" id="XFX-i7-WdE"/>
+                                            <constraint firstItem="vFL-NU-x34" firstAttribute="top" secondItem="bNK-sU-KVS" secondAttribute="bottom" constant="100" id="XFX-i7-WdE"/>
                                             <constraint firstAttribute="trailing" secondItem="vFL-NU-x34" secondAttribute="trailing" constant="20" id="YWF-na-bFg"/>
                                             <constraint firstItem="BcT-On-cWS" firstAttribute="top" secondItem="5Dl-NU-5ys" secondAttribute="bottom" constant="50" id="bSH-OT-5xM"/>
                                             <constraint firstAttribute="trailing" secondItem="BcT-On-cWS" secondAttribute="trailing" constant="20" id="eLi-kf-jKg"/>
                                             <constraint firstItem="wmh-6y-rH7" firstAttribute="leading" secondItem="J4t-PY-d5m" secondAttribute="leading" constant="20" id="j44-d9-pmn"/>
-                                            <constraint firstItem="bNK-sU-KVS" firstAttribute="top" secondItem="bSK-L0-Ug4" secondAttribute="bottom" constant="30" id="oqI-f4-m4M"/>
-                                            <constraint firstItem="bSK-L0-Ug4" firstAttribute="leading" secondItem="J4t-PY-d5m" secondAttribute="leading" constant="20" id="p2n-X5-9TG"/>
                                             <constraint firstAttribute="trailing" secondItem="bNK-sU-KVS" secondAttribute="trailing" constant="20" id="sYE-9f-VYg"/>
                                             <constraint firstItem="5Dl-NU-5ys" firstAttribute="centerX" secondItem="J4t-PY-d5m" secondAttribute="centerX" id="u6B-Kt-NdQ"/>
                                             <constraint firstItem="5Dl-NU-5ys" firstAttribute="top" secondItem="J4t-PY-d5m" secondAttribute="top" constant="70" id="x40-Bk-PxA"/>
@@ -557,7 +539,6 @@
                     <connections>
                         <outlet property="btnSubmit" destination="vFL-NU-x34" id="PXv-ZN-m8E"/>
                         <outlet property="btnTeamCrest" destination="5Dl-NU-5ys" id="EO2-B2-o1h"/>
-                        <outlet property="scPlayerManager" destination="bSK-L0-Ug4" id="Ecf-T2-b8r"/>
                         <outlet property="scPlayerPosition" destination="bNK-sU-KVS" id="6uB-7c-PRg"/>
                         <outlet property="tfTeamName" destination="BcT-On-cWS" id="Dtt-Jh-iiX"/>
                         <outlet property="tfTeamPIN" destination="wmh-6y-rH7" id="P2Z-ck-uue"/>
