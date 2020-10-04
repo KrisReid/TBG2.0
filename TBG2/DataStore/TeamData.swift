@@ -142,6 +142,7 @@ class TeamModel {
         managerStatusRef.setValue(managerStatus)
         let assistantStatusRef = collection.child(teamId).child("players").child(playerId).child("assistantManager")
         assistantStatusRef.setValue(assistantStatus)
+        
     }
 
 }
