@@ -21,6 +21,7 @@
 		0231525923F0A8F600AAFB0B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231525823F0A8F600AAFB0B /* LoginViewController.swift */; };
 		0231525B23F60B7B00AAFB0B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231525A23F60B7A00AAFB0B /* SignupViewController.swift */; };
 		025280EA24032E18002DB761 /* CreateTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025280E924032E17002DB761 /* CreateTeamViewController.swift */; };
+		025F0A062539ABEA00730BE1 /* TokenGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025F0A052539ABEA00730BE1 /* TokenGeneration.swift */; };
 		0262E4F624FEEE1D00A1C185 /* ManagersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E4F524FEEE1D00A1C185 /* ManagersTableViewCell.swift */; };
 		026F1E702381CA9400682063 /* TeamData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F1E6F2381CA9400682063 /* TeamData.swift */; };
 		026F1E722381CC5600682063 /* PlayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F1E712381CC5600682063 /* PlayerData.swift */; };
@@ -93,6 +94,7 @@
 		0231525823F0A8F600AAFB0B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0231525A23F60B7A00AAFB0B /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		025280E924032E17002DB761 /* CreateTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamViewController.swift; sourceTree = "<group>"; };
+		025F0A052539ABEA00730BE1 /* TokenGeneration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenGeneration.swift; sourceTree = "<group>"; };
 		0262E4F524FEEE1D00A1C185 /* ManagersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagersTableViewCell.swift; sourceTree = "<group>"; };
 		026F1E6F2381CA9400682063 /* TeamData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamData.swift; sourceTree = "<group>"; };
 		026F1E712381CC5600682063 /* PlayerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerData.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 		02F7BF6623B7F56000DE70BB /* FixturesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesTableViewCell.swift; sourceTree = "<group>"; };
 		02F7BF6723B7F56000DE70BB /* FixturesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FixturesTableViewCell.xib; sourceTree = "<group>"; };
 		02F7BF6A23B8984B00DE70BB /* AddFixtureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFixtureViewController.swift; sourceTree = "<group>"; };
+		02FEB5B4252A5FB7007B5DAE /* TBG2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TBG2.entitlements; sourceTree = "<group>"; };
 		1D356E5A8C7F50F9E85087E0 /* Pods-TBG2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TBG2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TBG2/Pods-TBG2.debug.xcconfig"; sourceTree = "<group>"; };
 		3625DBE16623C89D5A607B62 /* Pods_TBG2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TBG2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8160CFC5784725282E5F863 /* Pods-TBG2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TBG2.release.xcconfig"; path = "Pods/Target Support Files/Pods-TBG2/Pods-TBG2.release.xcconfig"; sourceTree = "<group>"; };
@@ -220,9 +223,11 @@
 		027A08C02318248300B0DF59 /* TBG2 */ = {
 			isa = PBXGroup;
 			children = (
+				02FEB5B4252A5FB7007B5DAE /* TBG2.entitlements */,
 				027A08C12318248300B0DF59 /* AppDelegate.swift */,
 				027A08C32318248300B0DF59 /* SceneDelegate.swift */,
 				0231525423F0426300AAFB0B /* Helper.swift */,
+				025F0A052539ABEA00730BE1 /* TokenGeneration.swift */,
 				02821A14239A811A0090E400 /* Extensions.swift */,
 				0210988A249FF67900A55478 /* DeStringers */,
 				0288B22223683AD70014DA4E /* Views */,
@@ -381,6 +386,7 @@
 				027A08BC2318248300B0DF59 /* Resources */,
 				3181D44F0307CFF713930567 /* [CP] Embed Pods Frameworks */,
 				02DC38A82455A2690012018D /* Crashlytics Run Script */,
+				1329FC44B1D17E5D2605BC7B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -508,6 +514,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
+		1329FC44B1D17E5D2605BC7B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TBG2/Pods-TBG2-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TBG2/Pods-TBG2-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TBG2/Pods-TBG2-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		17D62DE4FB1DF81769AE1335 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -591,6 +614,7 @@
 				0282C80024085E7F00259BEF /* TeamInformationViewController.swift in Sources */,
 				027A08C22318248300B0DF59 /* AppDelegate.swift in Sources */,
 				0282C806240C27B000259BEF /* FixtureInformationViewController.swift in Sources */,
+				025F0A062539ABEA00730BE1 /* TokenGeneration.swift in Sources */,
 				0231525B23F60B7B00AAFB0B /* SignupViewController.swift in Sources */,
 				02821A0D2395AAD30090E400 /* TeamPinViewController.swift in Sources */,
 			);
@@ -821,6 +845,7 @@
 			baseConfigurationReference = 1D356E5A8C7F50F9E85087E0 /* Pods-TBG2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TBG2/TBG2.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -847,6 +872,7 @@
 			baseConfigurationReference = CE5B1F138C4F316D21DEBB21 /* Pods-TBG2.distribution.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TBG2/TBG2.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -927,6 +953,7 @@
 			baseConfigurationReference = B8160CFC5784725282E5F863 /* Pods-TBG2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TBG2/TBG2.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;

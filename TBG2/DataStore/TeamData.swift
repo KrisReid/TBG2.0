@@ -54,7 +54,7 @@ class TeamModel {
     }
     
     
-    static func postTeamCrest(userId: String, playerProfilePicture: UIImage, playerFullName: String,playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, assistantManager: Bool, playerManager: Bool, playerPosition: String, teamName: String, teamPIN: Int, teamPostcode: String, teamCrest: UIImage) {
+    static func postTeamCrest(userId: String, playerProfilePicture: UIImage, playerFullName: String,playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, assistantManager: Bool, playerPosition: String, teamName: String, teamPIN: Int, teamPostcode: String, teamCrest: UIImage) {
         
         let imageFolder = Storage.storage().reference().child("crest_images")
         if let uploadData = teamCrest.jpegData(compressionQuality: 0.75) {
@@ -70,7 +70,7 @@ class TeamModel {
                             error == nil {
                             let teamCrestUrl = url.absoluteString
                             
-                            postTeam(userId: userId, playerProfilePicture: playerProfilePicture, playerFullName: playerFullName,playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: manager, assistantManager: assistantManager, playerManager: playerManager, playerPosition: playerPosition, teamName: teamName, teamPIN: teamPIN, teamPostcode: teamPostcode, teamCrestUrl: teamCrestUrl)
+                            postTeam(userId: userId, playerProfilePicture: playerProfilePicture, playerFullName: playerFullName,playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: manager, assistantManager: assistantManager, playerPosition: playerPosition, teamName: teamName, teamPIN: teamPIN, teamPostcode: teamPostcode, teamCrestUrl: teamCrestUrl)
                         }
                     }
                 }
@@ -78,7 +78,7 @@ class TeamModel {
         }
     }
     
-    private static func postTeam(userId: String, playerProfilePicture: UIImage, playerFullName: String,playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, assistantManager: Bool, playerManager: Bool, playerPosition: String, teamName: String, teamPIN: Int, teamPostcode: String, teamCrestUrl: String) {
+    private static func postTeam(userId: String, playerProfilePicture: UIImage, playerFullName: String,playerEmailAddress: String, playerDateOfBirth: String, playerHouseNumber: String, playerPostcode: String, manager: Bool, assistantManager: Bool, playerPosition: String, teamName: String, teamPIN: Int, teamPostcode: String, teamCrestUrl: String) {
         
         let teamRef = TeamModel.collection.childByAutoId()
         let newKey = teamRef.key
@@ -94,7 +94,7 @@ class TeamModel {
         
          DispatchQueue.main.async {
 
-            PlayerModel.postPlayerProfile(profilePicture: playerProfilePicture, userId: userId, playerFullName: playerFullName, playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: manager, assistantManager: assistantManager, playerManager: playerManager, playerPosition: playerPosition, teamId: newKey!, teamPIN: teamPIN)
+            PlayerModel.postPlayerProfile(profilePicture: playerProfilePicture, userId: userId, playerFullName: playerFullName, playerEmailAddress: playerEmailAddress, playerDateOfBirth: playerDateOfBirth, playerHouseNumber: playerHouseNumber, playerPostcode: playerPostcode, manager: manager, assistantManager: assistantManager, playerPosition: playerPosition, teamId: newKey!, teamPIN: teamPIN)
          }
     }
     
@@ -142,6 +142,7 @@ class TeamModel {
         managerStatusRef.setValue(managerStatus)
         let assistantStatusRef = collection.child(teamId).child("players").child(playerId).child("assistantManager")
         assistantStatusRef.setValue(assistantStatus)
+        
     }
 
 }

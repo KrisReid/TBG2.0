@@ -13,5 +13,7 @@ target 'TBG2' do
   pod 'Firebase/Analytics'
   pod 'FirebaseUI/Storage'
   pod 'Firebase/Crashlytics'
+  pod 'Firebase/InAppMessaging'
+  pod 'Firebase/Messaging'
 
 end

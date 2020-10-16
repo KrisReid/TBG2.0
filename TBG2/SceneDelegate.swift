@@ -8,20 +8,21 @@
 import UIKit
 import Firebase
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+class SceneDelegate: UIResponder, UIWindowSceneDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
     @available(iOS 13.0, *)
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-
-        FirebaseApp.configure()
         
+        FirebaseApp.configure()
+    
         guard let windowScene = scene as? UIWindowScene else {
             return
         }
 
         let window = UIWindow(windowScene: windowScene)
+        
 
         if let _ = Auth.auth().currentUser {
             

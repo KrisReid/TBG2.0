@@ -16,7 +16,6 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var tfTeamName: UITextField!
     @IBOutlet weak var tfTeamPIN: UITextField!
     @IBOutlet weak var tfTeamPostcode: UITextField!
-    @IBOutlet weak var scPlayerManager: UISegmentedControl!
     @IBOutlet weak var scPlayerPosition: UISegmentedControl!
     @IBOutlet weak var btnSubmit: UIButton!
     
@@ -27,7 +26,6 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
     var playerDateOfBirth: String = ""
     var playerHouseNumber: String = ""
     var playerPostcode: String = ""
-    var playerManager: Bool = false
     var playerPosition: String = ""
 
     var colours = Colours()
@@ -53,7 +51,6 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
         tfTeamPostcode.whitePlaceholderText(text: "Team Postcode")
         
         //Segmented Control Styling
-        scPlayerManager.defaultSegmentedControlFormat(backgroundColour: UIColor.clear)
         scPlayerPosition.defaultSegmentedControlFormat(backgroundColour: UIColor.clear)
     }
     
@@ -89,15 +86,6 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
         btnTeamCrest.setTitle("team_crest",for: .normal)
     }
     
-    @IBAction func scPlayerManagerTapped(_ sender: Any) {
-        if scPlayerManager.selectedSegmentIndex == 1 {
-            playerManager = true
-            scPlayerPosition.isHidden = false
-        } else {
-            playerManager = false
-            scPlayerPosition.isHidden = true
-        }
-    }
     
     @IBAction func scPlayerPositionTapped(_ sender: Any) {
         switch scPlayerPosition.selectedSegmentIndex {
@@ -149,7 +137,7 @@ class CreateTeamViewController: UIViewController, UIImagePickerControllerDelegat
                         }
                         if error == nil {
                             
-                            TeamModel.postTeamCrest(userId: userId, playerProfilePicture: playerProfilePicture, playerFullName: self!.playerFullName, playerEmailAddress: self!.playerEmailAddress, playerDateOfBirth: self!.playerDateOfBirth, playerHouseNumber: self!.playerHouseNumber, playerPostcode: self!.playerPostcode, manager: true, assistantManager: false, playerManager: self!.playerManager, playerPosition: self!.playerPosition, teamName: teamName, teamPIN: Int(teamPIN)!, teamPostcode: formattedTeamPostcode, teamCrest: teamCrest)
+                            TeamModel.postTeamCrest(userId: userId, playerProfilePicture: playerProfilePicture, playerFullName: self!.playerFullName, playerEmailAddress: self!.playerEmailAddress, playerDateOfBirth: self!.playerDateOfBirth, playerHouseNumber: self!.playerHouseNumber, playerPostcode: self!.playerPostcode, manager: true, assistantManager: false, playerPosition: self!.playerPosition, teamName: teamName, teamPIN: Int(teamPIN)!, teamPostcode: formattedTeamPostcode, teamCrest: teamCrest)
                             
                             DispatchQueue.main.async {
                                 Helper.login()

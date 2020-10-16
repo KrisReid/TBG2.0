@@ -31,7 +31,6 @@ class ManagersViewController: UIViewController, UITableViewDelegate, UITableView
     
     func loadData() {
         
-        //Get the user & player data
         let playersRef = TeamModel.collection.child(PlayerModel.user!.teamId).child("players")
         let playerRefQuery = playersRef.queryOrderedByKey()
         playerRefQuery.observe(.value) { [weak self] (snapshot) in
@@ -138,25 +137,17 @@ class ManagersViewController: UIViewController, UITableViewDelegate, UITableView
         //Position Logic
         var swipeAction = UISwipeActionsConfiguration(actions: [])
         
-        if player.manager && managers.count <= 1 {
-//            swipeAction = UISwipeActionsConfiguration(actions: [])
-        }
-        if player.manager && managers.count > 1 {
+        let currentManagement: Int = managers.count + assistantManagers.count
+        
+        if player.manager && currentManagement == 2 {
             swipeAction = UISwipeActionsConfiguration(actions: [playerAction, assistantManagerAction])
         }
-        if player.assistantManager && managers.count > 1 {
-            swipeAction = UISwipeActionsConfiguration(actions: [playerAction])
-        }
-        if player.assistantManager && managers.count <= 1 {
+        if player.assistantManager {
             swipeAction = UISwipeActionsConfiguration(actions: [playerAction, managerAction])
         }
-        if player.assistantManager == false && player.manager == false && managers.count > 1 {
+        if player.assistantManager == false && player.manager == false && currentManagement <= 1 {
               swipeAction = UISwipeActionsConfiguration(actions: [assistantManagerAction])
         }
-        if player.assistantManager == false && player.manager == false && managers.count <= 1 {
-              swipeAction = UISwipeActionsConfiguration(actions: [managerAction, assistantManagerAction])
-        }
-        
             
         swipeAction.performsFirstActionWithFullSwipe = false
         return swipeAction

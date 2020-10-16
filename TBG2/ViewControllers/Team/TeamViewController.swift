@@ -30,6 +30,10 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Generate FCM Token
+        TokenGeneration().viewDidLoad()
+        
+        //Set section structure
         sectionData = [0 : managers, 1 : goalkeepers, 2 : defenders, 3 : midfielders, 4 : strikers]
 
         tableview.estimatedRowHeight = CGFloat(60.0)
