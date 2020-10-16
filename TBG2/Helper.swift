@@ -12,9 +12,18 @@ import MapKit
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
+import FirebaseMessaging
+import UserNotifications
 import CoreData
 
 class Helper {
+    
+    let delegate = UIApplication.shared.delegate as! AppDelegate
+    var email = ""
+    var key = ""
+    var teamId = ""
+    var pushToken = ""
+    
     
     class func errorAlert(title: String, message: String) -> UIAlertController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
