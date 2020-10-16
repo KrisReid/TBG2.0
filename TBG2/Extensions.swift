@@ -138,6 +138,3 @@ extension UISegmentedControl {
         self.backgroundColor = backgroundColour
     }
 }
-
-
-
